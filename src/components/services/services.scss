@@ -1,0 +1,134 @@
+@import "../../App.scss";
+
+.services{
+    background: linear-gradient(180deg, #061829, #095a9b);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+    .textContainer {
+        flex: 1;
+        align-self: flex-end;
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        margin-right: 2rem;
+        
+
+        p {
+            font-weight: 200;
+            font-size: 1.25rem;
+            color: gray;
+            text-align: right;
+            font-family: "Helvetica Neue";
+
+
+            span{
+                display: block;
+                font-family: "Helvetica Neue";
+
+            }
+
+        }
+
+        
+    }
+
+    .titleContainer {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 2;
+
+
+
+        .title{
+
+            display: flex;
+            align-items: center;
+            gap: 3.125rem;
+
+
+            img{
+                width: 16.75rem;
+                height: 4.25rem;
+                border-radius: 50px;
+                object-fit: cover;
+            }
+
+            h1 {
+                font-size: 4rem;
+                font-weight: lighter;
+            }
+
+            button {
+                width: 12.75rem;
+                height: 3.25rem;
+                border-radius: 3.125rem;
+                background-color: #bce0fb;
+                color: #061829;
+                font-size: 1.5rem;
+                border: none;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .listContainer{
+        flex: 2;
+        display: flex;
+        max-width: 55rem;
+        margin: auto;
+
+
+        .box {
+            padding: 1rem 2.25rem;
+            border: .5px solid gray;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1rem;
+
+            &.first{
+                border-left: none;
+            }
+
+            &.last {
+                border-right: none;
+            }
+
+            .serviceTitle {
+                font-size: 1.2rem;
+                animation: none;
+            }
+
+
+            button {
+                border: none;
+                background: transparent;
+                color: #bce0fb;
+                font-size: 0.813rem;
+                font-weight: 400;
+                letter-spacing: 4px;
+                font-family: sans-serif;
+                padding: 0.625rem 1.125rem;
+                border: 1px solid #3fabf1;
+                border-radius: .5rem;
+
+                &:hover {
+                    background: #bce0fb;
+                    color: #095a9b;
+                }
+            }
+
+            p {
+                font-size: .9rem;
+            }
+
+            
+        }
+    }
+}

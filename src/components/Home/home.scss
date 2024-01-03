@@ -1,0 +1,136 @@
+@import "../../App.scss";
+
+.container {
+    width: 100%;
+    will-change: contents;
+    height: 90%;
+    min-height: 35.375;
+    position: absolute;
+    opacity: 0;
+    top: 5%;
+    margin: 0 auto;
+    z-index: 1;
+    transform-style: preserve-3d;
+    animation: fadeIn 1s forwards;
+    animation-delay: 1s;
+}
+
+.home-page {
+    // background: linear-gradient(180deg, #061829, #095a9b);
+    
+
+    .text-zone {
+        position: absolute;
+        left: 10%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 45%;
+        max-height: 90%;
+    }
+
+    h1{
+        color: #bce0fb;
+        font-size: 3.313rem;
+        margin: 0;
+        font-family: "Coolvetica";
+        font-weight: 400;
+        line-height: 5rem;
+
+        &::before {
+            content: '<h1>';
+            font-family: "La Belle Aurore";
+            color: #0972c0;  // come back to review this color
+            font-size: 1.125rem;
+            position: absolute;
+            margin-top: -2.5rem;
+            left: 1rem;
+            opacity: 0.6;
+        }
+
+        &::after {
+            content: '</h1>';
+            font-family: "La Belle Aurore";
+            color: #0972c0;  // come back to review this color
+            font-size: 1.125rem;
+            position: absolute;
+            margin-top: 1.125rem;
+            margin-left: 1.25rem;
+            animation: fadeIn 1s 1.7s backwards;
+            opacity: 0.6;
+        }
+    }
+
+   .k-letter {
+    width: 3rem;
+    margin-left: 1.25rem;
+    opacity: 0;
+    height: auto;
+    animation: rotateIn 1s linear both;
+    animation-delay: 1.4s;
+   }
+}
+
+h2 {
+    color: #3fabf1;
+    margin-top: 1.25rem;
+    font-weight: 400;
+    font-size: 0.9rem;
+    font-family: sans-serif;
+    letter-spacing: 3px;
+    animation: fadeIn 1s 1.8s backwards;
+}
+
+.buttons{
+
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+
+    .flat-button {
+        background: transparent;
+        color: #bce0fb;
+        font-size: 0.813rem;
+        font-weight: 400;
+        letter-spacing: 4px;
+        font-family: sans-serif;
+        text-decoration: none;
+        padding: 0.625rem 1.125rem;
+        border: 1px solid #3fabf1;
+        margin-top: 1.563rem;
+        float: left;
+        animation: fadeIn 1s 1.8s backwards;
+        white-space: nowrap;
+        border-radius: .5rem;
+    
+        &:hover{
+            background: transparent;
+            color: #3fabf1;
+        }
+    
+    }
+}
+
+.imageContainer {
+    height: 100%;
+    width: 40%;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+
+    .my-image{
+        width: 80%;
+    }
+}
+
+.slidingTextContainer {
+    position: absolute;
+    font-size: 30vh;
+    bottom: -4.5rem;
+    left: 5rem;
+    white-space: nowrap;
+    color: #ffffff09;
+    width: 50%;
+    font-weight: bold;
+    z-index: -1;
+}
