@@ -10,6 +10,11 @@
         margin-top: 0;
         height: 50%;
     }
+
+    @include mobile {
+        margin-top: 0;
+        height: 50%;
+    }
     .text-zone {
         position: absolute;
         left: 10%;
@@ -18,8 +23,16 @@
         width: 45%;
         max-height: 90%;
 
-        @include tablet{
+    
+
+        @include mobile {
             left: 5%;
+            width: 100vw;
+            top: 35%;
+        }
+
+        @include tablet{
+            left: 8%;
             width: 100vw;
             top: 35%;
         }
@@ -35,6 +48,11 @@
 
         @include tablet {
             font-size: 2rem;
+            line-height: 3rem;
+        }
+
+        @include mobile {
+            font-size: 1.6rem;
             line-height: 3rem;
         }
 
@@ -84,6 +102,10 @@ h2 {
     @include tablet {
         font-size: 0.7rem;
     }
+
+    @include tablet {
+        font-size: 0.7rem;
+    }
 }
 
 .buttons{
@@ -119,6 +141,13 @@ h2 {
             letter-spacing: 2px;
             padding:0.5rem 1rem;
         }
+
+        @include tablet {
+            margin-top: 1.2rem;
+            font-size: 0.813rem;
+            letter-spacing: 2px;
+            padding:0.5rem 1rem;
+        }
     }
 }
 
@@ -141,11 +170,28 @@ h2 {
         
     }
 
+    @include mobile {
+        height: 7rem;
+        width: 7rem;
+        margin-right: 2rem;
+        border: 1px solid #3fabf1;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;  
+    }
+
 
     .my-image{
         width: 80%;
 
         @include tablet {
+            width: 60%;
+            margin-top: -15px;
+            right: 10px;
+        }
+
+        @include mobile {
             width: 60%;
             margin-top: -15px;
             right: 10px;

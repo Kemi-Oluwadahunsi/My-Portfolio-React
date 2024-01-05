@@ -139,6 +139,11 @@
             }
         }
 
+        @include mobile {
+            display: none;
+            height: auto;
+        }
+
         @include tablet {
             display: none;
             height: auto;

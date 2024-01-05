@@ -9,6 +9,10 @@
     @include tablet {
         height: 50vh;
     }
+
+    @include mobile {
+        height: 50vh;
+    }
 }
 
 .top-tags {
@@ -16,6 +20,10 @@
     top: 2.1875rem;
 
      @include tablet {
+        display: none;
+    }
+
+     @include mobile {
         display: none;
     }
 }
@@ -32,6 +40,10 @@
      @include tablet {
         display: none;
     }
+
+     @include mobile {
+        display: none;
+    }
 }
 
 .bottom-tag-html {
@@ -45,6 +57,10 @@
 
 
      @include tablet {
+        display: none;
+    }
+
+     @include mobile {
         display: none;
     }
 }
@@ -64,6 +80,10 @@
     animation-delay: 1s;
 
     @include tablet {
+        height: 50%;
+    }
+
+    @include mobile {
         height: 50%;
     }
 }
