@@ -19,7 +19,7 @@
       height: 80%;
     }
 
-    @include mobile {
+    @include tablet {
       font-size: 1.5rem;
     }
 
@@ -44,9 +44,17 @@
     justify-content: center;
     height: 100%;
     transform: translateY(10%);
-    gap: 2rem;
+    margin-top: 10rem;
 
-     @include tablet {
+      @include tablet {
+        flex-direction: column;
+        height: auto;
+        transform: translateY(0%);
+        margin-top: 3rem;
+
+      }
+
+      @include mobile {
         flex-direction: column;
         height: auto;
         transform: translateY(0%);
@@ -57,8 +65,8 @@
 
     .wrapper {
       width: 100%;
-      max-width: 80%;
-      height: 60vh; 
+      max-width: 90%;
+      height: 50vh; 
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -71,24 +79,40 @@
       @include tablet {
         flex-direction: column;
         height: auto;
-        width: 100vw;
+        width: 60%;
         margin: 0 2rem;
         padding: 2rem 0;
         border: 1px solid #bce0fb;
         border-radius: 10px;
       }
+
+      @include mobile {
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        margin: 0 2rem;
+        padding: 1rem 0;
+        border: 1px solid #bce0fb;
+        border-radius: 10px;
+        
+      }
       
 
       .imageContain {
         flex: 1;
-        max-width: 45%;
-        height: 90%;
+        max-width: 50%;
+        height: 95%;
         display: flex;
         justify-content: center;
         align-items: center;
 
         @include tablet {
-          max-width: 90%;
+          max-width: 95%;
+          height: 100%;
+        }
+
+        @include mobile {
+          max-width: 95%;
         }
       
         img {
@@ -106,6 +130,10 @@
         gap: 1rem;
 
         @include tablet {
+          max-width: 90%;
+        }
+
+        @include mobile {
           max-width: 90%;
         }
   
@@ -127,11 +155,29 @@
           letter-spacing: 1px;
           font-size: 1rem;
           font-family: "Helvetica Neue";
+
+          @include tablet {
+
+          }
+
+          @include mobile {
+            font-size: 0.8rem;
+          }
         }
   
         .stacks {
           color: #0972c0;
           letter-spacing: 2px;
+
+          @include tablet {
+            line-height: 1.4rem;
+          }
+
+          @include mobile {
+            font-size: .9rem;
+            line-height: 1.2rem;
+
+          }
         }
   
         .links{
@@ -143,7 +189,7 @@
             display: flex;
             gap: 10px;
             font-size: 0.9rem;
-                  align-items: center;
+            align-items: center;
             cursor: pointer;
                   
             &:hover {

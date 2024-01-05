@@ -14,7 +14,11 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1rem;
+            padding:2rem;
+
+            @include mobile {
+                padding: 1rem;
+            }
             
             
             .logo {
@@ -28,6 +32,8 @@
                     display: block;
                     width: 3.5rem;
                     height: auto;
+
+
                 }
 
                 h3 {
@@ -41,8 +47,8 @@
             }
 
             .toggleButton {
-                width: 3.5rem;
-                height: 3.5rem;
+                width: 4rem;
+                height: 4rem;
                 border-radius: 50%;
                 background-color: #3fabf1;
                 padding: 1rem;
@@ -50,6 +56,11 @@
                 align-items: center;
                 justify-content: center;
                 z-index: 1000;
+
+                @include mobile {
+                    width: 3.5rem;
+                    height: 3.5rem;
+                }
 
                 button{
                     background-color: #3fabf1;
@@ -63,33 +74,69 @@
         .bg {
             background-color:  #3fabf1;
             position: absolute;
-            left: 50%;
-            width: 50vw;
-            height: 60vh;
+            left: 30%;
+            width: 70vw;
+            height: 80vh;
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
+            align-items: center;
             justify-content: start;
-            padding-right: 2rem;
             padding-top: 5rem;
+            gap: 5rem;
             z-index: 2000;
 
-            &.hidden {
-                display: none;
-        }
-
-            ul li {
-                list-style: none;
-                height: 50%;
+            .navigationItems{
                 display: flex;
+                flex: 1;
                 flex-direction: column;
-                gap: 2em;
-                font-size: 1.5rem;
-                font-weight: 600;
-                color: #0c0c1d;
-                text-decoration: underline;
+                align-items: center;
+                justify-content: center;
+                flex-basis: 100%;
+
+                li {
+                    list-style: none;
+                    height: 70%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2rem;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    color: #0c0c1d;
+                    text-decoration: underline;
+            }   
+                
+            }
+
+            .socialIcons {
+                flex: 1;
+                display: flex;
+                width: 100%;
+                flex-basis: 20%;
+                align-items: flex-end;
+                 justify-content: flex-end;
+                padding-bottom: .5rem;
+                
+
+                ul {
+                    
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    width: 50%;
+
+                    li {
+                    display: flex;
+                    list-style: none;
+                   font-size: 1.5rem;
+                    }
+                }
+
 
                 
+            }
+
+            &.hidden {
+                    display: none;
             }
         }
 

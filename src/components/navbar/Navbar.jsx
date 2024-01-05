@@ -7,6 +7,12 @@ import {
   faHamburger,
   faTimes,
 } from '@fortawesome/free-solid-svg-icons'
+import {
+  faFacebook,
+  faGithub,
+  faLinkedin,
+  faXTwitter,
+} from '@fortawesome/free-brands-svg-icons'
 
 const Navbar = () => {
   const [showMobileContent, setShowMobileContent] = useState(false)
@@ -19,7 +25,7 @@ const Navbar = () => {
     setShowMobileContent(false)
   }
   return (
-    <div>
+    <>
       {/* navbar for phone-tab view */}
       <div className="small-screens">
         <motion.div className="navbar">
@@ -52,32 +58,60 @@ const Navbar = () => {
           <motion.div
             className={`bg ${showMobileContent ? 'visible' : 'hidden'}`}
           >
-            <motion.ul>
-              <li
-                onClick={closeMobileContent}
-              >
-                Home
-              </li>
-              <li
-                onClick={closeMobileContent}
-              >
-                Services
-              </li>
-              <li
-                onClick={closeMobileContent}
-              >
-                Portfolio
-              </li>
-              <li
-                onClick={closeMobileContent}
-              >
-                Contact
-              </li>
+            <motion.ul className='navigationItems'>
+              <li onClick={closeMobileContent}>Home</li>
+              <li onClick={closeMobileContent}>Services</li>
+              <li onClick={closeMobileContent}>Portfolio</li>
+              <li onClick={closeMobileContent}>Contact</li>
             </motion.ul>
+
+            <div className="socialIcons">
+              <ul>
+                <li onClick={closeMobileContent}>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://www.linkedin.com/in/oluwakemioluwadahunsi/"
+                  >
+                    <FontAwesomeIcon icon={faLinkedin} color="#0c0c1d" />
+                  </a>
+                </li>
+
+                <li onClick={closeMobileContent}>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://www.facebook.com/kaliceagbabiaka1"
+                  >
+                    <FontAwesomeIcon icon={faFacebook} color="#0c0c1d" />
+                  </a>
+                </li>
+
+                <li onClick={closeMobileContent}>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://twitter.com/km_oluwadahunsi"
+                  >
+                    <FontAwesomeIcon icon={faXTwitter} color="#0c0c1d" />
+                  </a>
+                </li>
+
+                <li onClick={closeMobileContent}>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="http://github.com/Kemi-Oluwadahunsi/"
+                  >
+                    <FontAwesomeIcon icon={faGithub} color="#0c0c1d" />
+                  </a>
+                </li>
+              </ul>
+            </div>
           </motion.div>
         </motion.div>
       </div>
-    </div>
+    </>
   )
 }
 

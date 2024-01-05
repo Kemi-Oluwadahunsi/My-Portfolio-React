@@ -56,14 +56,16 @@ const Home = () => {
         <h2>Frontend Developer / Code Enthusiast</h2>
 
         <div className="buttons">
-          <button className="flat-button">See my Latest Works</button>
 
-          <button 
-          className="flat-button">CONTACT ME</button>
+        <button className="flat-button">See my Latest Works</button>
+
+
+        <button className="flat-button">CONTACT ME</button>
         </div>
+        
       </div>
 
-        {/* <motion.div className="slidingTextContainer" variants={sliderVariants} initial="initial" animate="animate">
+      {/* <motion.div className="slidingTextContainer" variants={sliderVariants} initial="initial" animate="animate">
               I Talk In Codes
           </motion.div> */}
 

@@ -11,6 +11,10 @@
         height: auto;
     }
 
+    @include mobile {
+        height: auto;
+    }
+
 
     .textContainer {
         flex: 1;
@@ -21,6 +25,11 @@
         margin-right: 2rem;
 
         @include tablet {
+            gap: 1rem;
+            margin-right: 2rem;
+        }
+
+        @include mobile {
             gap: 1rem;
             margin-right: 1rem;
         }
@@ -34,6 +43,11 @@
             font-family: "Helvetica Neue";
 
              @include tablet {
+                font-size: 1rem;
+                padding-top: 0.7rem;
+            }
+
+            @include mobile {
                 font-size: 0.8rem;
                 padding-top: 0.5rem;
             }
@@ -56,6 +70,14 @@
         align-items: center;
         flex: 2;
 
+         @include tablet {
+                margin-top: 1.5rem;
+            }
+
+             @include mobile{
+                margin-top: 1.5rem;
+            }
+
         .title{
 
             display: flex;
@@ -63,11 +85,12 @@
             gap: 3.125rem;
 
             @include mobile{
-                gap: 1rem;;
+                gap: 1rem;
             }
 
             @include tablet{
-                gap: 2rem;;
+                gap: 2rem;
+                line-height: 4rem;
             }
 
 
@@ -83,7 +106,7 @@
                 }
 
                 @include tablet {
-                    width: 10rem;
+                    width: 11rem;
                     height: 3.5rem;
                 }
 
@@ -99,7 +122,7 @@
                 }
 
                 @include tablet {
-                    font-size: 2rem;
+                    font-size: 3rem;
                 }
             }
 
@@ -160,12 +183,20 @@
                 @include tablet {
                     border-left: .5px solid gray;
                 }
+
+                @include mobile {
+                    border-left: .5px solid gray;
+                }
             }
 
             &.last {
                 border-right: none;
 
                 @include tablet {
+                    border-right: .5px solid gray;
+                }
+
+                @include mobile {
                     border-right: .5px solid gray;
                 }
             }

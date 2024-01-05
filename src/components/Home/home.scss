@@ -7,7 +7,7 @@
     height: 100vh;
 
     @include tablet {
-        margin-top: 0;
+        margin-top: 1rem;
         height: 50%;
     }
 
@@ -26,13 +26,15 @@
     
 
         @include mobile {
-            left: 5%;
+            left: 0;
+            padding-left: 5%;
             width: 100vw;
             top: 35%;
         }
 
         @include tablet{
-            left: 8%;
+            left: 0;
+            padding-left: 8%;
             width: 100vw;
             top: 35%;
         }
@@ -47,8 +49,8 @@
         line-height: 5rem;
 
         @include tablet {
-            font-size: 2rem;
-            line-height: 3rem;
+            font-size: 2.5rem;
+            line-height: 4rem;
         }
 
         @include mobile {
@@ -100,21 +102,29 @@ h2 {
     animation: fadeIn 1s 1.8s backwards;
 
     @include tablet {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 
-    @include tablet {
+    @include mobile {
         font-size: 0.7rem;
     }
 }
 
 .buttons{
-
     display: flex;
     gap: 10px;
     cursor: pointer;
+    width: 100%;
+        
+    
+
+    @include mobile {
+        overflow: hidden;
+        flex-wrap: wrap;
+    }
 
     .flat-button {
+        
         background: transparent;
         color: #bce0fb;
         font-size: 0.813rem;
@@ -127,7 +137,7 @@ h2 {
         margin-top: 1.563rem;
         float: left;
         animation: fadeIn 1s 1.8s backwards;
-        white-space: nowrap;
+        // white-space: nowrap;
         border-radius: .5rem;
     
         &:hover{
@@ -135,17 +145,18 @@ h2 {
             color: #3fabf1;
         }
     
-        @include tablet {
+        @include mobile {
             margin-top: 1.2rem;
-            font-size: 0.813rem;
+            font-size: 0.6rem;
             letter-spacing: 2px;
-            padding:0.5rem 1rem;
+            padding:0.5rem .8rem;
+            width: auto;
         }
 
         @include tablet {
             margin-top: 1.2rem;
             font-size: 0.813rem;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             padding:0.5rem 1rem;
         }
     }
@@ -159,9 +170,9 @@ h2 {
     right: 0;
 
     @include tablet {
-        height: 7rem;
-        width: 7rem;
-        margin-right: 2rem;
+        height: 10rem;
+        width: 10rem;
+        margin-right: 5rem;
         border: 1px solid #3fabf1;
         border-radius: 50%;
         display: flex;
@@ -171,8 +182,8 @@ h2 {
     }
 
     @include mobile {
-        height: 7rem;
-        width: 7rem;
+        height: 9rem;
+        width: 9rem;
         margin-right: 2rem;
         border: 1px solid #3fabf1;
         border-radius: 50%;
@@ -186,15 +197,15 @@ h2 {
         width: 80%;
 
         @include tablet {
-            width: 60%;
+            width: 65%;
             margin-top: -15px;
-            right: 10px;
+            margin-right: 10px;
         }
 
         @include mobile {
-            width: 60%;
+            width: 62%;
             margin-top: -15px;
-            right: 10px;
+            margin-right: 10px;
         }
     }
 
