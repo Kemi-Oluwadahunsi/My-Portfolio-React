@@ -171,7 +171,7 @@ const Contact = () => {
 
             <button type="submit">Submit</button>
             {error && 'Error'}
-            {success && 'Success'}
+            {success && 'Your message has been sent successfully'}
           </motion.form>
         </div>
       </motion.div>
