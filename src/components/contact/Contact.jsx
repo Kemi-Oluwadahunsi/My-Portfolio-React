@@ -1,6 +1,7 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import './contact.scss';
 import { motion, useInView } from 'framer-motion';
+import emailjs from '@emailjs/browser'
 
 const variants = {
     initial: {
@@ -19,6 +20,54 @@ const variants = {
 
 const Contact = () => {
     const ref = useRef ()
+    const formRef = useRef()
+
+    const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      message: '',
+    })
+
+    const [error, setError] = useState(false)
+    const [success, setSuccess] = useState(false)
+
+    
+
+    const handleChange = (e) => {
+      setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
+
+    const sendEmail = (e) => {
+      e.preventDefault()
+
+      emailjs
+        .sendForm(
+          'service_l5v9o2d',
+          'template_4ydhzmq',
+          formRef.current,
+          'PE_S_eZ_H0nBimpSo'
+        )
+        .then(
+          (result) => {
+            setSuccess(true)
+            setError(false)
+
+            // Reset the form fields
+            setFormData({
+              name: '',
+              email: '',
+              message: '',
+            })
+          },
+          (error) => {
+            setError(true)
+            setSuccess(false)
+            console.log('Error sending email:', error)
+          }
+        )
+    }
+
+
 
     const isInView = useInView(ref, {margin: "-100px"});
 
@@ -33,7 +82,9 @@ const Contact = () => {
         whileInView={isInView && 'animate'}
       >
         <motion.div className="contactText" variants={variants}>
-          <motion.h1 className='heading' variants={variants}>Let&apos;s Work Together</motion.h1>
+          <motion.h1 className="heading" variants={variants}>
+            Let&apos;s Work Together
+          </motion.h1>
           <motion.div variants={variants} className="item">
             <h2 className="mail">Mail</h2>
 
@@ -86,18 +137,41 @@ const Contact = () => {
             // initial={{ opacity: 0 }}
             // whileInView={{ opacity: 1 }}
             // transition={{ delay: 4, duration: 1 }}
-
+            ref={formRef}
+            onSubmit={sendEmail}
             initial={{ opacity: 1 }} // Set opacity to 1 initially
             animate={isInView && { opacity: 1 }} // Animate if in view
             transition={{ delay: 4, duration: 1 }}
           >
-            <input type="text" required placeholder="Name" />
+            <input
+              type="text"
+              name="name"
+              required
+              placeholder="Name"
+              value={formData.name}
+              onChange={handleChange}
+            />
 
-            <input type="email" required placeholder="Email" />
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+            />
 
-            <textarea name="message" rows="10" placeholder="Message" />
+            <textarea
+              name="message"
+              rows="10"
+              placeholder="Message"
+              value={formData.message}
+              onChange={handleChange}
+            />
 
-            <button>Submit</button>
+            <button type="submit">Submit</button>
+            {error && 'Error'}
+            {success && 'Success'}
           </motion.form>
         </div>
       </motion.div>
