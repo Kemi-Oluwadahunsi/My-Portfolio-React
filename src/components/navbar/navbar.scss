@@ -1,0 +1,97 @@
+@import "../../App.scss";
+
+ .small-screens {
+    background-color: #10416A;
+        
+    @include laptop {
+        display: none;
+    }
+        
+    .navbar {
+        // position: relative;
+        z-index: 1000;
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            
+            
+            .logo {
+                display: block;
+                padding: .5rem auto;
+                // margin-left: 1rem;
+
+            
+
+                img {
+                    display: block;
+                    width: 3.5rem;
+                    height: auto;
+                }
+
+                h3 {
+                    color: #3fabf1;
+                    font-size: .6rem;
+                    margin-top: 0.1rem;
+                    font-family: sans-serif;
+                    letter-spacing: .7px;
+                    animation: fadeIn 1s 1.8s backwards;
+                }
+            }
+
+            .toggleButton {
+                width: 3.5rem;
+                height: 3.5rem;
+                border-radius: 50%;
+                background-color: #3fabf1;
+                padding: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+
+                button{
+                    background-color: #3fabf1;
+                    color: #0c0c1d;
+                    border: none;
+                }
+            }
+
+        }
+
+        .bg {
+            background-color:  #3fabf1;
+            position: absolute;
+            left: 50%;
+            width: 50vw;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: start;
+            padding-right: 2rem;
+            padding-top: 5rem;
+            z-index: 2000;
+
+            &.hidden {
+                display: none;
+        }
+
+            ul li {
+                list-style: none;
+                height: 50%;
+                display: flex;
+                flex-direction: column;
+                gap: 2em;
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #0c0c1d;
+                text-decoration: underline;
+
+                
+            }
+        }
+
+    }
+}

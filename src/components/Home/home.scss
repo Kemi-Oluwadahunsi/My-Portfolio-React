@@ -1,24 +1,15 @@
 @import "../../App.scss";
 
-.container {
-    width: 100%;
-    will-change: contents;
-    height: 90%;
-    min-height: 35.375;
-    position: absolute;
-    opacity: 0;
-    top: 5%;
-    margin: 0 auto;
-    z-index: 1;
-    transform-style: preserve-3d;
-    animation: fadeIn 1s forwards;
-    animation-delay: 1s;
-}
 
 .home-page {
     // background: linear-gradient(180deg, #061829, #095a9b);
-    
+    margin-top: 5rem;
+    height: 100vh;
 
+    @include tablet {
+        margin-top: 0;
+        height: 50%;
+    }
     .text-zone {
         position: absolute;
         left: 10%;
@@ -26,6 +17,12 @@
         transform: translateY(-50%);
         width: 45%;
         max-height: 90%;
+
+        @include tablet{
+            left: 5%;
+            width: 100vw;
+            top: 35%;
+        }
     }
 
     h1{
@@ -35,6 +32,11 @@
         font-family: "Coolvetica";
         font-weight: 400;
         line-height: 5rem;
+
+        @include tablet {
+            font-size: 2rem;
+            line-height: 3rem;
+        }
 
         &::before {
             content: '<h1>';
@@ -78,6 +80,10 @@ h2 {
     font-family: sans-serif;
     letter-spacing: 3px;
     animation: fadeIn 1s 1.8s backwards;
+
+    @include tablet {
+        font-size: 0.7rem;
+    }
 }
 
 .buttons{
@@ -107,6 +113,12 @@ h2 {
             color: #3fabf1;
         }
     
+        @include tablet {
+            margin-top: 1.2rem;
+            font-size: 0.813rem;
+            letter-spacing: 2px;
+            padding:0.5rem 1rem;
+        }
     }
 }
 
@@ -117,20 +129,28 @@ h2 {
     top: 0;
     right: 0;
 
+    @include tablet {
+        height: 7rem;
+        width: 7rem;
+        margin-right: 2rem;
+        border: 1px solid #3fabf1;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
 
     .my-image{
         width: 80%;
+
+        @include tablet {
+            width: 60%;
+            margin-top: -15px;
+            right: 10px;
+        }
     }
+
 }
 
-.slidingTextContainer {
-    position: absolute;
-    font-size: 30vh;
-    bottom: -4.5rem;
-    left: 5rem;
-    white-space: nowrap;
-    color: #ffffff09;
-    width: 50%;
-    font-weight: bold;
-    z-index: -1;
-}

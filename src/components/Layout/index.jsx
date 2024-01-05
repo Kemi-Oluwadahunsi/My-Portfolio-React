@@ -6,13 +6,16 @@ import Services from '../services/Services';
 import Portfolio from '../portfolio/Portfolio';
 import Contact from '../contact/Contact';
 import Cursor from '../cursor/Cursor';
+import Navbar from '../navbar/Navbar';
 
 const Layout = () => {
   return (
-    <div >
+    <div>
       <Cursor />
-      <section className='App'>
-        <Sidebar /> 
+      <Navbar />
+      <section className="App" id="section">
+        <Sidebar />
+
         <div className="page">
           <span className="tags top-tags ">&lt;body&gt;</span>
 
@@ -26,27 +29,23 @@ const Layout = () => {
         </div>
       </section>
 
-      <section>
-        <Parallax type="services"/>
+      <section id="firstParallaxSection">
+        <Parallax type="services" />
       </section>
 
-      <section>
+      <section className="servicesSection">
         <Services />
       </section>
 
-      <section>
-        <Parallax type="portfolio"  />
+      <section className="secondParallaxSection">
+        <Parallax type="portfolio" />
       </section>
 
-      <section>
-        <Portfolio id="portfolioHeight"/>
+      <section className="portfolioSection">
+        <Portfolio id="portfolioHeight" />
       </section>
 
-      <section id='contact'>
-        <Contact />
-      </section>
-
-
+       <section className="contactSection "id="contact"><Contact /></section>
     </div>
   )
 }

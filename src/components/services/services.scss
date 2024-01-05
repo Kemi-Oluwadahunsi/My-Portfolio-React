@@ -2,10 +2,14 @@
 
 .services{
     background: linear-gradient(180deg, #061829, #095a9b);
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @include tablet {
+        height: auto;
+    }
 
 
     .textContainer {
@@ -15,6 +19,11 @@
         align-items: center;
         gap: 1.25rem;
         margin-right: 2rem;
+
+        @include tablet {
+            gap: 1rem;
+            margin-right: 1rem;
+        }
         
 
         p {
@@ -24,6 +33,10 @@
             text-align: right;
             font-family: "Helvetica Neue";
 
+             @include tablet {
+                font-size: 0.8rem;
+                padding-top: 0.5rem;
+            }
 
             span{
                 display: block;
@@ -43,13 +56,19 @@
         align-items: center;
         flex: 2;
 
-
-
         .title{
 
             display: flex;
             align-items: center;
             gap: 3.125rem;
+
+            @include mobile{
+                gap: 1rem;;
+            }
+
+            @include tablet{
+                gap: 2rem;;
+            }
 
 
             img{
@@ -57,11 +76,31 @@
                 height: 4.25rem;
                 border-radius: 50px;
                 object-fit: cover;
+
+                @include mobile {
+                    width: 8rem;
+                    height: 3rem;
+                }
+
+                @include tablet {
+                    width: 10rem;
+                    height: 3.5rem;
+                }
+
+                
             }
 
             h1 {
                 font-size: 4rem;
                 font-weight: lighter;
+
+                @include mobile {
+                    font-size: 2rem;
+                }
+
+                @include tablet {
+                    font-size: 2rem;
+                }
             }
 
             button {
@@ -73,6 +112,16 @@
                 font-size: 1.5rem;
                 border: none;
                 cursor: pointer;
+
+                @include mobile {
+                    display: none;
+                }
+
+                @include tablet {
+                    font-size: 1rem;
+                    width: 9rem;
+                    height: 2.5rem;
+                }
             }
         }
     }
@@ -83,6 +132,19 @@
         max-width: 55rem;
         margin: auto;
 
+        @include mobile {
+            margin: 2rem auto;
+            flex-direction: column;
+            gap: 2rem;
+            // max-width: 40rem;
+        }
+
+        @include tablet {
+            margin: 2rem auto;
+            max-width: 40rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
 
         .box {
             padding: 1rem 2.25rem;
@@ -94,15 +156,37 @@
 
             &.first{
                 border-left: none;
+
+                @include tablet {
+                    border-left: .5px solid gray;
+                }
             }
 
             &.last {
                 border-right: none;
+
+                @include tablet {
+                    border-right: .5px solid gray;
+                }
             }
 
             .serviceTitle {
                 font-size: 1.2rem;
                 animation: none;
+            }
+
+             @include mobile {
+                border: .5px solid gray;
+                border-radius: 10px;
+                width: 70%;
+                margin: auto;
+            }
+
+            @include tablet {
+                border: .5px solid gray;
+                border-radius: 10px;
+                width: 45%;
+                margin: auto;
             }
 
 

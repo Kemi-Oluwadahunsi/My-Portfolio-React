@@ -7,6 +7,7 @@ import AnimatedLetters from '../AnimatedLetters/animated'
 import '../AnimatedLetters/animated.scss'
 
 
+
 // const sliderVariants = {
 //   initial: {
 //     x: 0,
@@ -31,35 +32,44 @@ const Home = () => {
 
   return (
     <div className="container home-page">
-        <div className="text-zone" >
-            <h1 >
-              <span className={letterClass}>H</span> 
-              <span className={`${letterClass} _12`}>i,</span>
-              < br />
-              <span className={`${letterClass} _13`}>I</span>
-              <span className={`${letterClass} _14`}>&apos;m</span>
-            <img src={Kemi} alt="introduction" className='k-letter' />
-            <AnimatedLetters letterClass={letterClass} strArray={nameArray} idx={15} />
-            <br />
-            <AnimatedLetters letterClass={letterClass} strArray={jobArray} idx={22} />
-            </h1>
+      <div className="text-zone">
+        <h1>
+          <span className={letterClass}>H</span>
+          <span className={`${letterClass} _12`}>i,</span>
+          <br />
+          <span className={`${letterClass} _13`}>I</span>
+          <span className={`${letterClass} _14`}>&apos;m</span>
+          <img src={Kemi} alt="introduction" className="k-letter" />
+          <AnimatedLetters
+            letterClass={letterClass}
+            strArray={nameArray}
+            idx={15}
+          />
+          <br />
+          <AnimatedLetters
+            letterClass={letterClass}
+            strArray={jobArray}
+            idx={22}
+          />
+        </h1>
 
-            <h2>Frontend Developer / Code Enthusiast</h2>
+        <h2>Frontend Developer / Code Enthusiast</h2>
 
-            <div className="buttons">
-              <button className="flat-button" >See my Latest Works</button>
+        <div className="buttons">
+          <button className="flat-button">See my Latest Works</button>
 
-              <button className="flat-button contact">CONTACT ME</button>
-            </div>
+          <button 
+          className="flat-button">CONTACT ME</button>
         </div>
+      </div>
 
         {/* <motion.div className="slidingTextContainer" variants={sliderVariants} initial="initial" animate="animate">
-            I Talk In Codes
-        </motion.div> */}
+              I Talk In Codes
+          </motion.div> */}
 
-        <div className="imageContainer">
-          <img className='my-image' src="/my-image3.png" alt="Kemi" />
-        </div>
+      <div className="imageContainer">
+        <img className="my-image" src="/my-image3.png" alt="Kemi" />
+      </div>
     </div>
   )
 }
