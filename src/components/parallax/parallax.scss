@@ -11,12 +11,10 @@
    
     @include tablet {
         height: 60vh;
-        margin-top: 4rem;
     }
 
     @include mobile {
         height: 60vh;
-        margin-top: 1rem;
     }
 
     h1{
