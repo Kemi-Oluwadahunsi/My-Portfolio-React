@@ -45,7 +45,7 @@ const Layout = () => {
         <Portfolio id="portfolioHeight" />
       </section>
 
-       <section className="contactSection "id="contact"><Contact /></section>
+       {/* <section className="contactSection "id="contact"><Contact /></section> */}
     </div>
   )
 }

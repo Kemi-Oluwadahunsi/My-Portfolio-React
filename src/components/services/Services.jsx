@@ -9,11 +9,6 @@ const variants = {
     y: 100,
     opacity: 0
   },
-  initial2: {
-    x:0,
-    y:0,
-    opacity: 0,
-  },
   animate: {
     x: 0,
     y: 0,
@@ -27,34 +22,32 @@ const variants = {
 //whileInView="animate"
 const Services = () => {
 
-  const ref = useRef();
+  // const ref = useRef();
 
-  const isInView = useInView(ref, {margin: "-100px"} );
+  // const isInView = useInView(ref, {margin: "-100px"} );
 
-  const isMobile = !useMediaQuery('(min-width: 770px)')
+  // const isMobile = !useMediaQuery('(min-width: 770px)')
 
   return (
-    // <div className={`services ${isMobile ? 'tablet' : ''}`}>
-    //   {isMobile ? (
-    //     <div className="textContainer">
-    //       <p>I focus on helping your brand grow and move forward</p>
-    //     </div>
-    //   ) : (
         <motion.div
           className="services"
-          variants={variants}
-          initial="initial1"
-          ref={ref}
-          // animate={isInView && "animate"}
-          animate={isInView && !isMobile ? 'animate' : 'initial1'}
+          // variants={variants}
+          // initial="initial1"
+          // ref={ref}
+          // // animate={isInView && "animate"}
+          // animate={isInView && !isMobile ? "animate" : "initial1"}
         >
-          <motion.div className="textContainer" variants={variants}>
+          <motion.div className="textContainer" 
+          // variants={variants}
+          >
             <p>
               I focus on helping your brand grow <span>and move forward</span>{' '}
             </p>
           </motion.div>
 
-          <motion.div className="titleContainer" variants={variants}>
+          <motion.div className="titleContainer" 
+          // variants={variants}
+          >
             <div className="title">
               <img src="/images/people.webp" alt="serviceImage" />
               <h1>
@@ -71,7 +64,9 @@ const Services = () => {
               <button>WHAT WE DO</button>
             </div>
           </motion.div>
-          <motion.div className="listContainer" variants={variants}>
+          <motion.div className="listContainer" 
+          // variants={variants}
+          >
             <div className="box first">
               <h2 className="serviceTitle">Branding</h2>
               <p>
