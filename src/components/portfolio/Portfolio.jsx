@@ -52,34 +52,33 @@ const items = [
 const Single = ({ item }) => {
 
     return (
-           <section className="">
-             <div className="all">
-                <div className="wrapper" >
-                    <div className="imageContain" >
-                        <img src={item.img} alt="WebsiteImage" />
-                    </div>
-                    <div className="text">
-                        <h2> {item.title} </h2>
-                        <p> {item.description} </p>
-                        <span className='stacks'>{item.stacks} </span>
+      <section id="portfolioSection">
+        <div className="all">
+          <div className="wrapper">
+            <div className="imageContain">
+              <img src={item.img} alt="WebsiteImage" />
+            </div>
+            <div className="text">
+              <h2> {item.title} </h2>
+              <p> {item.description} </p>
+              <span className="stacks">{item.stacks} </span>
 
-                        <div className="links">
-                            <Link className='link'>
-                                <FontAwesomeIcon icon = { faDisplay } color="#bce0fb" />
-                                <span>Live View</span>
-                            </Link>
+              <div className="links">
+                <Link className="link">
+                  <FontAwesomeIcon icon={faDisplay} color="#bce0fb" />
+                  <span>Live View</span>
+                </Link>
 
-                            <Link className='link'>
-                                <FontAwesomeIcon icon = { faGithub } color="#bce0fb" />
-                                <span>View Codes</span>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-             </div>
-           </section>
-            
-    );
+                <Link className="link">
+                  <FontAwesomeIcon icon={faGithub} color="#bce0fb" />
+                  <span>View Codes</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
 };
 
 Single.propTypes = {

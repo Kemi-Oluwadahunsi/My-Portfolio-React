@@ -50,7 +50,8 @@ const Contact = () => {
         .then(
           (result) => {
             setSuccess(true)
-            setError(false)
+            setError(false);
+            console.log(result);
 
             // Reset the form fields
             setFormData({

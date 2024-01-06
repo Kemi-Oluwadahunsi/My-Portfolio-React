@@ -103,7 +103,15 @@
                     font-weight: 600;
                     color: #0c0c1d;
                     text-decoration: underline;
-            }   
+
+                    .resume {
+                        border: 1px solid #3fabf1;
+                        background-color: #bce0fb;
+                        padding: .5rem 1rem;
+                        border-radius: 10px;
+                        
+                    }
+                }
                 
             }
 
@@ -122,12 +130,12 @@
                     display: flex;
                     align-items: center;
                     justify-content: space-around;
-                    width: 50%;
+                    width: 60%;
 
                     li {
                     display: flex;
                     list-style: none;
-                   font-size: 1.5rem;
+                    font-size: 1.5rem;
                     }
                 }
 

@@ -42,7 +42,7 @@ const Layout = () => {
       </section>
 
       <section className="portfolioSection">
-        <Portfolio id="portfolioHeight" />
+        <Portfolio id="portfolioSection" />
       </section>
 
        <section className="contactSection "id="contact"><Contact /></section>

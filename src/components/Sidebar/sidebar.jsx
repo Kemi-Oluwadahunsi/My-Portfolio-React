@@ -3,9 +3,10 @@ import './sidebar.scss';
 import Logo from '/images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+  faBook,
+  faBriefcase,
   faEnvelope,
   faHome,
-  faUser,
 } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faGithub, faLinkedin, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 
@@ -35,10 +36,12 @@ const Sidebar = () => {
           <NavLink
             exact="true"
             activeclassname="active"
-            className="about-link"
-            to="/about"
+            className="portfolio-link"
+            to="/portfolio"
           >
-            <FontAwesomeIcon icon={faUser} color="#0c0c1d" />
+            <a href="">
+              <FontAwesomeIcon icon={faBriefcase} color="#0c0c1d" />
+            </a>
           </NavLink>
 
           <NavLink
@@ -48,6 +51,16 @@ const Sidebar = () => {
             to="/contact"
           >
             <FontAwesomeIcon icon={faEnvelope} color="#0c0c1d" />
+          </NavLink>
+
+          <NavLink
+            exact="true"
+            activeclassname="active"
+            className="resume-link"
+            target="_blank"
+            to="https://docs.google.com/document/d/1jH8StMlOlhkgEUJmI5tWsqyvoqmRSwxSL_IJBbtnBzc/edit?usp=sharing"
+          >
+            <FontAwesomeIcon icon={faBook} color="#0c0c1d" />
           </NavLink>
         </nav>
 
@@ -93,8 +106,6 @@ const Sidebar = () => {
           </li>
         </ul>
       </div>
-
-     
     </div>
   )
 }

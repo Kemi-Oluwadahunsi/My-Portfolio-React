@@ -5,9 +5,10 @@
         background: #10416A;
         width: 4.5rem;
         height: 100vh;
-        position: absolute;
+        // position: absolute;
+        position: fixed;
         top: 0;
-        z-index: 3;
+        z-index: 10001;
         // min-height: 29.25rem;
 
 
@@ -95,15 +96,21 @@
         
             }
 
-            a.about-link {
+            a.portfolio-link {
                 &:after{
-                    content: "ABOUT"
+                    content: "PORTFOLIO"
                 }
             }
         
             a.contact-link {
                 &:after{
                     content: "CONTACT"
+                }
+            }
+
+            a.resume-link {
+                &:after{
+                    content: "RESUME"
                 }
             }
 

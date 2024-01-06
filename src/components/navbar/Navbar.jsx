@@ -13,6 +13,7 @@ import {
   faLinkedin,
   faXTwitter,
 } from '@fortawesome/free-brands-svg-icons'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   const [showMobileContent, setShowMobileContent] = useState(false)
@@ -58,11 +59,33 @@ const Navbar = () => {
           <motion.div
             className={`bg ${showMobileContent ? 'visible' : 'hidden'}`}
           >
-            <motion.ul className='navigationItems'>
-              <li onClick={closeMobileContent}>Home</li>
-              <li onClick={closeMobileContent}>Services</li>
-              <li onClick={closeMobileContent}>Portfolio</li>
-              <li onClick={closeMobileContent}>Contact</li>
+            <motion.ul className="navigationItems">
+              <Link>
+                <li onClick={closeMobileContent}>Home</li>
+              </Link>
+
+              <Link>
+                <li onClick={closeMobileContent}>Services</li>
+              </Link>
+
+              <Link>
+                <li onClick={closeMobileContent}>Portfolio</li>
+              </Link>
+
+              <Link>
+                <li onClick={closeMobileContent}>Contact</li>
+              </Link>
+
+              <Link
+                href="https://docs.google.com/document/d/1jH8StMlOlhkgEUJmI5tWsqyvoqmRSwxSL_IJBbtnBzc/edit?usp=sharing"
+                target="_blank"
+                rel="noreferrer"
+                className="resume"
+              >
+                <li onClick={closeMobileContent}>
+                  Resume
+                </li>
+              </Link>
             </motion.ul>
 
             <div className="socialIcons">
