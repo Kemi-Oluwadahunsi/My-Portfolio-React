@@ -5,14 +5,14 @@ import emailjs from '@emailjs/browser'
 
 const variants = {
     initial: {
-        y: 500,
+        y: 100,
         opacity: 0,
     },
     animate: {
         y: 0,
         opacity: 1,
         transition: {
-            duration: 0.5,
+            duration: 0.2,
             staggerChildren: 0.1,
         }
     },
@@ -103,14 +103,14 @@ const Contact = () => {
           </motion.div>
         </motion.div>
 
-        <div className="formContainer">
+        <div className=" largeScreen">
           <motion.div
             className="phoneSVG"
             initial={{ opacity: 1 }}
             whileInView={{ opacity: 0 }}
             transition={{ delay: 3, duration: 1 }}
           >
-            <svg width="450px" height="400px" viewBox="0 0 32.666 32.666">
+            <svg width="350px" height="400px" viewBox="0 0 32.666 32.666">
               <motion.path
                 strokeWidth={0.2}
                 fill="none"
@@ -135,15 +135,47 @@ const Contact = () => {
           </motion.div>
 
           <motion.form
-            // initial={{ opacity: 0 }}
-            // whileInView={{ opacity: 1 }}
-            // transition={{ delay: 4, duration: 1 }}
+            className="largeForm"
             ref={formRef}
             onSubmit={sendEmail}
-            initial={{ opacity: 1 }} // Set opacity to 1 initially
-            animate={isInView && { opacity: 1 }} // Animate if in view
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }} // Animate if in view
             transition={{ delay: 4, duration: 1 }}
           >
+            <input
+              type="text"
+              name="name"
+              required
+              placeholder="Name"
+              value={formData.name}
+              onChange={handleChange}
+            />
+
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+
+            <textarea
+              name="message"
+              rows="10"
+              placeholder="Feel free to give your feedbacks or for collaboration on worthy projects. Thank you!"
+              value={formData.message}
+              onChange={handleChange}
+            />
+
+            <button type="submit">Submit</button>
+            {error && 'Error'}
+            {success && 'Your message has been sent successfully'}
+          </motion.form>
+        </div>
+
+        <div className="smallScreen">
+          <motion.form ref={formRef} onSubmit={sendEmail} className="smallForm">
             <input
               type="text"
               name="name"

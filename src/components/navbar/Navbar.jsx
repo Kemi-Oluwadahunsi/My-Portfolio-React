@@ -1,10 +1,10 @@
 import { motion} from 'framer-motion'
 import './navbar.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Logo from "/images/logo.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  faHamburger,
+  faBars,
   faTimes,
 } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -14,6 +14,8 @@ import {
   faXTwitter,
 } from '@fortawesome/free-brands-svg-icons'
 import { Link } from 'react-router-dom'
+import { Link as ScrollLink } from 'react-scroll'
+
 
 const Navbar = () => {
   const [showMobileContent, setShowMobileContent] = useState(false)
@@ -25,6 +27,23 @@ const Navbar = () => {
   const closeMobileContent = () => {
     setShowMobileContent(false)
   }
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const navbar = document.querySelector('.small-screens')
+      if (navbar && !navbar.contains(event.target)) {
+        closeMobileContent()
+      }
+    }
+
+    document.addEventListener('click', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, []) 
+
+
   return (
     <>
       {/* navbar for phone-tab view */}
@@ -48,7 +67,7 @@ const Navbar = () => {
                   />
                 ) : (
                   <FontAwesomeIcon
-                    icon={faHamburger}
+                    icon={faBars}
                     style={{ width: '30px', height: '30px' }}
                   />
                 )}
@@ -60,27 +79,28 @@ const Navbar = () => {
             className={`bg ${showMobileContent ? 'visible' : 'hidden'}`}
           >
             <motion.ul className="navigationItems">
-              <Link>
+
+              <ScrollLink className='navLinks' to="section">
                 <li onClick={closeMobileContent}>Home</li>
-              </Link>
+              </ScrollLink>
 
-              <Link>
+              <ScrollLink className='navLinks' to="services">
                 <li onClick={closeMobileContent}>Services</li>
-              </Link>
+              </ScrollLink>
 
-              <Link>
+              <ScrollLink className='navLinks' to="portfolio">
                 <li onClick={closeMobileContent}>Portfolio</li>
-              </Link>
+              </ScrollLink>
 
-              <Link>
+              <ScrollLink className='navLinks' to="contact">
                 <li onClick={closeMobileContent}>Contact</li>
-              </Link>
+              </ScrollLink>
 
               <Link
                 href="https://docs.google.com/document/d/1jH8StMlOlhkgEUJmI5tWsqyvoqmRSwxSL_IJBbtnBzc/edit?usp=sharing"
                 target="_blank"
                 rel="noreferrer"
-                className="resume"
+                className="resume navLinks"
               >
                 <li onClick={closeMobileContent}>
                   Resume

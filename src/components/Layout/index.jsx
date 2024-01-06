@@ -7,11 +7,13 @@ import Portfolio from '../portfolio/Portfolio';
 import Contact from '../contact/Contact';
 import Cursor from '../cursor/Cursor';
 import Navbar from '../navbar/Navbar';
+import ScrollArrow from '../backArrow/ScrollArrow';
 
 const Layout = () => {
   return (
     <div>
       <Cursor />
+      <ScrollArrow />
       <Navbar />
       <section className="App" id="section">
         <Sidebar />
@@ -41,11 +43,13 @@ const Layout = () => {
         <Parallax type="portfolio" />
       </section>
 
-      <section className="portfolioSection">
-        <Portfolio id="portfolioSection" />
+      <section className="portfolioSection" id="portfolioSection">
+        <Portfolio />
       </section>
 
-       <section className="contactSection "id="contact"><Contact /></section>
+      <section className="contactSection " id="contact">
+        <Contact />
+      </section>
     </div>
   )
 }

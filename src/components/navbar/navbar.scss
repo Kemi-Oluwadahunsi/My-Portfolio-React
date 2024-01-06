@@ -72,7 +72,7 @@
         }
 
         .bg {
-            background-color:  #3fabf1;
+            background-color:  #10416A;
             position: absolute;
             left: 30%;
             width: 70vw;
@@ -84,6 +84,7 @@
             padding-top: 5rem;
             gap: 5rem;
             z-index: 2000;
+            border-bottom-left-radius: 10px;
 
             .navigationItems{
                 display: flex;
@@ -93,7 +94,7 @@
                 justify-content: center;
                 flex-basis: 100%;
 
-                li {
+                .navLinks {
                     list-style: none;
                     height: 70%;
                     display: flex;
@@ -101,17 +102,20 @@
                     gap: 2rem;
                     font-size: 1.5rem;
                     font-weight: 600;
-                    color: #0c0c1d;
+                    color: #3fabf1;
                     text-decoration: underline;
-
-                    .resume {
+                }
+                .resume {
                         border: 1px solid #3fabf1;
                         background-color: #bce0fb;
-                        padding: .5rem 1rem;
+                        color: #0c0c1d;
+                        padding: 0 .5rem;
+                        height: 6em;
                         border-radius: 10px;
-                        
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                     }
-                }
                 
             }
 
@@ -121,8 +125,8 @@
                 width: 100%;
                 flex-basis: 20%;
                 align-items: flex-end;
-                 justify-content: flex-end;
-                padding-bottom: .5rem;
+                justify-content: flex-end;
+                padding: 0 .5rem .5rem 0;
                 
 
                 ul {
@@ -130,12 +134,12 @@
                     display: flex;
                     align-items: center;
                     justify-content: space-around;
-                    width: 60%;
+                    width: 80%;
 
                     li {
                     display: flex;
                     list-style: none;
-                    font-size: 1.5rem;
+                    font-size: 2rem;
                     }
                 }
 

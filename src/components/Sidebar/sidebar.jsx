@@ -1,4 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll'
+
 import './sidebar.scss';
 import Logo from '/images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,40 +20,38 @@ const Sidebar = () => {
   return (
     <div className="general-sidebar">
       <div className="nav-bar">
-        <Link className="logo" to="/">
+        <Link className="logo" to="">
           <img src={Logo} alt="logo" />
           <h3 className="sub-logo">KodeMaven</h3>
         </Link>
 
         <nav>
-          <NavLink
+          <ScrollLink
             exact="true"
             activeclassname="active"
             className="home-link"
-            to="/"
+            to="section"
           >
             <FontAwesomeIcon icon={faHome} color="#0c0c1d" />
-          </NavLink>
+          </ScrollLink>
 
-          <NavLink
+          <ScrollLink
             exact="true"
             activeclassname="active"
             className="portfolio-link"
-            to="/portfolio"
+            to="portfolio"
           >
-            <a href="">
               <FontAwesomeIcon icon={faBriefcase} color="#0c0c1d" />
-            </a>
-          </NavLink>
+          </ScrollLink>
 
-          <NavLink
+          <ScrollLink
             exact="true"
             activeclassname="active"
             className="contact-link"
-            to="/contact"
+            to="contact"
           >
             <FontAwesomeIcon icon={faEnvelope} color="#0c0c1d" />
-          </NavLink>
+          </ScrollLink>
 
           <NavLink
             exact="true"

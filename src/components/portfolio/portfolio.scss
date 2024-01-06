@@ -191,6 +191,7 @@
             font-size: 0.9rem;
             align-items: center;
             cursor: pointer;
+            z-index: 1000;
                   
             &:hover {
               transform: scale(1.1);
