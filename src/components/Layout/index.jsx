@@ -7,7 +7,7 @@ import Portfolio from '../portfolio/Portfolio';
 import Contact from '../contact/Contact';
 import Cursor from '../cursor/Cursor';
 import Navbar from '../navbar/Navbar';
-import ScrollArrow from '../backArrow/ScrollArrow';
+import ScrollArrow from '../backarrow/ScrollArrow';
 
 const Layout = () => {
   return (
