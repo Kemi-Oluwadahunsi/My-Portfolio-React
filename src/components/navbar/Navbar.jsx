@@ -113,7 +113,7 @@ const Navbar = () => {
                 <li onClick={closeMobileContent}>
                   <a
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     href="https://www.linkedin.com/in/oluwakemioluwadahunsi/"
                   >
                     <FontAwesomeIcon icon={faLinkedin} color="#0c0c1d" />
@@ -123,7 +123,7 @@ const Navbar = () => {
                 <li onClick={closeMobileContent}>
                   <a
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopenener noreferrer"
                     href="https://www.facebook.com/kaliceagbabiaka1"
                   >
                     <FontAwesomeIcon icon={faFacebook} color="#0c0c1d" />
@@ -133,7 +133,7 @@ const Navbar = () => {
                 <li onClick={closeMobileContent}>
                   <a
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     href="https://twitter.com/km_oluwadahunsi"
                   >
                     <FontAwesomeIcon icon={faXTwitter} color="#0c0c1d" />
@@ -143,7 +143,7 @@ const Navbar = () => {
                 <li onClick={closeMobileContent}>
                   <a
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     href="http://github.com/Kemi-Oluwadahunsi/"
                   >
                     <FontAwesomeIcon icon={faGithub} color="#0c0c1d" />
