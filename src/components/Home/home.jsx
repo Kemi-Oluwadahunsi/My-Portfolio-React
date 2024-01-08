@@ -5,6 +5,7 @@ import Kemi from '/images/creative-Kemi.png'
 import { useState } from 'react';
 import AnimatedLetters from '../AnimatedLetters/animated'
 import '../AnimatedLetters/animated.scss'
+import { Link as ScrollLink } from 'react-scroll'
 
 
 
@@ -55,14 +56,15 @@ const Home = () => {
 
         <h2>Frontend Developer / Code Enthusiast</h2>
 
-        <div className="buttons">
+        <div className="buttons" to="services">
+          <ScrollLink to="portfolioSection" smooth={true} duration={500}>
+            <button className="flat-button">See my Latest Works</button>
+          </ScrollLink>
 
-        <button className="flat-button">See my Latest Works</button>
-
-
-        <button className="flat-button">CONTACT ME</button>
+          <ScrollLink to="contact" smooth={true} duration={500}>
+            <button className="flat-button">CONTACT ME</button>
+          </ScrollLink>
         </div>
-        
       </div>
 
       {/* <motion.div className="slidingTextContainer" variants={sliderVariants} initial="initial" animate="animate">

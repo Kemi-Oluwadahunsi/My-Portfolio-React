@@ -61,8 +61,7 @@ const items = [
 ]
 
 const Single = ({ item }) => {
-console.log('Live URL:', item.live)
-console.log('GitHub URL:', item.gitHub)
+
 
     return (
       <section id="portfolioSection">

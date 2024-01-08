@@ -79,20 +79,19 @@ const Navbar = () => {
             className={`bg ${showMobileContent ? 'visible' : 'hidden'}`}
           >
             <motion.ul className="navigationItems">
-
-              <ScrollLink className='navLinks' to="section">
+              <ScrollLink className="navLinks" to="section">
                 <li onClick={closeMobileContent}>Home</li>
               </ScrollLink>
 
-              <ScrollLink className='navLinks' to="services">
+              <ScrollLink className="navLinks" to="services">
                 <li onClick={closeMobileContent}>Services</li>
               </ScrollLink>
 
-              <ScrollLink className='navLinks' to="portfolio">
+              <ScrollLink className="navLinks" to="portfolio">
                 <li onClick={closeMobileContent}>Portfolio</li>
               </ScrollLink>
 
-              <ScrollLink className='navLinks' to="contact">
+              <ScrollLink className="navLinks" to="contact">
                 <li onClick={closeMobileContent}>Contact</li>
               </ScrollLink>
 
@@ -102,9 +101,7 @@ const Navbar = () => {
                 rel="noreferrer"
                 className="resume navLinks"
               >
-                <li onClick={closeMobileContent}>
-                  Resume
-                </li>
+                <li onClick={closeMobileContent}>Resume</li>
               </Link>
             </motion.ul>
 
@@ -144,7 +141,7 @@ const Navbar = () => {
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="http://github.com/Kemi-Oluwadahunsi/"
+                    href="https://github.com/Kemi-Oluwadahunsi/"
                   >
                     <FontAwesomeIcon icon={faGithub} color="#0c0c1d" />
                   </a>

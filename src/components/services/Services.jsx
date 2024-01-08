@@ -1,111 +1,101 @@
-import { useRef } from 'react'
-import './services.scss'
-import { motion, useInView} from 'framer-motion'
-import { useMediaQuery } from '@react-hook/media-query'
 
-const variants = {
-  initial1: {
-    x: -500,
-    y: 100,
-    opacity: 0
-  },
-  animate: {
-    x: 0,
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.1,
-    }
-  }
-}
-//whileInView="animate"
+import './services.scss'
+import { motion } from 'framer-motion'
+
+
+
 const Services = () => {
 
-  // const ref = useRef();
-
-  // const isInView = useInView(ref, {margin: "-100px"} );
-
-  // const isMobile = !useMediaQuery('(min-width: 770px)')
-
   return (
-        <motion.div
-          className="services"
-          // variants={variants}
-          // initial="initial1"
-          // ref={ref}
-          // // animate={isInView && "animate"}
-          // animate={isInView && !isMobile ? "animate" : "initial1"}
-        >
-          <motion.div className="textContainer" 
-          // variants={variants}
-          >
+    <motion.div
+      className="services"
+    >
+      <motion.div
+        className="textContainer"
+      >
+        <p>
+          I focus on helping your brand grow <span>and move forward</span>{' '}
+        </p>
+      </motion.div>
+
+      <motion.div
+        className="titleContainer"
+      >
+        <div className="title">
+          <img src="/images/ladies-sitting.jpg" alt="serviceImage" />
+          <h1>
+            <motion.b whileHover={{ color: '#095a9b' }}>Unique</motion.b> Ideas
+          </h1>
+        </div>
+
+        <div className="title">
+          <h1>
+            <motion.b whileHover={{ color: '#095a9b' }}>For Your</motion.b>{' '}
+            Business.
+          </h1>
+          <button>WHAT WE DO</button>
+        </div>
+      </motion.div>
+      <motion.div
+        className="listContainer"
+      >
+        <div className="box first">
+          <h2 className="serviceTitle">Responsive Web Design</h2>
+          <div>
             <p>
-              I focus on helping your brand grow <span>and move forward</span>{' '}
+              I craft visually appealing websites that seamlessly adapt to
+              various devices, ensuring a consistent and optimal user experience
+              across desktops, tablets, and mobiles.
             </p>
-          </motion.div>
+          </div>
+        </div>
 
-          <motion.div className="titleContainer" 
-          // variants={variants}
-          >
-            <div className="title">
-              <img src="/images/people.webp" alt="serviceImage" />
-              <h1>
-                <motion.b whileHover={{ color: '#095a9b' }}>Unique</motion.b>{' '}
-                Ideas
-              </h1>
-            </div>
+        <div className="box">
+          <h2 className="serviceTitle">Single Page Applications (SPAs)</h2>
+          <div>
+            <p>
+              I develop SPAs that provide a smooth and continuous user
+              experience without the need for page reloads, enhancing overall
+              application usability.
+            </p>
+          </div>
+        </div>
 
-            <div className="title">
-              <h1>
-                <motion.b whileHover={{ color: '#095a9b' }}>For Your</motion.b>{' '}
-                Business.
-              </h1>
-              <button>WHAT WE DO</button>
-            </div>
-          </motion.div>
-          <motion.div className="listContainer" 
-          // variants={variants}
-          >
-            <div className="box first">
-              <h2 className="serviceTitle">Branding</h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
-                magni esse quo dolor perferendis nihil vero a, quaerat fugit
-                recusandae ipsum fugiat, consequatur fuga ab nobis blanditiis?
-                Dolorem, officia adipisci!
-              </p>
+        <div className="box last">
+          <h2 className="serviceTitle">Cross-Functional Collaboration</h2>
+          <div>
+            <p>
+            I collaborate effectively with UX designers, backend developers, and
+            other stakeholders to deliver cohesive and well-rounded projects,
+            fostering teamwork.
+          </p>
+          </div>
+        </div>
 
-              <button>Go</button>
-            </div>
+        <div className="box last">
+          <h2 className="serviceTitle">Animation and Interactivity</h2>
+          <div>
+            <p>
+            I am proficient in integrating animations and interactive elements
+            to enhance user engagement, creating a dynamic and visually
+            appealing frontend experience.
+          </p>
+          </div>
+        </div>
 
-            <div className="box">
-              <h2 className="serviceTitle">Branding</h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
-                magni esse quo dolor perferendis nihil vero a, quaerat fugit
-                recusandae ipsum fugiat, consequatur fuga ab nobis blanditiis?
-                Dolorem, officia adipisci!
-              </p>
-
-              <button>Go</button>
-            </div>
-
-            <div className="box last">
-              <h2 className="serviceTitle">Branding</h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
-                magni esse quo dolor perferendis nihil vero a, quaerat fugit
-                recusandae ipsum fugiat, consequatur fuga ab nobis blanditiis?
-                Dolorem, officia adipisci!
-              </p>
-
-              <button>Go</button>
-            </div>
-          </motion.div>
-        </motion.div>
-    //   )}
-    // </div>
+        <div className="box last">
+          <h2 className="serviceTitle">Landing Pages</h2>
+          <div>
+            <p>
+            Specialize in the creation of custom landing pages meticulously
+            crafted to align seamlessly with your unique specifications,
+            ensuring a compelling digital presence for your brand
+            or product.
+          </p>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
   )
 }
 

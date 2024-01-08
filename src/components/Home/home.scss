@@ -22,6 +22,7 @@
         transform: translateY(-50%);
         width: 45%;
         max-height: 90%;
+        background-color: yellow;
 
     
 
@@ -116,7 +117,6 @@ h2 {
     gap: 10px;
     cursor: pointer;
     width: 100%;
-        
     
 
     @include mobile {

@@ -2,17 +2,20 @@
 
 .services{
     background: linear-gradient(180deg, #061829, #095a9b);
-    height: 100vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-top: 1rem;
 
     @include tablet {
         height: auto;
+        padding-top: 0;
     }
 
     @include mobile {
         height: auto;
+        padding-top: 0;
     }
 
 
@@ -21,8 +24,8 @@
         align-self: flex-end;
         display: flex;
         align-items: center;
-        gap: 1.25rem;
-        margin-right: 2rem;
+        gap: 2rem;
+        margin-right: 5rem;
 
         @include tablet {
             gap: 1rem;
@@ -37,7 +40,7 @@
 
         p {
             font-weight: 200;
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             color: gray;
             text-align: right;
             font-family: "Helvetica Neue";
@@ -69,6 +72,7 @@
         flex-direction: column;
         align-items: center;
         flex: 2;
+        line-height: 6rem;
 
          @include tablet {
                 margin-top: 1.5rem;
@@ -82,7 +86,7 @@
 
             display: flex;
             align-items: center;
-            gap: 3.125rem;
+            gap: 4rem;
 
             @include mobile{
                 gap: 1rem;
@@ -95,8 +99,8 @@
 
 
             img{
-                width: 16.75rem;
-                height: 4.25rem;
+                width: 17rem;
+                height: 5rem;
                 border-radius: 50px;
                 object-fit: cover;
 
@@ -114,7 +118,7 @@
             }
 
             h1 {
-                font-size: 4rem;
+                font-size: 6rem;
                 font-weight: lighter;
 
                 @include mobile {
@@ -127,12 +131,12 @@
             }
 
             button {
-                width: 12.75rem;
-                height: 3.25rem;
+                width: 17rem;
+                height: 4.5rem;
                 border-radius: 3.125rem;
                 background-color: #bce0fb;
                 color: #061829;
-                font-size: 1.5rem;
+                font-size: 2rem;
                 border: none;
                 cursor: pointer;
 
@@ -152,8 +156,11 @@
     .listContainer{
         flex: 2;
         display: flex;
-        max-width: 55rem;
+        width: 100%;
         margin: auto;
+        padding: 0 2rem;
+        flex-wrap: wrap;
+        margin-top: 10rem;
 
         @include mobile {
             margin: 2rem auto;
@@ -170,12 +177,13 @@
         }
 
         .box {
-            padding: 1rem 2.25rem;
+            padding: 0 1rem;
             border: .5px solid gray;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            gap: 1rem;
+            gap: 2em;
+            height: 20rem;
+            width: 20%;
 
             &.first{
                 border-left: none;
@@ -202,48 +210,58 @@
             }
 
             .serviceTitle {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
                 animation: none;
+
+                 @include tablet {
+                    font-size: 1.2rem;
+                }
+
+                @include mobile {
+                    font-size: 1.1rem;
+                }
             }
 
-             @include mobile {
+            
+
+            p {
+                font-size: 1.2rem;
+                text-wrap: balance;
+                line-height: 1.7rem;
+                color: rgb(179, 178, 178);
+
+                @include tablet {
+                    font-size: 1rem;
+                }
+
+                @include mobile {
+                    font-size: 1rem;
+                }
+            }
+
+            @include mobile {
                 border: .5px solid gray;
                 border-radius: 10px;
-                width: 70%;
+                width: 90%;
                 margin: auto;
+                height: 17rem;
+
             }
 
             @include tablet {
                 border: .5px solid gray;
                 border-radius: 10px;
                 width: 45%;
+                height: 18rem;
                 margin: auto;
+                gap: 1rem;
             }
 
-
-            button {
-                border: none;
-                background: transparent;
-                color: #bce0fb;
-                font-size: 0.813rem;
-                font-weight: 400;
-                letter-spacing: 4px;
-                font-family: sans-serif;
-                padding: 0.625rem 1.125rem;
-                border: 1px solid #3fabf1;
-                border-radius: .5rem;
-
-                &:hover {
-                    background: #bce0fb;
-                    color: #095a9b;
-                }
+            @media screen and (min-width:500px) and (max-width: 560px) {
+                width: 46%;
+                height: 20rem;
+                
             }
-
-            p {
-                font-size: .9rem;
-            }
-
-            
         }
     }
 }
