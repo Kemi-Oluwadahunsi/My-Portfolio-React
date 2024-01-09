@@ -39,10 +39,11 @@
 
     @include mobile {
         max-width: 100%;
-        margin: 2rem 0 0 0;
+        margin: 3rem 0 0 0;
         flex-direction: column;
         height: auto;
         padding-left: 0;
+        gap: .5rem;
     }
 
     @media screen and (min-width: 769px) and (max-width: 1170px) {
