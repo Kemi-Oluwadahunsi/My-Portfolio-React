@@ -2,6 +2,11 @@
 
 .portfolio{
   position: relative;
+  margin-left: 2rem;
+
+  @media screen and (min-width: 769px) and (max-width: 1170px) {
+    margin-left: 4rem;
+  }
 
   .progress {
     position: sticky;
@@ -96,6 +101,13 @@
         border-radius: 10px;
         
       }
+
+      @media screen and (min-width: 769px) and (max-width: 1170px) {
+        width: 100%;
+        height: 50vh;
+        margin: 0;
+        padding: .3rem;
+      }
       
 
       .imageContain {
@@ -113,6 +125,11 @@
 
         @include mobile {
           max-width: 95%;
+        }
+
+        @media screen and (min-width: 769px) and (max-width: 1170px) {
+          max-width: 48%;
+          height: 60%;
         }
       
         img {
@@ -138,6 +155,11 @@
           max-width: 90%;
           gap: 1rem;
         }
+
+        @media screen and (min-width: 769px) and (max-width: 1170px) {
+          gap: .7rem;
+          max-width: 45%;
+        }
   
         h2 {
           font-size: 2rem;
@@ -148,6 +170,10 @@
 
           @include tablet {
             font-size: 1.3rem;
+          }
+
+          @media screen and (min-width: 769px) and (max-width: 1170px) {
+            font-size: 1.4rem;
           }
         }
   
@@ -165,6 +191,10 @@
           @include mobile {
             font-size: 0.8rem;
           }
+
+          @media screen and (min-width: 769px) and (max-width: 1170px) {
+            font-size: .8rem;
+          }
         }
   
         .stacks {
@@ -181,6 +211,10 @@
             font-size: .9rem;
             line-height: 1.2rem;
 
+          }
+
+          @media screen and (min-width: 769px) and (max-width: 1170px) {
+            font-size: .7rem;
           }
         }
   
@@ -208,7 +242,6 @@
         }
       }
     }
-
   }
   
 }

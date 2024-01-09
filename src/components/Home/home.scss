@@ -2,7 +2,6 @@
 
 
 .home-page {
-    // background: linear-gradient(180deg, #061829, #095a9b);
     margin-top: 5rem;
     height: 100vh;
 
@@ -20,10 +19,8 @@
         left: 10%;
         top: 50%;
         transform: translateY(-50%);
-        width: 45%;
+        width: 52%;
         max-height: 90%;
-        background-color: yellow;
-
     
 
         @include mobile {
@@ -39,31 +36,49 @@
             width: 100vw;
             top: 35%;
         }
+
+        @media screen and (min-width:769px) and (max-width: 1170px) {
+           width: 65%;
+        }
+
+         @media screen and (min-width:1171px) and (max-width: 1439px) {
+           width: 55%;
+        }
     }
 
     h1{
         color: #bce0fb;
-        // font-size: 3.313rem;
-        font-size: clamp(1.6rem, 5vw, 3.313rem);
+        font-size: 5rem;
         margin: 0;
         font-family: "Coolvetica";
         font-weight: 400;
-        line-height: 5rem;
+        line-height: 6rem;
 
         @include tablet {
-            // font-size: 2.5rem;
+            font-size: 2.5rem;
             line-height: 4rem;
         }
 
         @include mobile {
-            // font-size: 1.6rem;
+            font-size: 1.6rem;
             line-height: 3rem;
         }
+
+        @media screen and (min-width:769px) and (max-width: 1170px) {
+            font-size: 2.7rem;
+            line-height: 4rem;
+        }
+
+        @media screen and (min-width:1171px) and (max-width: 1439px) {
+           font-size: 3.5rem;
+           line-height: 4rem;
+        }
+
 
         &::before {
             content: '<h1>';
             font-family: "La Belle Aurore";
-            color: #0972c0;  // come back to review this color
+            color: #0972c0;  
             font-size: 1.125rem;
             position: absolute;
             margin-top: -2.5rem;
@@ -74,7 +89,7 @@
         &::after {
             content: '</h1>';
             font-family: "La Belle Aurore";
-            color: #0972c0;  // come back to review this color
+            color: #0972c0;  
             font-size: 1.125rem;
             position: absolute;
             margin-top: 1.125rem;
@@ -98,7 +113,7 @@ h2 {
     color: #3fabf1;
     margin-top: 1.25rem;
     font-weight: 400;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-family: sans-serif;
     letter-spacing: 3px;
     animation: fadeIn 1s 1.8s backwards;
@@ -114,7 +129,7 @@ h2 {
 
 .buttons{
     display: flex;
-    gap: 10px;
+    gap: 1rem;
     cursor: pointer;
     width: 100%;
     
@@ -122,23 +137,27 @@ h2 {
     @include mobile {
         overflow: hidden;
         flex-wrap: wrap;
+        gap: 10px;
+    }
+     @include mobile {
+        gap: 10px;
     }
 
     .flat-button {
-        
         background: transparent;
         color: #bce0fb;
-        font-size: 0.813rem;
+        font-size: 1.2rem;
         font-weight: 400;
         letter-spacing: 4px;
         font-family: sans-serif;
         text-decoration: none;
-        padding: 0.625rem 1.125rem;
+        padding: 0.8rem 1.5rem;
         border: 1px solid #3fabf1;
-        margin-top: 1.563rem;
+        margin-top: 2rem;
         float: left;
         animation: fadeIn 1s 1.8s backwards;
         // white-space: nowrap;
+        cursor: pointer;
         border-radius: .5rem;
     
         &:hover{
@@ -191,6 +210,10 @@ h2 {
         display: flex;
         align-items: center;
         justify-content: center;  
+    }
+
+    @media screen and (min-width:769px) and (max-width: 1170px) {
+        width: 33%;
     }
 
 

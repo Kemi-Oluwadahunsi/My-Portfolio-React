@@ -92,11 +92,6 @@ const Contact = () => {
             <span>oluwakemioluwadahunsi@gmail.com</span>
           </motion.div>
 
-          {/* <div className="item">
-                <h2>Address</h2>
-                <span>Jalan PC, 15400, Kota Bharu, Kelantan, Malaysia.</span>
-            </div> */}
-
           <motion.div variants={variants} className="item">
             <h2 className="mail">Phone</h2>
             <span>(+60) 111-321-9046</span>
@@ -110,7 +105,7 @@ const Contact = () => {
             whileInView={{ opacity: 0 }}
             transition={{ delay: 3, duration: 1 }}
           >
-            <svg width="350px" height="400px" viewBox="0 0 32.666 32.666">
+            <svg width="380px" height="400px" viewBox="0 0 32.666 32.666">
               <motion.path
                 strokeWidth={0.2}
                 fill="none"
@@ -139,7 +134,7 @@ const Contact = () => {
             ref={formRef}
             onSubmit={sendEmail}
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }} // Animate if in view
+            whileInView={{ opacity: 1 }}
             transition={{ delay: 4, duration: 1 }}
           >
             <input
