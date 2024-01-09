@@ -34,6 +34,7 @@
         margin: 1rem 0 0 0;
         flex-direction: column;
         height: auto;
+        padding-left: 0;
     }
 
     @include mobile {
@@ -41,6 +42,7 @@
         margin: 2rem 0 0 0;
         flex-direction: column;
         height: auto;
+        padding-left: 0;
     }
 
     @media screen and (min-width: 769px) and (max-width: 1170px) {

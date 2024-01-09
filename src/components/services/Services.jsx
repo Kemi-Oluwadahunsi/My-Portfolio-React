@@ -87,7 +87,7 @@ const Services = () => {
           <h2 className="serviceTitle">Landing Pages</h2>
           <div>
             <p>
-            Specialize in the creation of custom landing pages meticulously
+            Specializes in the creation of custom landing pages meticulously
             crafted to align seamlessly with your unique specifications,
             ensuring a compelling digital presence for your brand
             or product.
