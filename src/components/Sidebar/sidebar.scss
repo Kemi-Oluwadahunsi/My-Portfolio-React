@@ -47,10 +47,10 @@
             width: 100%;
 
             a {
-                font-size: 1.7rem;
+                font-size: 1.6rem;
                 color: #0c0c1d;
                 display: block;
-                line-height: 2.5rem;
+                line-height: 2rem;
                 height: 3.1875em;
                 position: relative;
                 text-decoration: none;
@@ -73,11 +73,11 @@
         
                 &:after{
                     content: '';
-                    font-size: .9rem;
+                    font-size: .7rem;
                     font-weight: bolder;
                     letter-spacing: 2px;
                     position: absolute;
-                    bottom: 0;
+                    bottom: 2rem;
                     display: block;
                     width: 100%;
                     text-align: center;
@@ -121,7 +121,7 @@
 
         ul {
             position: absolute;
-            bottom: 1rem;
+            bottom: .5px;
             width: 100%;
             display: block;
             padding: .5rem 0 0 0;

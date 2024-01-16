@@ -10,7 +10,7 @@ import {
   faEnvelope,
   faHome,
 } from '@fortawesome/free-solid-svg-icons'
-import { faFacebook, faGithub, faLinkedin, faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faGithub, faLinkedin, faWhatsapp, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 
 
 
@@ -41,7 +41,7 @@ const Sidebar = () => {
             className="portfolio-link"
             to="portfolio"
           >
-              <FontAwesomeIcon icon={faBriefcase} color="#0c0c1d" />
+            <FontAwesomeIcon icon={faBriefcase} color="#0c0c1d" />
           </ScrollLink>
 
           <ScrollLink
@@ -102,6 +102,16 @@ const Sidebar = () => {
               href="http://github.com/Kemi-Oluwadahunsi/"
             >
               <FontAwesomeIcon icon={faGithub} color="#0c0c1d" />
+            </a>
+          </li>
+
+          <li>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="http://wa.me/+2348146433203"
+            >
+              <FontAwesomeIcon icon={faWhatsapp} color="#0c0c1d" />
             </a>
           </li>
         </ul>

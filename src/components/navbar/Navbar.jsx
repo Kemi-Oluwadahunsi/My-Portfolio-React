@@ -11,6 +11,7 @@ import {
   faFacebook,
   faGithub,
   faLinkedin,
+  faWhatsapp,
   faXTwitter,
 } from '@fortawesome/free-brands-svg-icons'
 import { Link } from 'react-router-dom'
@@ -144,6 +145,16 @@ const Navbar = () => {
                     href="https://github.com/Kemi-Oluwadahunsi/"
                   >
                     <FontAwesomeIcon icon={faGithub} color="#0c0c1d" />
+                  </a>
+                </li>
+
+                <li onClick={closeMobileContent}>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://wa.me/+2348146433203"
+                  >
+                    <FontAwesomeIcon icon={faWhatsapp} color="#0c0c1d" />
                   </a>
                 </li>
               </ul>
