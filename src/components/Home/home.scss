@@ -106,6 +106,14 @@
     height: auto;
     animation: rotateIn 1s linear both;
     animation-delay: 1.4s;
+
+    @include tablet {
+        width: 3rem;
+    }
+
+    @include mobile {
+        width: 2rem;
+    }
    }
 }
 
