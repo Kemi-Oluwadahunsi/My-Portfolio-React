@@ -121,6 +121,17 @@ const items = [
     live: 'https://belleza-touch-spa.vercel.app/',
     gitHub: 'https://github.com/Kemi-Oluwadahunsi/BellezaTouchSpa',
   },
+
+  {
+    id: 7,
+    title: "ClearLink Landing Page",
+    img: '/images/ClearLink-SPA.png',
+    description:
+      'This project showcases my developer skills, in which I developed and deployed this static, web view Landing page from a provided Figma design. ',
+    stacks: ['REACT ', '|', ' SCSS ', '|', ' JSX'],
+    live: 'https://talent-sync-figma-to-spa.vercel.app/',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/TalentSync-Figma-to-SPA',
+  },
 ]
 
 const Single = ({ item }) => {
