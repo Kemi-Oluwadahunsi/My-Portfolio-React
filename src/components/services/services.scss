@@ -247,6 +247,10 @@
                 width: 80%;
                 margin: auto;
                 height: 17rem;
+
+                &:hover {
+                transform: none;
+                }
             }
 
             @include tablet {
@@ -256,6 +260,10 @@
                 height: 19rem;
                 margin: auto;
                 gap: 1rem;
+
+                &:hover {
+                transform: none;
+                }
             }
 
             @media screen and (min-width:500px) and (max-width: 560px) {
