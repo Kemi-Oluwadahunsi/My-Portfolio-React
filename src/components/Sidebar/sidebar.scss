@@ -124,17 +124,15 @@
             bottom: .5px;
             width: 100%;
             display: block;
-            padding: .5rem 0 0 0;
             list-style: none;
             text-align: center;
             margin: 0;
 
             li {
                 a {
-                    padding:0.6em 0;
+                    padding:0.3em 0;
                     display: block;
                     font-size: 1.2rem;
-                    line-height: .8rem;
 
                     &:hover svg {
                         color: #bce0fb;

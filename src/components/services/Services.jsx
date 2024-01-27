@@ -24,16 +24,15 @@ const Services = () => {
         <div className="title">
           <img src="/images/ladies-sitting.jpg" alt="serviceImage" />
           <h1>
-            <motion.b whileHover={{ color: '#095a9b' }}>Unique</motion.b> Ideas
+            <motion.b>Unique</motion.b> Ideas
           </h1>
         </div>
 
         <div className="title">
           <h1>
-            <motion.b whileHover={{ color: '#095a9b' }}>For Your</motion.b>{' '}
+            <motion.b>For Your</motion.b>{' '}
             Business.
           </h1>
-          <button>WHAT WE DO</button>
         </div>
       </motion.div>
       <motion.div

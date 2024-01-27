@@ -159,44 +159,18 @@
                     font-size: 3.5rem;
                 }
             }
-
-            button {
-                width: 17rem;
-                height: 4.5rem;
-                border-radius: 3.125rem;
-                background-color: #bce0fb;
-                color: #061829;
-                font-size: 2rem;
-                border: none;
-                cursor: pointer;
-
-                @include mobile {
-                    display: none;
-                }
-
-                @include tablet {
-                    font-size: 1rem;
-                    width: 9rem;
-                    height: 2.5rem;
-                }
-
-                @media screen and (min-width:769px) and (max-width: 1170px) {
-                    width: 13rem;
-                    height: 3.5rem;
-                    font-size: 1.5rem;
-                }
-            }
         }
     }
 
     .listContainer{
-        flex: 2;
         display: flex;
+        justify-content: center;
         width: 100%;
         margin: auto;
-        padding: 0 1rem 0 6rem;
+        padding: 0 1rem 0 0rem;
         flex-wrap: wrap;
-        margin-top: 10rem;
+        margin-top: 6rem;
+        gap: 2rem;
 
         @include mobile {
             margin: 2rem auto;
@@ -226,44 +200,13 @@
             border: .5px solid gray;
             display: flex;
             flex-direction: column;
-            gap: 2em;
+            gap: 2rem;
             height: 20rem;
-            width: 20%;
-
-            &.first{
-                border-left: none;
-
-                @include tablet {
-                    border-left: .5px solid gray;
-                }
-
-                @include mobile {
-                    border-left: .5px solid gray;
-                }
-
-                 @media screen and (min-width:769px) and (max-width: 1170px) {
-                    border-left: .5px solid gray;
-                 }
-            }
-
-            &.last {
-                border-right: none;
-
-                @include tablet {
-                    border-right: .5px solid gray;
-                }
-
-                @include mobile {
-                    border-right: .5px solid gray;
-                }
-
-                @media screen and (min-width:769px) and (max-width: 1170px) {
-                    border-right: .5px solid gray;
-                 }
-            }
+            width: 25%;
+            border-radius: 2rem;
 
             .serviceTitle {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
                 animation: none;
 
                  @include tablet {
@@ -280,15 +223,17 @@
             p {
                 font-size: 1.2rem;
                 text-wrap: balance;
-                line-height: 1.7rem;
+                line-height: 2rem;
                 color: rgb(179, 178, 178);
 
                 @include tablet {
                     font-size: 1rem;
+                    line-height: 1.7rem;
                 }
 
                 @include mobile {
                     font-size: 1rem;
+                     line-height: 1.7rem;
                 }
             }
 

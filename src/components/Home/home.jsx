@@ -72,7 +72,7 @@ const Home = () => {
           </motion.div> */}
 
       <div className="imageContainer">
-        <img className="my-image" src="/my-image3.png" alt="Kemi" />
+        <img className="my-image" src="/my-image3.png" alt="Kemi" loading='lazyLoading' />
       </div>
     </div>
   )
