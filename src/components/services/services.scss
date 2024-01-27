@@ -205,6 +205,10 @@
             width: 25%;
             border-radius: 2rem;
 
+            &:hover {
+                transform: scale(0.95);
+            }
+
             .serviceTitle {
                 font-size: 1.4rem;
                 animation: none;
