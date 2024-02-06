@@ -28,6 +28,10 @@ const Contact = () => {
       message: '',
     })
 
+    const handleSubmit = () => {
+      alert('Message submitted successfully')
+    }
+
     const [error, setError] = useState(false)
     const [success, setSuccess] = useState(false)
 
@@ -199,7 +203,7 @@ const Contact = () => {
 
             <button type="submit">Submit</button>
             {error && 'Error'}
-            {success && 'Your message has been sent successfully'}
+            {success && handleSubmit()}
           </motion.form>
         </div>
       </motion.div>
