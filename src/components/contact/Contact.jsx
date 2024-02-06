@@ -169,7 +169,7 @@ const Contact = () => {
 
             <button type="submit">Submit</button>
             {error && 'Error'}
-            {success && 'Your message has been sent successfully'}
+            {success && handleSubmit()}
           </motion.form>
         </div>
 
