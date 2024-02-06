@@ -63,6 +63,7 @@ const Contact = () => {
               email: '',
               message: '',
             })
+            handleSubmit()
           },
           (error) => {
             setError(true)
@@ -169,7 +170,7 @@ const Contact = () => {
 
             <button type="submit">Submit</button>
             {error && 'Error'}
-            {success && handleSubmit()}
+            {success && ''}
           </motion.form>
         </div>
 
@@ -203,7 +204,7 @@ const Contact = () => {
 
             <button type="submit">Submit</button>
             {error && 'Error'}
-            {success && handleSubmit()}
+            {success && ''}
           </motion.form>
         </div>
       </motion.div>
