@@ -1,28 +1,10 @@
 import './home.scss'
 import Kemi from '/images/creative-Kemi.png'
-// import { Link } from 'react-router-dom'
-// import { motion } from 'framer-motion';
 import { useState } from 'react';
 import AnimatedLetters from '../AnimatedLetters/animated'
 import '../AnimatedLetters/animated.scss'
 import { Link as ScrollLink } from 'react-scroll'
 
-
-
-// const sliderVariants = {
-//   initial: {
-//     x: 0,
-//   },
-
-//   animate: {
-//     x: "-300%",
-//     transition: {
-//       duration: 2,
-//       repeat: Infinity,
-//       repeatType: "mirror",
-//     },
-//   },
-// };
 
 const Home = () => {
 
@@ -66,10 +48,6 @@ const Home = () => {
           </ScrollLink>
         </div>
       </div>
-
-      {/* <motion.div className="slidingTextContainer" variants={sliderVariants} initial="initial" animate="animate">
-              I Talk In Codes
-          </motion.div> */}
 
       <div className="imageContainer">
         <img className="my-image" src="/my-image3.png" alt="Kemi" loading='lazyLoading' />
