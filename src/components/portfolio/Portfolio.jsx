@@ -8,6 +8,29 @@ import { Link } from 'react-router-dom';
 const items = [
   {
     id: 1,
+    title: 'Astonish Designs Fashion App',
+    img: '/images/astonish-finished.png',
+    description:
+      'A brand portfolio for Astonish Designs, a fashion and tailoring brand. This portfolio showcases about the brand, a catalogue of the brand designs, contact information, testimonials from clients, and services rendered.',
+    stacks: [
+      'HTML ',
+      '|',
+      ' Sass(CSS) ',
+      '|',
+      ' React.js ',
+      '|',
+      ' Javascript ',
+      '|',
+      ' framer-motion ',
+      '|',
+      ' Emailjs ',
+    ],
+    live: 'https://astonish-designs.com.ng',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Astonish-Designs',
+  },
+
+  {
+    id: 2,
     title: 'Pizza Food Ordering WebApp',
     img: '/images/Pizza-App.jpg',
     description:
@@ -34,7 +57,7 @@ const items = [
   },
 
   {
-    id: 2,
+    id: 3,
     title: 'Motivational Quotes App',
     img: '/images/Motiva.png',
     description:
@@ -64,7 +87,7 @@ const items = [
   },
 
   {
-    id: 3,
+    id: 4,
     title: 'My Portfolio',
     img: '/images/my-portfolio.png',
     description:
@@ -89,7 +112,7 @@ const items = [
   },
 
   {
-    id: 4,
+    id: 5,
     title: 'Countri',
     img: '/images/Countri.png',
     description:
@@ -100,7 +123,7 @@ const items = [
   },
 
   {
-    id: 5,
+    id: 6,
     title: 'Tasty Yumzy Restaurant app',
     img: '/images/tasty-yumzy.png',
     description:
@@ -112,7 +135,7 @@ const items = [
   },
 
   {
-    id: 6,
+    id: 7,
     title: "Belleza's Touch Spa",
     img: '/images/belleza-spa.png',
     description:
@@ -123,8 +146,8 @@ const items = [
   },
 
   {
-    id: 7,
-    title: "ClearLink Landing Page",
+    id: 8,
+    title: 'ClearLink Landing Page',
     img: '/images/ClearLink-SPA.png',
     description:
       'This project showcases my developer skills, in which I developed and deployed this static, web view Landing page from a provided Figma design. ',

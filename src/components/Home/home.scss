@@ -1,105 +1,107 @@
-@import "../../App.scss";
-
+@import '../../App.scss';
 
 .home-page {
-    margin-top: 5rem;
-    height: 100vh;
+  margin-top: 5rem;
+  height: 100vh;
+  width: screen;
+
+  @include tablet {
+    margin-top: 0;
+    height: 50%;
+  }
+
+  @include mobile {
+    margin-top: 0;
+    height: 50%;
+  }
+  .text-zone {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52%;
+    max-height: 90%;
+    width: fit-content;
+
+    @include mobile {
+      left: 0;
+      padding-left: 5%;
+      width: 100vw;
+      top: 35%;
+    }
 
     @include tablet {
-        margin-top: 0;
-        height: 50%;
+      left: 0;
+      padding-left: 8%;
+      width: 100vw;
+      top: 35%;
+    }
+
+    // @media screen and (min-width:769px) and (max-width: 1170px) {
+    //    width: 65%;
+    // }
+
+    //  @media screen and (min-width:1171px) and (max-width: 1439px) {
+    //    width: 55%;
+    // }
+  }
+
+  h1 {
+    color: #bce0fb;
+    font-size: 4.9rem;
+    margin: 0;
+    font-family: 'Coolvetica';
+    font-weight: 400;
+    line-height: 6rem;
+    width: fit-content;
+
+    @include tablet {
+      font-size: 2.5rem;
+      line-height: 4rem;
     }
 
     @include mobile {
-        margin-top: 0;
-        height: 50%;
-    }
-    .text-zone {
-        position: absolute;
-        left: 10%;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 52%;
-        max-height: 90%;
-    
-
-        @include mobile {
-            left: 0;
-            padding-left: 5%;
-            width: 100vw;
-            top: 35%;
-        }
-
-        @include tablet{
-            left: 0;
-            padding-left: 8%;
-            width: 100vw;
-            top: 35%;
-        }
-
-        @media screen and (min-width:769px) and (max-width: 1170px) {
-           width: 65%;
-        }
-
-         @media screen and (min-width:1171px) and (max-width: 1439px) {
-           width: 55%;
-        }
+      font-size: 1.6rem;
+      line-height: 3rem;
     }
 
-    h1{
-        color: #bce0fb;
-        font-size: 4.9rem;
-        margin: 0;
-        font-family: "Coolvetica";
-        font-weight: 400;
-        line-height: 6rem;
-
-        @include tablet {
-            font-size: 2.5rem;
-            line-height: 4rem;
-        }
-
-        @include mobile {
-            font-size: 1.6rem;
-            line-height: 3rem;
-        }
-
-        @media screen and (min-width:769px) and (max-width: 1170px) {
-            font-size: 2.7rem;
-            line-height: 4rem;
-        }
-
-        @media screen and (min-width:1171px) and (max-width: 1439px) {
-           font-size: 3.5rem;
-           line-height: 4rem;
-        }
-
-
-        &::before {
-            content: '<h1>';
-            font-family: "La Belle Aurore";
-            color: #0972c0;  
-            font-size: 1.125rem;
-            position: absolute;
-            margin-top: -2.5rem;
-            left: 1rem;
-            opacity: 0.6;
-        }
-
-        &::after {
-            content: '</h1>';
-            font-family: "La Belle Aurore";
-            color: #0972c0;  
-            font-size: 1.125rem;
-            position: absolute;
-            margin-top: 1.125rem;
-            margin-left: 1.25rem;
-            animation: fadeIn 1s 1.7s backwards;
-            opacity: 0.6;
-        }
+    @media screen and (min-width: 769px) and (max-width: 1170px) {
+      font-size: 2.7rem;
+      line-height: 4rem;
     }
 
-   .k-letter {
+    @media screen and (min-width: 1171px) and (max-width: 1439px) {
+      font-size: 3.5rem;
+      line-height: 4rem;
+    }
+
+    &::before {
+      content: '<h1>';
+      font-family: 'La Belle Aurore';
+      color: #0972c0;
+      font-size: 1.125rem;
+      position: absolute;
+      margin-top: -2.5rem;
+      left: 1rem;
+      opacity: 0.6;
+      width: fit-content;
+    }
+
+    &::after {
+      content: '</h1>';
+      font-family: 'La Belle Aurore';
+      color: #0972c0;
+      font-size: 1.125rem;
+      position: absolute;
+      margin-top: 1.125rem;
+      margin-left: 1.25rem;
+      animation: fadeIn 1s 1.7s backwards;
+      opacity: 0.6;
+      width: fit-content;
+    }
+  }
+
+  .k-letter {
     width: 4rem;
     margin-left: 1.25rem;
     opacity: 0;
@@ -108,138 +110,133 @@
     animation-delay: 1.4s;
 
     @include tablet {
-        width: 3rem;
+      width: 3rem;
     }
 
     @include mobile {
-        width: 2rem;
+      width: 2rem;
     }
-   }
+  }
 }
 
 h2 {
-    color: #3fabf1;
-    margin-top: 1.25rem;
-    font-weight: 400;
-    font-size: 1.1rem;
-    font-family: sans-serif;
-    letter-spacing: 3px;
-    animation: fadeIn 1s 1.8s backwards;
+  color: #3fabf1;
+  margin-top: 1.25rem;
+  font-weight: 400;
+  font-size: 1.1rem;
+  font-family: sans-serif;
+  letter-spacing: 3px;
+  animation: fadeIn 1s 1.8s backwards;
 
-    @include tablet {
-        font-size: 0.8rem;
-    }
+  @include tablet {
+    font-size: 0.8rem;
+  }
 
-    @include mobile {
-        font-size: 0.7rem;
-    }
+  @include mobile {
+    font-size: 0.7rem;
+  }
 }
 
-.buttons{
-    display: flex;
-    gap: 1rem;
+.buttons {
+  display: flex;
+  gap: 1rem;
+  cursor: pointer;
+  width: fit-content;
+
+  @include mobile {
+    overflow: hidden;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  @include mobile {
+    gap: 10px;
+  }
+
+  .flat-button {
+    background: transparent;
+    color: #bce0fb;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    font-family: sans-serif;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border: 1px solid #3fabf1;
+    margin-top: 2rem;
+    float: left;
+    animation: fadeIn 1s 1.8s backwards;
+    width: fit-content;
     cursor: pointer;
-    width: 100%;
-    
+    border-radius: 0.5rem;
+
+    &:hover {
+      background: transparent;
+      color: #3fabf1;
+    }
 
     @include mobile {
-        overflow: hidden;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-     @include mobile {
-        gap: 10px;
+      margin-top: 1.2rem;
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      padding: 0.5rem 0.8rem;
+      width: auto;
     }
 
-    .flat-button {
-        background: transparent;
-        color: #bce0fb;
-        font-size: 1.2rem;
-        font-weight: 400;
-        letter-spacing: 4px;
-        font-family: sans-serif;
-        text-decoration: none;
-        padding: 0.8rem 1.5rem;
-        border: 1px solid #3fabf1;
-        margin-top: 2rem;
-        float: left;
-        animation: fadeIn 1s 1.8s backwards;
-        // white-space: nowrap;
-        cursor: pointer;
-        border-radius: .5rem;
-    
-        &:hover{
-            background: transparent;
-            color: #3fabf1;
-        }
-    
-        @include mobile {
-            margin-top: 1.2rem;
-            font-size: 0.6rem;
-            letter-spacing: 2px;
-            padding:0.5rem .8rem;
-            width: auto;
-        }
-
-        @include tablet {
-            margin-top: 1.2rem;
-            font-size: 0.813rem;
-            letter-spacing: 3px;
-            padding:0.5rem 1rem;
-        }
+    @include tablet {
+      margin-top: 1.2rem;
+      font-size: 0.813rem;
+      letter-spacing: 3px;
+      padding: 0.5rem 1rem;
     }
+  }
 }
 
 .imageContainer {
-    height: 100%;
-    width: 40%;
-    position: absolute;
-    top: 0;
-    right: 0;
+  height: 100%;
+  width: 40%;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  @include tablet {
+    height: 10rem;
+    width: 10rem;
+    margin-right: 5rem;
+    border: 1px solid #3fabf1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @include mobile {
+    height: 9rem;
+    width: 9rem;
+    margin-right: 2rem;
+    border: 1px solid #3fabf1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1170px) {
+    width: 33%;
+  }
+
+  .my-image {
+    width: 80%;
 
     @include tablet {
-        height: 10rem;
-        width: 10rem;
-        margin-right: 5rem;
-        border: 1px solid #3fabf1;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
+      width: 65%;
+      margin-top: -15px;
+      margin-right: 10px;
     }
 
     @include mobile {
-        height: 9rem;
-        width: 9rem;
-        margin-right: 2rem;
-        border: 1px solid #3fabf1;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;  
+      width: 62%;
+      margin-top: -15px;
+      margin-right: 10px;
     }
-
-    @media screen and (min-width:769px) and (max-width: 1170px) {
-        width: 33%;
-    }
-
-
-    .my-image{
-        width: 80%;
-
-        @include tablet {
-            width: 65%;
-            margin-top: -15px;
-            margin-right: 10px;
-        }
-
-        @include mobile {
-            width: 62%;
-            margin-top: -15px;
-            margin-right: 10px;
-        }
-    }
-
+  }
 }
-

@@ -1,17 +1,46 @@
 import './home.scss'
 import Kemi from '/images/creative-Kemi.png'
-import { useState } from 'react';
+import { useState } from 'react'
 import AnimatedLetters from '../AnimatedLetters/animated'
 import '../AnimatedLetters/animated.scss'
 import { Link as ScrollLink } from 'react-scroll'
 
-
 const Home = () => {
-
-  const [letterClass] = useState('text-animate');
-  const nameArray = ['e', 'm', 'i', ' ', 'O', 'l', 'u', 'w', 'a', 'd', 'a', 'h', 'u', 'n', 's', 'i'];
-  const jobArray = ['W', 'e', 'b', ' ', 'D', 'e', 'v', 'e', 'l', 'o', 'p', 'e', 'r', '.'];
-
+  const [letterClass] = useState('text-animate')
+  const nameArray = [
+    'e',
+    'm',
+    'i',
+    ' ',
+    'O',
+    'l',
+    'u',
+    'w',
+    'a',
+    'd',
+    'a',
+    'h',
+    'u',
+    'n',
+    's',
+    'i',
+  ]
+  const jobArray = [
+    'W',
+    'e',
+    'b',
+    ' ',
+    'D',
+    'e',
+    'v',
+    'e',
+    'l',
+    'o',
+    'p',
+    'e',
+    'r',
+    '.',
+  ]
 
   return (
     <div className="container home-page">
@@ -50,7 +79,12 @@ const Home = () => {
       </div>
 
       <div className="imageContainer">
-        <img className="my-image" src="/my-image3.png" alt="Kemi" loading='lazyLoading' />
+        <img
+          className="my-image"
+          src="/my-image3.png"
+          alt="Kemi"
+          loading="lazyLoading"
+        />
       </div>
     </div>
   )

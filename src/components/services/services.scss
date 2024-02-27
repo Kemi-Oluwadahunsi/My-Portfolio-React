@@ -1,287 +1,280 @@
-@import "../../App.scss";
+@import '../../App.scss';
 
-.services{
-    background: linear-gradient(180deg, #061829, #095a9b);
+.services {
+  background: linear-gradient(180deg, #061829, #095a9b);
+  height: auto;
+  width: screen;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 0;
+
+  @include tablet {
     height: auto;
+    padding-top: 0;
+  }
+
+  @include mobile {
+    height: auto;
+    padding-top: 0;
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1170px) {
+    margin-left: 3rem;
+    width: fit-content;
+  }
+
+  .textContainer {
+    flex: 1;
+    align-self: flex-end;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-top: 1rem;
-    
+    align-items: center;
+    gap: 2rem;
+    margin-right: 5rem;
+    width: fit-content;
 
     @include tablet {
-        height: auto;
-        padding-top: 0;
+      gap: 1rem;
+      margin-right: 2rem;
     }
 
     @include mobile {
-        height: auto;
-        padding-top: 0;
+      gap: 1rem;
+      margin-right: 1rem;
     }
 
-    @media screen and (min-width: 769px) and (max-width:1170px) {
-        margin-left: 3rem;
+    @media screen and (min-width: 769px) and (max-width: 1170px) {
+      margin-right: 3em;
     }
 
+    p {
+      font-weight: 200;
+      font-size: 1.5rem;
+      color: gray;
+      text-align: right;
+      font-family: 'Helvetica Neue';
+      width: fit-content;
 
-    .textContainer {
-        flex: 1;
-        align-self: flex-end;
-        display: flex;
-        align-items: center;
+      @include tablet {
+        font-size: 1rem;
+        padding-top: 0.7rem;
+      }
+
+      @include mobile {
+        font-size: 0.8rem;
+        padding-top: 0.5rem;
+      }
+
+      @media screen and (min-width: 769px) and (max-width: 1170px) {
+        font-size: 1rem;
+      }
+
+      span {
+        display: block;
+        font-family: 'Helvetica Neue';
+      }
+    }
+  }
+
+  .titleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 2;
+    margin: auto;
+    width: fit-content;
+    line-height: 6rem;
+
+    @include tablet {
+      margin-top: 1.5rem;
+    }
+
+    @include mobile {
+      margin-top: 1.5rem;
+      line-height: 3rem;
+    }
+
+    @media screen and (min-width: 769px) and (max-width: 1170px) {
+      padding-bottom: 5rem;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+
+      @include mobile {
+        gap: 1rem;
+      }
+
+      @include tablet {
         gap: 2rem;
-        margin-right: 5rem;
+        line-height: 4rem;
+      }
+
+      @media screen and (min-width: 769px) and (max-width: 1170px) {
+        gap: 0.5rem;
+      }
+
+      img {
+        width: 17rem;
+        height: 5rem;
+        border-radius: 50px;
+        object-fit: cover;
+
+        @include mobile {
+          width: 8rem;
+          height: 3rem;
+        }
 
         @include tablet {
-            gap: 1rem;
-            margin-right: 2rem;
+          width: 11rem;
+          height: 3.5rem;
+        }
+
+        @media screen and (min-width: 769px) and (max-width: 1170px) {
+          width: 13rem;
+          height: 4rem;
+        }
+      }
+
+      h1 {
+        font-size: 6rem;
+        font-weight: lighter;
+
+        @include mobile {
+          font-size: 2rem;
+        }
+
+        @include tablet {
+          font-size: 3rem;
+        }
+
+        @media screen and (min-width: 769px) and (max-width: 1170px) {
+          font-size: 3.5rem;
+        }
+      }
+    }
+  }
+
+  .listContainer {
+    display: flex;
+    justify-content: center;
+    width: screen;
+    margin: auto;
+    padding: 0 1rem 0 0rem;
+    flex-wrap: wrap;
+    margin-top: 6rem;
+    gap: 2rem;
+
+    @include mobile {
+      margin: 2rem auto;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 0;
+    }
+
+    @include tablet {
+      margin: 2rem auto;
+      max-width: 40rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding: 0;
+    }
+
+    @media screen and (min-width: 769px) and (max-width: 1170px) {
+      margin: 2rem auto;
+      max-width: fit-content;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .box {
+      padding: 0 1rem;
+      border: 0.5px solid gray;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      height: 20em;
+      width: 25%;
+      border-radius: 2rem;
+      padding: 1rem 1rem 2rem 1rem;
+
+      &:hover {
+        transform: scale(0.95);
+      }
+
+      .serviceTitle {
+        font-size: 1.4rem;
+        animation: none;
+
+        @include tablet {
+          font-size: 1.2rem;
         }
 
         @include mobile {
-            gap: 1rem;
-            margin-right: 1rem;
+          font-size: 1.1rem;
+        }
+      }
+
+      p {
+        font-size: 1.2rem;
+        text-wrap: balance;
+        line-height: 2rem;
+        color: rgb(179, 178, 178);
+
+        @include tablet {
+          font-size: 1rem;
+          line-height: 1.7rem;
         }
 
-        @media screen and (min-width:769px) and (max-width: 1170px) {
-          margin-right: 3em;
+        @include mobile {
+          font-size: 1rem;
+          line-height: 1.7rem;
         }
-        
+      }
 
-        p {
-            font-weight: 200;
-            font-size: 1.5rem;
-            color: gray;
-            text-align: right;
-            font-family: "Helvetica Neue";
-
-             @include tablet {
-                font-size: 1rem;
-                padding-top: 0.7rem;
-            }
-
-            @include mobile {
-                font-size: 0.8rem;
-                padding-top: 0.5rem;
-            }
-
-            @media screen and (min-width:769px) and (max-width: 1170px) {
-                font-size: 1rem;
-            }
-
-            span{
-                display: block;
-                font-family: "Helvetica Neue";
-
-            }
-
-        }
-
-        
-    }
-
-    .titleContainer {
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex: 2;
-        line-height: 6rem;
-        
-
-         @include tablet {
-                margin-top: 1.5rem;
-            }
-
-             @include mobile{
-                margin-top: 1.5rem;
-                line-height: 3rem;
-            }
-
-            @media screen and (min-width:769px) and (max-width: 1170px) {
-                padding-bottom: 5rem;
-            }
-
-        .title{
-
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-
-            @include mobile{
-                gap: 1rem;
-            }
-
-            @include tablet{
-                gap: 2rem;
-                line-height: 4rem;
-            }
-
-            @media screen and (min-width:769px) and (max-width: 1170px) {
-                gap: .5rem;
-            }
-
-
-            img{
-                width: 17rem;
-                height: 5rem;
-                border-radius: 50px;
-                object-fit: cover;
-
-                @include mobile {
-                    width: 8rem;
-                    height: 3rem;
-                }
-
-                @include tablet {
-                    width: 11rem;
-                    height: 3.5rem;
-                }
-                
-                @media screen and (min-width:769px) and (max-width: 1170px) {
-                    width: 13rem;
-                    height: 4rem;
-                }
-            }
-
-            h1 {
-                font-size: 6rem;
-                font-weight: lighter;
-
-                @include mobile {
-                    font-size: 2rem;
-                }
-
-                @include tablet {
-                    font-size: 3rem;
-                }
-
-                @media screen and (min-width:769px) and (max-width: 1170px) {
-                    font-size: 3.5rem;
-                }
-            }
-        }
-    }
-
-    .listContainer{
-        display: flex;
-        justify-content: center;
-        width: 100%;
+      @include mobile {
+        border: 0.5px solid gray;
+        border-radius: 10px;
+        width: 80%;
         margin: auto;
-        padding: 0 1rem 0 0rem;
-        flex-wrap: wrap;
-        margin-top: 6rem;
-        gap: 2rem;
+        height: 17rem;
 
-        @include mobile {
-            margin: 2rem auto;
-            flex-direction: column;
-            gap: 2rem;
-            padding: 0;
+        &:hover {
+          transform: none;
         }
+      }
 
-        @include tablet {
-            margin: 2rem auto;
-            max-width: 40rem;
-            gap: 2rem;
-            flex-wrap: wrap;
-            padding: 0;
+      @include tablet {
+        border: 0.5px solid gray;
+        border-radius: 10px;
+        width: 45%;
+        height: 19rem;
+        margin: auto;
+        gap: 1rem;
+
+        &:hover {
+          transform: none;
         }
+      }
 
-        @media screen and (min-width:769px) and (max-width: 1170px) {
-            margin: 2rem auto;
-            max-width: 100vw;
-            gap: 2rem;
-            flex-wrap: wrap;
+      @media screen and (min-width: 500px) and (max-width: 560px) {
+        width: 46%;
+        height: 20rem;
+      }
 
-        }
+      @media screen and (min-width: 769px) and (max-width: 1016px) {
+        height: 23rem;
+        width: 30%;
+        border-radius: 10px;
+      }
 
-        .box {
-            padding: 0 1rem;
-            border: .5px solid gray;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            height: 20rem;
-            width: 25%;
-            border-radius: 2rem;
-
-            &:hover {
-                transform: scale(0.95);
-            }
-
-            .serviceTitle {
-                font-size: 1.4rem;
-                animation: none;
-
-                 @include tablet {
-                    font-size: 1.2rem;
-                }
-
-                @include mobile {
-                    font-size: 1.1rem;
-                }
-            }
-
-            
-
-            p {
-                font-size: 1.2rem;
-                text-wrap: balance;
-                line-height: 2rem;
-                color: rgb(179, 178, 178);
-
-                @include tablet {
-                    font-size: 1rem;
-                    line-height: 1.7rem;
-                }
-
-                @include mobile {
-                    font-size: 1rem;
-                     line-height: 1.7rem;
-                }
-            }
-
-            @include mobile {
-                border: .5px solid gray;
-                border-radius: 10px;
-                width: 80%;
-                margin: auto;
-                height: 17rem;
-
-                &:hover {
-                transform: none;
-                }
-            }
-
-            @include tablet {
-                border: .5px solid gray;
-                border-radius: 10px;
-                width: 45%;
-                height: 19rem;
-                margin: auto;
-                gap: 1rem;
-
-                &:hover {
-                transform: none;
-                }
-            }
-
-            @media screen and (min-width:500px) and (max-width: 560px) {
-                width: 46%;
-                height: 20rem;
-            }
-
-            @media screen and (min-width:769px) and (max-width: 1016px) {
-                height: 23rem;
-                width: 30%;
-                border-radius: 10px;
-            }
-
-            @media screen and (min-width:1017px) and (max-width: 1170px) {
-                height: 20rem;
-                width: 30%;
-                border-radius: 10px;
-            }
-        }
+      @media screen and (min-width: 1017px) and (max-width: 1170px) {
+        height: 20rem;
+        width: 30%;
+        border-radius: 10px;
+      }
     }
+  }
 }
