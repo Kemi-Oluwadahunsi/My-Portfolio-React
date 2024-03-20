@@ -1,9 +1,9 @@
 import './portfolio.scss'
-import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDisplay } from '@fortawesome/free-solid-svg-icons';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDisplay } from '@fortawesome/free-solid-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { Link } from 'react-router-dom'
 
 const items = [
   {
@@ -158,47 +158,45 @@ const items = [
 ]
 
 const Single = ({ item }) => {
+  return (
+    <section id="portfolioSection">
+      <div className="all">
+        <div className="wrapper">
+          <div className="imageContain">
+            <img src={item.img} alt="WebsiteImage" />
+          </div>
+          <div className="text">
+            <h2> {item.title} </h2>
+            <p> {item.description} </p>
+            <span className="stacks">{item.stacks} </span>
 
+            <div className="links">
+              <Link
+                className="link"
+                to={item.live}
+                rel="noreferrer"
+                target="_blank"
+              >
+                <FontAwesomeIcon icon={faDisplay} color="#bce0fb" />
+                <span>Live View</span>
+              </Link>
 
-    return (
-      <section id="portfolioSection">
-        <div className="all">
-          <div className="wrapper">
-            <div className="imageContain">
-              <img src={item.img} alt="WebsiteImage" />
-            </div>
-            <div className="text">
-              <h2> {item.title} </h2>
-              <p> {item.description} </p>
-              <span className="stacks">{item.stacks} </span>
-
-              <div className="links">
-                <Link
-                  className="link"
-                  to={item.live}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <FontAwesomeIcon icon={faDisplay} color="#bce0fb" />
-                  <span>Live View</span>
-                </Link>
-
-                <Link
-                  className="link"
-                  to={item.gitHub}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <FontAwesomeIcon icon={faGithub} color="#bce0fb" />
-                  <span>View Codes</span>
-                </Link>
-              </div>
+              <Link
+                className="link"
+                to={item.gitHub}
+                rel="noreferrer"
+                target="_blank"
+              >
+                <FontAwesomeIcon icon={faGithub} color="#bce0fb" />
+                <span>View Codes</span>
+              </Link>
             </div>
           </div>
         </div>
-      </section>
-    )
-};
+      </div>
+    </section>
+  )
+}
 
 Single.propTypes = {
   item: PropTypes.shape({
@@ -213,24 +211,20 @@ Single.propTypes = {
 }
 
 const Portfolio = () => {
-
   return (
     <div className="portfolio">
-        <div className="progress">
-            <h1>Featured Works</h1>
-             <div className="progressBar" ></div>
-        </div>
+      <div className="progress">
+        <h1>Featured Works</h1>
+        <div className="progressBar"></div>
+      </div>
 
-
-        <div>
+      <div>
         {items.map((item) => (
-            <Single item={item} key={item.id}/>
+          <Single item={item} key={item.id} />
         ))}
-        </div>
+      </div>
     </div>
-  );
-};
-
-
+  )
+}
 
 export default Portfolio
