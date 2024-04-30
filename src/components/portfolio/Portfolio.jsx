@@ -34,6 +34,10 @@ const items = [
       ' NodeJs ',
       '|',
       ' ExpressJs ',
+      '|',
+      ' Stripe ',
+      '|',
+      ' React-Toastify ',
     ],
     live: 'https://kcoat.netlify.app',
     gitHub: 'https://github.com/Kemi-Oluwadahunsi/KCOAT-Project',
@@ -120,6 +124,30 @@ const items = [
 
   {
     id: 5,
+    title: 'Login and Signup Fully Authenticated Form',
+    img: '/images/login.png',
+    description:
+      'A fully responsive and interactive login and signup form, built with the latest in web technology, validated with React-hook-form and Authenticated with Firebase.',
+    stacks: [
+      ' ReactJs ',
+      '|',
+      ' Tailwind CSS ',
+      '|',
+      ' React-hook-form ',
+      '|',
+      ' Firebase ',
+      '|',
+      ' React-Router-Dom ',
+      '|',
+      ' React-Toastify ',
+    ],
+    live: 'https://login-registration-auth-form.vercel.app/',
+    gitHub:
+      'https://github.com/Kemi-Oluwadahunsi/Login-Registration-Auth-Form.git',
+  },
+
+  {
+    id: 6,
     title: 'My Portfolio',
     img: '/images/my-portfolio.png',
     description:
@@ -144,7 +172,7 @@ const items = [
   },
 
   {
-    id: 6,
+    id: 7,
     title: 'Countri',
     img: '/images/Countri.png',
     description:
@@ -155,7 +183,7 @@ const items = [
   },
 
   {
-    id: 7,
+    id: 8,
     title: 'Tasty Yumzy Restaurant app',
     img: '/images/tasty-yumzy.png',
     description:
@@ -167,7 +195,7 @@ const items = [
   },
 
   {
-    id: 8,
+    id: 9,
     title: "Belleza's Touch Spa",
     img: '/images/belleza-spa.png',
     description:
