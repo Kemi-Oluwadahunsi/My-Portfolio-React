@@ -8,6 +8,39 @@ import { Link } from 'react-router-dom'
 const items = [
   {
     id: 1,
+    title: 'KCOAT Ecommerce App',
+    img: '/images/kcoat.png',
+    description:
+      'KCOAT is a trendy clothing and accessories fashion brand for both men and women. This ecommerce app is a fully responsive and interactive website built for the purpose of shopping fashion wears and accessories online.',
+    stacks: [
+      'HTML ',
+      '|',
+      ' Tailwind CSS',
+      '|',
+      ' React.js ',
+      '|',
+      ' Javascript ',
+      '|',
+      ' Axios ',
+      '|',
+      ' Emailjs ',
+      '|',
+      ' React-Router-Dom ',
+      '|',
+      ' React-Carousel ',
+      '|',
+      ' MySQL ',
+      '|',
+      ' NodeJs ',
+      '|',
+      ' ExpressJs ',
+    ],
+    live: 'https://kcoat.netlify.app',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/KCOAT-Project',
+  },
+
+  {
+    id: 2,
     title: 'Astonish Designs Fashion App',
     img: '/images/astonish-finished.png',
     description:
@@ -30,7 +63,7 @@ const items = [
   },
 
   {
-    id: 2,
+    id: 3,
     title: 'Pizza Food Ordering WebApp',
     img: '/images/Pizza-App.jpg',
     description:
@@ -57,9 +90,9 @@ const items = [
   },
 
   {
-    id: 3,
-    title: 'Motivational Quotes App',
-    img: '/images/Motiva.png',
+    id: 4,
+    title: 'Quotes-Quest App',
+    img: '/images/quotes-quest.png',
     description:
       'Look up Motivational quotes, retrieve based on keyword or author and  create custom designs on shirts or share on social media.',
     stacks: [
@@ -81,13 +114,12 @@ const items = [
       '|',
       ' Emailjs ',
     ],
-    live: 'https://motivational-quotes-generator.vercel.app/',
-    gitHub:
-      'https://github.com/Kemi-Oluwadahunsi/Motivational-Quotes-Generator-Fullstack',
+    live: 'https://quotes-quest.vercel.app/',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Quotes-Quest-Fullstack.git',
   },
 
   {
-    id: 4,
+    id: 5,
     title: 'My Portfolio',
     img: '/images/my-portfolio.png',
     description:
@@ -112,7 +144,7 @@ const items = [
   },
 
   {
-    id: 5,
+    id: 6,
     title: 'Countri',
     img: '/images/Countri.png',
     description:
@@ -123,7 +155,7 @@ const items = [
   },
 
   {
-    id: 6,
+    id: 7,
     title: 'Tasty Yumzy Restaurant app',
     img: '/images/tasty-yumzy.png',
     description:
@@ -131,11 +163,11 @@ const items = [
     stacks: ['HTML ', '|', ' CSS ', '|', ' Vanilla Javascript'],
     live: 'https://tasty-yumzy-restaurant-project.vercel.app/',
     gitHub:
-      'https://github.com/Kemi-Oluwadahunsi/Tasty-Yumzy-Restaurant-Project',
+      'https://github.com/Kemi-Oluwadahunsi/Tasty-Yumzy-Restaurant-Project.git',
   },
 
   {
-    id: 7,
+    id: 8,
     title: "Belleza's Touch Spa",
     img: '/images/belleza-spa.png',
     description:
@@ -143,17 +175,6 @@ const items = [
     stacks: ['HTML ', '|', ' CSS ', '|', ' Vaniila Javascript'],
     live: 'https://belleza-touch-spa.vercel.app/',
     gitHub: 'https://github.com/Kemi-Oluwadahunsi/BellezaTouchSpa',
-  },
-
-  {
-    id: 8,
-    title: 'ClearLink Landing Page',
-    img: '/images/ClearLink-SPA.png',
-    description:
-      'This project showcases my developer skills, in which I developed and deployed this static, web view Landing page from a provided Figma design. ',
-    stacks: ['REACT ', '|', ' SCSS ', '|', ' JSX'],
-    live: 'https://talent-sync-figma-to-spa.vercel.app/',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/TalentSync-Figma-to-SPA',
   },
 ]
 
