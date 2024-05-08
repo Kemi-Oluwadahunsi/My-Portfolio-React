@@ -47,6 +47,40 @@ const Services = () => {
           </div>
         </div>
 
+        <div className="box">
+          <h2 className="serviceTitle">Brand Portfolio Websites</h2>
+          <div>
+            <p>
+              Elevate your brand with a captivating online presence. I also
+              craft brand portfolio websites that showcase your unique identity
+              and achievements, attracts clients and opportunities.
+            </p>
+          </div>
+        </div>
+
+        <div className="box">
+          <h2 className="serviceTitle">E-commerce WebApps</h2>
+          <div>
+            <p>
+              Dive into the world of seamless online shopping experiences with
+              E-commerce WebApps. I design and develop dynamic interfaces that
+              glide effortlessly, ensuring every click feels like a breeze.
+            </p>
+          </div>
+        </div>
+
+        <div className="box">
+          <h2 className="serviceTitle">Existing websites upgrade/update</h2>
+          <div>
+            <p>
+              Revitalize your digital presence with my expertise in upgrading
+              and updating existing websites. Whether it&apos;s a complete
+              makeover or a subtle enhancement, add cutting-edge features and
+              modern aesthetics to captivate your audience anew.
+            </p>
+          </div>
+        </div>
+
         <div className="box last">
           <h2 className="serviceTitle">Cross-Functional Collaboration</h2>
           <div>
