@@ -74,8 +74,7 @@ const Services = () => {
           <div>
             <p>
               Revitalize your digital presence with my expertise in upgrading
-              and updating existing websites. Whether it&apos;s a complete
-              makeover or a subtle enhancement, add cutting-edge features and
+              and updating existing websites. Add cutting-edge features and
               modern aesthetics to captivate your audience anew.
             </p>
           </div>
