@@ -151,7 +151,7 @@ const items = [
     title: 'My Portfolio',
     img: '/images/my-portfolio.png',
     description:
-      'A fully responsive and interacive website built to showcase both my personal projects and collaboration projects. It is built with the latest in web technologies, and is fully responsive.',
+      'A fully responsive and interacive website built to showcase both my personal projects and collaboration projects. It is built with the latest web technologies, and is fully responsive.',
     stacks: [
       'HTML ',
       '|',
