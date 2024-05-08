@@ -11,7 +11,7 @@ const items = [
     title: 'KCOAT Ecommerce App',
     img: '/images/kcoat.png',
     description:
-      'KCOAT is a trendy clothing and accessories fashion brand for both men and women. This ecommerce app is a fully responsive and interactive website built for the purpose of shopping fashion wears and accessories online.',
+      'KCOAT is a trendy clothing and accessories fashion brand for both men and women. This full-stack ecommerce web application, is fully responsive and interactive. Built for the purpose of shopping fashion wears and accessories online.',
     stacks: [
       'HTML ',
       '|',
@@ -123,7 +123,7 @@ const items = [
   },
 
   {
-    id: 5,
+    id: 7,
     title: 'Login and Signup Fully Authenticated Form',
     img: '/images/login.png',
     description:
@@ -151,13 +151,13 @@ const items = [
     title: 'My Portfolio',
     img: '/images/my-portfolio.png',
     description:
-      'A fully responsive and interacive website built by my team, which is basically for the purpose of combating maternal mortality rate among teens and adult pregnant women.',
+      'A fully responsive and interacive website built to showcase both my personalprojects and collaboration projects. It is built with the latest in web technologies, and is fully responsive.',
     stacks: [
       'HTML ',
       '|',
       ' Sass (SCSS) ',
       '|',
-      ' React ',
+      ' ReactJs ',
       '|',
       ' Animate.css ',
       '|',
@@ -172,22 +172,32 @@ const items = [
   },
 
   {
-    id: 7,
+    id: 8,
     title: 'Countri',
     img: '/images/Countri.png',
     description:
-      'Countries information, current weather forecast in a fast and exciting manner.',
-    stacks: ['HTML ', '|', ' Pure CSS ', '|', ' Vanilla Javascript'],
+      'Displays Countries information, current weather forecast in a fast and exciting manner.',
+    stacks: [
+      ' ReactJs ',
+      '|',
+      'HTML ',
+      '|',
+      ' Pure CSS ',
+      '|',
+      ' Axios',
+      '|',
+      ' Keen Slider',
+    ],
     live: 'https://contri-project.vercel.app/',
     gitHub: 'https://github.com/Kemi-Oluwadahunsi/Contri-project.git',
   },
 
   {
-    id: 8,
+    id: 5,
     title: 'Tasty Yumzy Restaurant app',
     img: '/images/tasty-yumzy.png',
     description:
-      'A fully responsive Cuisine restaurant Webapp to order for different types of food. It features a Menu page, an order page, food gallery, and more ...',
+      'A fully responsive Cuisine restaurant Webapp to order for different types of meal. It features a an interesting Landing page, Menu page, online Cart Functionalities with different payment methods, Paypal included, and a beautiful picture gallery page.',
     stacks: ['HTML ', '|', ' CSS ', '|', ' Vanilla Javascript'],
     live: 'https://tasty-yumzy-restaurant-project.vercel.app/',
     gitHub:
