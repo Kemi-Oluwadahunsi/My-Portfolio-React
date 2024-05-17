@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBook,
   faBriefcase,
+  faBriefcaseClock,
   faEnvelope,
   faHome,
 } from '@fortawesome/free-solid-svg-icons'
@@ -20,7 +21,7 @@ const Sidebar = () => {
   return (
     <div className="general-sidebar">
       <div className="nav-bar">
-        <Link className="logo" to="">
+        <Link className="logo" to="/">
           <img src={Logo} alt="logo" />
           <h3 className="sub-logo">KodeMaven</h3>
         </Link>
@@ -42,6 +43,15 @@ const Sidebar = () => {
             to="portfolio"
           >
             <FontAwesomeIcon icon={faBriefcase} color="#0c0c1d" />
+          </ScrollLink>
+
+          <ScrollLink
+            exact="true"
+            activeclassname="active"
+            className="experience-link"
+            to="experience"
+          >
+            <FontAwesomeIcon icon={faBriefcaseClock} color="#0c0c1d" />
           </ScrollLink>
 
           <ScrollLink

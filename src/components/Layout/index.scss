@@ -46,26 +46,6 @@
     }
 }
 
-.bottom-tag-html {
-    color: #bce0fb;
-    opacity: 0.6;
-    position: absolute;
-    top: 46.5rem;
-    left: 7.5rem;
-    font-size: 1.125rem;
-    font-family: "La Belle Aurore";
-    margin-left: -1.5rem;
-    width: fit-content;
-
-
-     @include tablet {
-        display: none;
-    }
-
-     @include mobile {
-        display: none;
-    }
-}
 
 .container {
     width: screen;

@@ -1,156 +1,158 @@
-@import "../../App.scss";
+@import '../../App.scss';
 
 .general-sidebar {
-    .nav-bar {
-        background: #10416A;
+  height: 100dvh;
+  background: #10416a;
+  width: 5rem;
+  position: fixed;
+  top: 0;
+  z-index: 10001;
+
+  .nav-bar {
+    height: 100%;
+
+    .logo {
+      display: block;
+      padding: 0.5rem auto;
+
+      img {
+        display: block;
+        margin: 1rem auto 0 auto;
         width: 5rem;
-        height: 100dvh;
-        position: fixed;
-        top: 0;
-        z-index: 10001;
+        height: auto;
+      }
 
-
-        .logo {
-            display: block;
-            padding: .5rem auto;
-
-            
-
-            img {
-                display: block;
-                margin: 1rem auto 0 auto;
-                width: 5rem;
-                height: auto;
-            }
-
-            h3 {
-                color: #3fabf1;
-                font-size: .8rem;
-                margin-top: 0.1rem;
-                font-family: sans-serif;
-                letter-spacing: .7px;
-                animation: fadeIn 1s 1.8s backwards;
-            }
-        }
-
-        
-
-        nav {
-            display: block;
-            text-align: center;
-            position: absolute;
-            height: 14rem;
-            top: 50%;
-            margin-top: -9.5rem;
-            width: 100%;
-
-            a {
-                font-size: 1.6rem;
-                color: #0c0c1d;
-                display: block;
-                line-height: 2rem;
-                height: 3.1875em;
-                position: relative;
-                text-decoration: none;
-        
-                i {
-                    transition: all 0.3s ease-out;
-                }
-        
-                &:hover {
-                    color: #bce0fb;
-        
-                    svg {
-                        opacity: 0;
-                    }
-            
-                    &:after {
-                        opacity: 1;
-                    }
-                }
-        
-                &:after{
-                    content: '';
-                    font-size: .7rem;
-                    font-weight: bolder;
-                    letter-spacing: 2px;
-                    position: absolute;
-                    bottom: 2rem;
-                    display: block;
-                    width: 100%;
-                    text-align: center;
-                    opacity: 0;
-                    transition: all 0.3s ease-out;
-                }
-            
-                &:first-child {
-                    &::after{
-                        content: "HOME";
-                    }
-                }
-        
-            }
-
-            a.portfolio-link {
-                &:after{
-                    content: "PORTFOLIO"
-                }
-            }
-        
-            a.contact-link {
-                &:after{
-                    content: "CONTACT"
-                }
-            }
-
-            a.resume-link {
-                &:after{
-                    content: "RESUME"
-                }
-            }
-
-            a.active {
-                svg {
-                    color: #bce0fb;
-                }
-            }
-
-        }
-
-        ul {
-            position: absolute;
-            bottom: .5px;
-            width: 100%;
-            height: fit-content;
-            display: block;
-            list-style: none;
-            text-align: center;
-            margin: 0;
-            
-            li {
-                a {
-                    padding:0.3em 0;
-                    display: block;
-                    font-size: 1.2rem;
-                    height: fit-content;
-
-                    &:hover svg {
-                        color: #bce0fb;
-                    }
-                }
-            }
-        }
-
-        @include mobile {
-            display: none;
-            height: auto;
-        }
-
-        @include tablet {
-            display: none;
-            height: auto;
-        }
+      h3 {
+        color: #3fabf1;
+        font-size: 0.8rem;
+        margin-top: 0.1rem;
+        font-family: sans-serif;
+        letter-spacing: 0.7px;
+        animation: fadeIn 1s 1.8s backwards;
+      }
     }
 
-   
+    nav {
+      display: block;
+      text-align: center;
+      position: absolute;
+      // height: 14rem;
+      top: 40%;
+      // margin-top: -9.5rem;
+      width: 100%;
+
+      @media screen and (min-width: 769px) and (max-width: 1170px) {
+        top: 20%;
+      }
+
+      a {
+        font-size: 1.5rem;
+        color: #0c0c1d;
+        display: block;
+        line-height: 1.5rem;
+        height: 2.4em;
+        position: relative;
+        text-decoration: none;
+
+        i {
+          transition: all 0.3s ease-out;
+        }
+
+        &:hover {
+          color: #bce0fb;
+
+          svg {
+            opacity: 0;
+          }
+
+          &:after {
+            opacity: 1;
+          }
+        }
+
+        &:after {
+          content: '';
+          font-size: 0.7rem;
+          font-weight: bolder;
+          letter-spacing: 2px;
+          position: absolute;
+          bottom: 2rem;
+          display: block;
+          width: 100%;
+          text-align: center;
+          opacity: 0;
+          transition: all 0.3s ease-out;
+        }
+
+        &:first-child {
+          &::after {
+            content: 'HOME';
+          }
+        }
+      }
+
+      a.portfolio-link {
+        &:after {
+          content: 'PORTFOLIO';
+        }
+      }
+
+      a.experience-link {
+        &:after {
+          content: 'EXPERIENCE';
+        }
+      }
+
+      a.contact-link {
+        &:after {
+          content: 'CONTACT';
+        }
+      }
+
+      a.resume-link {
+        &:after {
+          content: 'RESUME';
+        }
+      }
+
+      a.active {
+        svg {
+          color: #bce0fb;
+        }
+      }
+    }
+
+    ul {
+      position: absolute;
+      bottom: 0.5px;
+      width: 100%;
+      height: fit-content;
+      display: block;
+      list-style: none;
+      text-align: center;
+      margin: 0;
+
+      li {
+        a {
+          padding: 0.3em 0;
+          display: block;
+          font-size: 1.2rem;
+          height: fit-content;
+
+          &:hover svg {
+            color: #bce0fb;
+          }
+        }
+      }
+    }
+  }
+  @include mobile {
+    display: none;
+    height: auto;
+  }
+
+  @include tablet {
+    display: none;
+    height: auto;
+  }
 }

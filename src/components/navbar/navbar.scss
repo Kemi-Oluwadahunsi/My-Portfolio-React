@@ -1,149 +1,149 @@
-@import "../../App.scss";
+@import '../../App.scss';
 
- .small-screens {
-    background-color: #10416A;
-        
-    @include laptop {
-        display: none;
-    }
-        
-    .navbar {
+.small-screens {
+  background-color: #10416a;
+
+  @include laptop {
+    display: none;
+  }
+
+  .navbar {
+    z-index: 1000;
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 3rem;
+
+      @include mobile {
+        padding: 1rem;
+      }
+
+      .logo {
+        display: block;
+        padding: 0.5rem auto;
+
+        img {
+          display: block;
+          width: 3.5rem;
+          height: auto;
+        }
+
+        h3 {
+          color: #3fabf1;
+          font-size: 0.6rem;
+          margin-top: 0.1rem;
+          font-family: sans-serif;
+          letter-spacing: 0.7px;
+          animation: fadeIn 1s 1.8s backwards;
+        }
+      }
+
+      .toggleButton {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        background-color: #3fabf1;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         z-index: 1000;
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 2rem 3rem;
+
+        @include mobile {
+          width: 3rem;
+          height: 3rem;
+        }
+
+        button {
+          background-color: #3fabf1;
+          color: #0c0c1d;
+          border: none;
+
+          .tog {
+            font-size: 2rem;
 
             @include mobile {
-                padding: 1rem;
+                font-size: 1.7rem;
             }
-            
-            
-            .logo {
-                display: block;
-                padding: .5rem auto;
-
-                img {
-                    display: block;
-                    width: 3.5rem;
-                    height: auto;
-
-
-                }
-
-                h3 {
-                    color: #3fabf1;
-                    font-size: .6rem;
-                    margin-top: 0.1rem;
-                    font-family: sans-serif;
-                    letter-spacing: .7px;
-                    animation: fadeIn 1s 1.8s backwards;
-                }
-            }
-
-            .toggleButton {
-                width: 4rem;
-                height: 4rem;
-                border-radius: 50%;
-                background-color: #3fabf1;
-                padding: 1rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 1000;
-
-                @include mobile {
-                    width: 3.5rem;
-                    height: 3.5rem;
-                }
-
-                button{
-                    background-color: #3fabf1;
-                    color: #0c0c1d;
-                    border: none;
-                }
-            }
-
+          }
         }
-
-        .bg {
-            background-color:  #10416A;
-            position: absolute;
-            left: 30%;
-            width: 70vw;
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: start;
-            padding-top: 5rem;
-            gap: 5rem;
-            z-index: 2000;
-            border-bottom-left-radius: 10px;
-
-            .navigationItems{
-                display: flex;
-                flex: 1;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                flex-basis: 100%;
-
-                .navLinks {
-                    list-style: none;
-                    height: 70%;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 2rem;
-                    font-size: 1.5rem;
-                    font-weight: 600;
-                    color: #3fabf1;
-                    text-decoration: underline;
-                }
-                .resume {
-                        border: 1px solid #3fabf1;
-                        background-color: #bce0fb;
-                        color: #0c0c1d;
-                        padding: 0 .5rem;
-                        height: 6em;
-                        border-radius: 10px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                
-            }
-
-            .socialIcons {
-                flex: 1;
-                display: flex;
-                width: 100%;
-                flex-basis: 20%;
-                align-items: flex-end;
-                justify-content: flex-end;
-                padding: 0 .5rem .5rem 0;
-                
-
-                ul {
-                    
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-around;
-                    width: 100%;
-
-                    li {
-                    display: flex;
-                    list-style: none;
-                    font-size: 2rem;
-                    }
-                }     
-            }
-
-            &.hidden {
-                    display: none;
-            }
-        }
-
+      }
     }
+
+    .bg {
+      background-color: #10416a;
+      position: absolute;
+      left: 30%;
+      width: 70vw;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      padding-top: 5rem;
+      gap: 5rem;
+      z-index: 2000;
+      border-bottom-left-radius: 10px;
+
+      .navigationItems {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-basis: 100%;
+
+        .navLinks {
+          list-style: none;
+          height: 70%;
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #3fabf1;
+          text-decoration: underline;
+        }
+        .resume {
+          border: 1px solid #3fabf1;
+          background-color: #bce0fb;
+          color: #0c0c1d;
+          padding: 0 0.5rem;
+          height: 6em;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      .socialIcons {
+        flex: 1;
+        display: flex;
+        width: 100%;
+        flex-basis: 20%;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding: 0 0.5rem 0.5rem 0;
+
+        ul {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          width: 100%;
+
+          li {
+            display: flex;
+            list-style: none;
+            font-size: 2rem;
+          }
+        }
+      }
+
+      &.hidden {
+        display: none;
+      }
+    }
+  }
 }

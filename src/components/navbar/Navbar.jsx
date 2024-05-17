@@ -60,16 +60,18 @@ const Navbar = () => {
                 {showMobileContent ? (
                   <FontAwesomeIcon
                     icon={faTimes}
-                    style={{
-                      width: '30px',
-                      height: '30px',
-                      border: 'none',
-                    }}
+                    className='tog'
+                    // style={{
+                    //   width: '30px',
+                    //   height: '30px',
+                    //   border: 'none',
+                    // }}
                   />
                 ) : (
                   <FontAwesomeIcon
                     icon={faBars}
-                    style={{ width: '30px', height: '30px' }}
+                    className='tog'
+                    // style={{ width: '30px', height: '30px' }}
                   />
                 )}
               </button>
@@ -82,6 +84,10 @@ const Navbar = () => {
             <motion.ul className="navigationItems">
               <ScrollLink className="navLinks" to="section">
                 <li onClick={closeMobileContent}>Home</li>
+              </ScrollLink>
+
+              <ScrollLink className="navLinks" to="experience">
+                <li onClick={closeMobileContent}>Experience</li>
               </ScrollLink>
 
               <ScrollLink className="navLinks" to="services">
@@ -97,7 +103,7 @@ const Navbar = () => {
               </ScrollLink>
 
               <Link
-                href="https://drive.google.com/file/d/1H15Xq0YCk0CEVPFh9Vn9lBdExp5zx5_p/view?usp=sharing"
+                to="https://drive.google.com/file/d/1H15Xq0YCk0CEVPFh9Vn9lBdExp5zx5_p/view?usp=sharing"
                 target="_blank"
                 rel="noreferrer"
                 className="resume navLinks"

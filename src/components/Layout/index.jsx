@@ -1,13 +1,14 @@
-import { Outlet } from 'react-router-dom';
-import Sidebar from '../Sidebar/sidebar';
-import './index.scss';
-import Parallax from '../parallax/Parallax';
-import Services from '../services/Services';
-import Portfolio from '../portfolio/Portfolio';
-import Contact from '../contact/Contact';
-import Cursor from '../cursor/Cursor';
-import Navbar from '../navbar/Navbar';
-import ScrollArrow from '../backarrow/ScrollArrow';
+import { Outlet } from 'react-router-dom'
+import Sidebar from '../Sidebar/sidebar'
+import './index.scss'
+import Parallax from '../parallax/Parallax'
+import Services from '../services/Services'
+import Portfolio from '../portfolio/Portfolio'
+import Contact from '../contact/Contact'
+import Cursor from '../cursor/Cursor'
+import Navbar from '../navbar/Navbar'
+import ScrollArrow from '../backarrow/ScrollArrow'
+import Experience from '../workExperience/Experience'
 
 const Layout = () => {
   return (
@@ -15,9 +16,8 @@ const Layout = () => {
       <Cursor />
       <ScrollArrow />
       <Navbar />
+      <Sidebar />
       <section className="App" id="section">
-        <Sidebar />
-
         <div className="page">
           <span className="tags top-tags ">&lt;body&gt;</span>
 
@@ -27,7 +27,7 @@ const Layout = () => {
             &lt;/body&gt;
             <br />
           </span>
-          <span className="bottom-tag-html ">&lt;/html&gt;</span>
+          
         </div>
       </section>
 
@@ -37,6 +37,10 @@ const Layout = () => {
 
       <section className="servicesSection">
         <Services />
+      </section>
+
+      <section className="experienceSection">
+        <Experience />
       </section>
 
       <section className="secondParallaxSection">

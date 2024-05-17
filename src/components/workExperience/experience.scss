@@ -1,0 +1,209 @@
+@import '../../App.scss';
+.experience {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  padding-top: 5rem;
+  background: linear-gradient(180deg, #095a9b, #07182a);
+
+  .experienceContain {
+    display: flex;
+    flex-direction: column;
+
+    @include mobile {
+      gap: 2rem;
+    }
+
+    h1 {
+      font-size: 4rem;
+      text-align: center;
+
+      @include tablet {
+        font-size: 3rem;
+      }
+
+      @include mobile {
+        font-size: 2.5rem;
+      }
+    }
+
+    .click-card {
+      text-align: center;
+      padding-top: 1rem;
+      font-size: 1.2rem;
+
+      @include laptop {
+        display: none;
+      }
+
+      @include mobile {
+        font-size: 1rem;
+        padding-top: 0;
+      }
+    }
+
+    .card-wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 5rem;
+      width: 100%;
+      padding: 5rem 2rem 5rem 7rem;
+
+      @media screen and (min-width: 769px) and (max-width: 1170px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-content: center;
+      }
+
+      @include tablet {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 3rem 2rem;
+        gap: 2rem;
+      }
+
+      @include mobile {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        padding: 1rem 1rem 3rem 1rem;
+        gap: 2rem;
+      }
+
+      .cards {
+        perspective: 1000px;
+        width: 100%;
+
+        .card-single {
+          width: 24rem;
+          height: 25rem;
+          border-radius: 5px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          transform-style: preserve-3d;
+          transform-origin: center;
+          transition: transform 0.6s ease-in-out;
+          background: #bde0fa;
+
+          &.flipped {
+            transform: rotateY(180deg);
+            background: #0c0c1d;
+          }
+
+          &:hover {
+            @media screen and (min-width: 769px) {
+              transform: rotateY(-180deg);
+              background: #0c0c1d;
+            }
+          }
+
+          @include tablet {
+            width: 20rem;
+          }
+
+          @include mobile {
+            width: 20rem;
+          }
+
+          @media screen and (min-width: 769px) and (max-width: 1170px) {
+            width: 23rem;
+          }
+
+          .card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 3rem;
+          }
+
+          .front,
+          .back {
+            background: #0c0c1d;
+            color: white;
+            padding: 1rem 2rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .front {
+            .expBody {
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+
+              .expT {
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: #bde0fa;
+                width: 100%;
+                letter-spacing: 1px;
+              }
+
+              .date span {
+                display: inline-block;
+                margin-top: 0.3rem;
+              }
+            }
+
+            .company {
+              font-size: 1rem;
+              margin-top: 1rem;
+              color: #bde0fa;
+
+              @include mobile {
+                line-height: 2rem;
+              }
+            }
+          }
+
+          .back {
+            transform: rotateY(180deg);
+            background: #bde0fa;
+            color: #0c0c1d;
+
+            .details {
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+              font-size: 1.1rem;
+
+              .detail-title {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                h4 {
+                  font-weight: bold;
+                }
+              }
+
+              .description {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+
+                .describe {
+                  display: flex;
+                  gap: 1rem;
+
+                  .dotIcon {
+                    font-size: 0.5rem;
+                    margin-top: 0.3rem;
+                  }
+
+                  p {
+                    font-size: 1rem;
+                    letter-spacing: 0.5px;
+                    line-height: 1.5rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
