@@ -32,6 +32,8 @@ const Sidebar = () => {
             activeclassname="active"
             className="home-link"
             to="section"
+            smooth={true}
+            duration={1000}
           >
             <FontAwesomeIcon icon={faHome} color="#0c0c1d" />
           </ScrollLink>
@@ -41,6 +43,8 @@ const Sidebar = () => {
             activeclassname="active"
             className="portfolio-link"
             to="portfolio"
+            smooth={true}
+            duration={1000}
           >
             <FontAwesomeIcon icon={faBriefcase} color="#0c0c1d" />
           </ScrollLink>
@@ -50,6 +54,8 @@ const Sidebar = () => {
             activeclassname="active"
             className="experience-link"
             to="experience"
+            smooth={true}
+            duration={1000}
           >
             <FontAwesomeIcon icon={faBriefcaseClock} color="#0c0c1d" />
           </ScrollLink>
@@ -59,6 +65,8 @@ const Sidebar = () => {
             activeclassname="active"
             className="contact-link"
             to="contact"
+            smooth={true}
+            duration={1000}
           >
             <FontAwesomeIcon icon={faEnvelope} color="#0c0c1d" />
           </ScrollLink>

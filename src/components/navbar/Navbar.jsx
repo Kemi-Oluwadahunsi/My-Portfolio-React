@@ -1,4 +1,4 @@
-import { motion} from 'framer-motion'
+
 import './navbar.scss'
 import { useEffect, useState } from 'react'
 import Logo from "/images/logo.png"
@@ -49,7 +49,7 @@ const Navbar = () => {
     <>
       {/* navbar for phone-tab view */}
       <div className="small-screens">
-        <motion.div className="navbar">
+        <div className="navbar">
           <div className="nav">
             <div className="logo">
               <img src={Logo} alt="" />
@@ -58,47 +58,58 @@ const Navbar = () => {
             <div className="toggleButton">
               <button onClick={toggleMobileContent}>
                 {showMobileContent ? (
-                  <FontAwesomeIcon
-                    icon={faTimes}
-                    className='tog'
-                    // style={{
-                    //   width: '30px',
-                    //   height: '30px',
-                    //   border: 'none',
-                    // }}
-                  />
+                  <FontAwesomeIcon icon={faTimes} className="tog" />
                 ) : (
-                  <FontAwesomeIcon
-                    icon={faBars}
-                    className='tog'
-                    // style={{ width: '30px', height: '30px' }}
-                  />
+                  <FontAwesomeIcon icon={faBars} className="tog" />
                 )}
               </button>
             </div>
           </div>
 
-          <motion.div
-            className={`bg ${showMobileContent ? 'visible' : 'hidden'}`}
-          >
-            <motion.ul className="navigationItems">
-              <ScrollLink className="navLinks" to="section">
+          <div className={`bg ${showMobileContent ? 'visible' : 'hidden'}`}>
+            <ul className="navigationItems">
+              <ScrollLink
+                className="navLinks"
+                to="section"
+                smooth={true}
+                duration={1000}
+              >
                 <li onClick={closeMobileContent}>Home</li>
               </ScrollLink>
 
-              <ScrollLink className="navLinks" to="experience">
+              <ScrollLink
+                className="navLinks"
+                to="experience"
+                smooth={true}
+                duration={1000}
+              >
                 <li onClick={closeMobileContent}>Experience</li>
               </ScrollLink>
 
-              <ScrollLink className="navLinks" to="services">
+              <ScrollLink
+                className="navLinks"
+                to="services"
+                smooth={true}
+                duration={1000}
+              >
                 <li onClick={closeMobileContent}>Services</li>
               </ScrollLink>
 
-              <ScrollLink className="navLinks" to="portfolio">
+              <ScrollLink
+                className="navLinks"
+                to="portfolio"
+                smooth={true}
+                duration={1000}
+              >
                 <li onClick={closeMobileContent}>Portfolio</li>
               </ScrollLink>
 
-              <ScrollLink className="navLinks" to="contact">
+              <ScrollLink
+                className="navLinks"
+                to="contact"
+                smooth={true}
+                duration={1000}
+              >
                 <li onClick={closeMobileContent}>Contact</li>
               </ScrollLink>
 
@@ -110,7 +121,7 @@ const Navbar = () => {
               >
                 <li onClick={closeMobileContent}>Resume</li>
               </Link>
-            </motion.ul>
+            </ul>
 
             <div className="socialIcons">
               <ul>
@@ -165,8 +176,8 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </>
   )
