@@ -35,7 +35,7 @@ const Sidebar = () => {
             smooth={true}
             duration={1000}
           >
-            <FontAwesomeIcon icon={faHome} color="#0c0c1d" />
+            <FontAwesomeIcon icon={faHome} color="#bddffa" />
           </ScrollLink>
 
           <ScrollLink
@@ -46,7 +46,7 @@ const Sidebar = () => {
             smooth={true}
             duration={1000}
           >
-            <FontAwesomeIcon icon={faBriefcase} color="#0c0c1d" />
+            <FontAwesomeIcon icon={faBriefcase} color="#bddffa" />
           </ScrollLink>
 
           <ScrollLink
@@ -57,7 +57,7 @@ const Sidebar = () => {
             smooth={true}
             duration={1000}
           >
-            <FontAwesomeIcon icon={faBriefcaseClock} color="#0c0c1d" />
+            <FontAwesomeIcon icon={faBriefcaseClock} color="#bddffa" />
           </ScrollLink>
 
           <ScrollLink
@@ -68,7 +68,7 @@ const Sidebar = () => {
             smooth={true}
             duration={1000}
           >
-            <FontAwesomeIcon icon={faEnvelope} color="#0c0c1d" />
+            <FontAwesomeIcon icon={faEnvelope} color="#bddffa" />
           </ScrollLink>
 
           <NavLink
@@ -76,9 +76,9 @@ const Sidebar = () => {
             activeclassname="active"
             className="resume-link"
             target="_blank"
-            to="https://drive.google.com/file/d/13gXc2vp8wzE0-Lo5AnIDh5gjQBhPiPfV/view?usp=sharing"
+            to="https://drive.google.com/file/d/1lvuGXJc9-mHHMImOg1KJPmGe7TNlyND8/view?usp=sharing"
           >
-            <FontAwesomeIcon icon={faBook} color="#0c0c1d" />
+            <FontAwesomeIcon icon={faBook} color="#bddffa" />
           </NavLink>
         </nav>
 
@@ -89,7 +89,7 @@ const Sidebar = () => {
               rel="noreferrer"
               href="https://www.linkedin.com/in/oluwakemioluwadahunsi/"
             >
-              <FontAwesomeIcon icon={faLinkedin} color="#0c0c1d" />
+              <FontAwesomeIcon icon={faLinkedin} color="#bddffa" />
             </a>
           </li>
 
@@ -99,7 +99,7 @@ const Sidebar = () => {
               rel="noreferrer"
               href="https://www.facebook.com/kaliceagbabiaka1"
             >
-              <FontAwesomeIcon icon={faFacebook} color="#0c0c1d" />
+              <FontAwesomeIcon icon={faFacebook} color="#bddffa" />
             </a>
           </li>
 
@@ -109,7 +109,7 @@ const Sidebar = () => {
               rel="noreferrer"
               href="https://twitter.com/km_oluwadahunsi"
             >
-              <FontAwesomeIcon icon={faXTwitter} color="#0c0c1d" />
+              <FontAwesomeIcon icon={faXTwitter} color="#bddffa" />
             </a>
           </li>
 
@@ -119,7 +119,7 @@ const Sidebar = () => {
               rel="noreferrer"
               href="http://github.com/Kemi-Oluwadahunsi/"
             >
-              <FontAwesomeIcon icon={faGithub} color="#0c0c1d" />
+              <FontAwesomeIcon icon={faGithub} color="#bddffa" />
             </a>
           </li>
 
@@ -129,7 +129,7 @@ const Sidebar = () => {
               rel="noreferrer"
               href="http://wa.me/+2348146433203"
             >
-              <FontAwesomeIcon icon={faWhatsapp} color="#0c0c1d" />
+              <FontAwesomeIcon icon={faWhatsapp} color="#bddffa" />
             </a>
           </li>
         </ul>

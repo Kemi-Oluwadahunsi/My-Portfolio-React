@@ -21,6 +21,7 @@ import { Link as ScrollLink } from 'react-scroll'
 const Navbar = () => {
   const [showMobileContent, setShowMobileContent] = useState(false)
 
+
   const toggleMobileContent = () => {
     setShowMobileContent(!showMobileContent)
   }
@@ -66,7 +67,13 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className={`bg ${showMobileContent ? 'visible' : 'hidden'}`}>
+          <div
+            className={`bg  ${
+              showMobileContent
+                ? 'visible animate__animated animate__fadeInBottomRight'
+                : 'hidden'
+            }`}
+          >
             <ul className="navigationItems">
               <ScrollLink
                 className="navLinks"
@@ -114,7 +121,7 @@ const Navbar = () => {
               </ScrollLink>
 
               <Link
-                to="https://drive.google.com/file/d/13gXc2vp8wzE0-Lo5AnIDh5gjQBhPiPfV/view?usp=sharing"
+                to="https://drive.google.com/file/d/1lvuGXJc9-mHHMImOg1KJPmGe7TNlyND8/view?usp=sharing"
                 target="_blank"
                 rel="noreferrer"
                 className="resume navLinks"
