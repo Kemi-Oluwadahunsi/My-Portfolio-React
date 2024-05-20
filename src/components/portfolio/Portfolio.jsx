@@ -210,7 +210,7 @@ const items = [
     img: '/images/belleza-spa.png',
     description:
       'Built to match the modern taste of a beauty spa, featuring different services and appointment booking popup, products purchase pages, a beautiful picture gallery page, and lots more...',
-    stacks: ['HTML ', '|', ' CSS ', '|', ' Vaniila Javascript'],
+    stacks: ['HTML ', '|', ' CSS ', '|', ' Vanilla Javascript'],
     live: 'https://belleza-touch-spa.vercel.app/',
     gitHub: 'https://github.com/Kemi-Oluwadahunsi/BellezaTouchSpa',
   },

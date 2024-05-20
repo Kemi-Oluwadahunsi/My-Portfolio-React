@@ -76,7 +76,7 @@ const Sidebar = () => {
             activeclassname="active"
             className="resume-link"
             target="_blank"
-            to="https://drive.google.com/file/d/1H15Xq0YCk0CEVPFh9Vn9lBdExp5zx5_p/view?usp=sharing"
+            to="https://drive.google.com/file/d/13gXc2vp8wzE0-Lo5AnIDh5gjQBhPiPfV/view?usp=sharing"
           >
             <FontAwesomeIcon icon={faBook} color="#0c0c1d" />
           </NavLink>

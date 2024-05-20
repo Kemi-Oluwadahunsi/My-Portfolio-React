@@ -114,7 +114,7 @@ const Navbar = () => {
               </ScrollLink>
 
               <Link
-                to="https://drive.google.com/file/d/1H15Xq0YCk0CEVPFh9Vn9lBdExp5zx5_p/view?usp=sharing"
+                to="https://drive.google.com/file/d/13gXc2vp8wzE0-Lo5AnIDh5gjQBhPiPfV/view?usp=sharing"
                 target="_blank"
                 rel="noreferrer"
                 className="resume navLinks"
