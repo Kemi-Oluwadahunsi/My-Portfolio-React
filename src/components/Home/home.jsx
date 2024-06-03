@@ -81,7 +81,7 @@ const Home = () => {
       <div className="imageContainer">
         <img
           className="my-image"
-          src="/my-image3.png"
+          src="https://res.cloudinary.com/dee9teadk/image/upload/v1717402807/my-image3_yc3f2q.png"
           alt="Kemi"
           loading="lazyLoading"
         />
