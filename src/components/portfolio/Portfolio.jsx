@@ -119,11 +119,79 @@ const items = [
       ' Emailjs ',
     ],
     live: 'https://quotes-quest.vercel.app/',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Quotes-Quest-Fullstack.git',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Quotes-Quest-Fullstack',
+  },
+
+  {
+    id: 5,
+    title: 'Tasty Yumzy Restaurant app',
+    img: '/images/tasty-yumzy.png',
+    description:
+      'A fully responsive Cuisine restaurant Webapp to order for different types of meal. It features a an interesting Landing page, Menu page, online Cart Functionalities with different payment methods, Paypal included, and a beautiful picture gallery page.',
+    stacks: ['HTML ', '|', ' CSS ', '|', ' Vanilla Javascript'],
+    live: 'https://tasty-yumzy-restaurant-project.vercel.app/',
+    gitHub:
+      'https://github.com/Kemi-Oluwadahunsi/Tasty-Yumzy-Restaurant-Project',
+  },
+
+  {
+    id: 6,
+    title: 'Blogging API',
+    img: '/images/bloggingAPI.png',
+    description:
+      'This project is a RESTful API for a blogging platform. It allows users to register, login, create, update, delete, and fetch blog posts. Users can also view published blogs and search for blogs by various filters. The API uses JWT for authentication and MongoDB for data storage.',
+    stacks: [
+      'Node.js ',
+      '|',
+      ' Express.js ',
+      '|',
+      ' Vanilla Javascript',
+      '|',
+      ' MongoDB ',
+      '|',
+      ' Mongoose ',
+      '|',
+      ' Bcrypt ',
+      '|',
+      ' JWT ',
+      '|',
+      ' JSON Web Tokens ',
+      '|',
+      ' Jest ',
+      '|',
+      ' Winston ',
+    ],
+    live: 'https://blogging-api-tasy.onrender.com',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/intermediate-backend-exam',
   },
 
   {
     id: 7,
+    title: 'Github Repositories Project',
+    img: '/images/githubrepo.png',
+    description:
+      'This project is a web application built with consuming GitHub API. It serves as a platform for managing repositories on GitHub, allowing users to view repository details, create new repositories, and perform various other actions related to repository management.',
+    stacks: [
+      'React.js ',
+      '|',
+      ' Tailwind CSS ',
+      '|',
+      ' Vanilla Javascript',
+      '|',
+      ' GitHub API',
+      '|',
+      ' Axios',
+      '|',
+      ' React-Router-Dom',
+      '|',
+      ' sweetalert2',
+    ],
+    live: 'https://github-repositories-portfolio.vercel.app/',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Intermediate-frontend-exam',
+  },
+
+  {
+    id: 9,
     title: 'Login and Signup Fully Authenticated Form',
     img: '/images/login.png',
     description:
@@ -142,12 +210,11 @@ const items = [
       ' React-Toastify ',
     ],
     live: 'https://login-registration-auth-form.vercel.app/',
-    gitHub:
-      'https://github.com/Kemi-Oluwadahunsi/Login-Registration-Auth-Form.git',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Login-Registration-Auth-Form',
   },
 
   {
-    id: 6,
+    id: 8,
     title: 'My Portfolio',
     img: '/images/my-portfolio.png',
     description:
@@ -172,7 +239,7 @@ const items = [
   },
 
   {
-    id: 8,
+    id: 10,
     title: 'Countri',
     img: '/images/Countri.png',
     description:
@@ -189,23 +256,11 @@ const items = [
       ' Keen Slider',
     ],
     live: 'https://contri-project.vercel.app/',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Contri-project.git',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Contri-project',
   },
 
   {
-    id: 5,
-    title: 'Tasty Yumzy Restaurant app',
-    img: '/images/tasty-yumzy.png',
-    description:
-      'A fully responsive Cuisine restaurant Webapp to order for different types of meal. It features a an interesting Landing page, Menu page, online Cart Functionalities with different payment methods, Paypal included, and a beautiful picture gallery page.',
-    stacks: ['HTML ', '|', ' CSS ', '|', ' Vanilla Javascript'],
-    live: 'https://tasty-yumzy-restaurant-project.vercel.app/',
-    gitHub:
-      'https://github.com/Kemi-Oluwadahunsi/Tasty-Yumzy-Restaurant-Project.git',
-  },
-
-  {
-    id: 9,
+    id: 11,
     title: "Belleza's Touch Spa",
     img: '/images/belleza-spa.png',
     description:
