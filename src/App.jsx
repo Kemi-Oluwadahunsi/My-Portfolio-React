@@ -8,14 +8,14 @@ import Home from './components/Home/home'
 function App() {
 
   return (
-    <>
+    <div>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />}></Route>
         </Route>
       </Routes>
       
-    </>
+    </div>
   )
 }
 
