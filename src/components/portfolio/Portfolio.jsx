@@ -66,35 +66,35 @@ const items = [
     gitHub: 'https://github.com/Kemi-Oluwadahunsi/Astonish-Designs',
   },
 
-  {
-    id: 3,
-    title: 'Pizza Food Ordering WebApp',
-    img: '/images/Pizza-App.jpg',
-    description:
-      'A Fullstack Webapp to order for pizza of different sizes and choose extra sauce options, crafted with the latest in web technology featuring products page, cart, payment features, and more ...',
-    stacks: [
-      'HTML ',
-      '|',
-      ' Tailwind CSS ',
-      '|',
-      ' Nextjs 14 ',
-      '|',
-      ' Rest API ',
-      '|',
-      ' Express ',
-      '|',
-      ' Jquery ',
-      '|',
-      ' Axios ',
-      '|',
-      ' Emailjs ',
-    ],
-    live: 'https://flit-pizza-ordering-web-app-new.vercel.app/',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Flit-Pizza-ordering-web-app',
-  },
+  // {
+  //   id: 3,
+  //   title: 'Pizza Food Ordering WebApp',
+  //   img: '/images/Pizza-App.jpg',
+  //   description:
+  //     'A Fullstack Webapp to order for pizza of different sizes and choose extra sauce options, crafted with the latest in web technology featuring products page, cart, payment features, and more ...',
+  //   stacks: [
+  //     'HTML ',
+  //     '|',
+  //     ' Tailwind CSS ',
+  //     '|',
+  //     ' Nextjs 14 ',
+  //     '|',
+  //     ' Rest API ',
+  //     '|',
+  //     ' Express ',
+  //     '|',
+  //     ' Jquery ',
+  //     '|',
+  //     ' Axios ',
+  //     '|',
+  //     ' Emailjs ',
+  //   ],
+  //   live: 'https://flit-pizza-ordering-web-app-new.vercel.app/',
+  //   gitHub: 'https://github.com/Kemi-Oluwadahunsi/Flit-Pizza-ordering-web-app',
+  // },
 
   {
-    id: 4,
+    id: 3,
     title: 'Quotes-Quest App',
     img: '/images/quotes-quest.png',
     description:
@@ -123,7 +123,7 @@ const items = [
   },
 
   {
-    id: 5,
+    id: 4,
     title: 'Tasty Yumzy Restaurant app',
     img: '/images/tasty-yumzy.png',
     description:
@@ -135,7 +135,7 @@ const items = [
   },
 
   {
-    id: 6,
+    id: 5,
     title: 'Blogging API',
     img: '/images/bloggingAPI.png',
     description:
@@ -166,7 +166,7 @@ const items = [
   },
 
   {
-    id: 7,
+    id: 6,
     title: 'Github Repositories Project',
     img: '/images/githubrepo.png',
     description:
@@ -191,7 +191,7 @@ const items = [
   },
 
   {
-    id: 9,
+    id: 8,
     title: 'Login and Signup Fully Authenticated Form',
     img: '/images/login.png',
     description:
@@ -214,7 +214,7 @@ const items = [
   },
 
   {
-    id: 8,
+    id: 7,
     title: 'My Portfolio',
     img: '/images/my-portfolio.png',
     description:
@@ -239,7 +239,7 @@ const items = [
   },
 
   {
-    id: 10,
+    id: 9,
     title: 'Countri',
     img: '/images/Countri.png',
     description:
@@ -260,7 +260,7 @@ const items = [
   },
 
   {
-    id: 11,
+    id: 10,
     title: "Belleza's Touch Spa",
     img: '/images/belleza-spa.png',
     description:
