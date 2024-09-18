@@ -5,11 +5,11 @@ import { useState } from 'react'
 
 const experiences = [
   {
-    id: 1,
-    title: 'Frontend Developer Apprentice',
-    company: 'Flit Incorporations (Washington DC, Remote)',
+    id: 3,
+    title: 'Frontend Software Developer',
+    company: 'Flit Incorporations (London UK, Remote)',
     startDate: '11/2023',
-    endDate: '05/2024',
+    endDate: '07/2024',
     details: [
       {
         id: 1,
@@ -28,26 +28,26 @@ const experiences = [
   {
     id: 2,
     title: 'Frontend Software Developer',
-    company: 'RichForth Limited (Nigeria, Remote)',
+    company: 'Gelks Group Inc. | RichForth Limited (Nigeria, Remote)',
     startDate: '05/2024',
-    endDate: 'Present',
+    endDate: '09/2024',
     details: [
       {
         id: 1,
         detail:
-          'Contributed to the adoption of modern development tools, reducing the time required for new feature implementation by 20%.',
+          'Developed a dynamic, fully responsive, high-converting, and engaging web application for IP addresses purchasing.',
       },
 
-      // {
-      //   id: 2,
-      //   detail:
-      //     'Contributed to the adoption of modern development tools, reducing the time required for new feature implementation by 20%.',
-      // },
+      {
+        id: 2,
+        detail:
+          'Led the development of the support ticket system, allowing for seamless creation, tracking, and updates, reducing response time by 10%.',
+      },
     ],
   },
 
   {
-    id: 3,
+    id: 1,
     title: 'Software Developer',
     company: 'Kodemaven (freelancing)',
     startDate: '01/2022',
