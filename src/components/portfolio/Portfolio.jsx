@@ -66,33 +66,6 @@ const items = [
     gitHub: 'https://github.com/Kemi-Oluwadahunsi/Astonish-Designs',
   },
 
-  // {
-  //   id: 3,
-  //   title: 'Pizza Food Ordering WebApp',
-  //   img: '/images/Pizza-App.jpg',
-  //   description:
-  //     'A Fullstack Webapp to order for pizza of different sizes and choose extra sauce options, crafted with the latest in web technology featuring products page, cart, payment features, and more ...',
-  //   stacks: [
-  //     'HTML ',
-  //     '|',
-  //     ' Tailwind CSS ',
-  //     '|',
-  //     ' Nextjs 14 ',
-  //     '|',
-  //     ' Rest API ',
-  //     '|',
-  //     ' Express ',
-  //     '|',
-  //     ' Jquery ',
-  //     '|',
-  //     ' Axios ',
-  //     '|',
-  //     ' Emailjs ',
-  //   ],
-  //   live: 'https://flit-pizza-ordering-web-app-new.vercel.app/',
-  //   gitHub: 'https://github.com/Kemi-Oluwadahunsi/Flit-Pizza-ordering-web-app',
-  // },
-
   {
     id: 3,
     title: 'Quotes-Quest App',
@@ -191,7 +164,7 @@ const items = [
   },
 
   {
-    id: 8,
+    id: 10,
     title: 'Login and Signup Fully Authenticated Form',
     img: '/images/login.png',
     description:
@@ -240,34 +213,46 @@ const items = [
 
   {
     id: 9,
-    title: 'Countri',
-    img: '/images/Countri.png',
+    title: 'Mood Buddie',
+    img: '/images/moodbuddie.png',
     description:
-      'Displays Countries information, current weather forecast in a fast and exciting manner.',
+      'Mood Buddie is a frontend aplication built using ReactJs library. It allows users to express how they feel pertime, with visualized charts and calender views for moods. Users can also customize their moods based on how they feel exactly, like choosing the emojis, colors, or adding activities that best represent their current moods.',
     stacks: [
       ' ReactJs ',
       '|',
-      'HTML ',
+      ' TailwindCSS ',
       '|',
-      ' Pure CSS ',
+      ' recharts ',
       '|',
       ' Axios',
       '|',
-      ' Keen Slider',
+      ' react-swipeable',
     ],
-    live: 'https://contri-project.vercel.app/',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Contri-project',
+    live: 'https://mood-buddie.vercel.app/',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Mood-Tracker-App-Project',
   },
 
   {
-    id: 10,
-    title: "Belleza's Touch Spa",
-    img: '/images/belleza-spa.png',
+    id: 8,
+    title: 'News-Alive',
+    img: '/images/news.webp',
     description:
-      'Built to match the modern taste of a beauty spa, featuring different services and appointment booking popup, products purchase pages, a beautiful picture gallery page, and lots more...',
-    stacks: ['HTML ', '|', ' CSS ', '|', ' Vanilla Javascript'],
-    live: 'https://belleza-touch-spa.vercel.app/',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/BellezaTouchSpa',
+      'NewsAlive is a modern, responsive news aggregation web application built with React and Vite. It provides users with a seamless experience to browse, search, and filter news articles from various sources. This project does not have a live view because the API used is for development mode alone.',
+    stacks: [
+      'ReactJs ',
+      '|',
+      ' TailwindCSS ',
+      '|',
+      ' Javascript ',
+      '|',
+      ' Framer-motion ',
+      '|',
+      ' Axios',
+      '|',
+      ' Redux Toolkit ',
+    ],
+    live: '#',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/News-Alive',
   },
 ]
 
