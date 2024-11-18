@@ -1,5 +1,5 @@
 import './home.scss'
-import Kemi from '/images/creative-Kemi.png'
+import Kemi from '/images/creative-Kemi.webp'
 import { useState } from 'react'
 import AnimatedLetters from '../AnimatedLetters/animated'
 import '../AnimatedLetters/animated.scss'
@@ -81,7 +81,7 @@ const Home = () => {
       <div className="imageContainer">
         <img
           className="my-image"
-          src="https://res.cloudinary.com/dee9teadk/image/upload/v1717402807/my-image3_yc3f2q.png"
+          src="/my-image3.webp"
           alt="Kemi"
           loading="lazyLoading"
         />

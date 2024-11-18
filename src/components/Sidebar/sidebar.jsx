@@ -2,7 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll'
 
 import './sidebar.scss';
-import Logo from '/images/logo.png'
+import Logo from '/images/logo.webp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBook,
@@ -76,7 +76,7 @@ const Sidebar = () => {
             activeclassname="active"
             className="resume-link"
             target="_blank"
-            to="https://drive.google.com/file/d/1z-uBH40un8PuQIZydH9MDBBjsRGRsqIS/view?usp=drive_link"
+            to="https://drive.google.com/file/d/16UtRHmT24i8D7G7tWkT76RmITayqOQ8i/view?usp=drive_link"
           >
             <FontAwesomeIcon icon={faBook} color="#bddffa" />
           </NavLink>

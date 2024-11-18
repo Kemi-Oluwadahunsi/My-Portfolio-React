@@ -1,7 +1,7 @@
 
 import './navbar.scss'
 import { useEffect, useState } from 'react'
-import Logo from "/images/logo.png"
+import Logo from "/images/logo.webp"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBars,
@@ -121,7 +121,7 @@ const Navbar = () => {
               </ScrollLink>
 
               <Link
-                to="https://drive.google.com/file/d/1z-uBH40un8PuQIZydH9MDBBjsRGRsqIS/view?usp=sharing"
+                to="https://drive.google.com/file/d/16UtRHmT24i8D7G7tWkT76RmITayqOQ8i/view?usp=drive_link"
                 target="_blank"
                 rel="noreferrer"
                 className="resume navLinks"

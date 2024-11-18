@@ -7,9 +7,45 @@ import { Link } from 'react-router-dom'
 
 const items = [
   {
+    id: 11,
+    title: '00tracker Proxy Platform',
+    img: '/images/00tracker.webp',
+    description:
+      '00tracker is a dynamic, fully responsive, high-converting, and engaging web application for purchasing proxy addresses, utilizing React.js, Tailwind CSS, and Redux Toolkit for efficient state, product & user management. Integrated with secure user authentication systems, including login persistence via the Redux store, CAPTCHA integration for enhanced security, and protected routes to safeguard sensitive areas of the platform.',
+    stacks: [
+      'ReactJS ',
+      '|',
+      ' Tailwind CSS',
+      '|',
+      ' HeadlessUI ',
+      '|',
+      ' Javascript ',
+      '|',
+      ' Axios ',
+      '|',
+      ' Bcrypt.js ',
+      '|',
+      ' React-Router-Dom ',
+      '|',
+      ' Redux Toolkit ',
+      '|',
+      ' Socket.io-client ',
+      '|',
+      ' NodeJs ',
+      '|',
+      ' ExpressJs ',
+      '|',
+      ' React-paginate ',
+      '|',
+      ' Sonner ',
+    ],
+    live: 'https://00tracker.comp',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi',
+  },
+  {
     id: 1,
     title: 'KCOAT Ecommerce App',
-    img: '/images/kcoat.png',
+    img: '/images/kcoat.webp',
     description:
       'KCOAT is a trendy clothing and accessories fashion brand for both men and women. This full-stack ecommerce web application, is fully responsive and interactive. Built for the purpose of shopping fashion wears and accessories online.',
     stacks: [
@@ -46,7 +82,7 @@ const items = [
   {
     id: 2,
     title: 'Astonish Designs Fashion App',
-    img: '/images/astonish-finished.png',
+    img: '/images/astonish-finished.webp',
     description:
       'A brand portfolio for Astonish Designs, a fashion and tailoring brand. This portfolio showcases about the brand, a catalogue of the brand designs, contact information, testimonials from clients, and services rendered.',
     stacks: [
@@ -69,7 +105,7 @@ const items = [
   {
     id: 3,
     title: 'Quotes-Quest App',
-    img: '/images/quotes-quest.png',
+    img: '/images/quotes-quest.webp',
     description:
       'Look up Motivational quotes, retrieve based on keyword or author and  create custom designs on shirts or share on social media.',
     stacks: [
@@ -98,7 +134,7 @@ const items = [
   {
     id: 4,
     title: 'Tasty Yumzy Restaurant app',
-    img: '/images/tasty-yumzy.png',
+    img: '/images/tasty-yumzy.webp',
     description:
       'A fully responsive Cuisine restaurant Webapp to order for different types of meal. It features a an interesting Landing page, Menu page, online Cart Functionalities with different payment methods, Paypal included, and a beautiful picture gallery page.',
     stacks: ['HTML ', '|', ' CSS ', '|', ' Vanilla Javascript'],
@@ -110,7 +146,7 @@ const items = [
   {
     id: 5,
     title: 'Blogging API',
-    img: '/images/bloggingAPI.png',
+    img: '/images/bloggingAPI.webp',
     description:
       'This project is a RESTful API for a blogging platform. It allows users to register, login, create, update, delete, and fetch blog posts. Users can also view published blogs and search for blogs by various filters. The API uses JWT for authentication and MongoDB for data storage.',
     stacks: [
@@ -141,7 +177,7 @@ const items = [
   {
     id: 6,
     title: 'Github Repositories Project',
-    img: '/images/githubrepo.png',
+    img: '/images/githubrepo.webp',
     description:
       'This project is a web application built with consuming GitHub API. It serves as a platform for managing repositories on GitHub, allowing users to view repository details, create new repositories, and perform various other actions related to repository management.',
     stacks: [
@@ -166,7 +202,7 @@ const items = [
   {
     id: 10,
     title: 'Login and Signup Fully Authenticated Form',
-    img: '/images/login.png',
+    img: '/images/login.webp',
     description:
       'A fully responsive and interactive login and signup form, built with the latest in web technology, validated with React-hook-form and Authenticated with Firebase.',
     stacks: [
@@ -189,7 +225,7 @@ const items = [
   {
     id: 7,
     title: 'My Portfolio',
-    img: '/images/my-portfolio.png',
+    img: '/images/my-portfolio.webp',
     description:
       'A fully responsive and interacive website built to showcase both my personal projects and collaboration projects. It is built with the latest web technologies, and is fully responsive.',
     stacks: [
@@ -214,7 +250,7 @@ const items = [
   {
     id: 9,
     title: 'Mood Buddie',
-    img: '/images/moodbuddie.png',
+    img: '/images/moodbuddie.webp',
     description:
       'Mood Buddie is a frontend aplication built using ReactJs library. It allows users to express how they feel pertime, with visualized charts and calender views for moods. Users can also customize their moods based on how they feel exactly, like choosing the emojis, colors, or adding activities that best represent their current moods.',
     stacks: [
