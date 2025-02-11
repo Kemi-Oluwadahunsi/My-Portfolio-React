@@ -67,8 +67,8 @@ const items = [
       '|',
       ' Sonner ',
     ],
-    live: 'https://00tracker.comp',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi',
+    live: 'https://roots-to-bloom-beauty.vercel.app',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Roots-to-Bloom',
   },
   {
     id: 1,
