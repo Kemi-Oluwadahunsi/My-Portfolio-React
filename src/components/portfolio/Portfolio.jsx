@@ -39,7 +39,7 @@ const items = [
       '|',
       ' Sonner ',
     ],
-    live: 'https://00tracker.comp',
+    live: 'https://00tracker.com',
     gitHub: 'https://github.com/Kemi-Oluwadahunsi',
   },
   {
