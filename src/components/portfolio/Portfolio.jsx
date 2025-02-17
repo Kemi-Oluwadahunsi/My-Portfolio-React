@@ -67,7 +67,7 @@ const items = [
       '|',
       ' Sonner ',
     ],
-    live: 'https://roots-to-bloom-beauty.vercel.app',
+    live: 'https://rtbloom.vercel.app',
     gitHub: 'https://github.com/Kemi-Oluwadahunsi/Roots-to-Bloom',
   },
   {
