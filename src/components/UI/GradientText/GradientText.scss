@@ -1,0 +1,40 @@
+@import '../../../App.scss';
+
+.gradient-text {
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+
+  &.gradient-primary {
+    background-image: linear-gradient(
+      90deg,
+      var(--color-primary, #bce0fb),
+      var(--color-primaryDark, #8bc5f0),
+      var(--color-primary, #bce0fb)
+    );
+  }
+
+  &.gradient-accent {
+    background-image: linear-gradient(
+      90deg,
+      var(--color-accent, #095a9b),
+      var(--color-primary, #bce0fb),
+      var(--color-accent, #095a9b)
+    );
+  }
+
+  &.gradient-rainbow {
+    background-image: linear-gradient(
+      90deg,
+      #bce0fb,
+      #8bc5f0,
+      #60a5fa,
+      #3b82f6,
+      #60a5fa,
+      #8bc5f0,
+      #bce0fb
+    );
+  }
+}

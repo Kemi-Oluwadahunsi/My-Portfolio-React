@@ -1,0 +1,16 @@
+@import '../../../App.scss';
+
+.glass-card {
+  background: var(--color-glassBg, rgba(11, 24, 41, 0.7));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glassBorder, rgba(188, 224, 251, 0.2));
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: var(--color-primary, #bce0fb);
+    background: var(--color-glassBg, rgba(11, 24, 41, 0.85));
+  }
+}

@@ -1,101 +1,97 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown, faDotCircle } from '@fortawesome/free-solid-svg-icons'
+import { faArrowDown, faDotCircle, faBriefcase } from '@fortawesome/free-solid-svg-icons'
 import './experience.scss'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import { workExperience } from '../../constants/portfolioData'
+import GlassCard from '../UI/GlassCard/GlassCard'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-const experiences = [
-  {
-    id: 3,
-    title: 'Frontend Software Developer',
-    company: 'Flit Incorporations (London UK, Remote)',
-    startDate: '11/2023',
-    endDate: '07/2024',
-    details: [
-      {
-        id: 1,
-        detail:
-          'Developed and launched 2 full-stack web applications focusing on clean and semantic HTML structure, resulting in a 15% improvement in website accessibility metrics.',
-      },
+if (typeof window !== 'undefined' && typeof gsap !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
-      {
-        id: 2,
-        detail:
-          'Contributed to the adoption of modern development tools, reducing the time required for new feature implementation by 20%.',
-      },
-    ],
-  },
-
-  {
-    id: 2,
-    title: 'Frontend Software Developer',
-    company: 'Gelks Group Inc. | RichForth Limited (Nigeria, Remote)',
-    startDate: '05/2024',
-    endDate: '09/2024',
-    details: [
-      {
-        id: 1,
-        detail:
-          'Developed a dynamic, fully responsive, high-converting, and engaging web application for IP addresses purchasing.',
-      },
-
-      {
-        id: 2,
-        detail:
-          'Led the development of the support ticket system, allowing for seamless creation, tracking, and updates, reducing response time by 10%.',
-      },
-    ],
-  },
-
-  {
-    id: 1,
-    title: 'Software Developer',
-    company: 'Kodemaven (freelancing)',
-    startDate: '01/2022',
-    endDate: 'Present',
-
-    details: [
-      {
-        id: 1,
-        detail:
-          'Created 7 scalable and flexible single-page applications (SPAs) for brands and businesses, leading to a 15% improvement in user engagement and boosting client satisfaction by 90%.',
-      },
-
-      {
-        id: 2,
-        detail:
-          'Collaborated with designers and other developers on 2 open-source projects, promoting a collaborative development environment and enhancing technical expertise.',
-      },
-    ],
-  },
-]
+const experiences = workExperience
 
 const Each = ({ experience }) => {
-  const [flipped, setFlipped] = useState(false)
-  const handleCardClick = () => {
-    if (window.innerWidth < 768) { // Check for mobile and tablet screens
-      setFlipped(!flipped)
-    }
+  const [isHovered, setIsHovered] = useState(false)
+  const cardRef = useRef(null)
+  const rotateX = useSpring(useMotionValue(0), { stiffness: 300, damping: 30 })
+  const rotateY = useSpring(useMotionValue(0), { stiffness: 300, damping: 30 })
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return
+    const rect = cardRef.current.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+    const mouseX = e.clientX - centerX
+    const mouseY = e.clientY - centerY
+    
+    const rotateXValue = (mouseY / rect.height) * -10
+    const rotateYValue = (mouseX / rect.width) * 10
+    
+    rotateX.set(rotateXValue)
+    rotateY.set(rotateYValue)
   }
+
+  const handleMouseLeave = () => {
+    rotateX.set(0)
+    rotateY.set(0)
+    setIsHovered(false)
+  }
+
   return (
-    <div
-      className={`cards`}
-      // onClick={handleCardClick}
+    <motion.div
+      ref={cardRef}
+      className="experience-card-wrapper"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: 'preserve-3d',
+      }}
+      whileHover={{ scale: 1.05, z: 50 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
-      <div className={`card-single ${flipped ? 'flipped' : ''}`} onClick={handleCardClick}>
-        <div className="card front">
-          <div className="expBody">
+      <GlassCard className="experience-card">
+        <motion.div
+          className="card-front"
+          animate={{ rotateY: isHovered ? 180 : 0 }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
+          style={{ transformStyle: 'preserve-3d' }}
+        >
+          <div className="card-content">
+            <div className="card-icon">
+              <FontAwesomeIcon icon={faBriefcase} />
+            </div>
             <h2 className="expT">{experience.title}</h2>
             <div className="date">
               <span>
                 {experience.startDate} - <span>{experience.endDate}</span>
               </span>
             </div>
-            <h2 className="company">{experience.company}</h2>
+            <h3 className="company">{experience.company}</h3>
+            <motion.div
+              className="flip-hint"
+              animate={{ opacity: isHovered ? 0 : 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <span>Hover to see details</span>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="card back">
-          <div className="details">
+        <motion.div
+          className="card-back"
+          animate={{ rotateY: isHovered ? 0 : -180 }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
+          style={{ transformStyle: 'preserve-3d' }}
+        >
+          <div className="card-content">
             <div className="detail-title">
               <h4>Job Details</h4>
               <FontAwesomeIcon icon={faArrowDown} />
@@ -103,29 +99,79 @@ const Each = ({ experience }) => {
 
             <div className="description">
               {experience.details.map((data) => (
-                <div key={data.id} className="describe">
+                <motion.div
+                  key={data.id}
+                  className="describe"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: data.id * 0.1 }}
+                >
                   <FontAwesomeIcon icon={faDotCircle} className="dotIcon" />
                   <p>{data.detail}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </GlassCard>
+    </motion.div>
   )
 }
 
 const Experience = () => {
-  return (
-    <div className="experience">
-      <div className="experienceContain">
-        <h1>Work Experience</h1>
-        <p className="click-card animate__animated animate__heartBeat animate__infinite	infinite animate__slower">
-          Click Each card to view Job Details
-        </p>
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  })
+  const containerRef = useRef(null)
 
-        <div className="card-wrapper">
+  useEffect(() => {
+    if (containerRef.current && inView) {
+      const cards = containerRef.current.children
+      gsap.fromTo(
+        cards,
+        {
+          opacity: 0,
+          y: 100,
+          scale: 0.8,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
+    }
+  }, [inView])
+
+  return (
+    <div className="experience" ref={ref}>
+      <div className="experienceContain">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+          transition={{ duration: 0.6 }}
+        >
+          Work Experience
+        </motion.h1>
+        <motion.p
+          className="click-card"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          Hover over each card to view Job Details
+        </motion.p>
+
+        <div className="card-wrapper" ref={containerRef}>
           {experiences.map((item) => (
             <Each experience={item} key={item.id} />
           ))}

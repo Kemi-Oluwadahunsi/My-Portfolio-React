@@ -1,0 +1,30 @@
+@import '../../../App.scss';
+
+.ripple-button {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  background: var(--color-primary, #bce0fb);
+  color: var(--color-bgPrimary, #061829);
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    background: var(--color-primaryDark, #8bc5f0);
+    box-shadow: 0 4px 20px rgba(188, 224, 251, 0.4);
+  }
+}

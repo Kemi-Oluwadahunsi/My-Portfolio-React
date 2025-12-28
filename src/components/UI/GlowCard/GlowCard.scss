@@ -1,0 +1,43 @@
+@import '../../../App.scss';
+
+.glow-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+
+  .glow-effect {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(
+      circle,
+      var(--color-primary, #bce0fb) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(40px);
+    z-index: 0;
+  }
+
+  .glow-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  &.glow-low .glow-effect {
+    filter: blur(30px);
+    opacity: 0.4;
+  }
+
+  &.glow-medium .glow-effect {
+    filter: blur(40px);
+    opacity: 0.6;
+  }
+
+  &.glow-high .glow-effect {
+    filter: blur(50px);
+    opacity: 0.8;
+  }
+}

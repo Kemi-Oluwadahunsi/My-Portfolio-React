@@ -4,360 +4,164 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDisplay } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { Link } from 'react-router-dom'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import { portfolioItems } from '../../constants/portfolioData'
+import GlowCard from '../UI/GlowCard/GlowCard'
+import { useState, useRef } from 'react'
 
-const items = [
-  {
-    id: 11,
-    title: '00tracker Proxy Platform',
-    img: '/images/00tracker.webp',
-    description:
-      '00tracker is a dynamic, fully responsive, high-converting, and engaging web application for purchasing proxy addresses, utilizing React.js, Tailwind CSS, and Redux Toolkit for efficient state, product & user management. Integrated with secure user authentication systems, including login persistence via the Redux store, CAPTCHA integration for enhanced security, and protected routes to safeguard sensitive areas of the platform.',
-    stacks: [
-      'ReactJS ',
-      '|',
-      ' Tailwind CSS',
-      '|',
-      ' HeadlessUI ',
-      '|',
-      ' Javascript ',
-      '|',
-      ' Axios ',
-      '|',
-      ' Bcrypt.js ',
-      '|',
-      ' React-Router-Dom ',
-      '|',
-      ' Redux Toolkit ',
-      '|',
-      ' Socket.io-client ',
-      '|',
-      ' NodeJs ',
-      '|',
-      ' ExpressJs ',
-      '|',
-      ' React-paginate ',
-      '|',
-      ' Sonner ',
-    ],
-    live: 'https://00tracker.com',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi',
-  },
-  {
-    id: 12,
-    title: 'Roots to Bloom Beauty',
-    img: '/images/RtB.webp',
-    description:
-      "Roots to Bloom is a React-based e-commerce website for a natural beauty and skincare brand. It features a responsive, modern design with a custom color scheme that reflects the brand's natural and organic ethos, product catalog showcasing skincare and haircare items, with detailed product pages and a comparison feature.",
-    stacks: [
-      'ReactJS ',
-      '|',
-      ' Tailwind CSS',
-      '|',
-      ' HeadlessUI ',
-      '|',
-      ' Javascript ',
-      '|',
-      ' Firebase ',
-      '|',
-      ' Framer-motion ',
-      '|',
-      ' React-Router-Dom ',
-      '|',
-      ' Emailjs ',
-      '|',
-      ' Sonner ',
-    ],
-    live: 'https://rtbloom.vercel.app',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Roots-to-Bloom',
-  },
-  {
-    id: 1,
-    title: 'KCOAT Ecommerce App',
-    img: '/images/kcoat.webp',
-    description:
-      'KCOAT is a trendy clothing and accessories fashion brand for both men and women. This full-stack ecommerce web application, is fully responsive and interactive. Built for the purpose of shopping fashion wears and accessories online.',
-    stacks: [
-      'HTML ',
-      '|',
-      ' Tailwind CSS',
-      '|',
-      ' React.js ',
-      '|',
-      ' Javascript ',
-      '|',
-      ' Axios ',
-      '|',
-      ' Emailjs ',
-      '|',
-      ' React-Router-Dom ',
-      '|',
-      ' React-Carousel ',
-      '|',
-      ' MySQL ',
-      '|',
-      ' NodeJs ',
-      '|',
-      ' ExpressJs ',
-      '|',
-      ' Stripe ',
-      '|',
-      ' React-Toastify ',
-    ],
-    live: 'https://kcoat.netlify.app',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/KCOAT-Project',
-  },
+const Single = ({ item, index }) => {
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  })
+  const cardRef = useRef(null)
+  const [isHovered, setIsHovered] = useState(false)
+  
+  const rotateX = useSpring(useMotionValue(0), { stiffness: 300, damping: 30 })
+  const rotateY = useSpring(useMotionValue(0), { stiffness: 300, damping: 30 })
 
-  {
-    id: 2,
-    title: 'Astonish Designs Fashion App',
-    img: '/images/astonish-finished.webp',
-    description:
-      'A brand portfolio for Astonish Designs, a fashion and tailoring brand. This portfolio showcases about the brand, a catalogue of the brand designs, contact information, testimonials from clients, and services rendered.',
-    stacks: [
-      'HTML ',
-      '|',
-      ' Sass(CSS) ',
-      '|',
-      ' React.js ',
-      '|',
-      ' Javascript ',
-      '|',
-      ' framer-motion ',
-      '|',
-      ' Emailjs ',
-    ],
-    live: 'https://astonish-designs.com.ng',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Astonish-Designs',
-  },
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return
+    const rect = cardRef.current.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+    const mouseX = e.clientX - centerX
+    const mouseY = e.clientY - centerY
+    
+    const rotateXValue = (mouseY / rect.height) * -5
+    const rotateYValue = (mouseX / rect.width) * 5
+    
+    rotateX.set(rotateXValue)
+    rotateY.set(rotateYValue)
+  }
 
-  {
-    id: 3,
-    title: 'Quotes-Quest App',
-    img: '/images/quotes-quest.webp',
-    description:
-      'Look up Motivational quotes, retrieve based on keyword or author and  create custom designs on shirts or share on social media.',
-    stacks: [
-      'HTML ',
-      '|',
-      ' Tailwind CSS ',
-      '|',
-      ' React ',
-      '|',
-      ' Firebase ',
-      '|',
-      ' Node ',
-      '|',
-      ' Chakra-Ui ',
-      '|',
-      ' Framer-Motion ',
-      '|',
-      ' Express ',
-      '|',
-      ' Emailjs ',
-    ],
-    live: 'https://quotes-quest.vercel.app/',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Quotes-Quest-Fullstack',
-  },
+  const handleMouseLeave = () => {
+    rotateX.set(0)
+    rotateY.set(0)
+    setIsHovered(false)
+  }
 
-  {
-    id: 4,
-    title: 'Tasty Yumzy Restaurant app',
-    img: '/images/tasty-yumzy.webp',
-    description:
-      'A fully responsive Cuisine restaurant Webapp to order for different types of meal. It features a an interesting Landing page, Menu page, online Cart Functionalities with different payment methods, Paypal included, and a beautiful picture gallery page.',
-    stacks: ['HTML ', '|', ' CSS ', '|', ' Vanilla Javascript'],
-    live: 'https://tasty-yumzy-restaurant-project.vercel.app/',
-    gitHub:
-      'https://github.com/Kemi-Oluwadahunsi/Tasty-Yumzy-Restaurant-Project',
-  },
+  const variants = {
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        delay: index * 0.1,
+        type: 'spring',
+        stiffness: 100,
+      },
+    },
+  }
 
-  {
-    id: 5,
-    title: 'Blogging API',
-    img: '/images/bloggingAPI.webp',
-    description:
-      'This project is a RESTful API for a blogging platform. It allows users to register, login, create, update, delete, and fetch blog posts. Users can also view published blogs and search for blogs by various filters. The API uses JWT for authentication and MongoDB for data storage.',
-    stacks: [
-      'Node.js ',
-      '|',
-      ' Express.js ',
-      '|',
-      ' Vanilla Javascript',
-      '|',
-      ' MongoDB ',
-      '|',
-      ' Mongoose ',
-      '|',
-      ' Bcrypt ',
-      '|',
-      ' JWT ',
-      '|',
-      ' JSON Web Tokens ',
-      '|',
-      ' Jest ',
-      '|',
-      ' Winston ',
-    ],
-    live: 'https://blogging-api-tasy.onrender.com',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/intermediate-backend-exam',
-  },
-
-  {
-    id: 6,
-    title: 'Github Repositories Project',
-    img: '/images/githubrepo.webp',
-    description:
-      'This project is a web application built with consuming GitHub API. It serves as a platform for managing repositories on GitHub, allowing users to view repository details, create new repositories, and perform various other actions related to repository management.',
-    stacks: [
-      'React.js ',
-      '|',
-      ' Tailwind CSS ',
-      '|',
-      ' Vanilla Javascript',
-      '|',
-      ' GitHub API',
-      '|',
-      ' Axios',
-      '|',
-      ' React-Router-Dom',
-      '|',
-      ' sweetalert2',
-    ],
-    live: 'https://github-repositories-portfolio.vercel.app/',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Intermediate-frontend-exam',
-  },
-
-  {
-    id: 10,
-    title: 'Login and Signup Fully Authenticated Form',
-    img: '/images/login.webp',
-    description:
-      'A fully responsive and interactive login and signup form, built with the latest in web technology, validated with React-hook-form and Authenticated with Firebase.',
-    stacks: [
-      ' ReactJs ',
-      '|',
-      ' Tailwind CSS ',
-      '|',
-      ' React-hook-form ',
-      '|',
-      ' Firebase ',
-      '|',
-      ' React-Router-Dom ',
-      '|',
-      ' React-Toastify ',
-    ],
-    live: 'https://login-registration-auth-form.vercel.app/',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Login-Registration-Auth-Form',
-  },
-
-  {
-    id: 7,
-    title: 'My Portfolio',
-    img: '/images/my-portfolio.webp',
-    description:
-      'A fully responsive and interacive website built to showcase both my personal projects and collaboration projects. It is built with the latest web technologies, and is fully responsive.',
-    stacks: [
-      'HTML ',
-      '|',
-      ' Sass (SCSS) ',
-      '|',
-      ' ReactJs ',
-      '|',
-      ' Animate.css ',
-      '|',
-      ' Framer-Motion ',
-      '|',
-      ' Loaders.css ',
-      '|',
-      ' Emailjs ',
-    ],
-    live: 'https://kodemaven-portfolio.vercel.app/',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/My-Portfolio-React',
-  },
-
-  {
-    id: 9,
-    title: 'Mood Buddie',
-    img: '/images/moodbuddie.webp',
-    description:
-      'Mood Buddie is a frontend aplication built using ReactJs library. It allows users to express how they feel pertime, with visualized charts and calender views for moods. Users can also customize their moods based on how they feel exactly, like choosing the emojis, colors, or adding activities that best represent their current moods.',
-    stacks: [
-      ' ReactJs ',
-      '|',
-      ' TailwindCSS ',
-      '|',
-      ' recharts ',
-      '|',
-      ' Axios',
-      '|',
-      ' react-swipeable',
-    ],
-    live: 'https://mood-buddie.vercel.app/',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Mood-Tracker-App-Project',
-  },
-
-  {
-    id: 8,
-    title: 'News-Alive',
-    img: '/images/news.webp',
-    description:
-      'NewsAlive is a modern, responsive news aggregation web application built with React and Vite. It provides users with a seamless experience to browse, search, and filter news articles from various sources. This project does not have a live view because the API used is for development mode alone.',
-    stacks: [
-      'ReactJs ',
-      '|',
-      ' TailwindCSS ',
-      '|',
-      ' Javascript ',
-      '|',
-      ' Framer-motion ',
-      '|',
-      ' Axios',
-      '|',
-      ' Redux Toolkit ',
-    ],
-    live: '#',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/News-Alive',
-  },
-]
-
-const Single = ({ item }) => {
   return (
-    <section id="portfolioSection">
+    <motion.section
+      id="portfolioSection"
+      ref={ref}
+      initial="hidden"
+      animate={inView ? 'visible' : 'hidden'}
+      variants={variants}
+    >
       <div className="all">
-        <div className="wrapper">
-          <div className="imageContain">
-            <img src={item.img} alt="WebsiteImage" />
-          </div>
-          <div className="text">
-            <h2> {item.title} </h2>
-            <p> {item.description} </p>
-            <span className="stacks">{item.stacks} </span>
-
-            <div className="links">
-              <Link
-                className="link"
-                to={item.live}
-                rel="noreferrer"
-                target="_blank"
+        <GlowCard intensity="medium" className="portfolio-glow-wrapper">
+          <motion.div
+            ref={cardRef}
+            className="wrapper"
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={handleMouseLeave}
+            style={{
+              rotateX,
+              rotateY,
+              transformStyle: 'preserve-3d',
+            }}
+            whileHover={{ scale: 1.03, z: 20 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+          >
+            <motion.div 
+              className="imageContain"
+              whileHover={{ scale: 1.08 }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.img
+                src={item.img}
+                alt={`${item.title} project screenshot`}
+                loading="lazy"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <motion.div
+                className="image-overlay"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isHovered ? 0.3 : 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.div>
+            <div className="text">
+              <motion.h2
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
               >
-                <FontAwesomeIcon icon={faDisplay} color="#bce0fb" />
-                <span>Live View</span>
-              </Link>
-
-              <Link
-                className="link"
-                to={item.gitHub}
-                rel="noreferrer"
-                target="_blank"
+                {item.title}
+              </motion.h2>
+              <p>{item.description}</p>
+              <motion.div
+                className="stacks"
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ delay: index * 0.1 + 0.3 }}
               >
-                <FontAwesomeIcon icon={faGithub} color="#bce0fb" />
-                <span>View Codes</span>
-              </Link>
+                {item.stacks}
+              </motion.div>
+
+              <motion.div 
+                className="links"
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: index * 0.1 + 0.4 }}
+              >
+                <motion.div 
+                  whileHover={{ scale: 1.15, x: 5 }} 
+                  whileTap={{ scale: 0.9 }}
+                  className="link-wrapper"
+                >
+                  <Link
+                    className="link interactive"
+                    to={item.live}
+                    rel="noreferrer"
+                    target="_blank"
+                    aria-label={`View live ${item.title} project`}
+                  >
+                    <FontAwesomeIcon icon={faDisplay} color="#bce0fb" />
+                    <span>Live View</span>
+                  </Link>
+                </motion.div>
+
+                <motion.div 
+                  whileHover={{ scale: 1.15, x: 5 }} 
+                  whileTap={{ scale: 0.9 }}
+                  className="link-wrapper"
+                >
+                  <Link
+                    className="link interactive"
+                    to={item.gitHub}
+                    rel="noreferrer"
+                    target="_blank"
+                    aria-label={`View ${item.title} source code on GitHub`}
+                  >
+                    <FontAwesomeIcon icon={faGithub} color="#bce0fb" />
+                    <span>View Codes</span>
+                  </Link>
+                </motion.div>
+              </motion.div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </GlowCard>
       </div>
-    </section>
+    </motion.section>
   )
 }
 
@@ -371,19 +175,30 @@ Single.propTypes = {
     live: PropTypes.string.isRequired,
     gitHub: PropTypes.string.isRequired,
   }).isRequired,
+  index: PropTypes.number.isRequired,
 }
 
 const Portfolio = () => {
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  })
+
   return (
-    <div className="portfolio">
-      <div className="progress">
+    <div className="portfolio" ref={ref}>
+      <motion.div
+        className="progress"
+        initial={{ opacity: 0, y: -20 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+        transition={{ duration: 0.6 }}
+      >
         <h1>Featured Works</h1>
         <div className="progressBar"></div>
-      </div>
+      </motion.div>
 
       <div>
-        {items.map((item) => (
-          <Single item={item} key={item.id} />
+        {portfolioItems.map((item, index) => (
+          <Single item={item} key={item.id} index={index} />
         ))}
       </div>
     </div>

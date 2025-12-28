@@ -22,26 +22,40 @@
     left: 0;
     padding: 2.125rem;
     text-align: center;
-    color: #0972c0;
+    color: var(--color-primary, #bce0fb);
     font-size: 3rem;
     z-index: 9999;
-    background-color: #061829;
+    background: linear-gradient(180deg, var(--color-bgPrimary, #061829) 0%, transparent 100%);
+    backdrop-filter: blur(10px);
+
+    h1 {
+      background: linear-gradient(135deg, #bce0fb, #8bc5f0, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 30px rgba(188, 224, 251, 0.5);
+    }
 
     @include mobile {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       height: 80%;
       margin-left: 0;
+      padding: 1rem;
     }
 
     @include tablet {
-      font-size: 1.5rem;
+      font-size: 2rem;
       margin-left: 0;
+      padding: 1.5rem;
     }
 
     .progressBar {
       height: 0.625rem;
-      background: white;
+      background: linear-gradient(90deg, var(--color-primary, #bce0fb), var(--color-accent, #095a9b));
+      border-radius: 10px;
       z-index: 9999;
+      box-shadow: 0 0 20px rgba(188, 224, 251, 0.5);
+      margin-top: 1rem;
 
       @include mobile {
         height: 0.4rem;
@@ -82,9 +96,15 @@
       }
 
 
-    .wrapper {
+    .portfolio-glow-wrapper {
       width: 100%;
       max-width: 90%;
+      margin: auto;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 100%;
       height: 50vh; 
       display: flex;
       flex-wrap: wrap;
@@ -92,7 +112,9 @@
       gap: 1rem;
       margin: auto;
       justify-content: space-around;
-      padding: 1rem; 
+      padding: 1rem;
+      position: relative;
+      transform-style: preserve-3d; 
       
 
       @include tablet {
@@ -131,9 +153,28 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
 
         img {
           object-fit: cover;
+          transition: all 0.4s ease;
+        }
+
+        .image-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            135deg,
+            rgba(188, 224, 251, 0.4) 0%,
+            rgba(9, 90, 155, 0.4) 100%
+          );
+          border-radius: 1rem;
+          pointer-events: none;
         }
 
         @include tablet {
@@ -153,7 +194,8 @@
         img {
           width: 100%;
           height: 100%;
-          border-radius: 10px;
+          border-radius: 1rem;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
       }
       
@@ -184,6 +226,14 @@
   
         h2 {
           font-size: 2rem;
+          color: var(--color-primary, #bce0fb);
+          font-weight: 700;
+          margin-bottom: 1rem;
+          background: linear-gradient(135deg, #bce0fb, #8bc5f0);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          transition: all 0.3s ease;
 
           @include mobile {
             font-size: 1.2rem;
@@ -199,43 +249,61 @@
         }
   
         p{
-          color: #bce0fb;
-          line-height: 1.3rem;
-          letter-spacing: 1px;
-          font-size: 1.2rem;
+          color: var(--color-textSecondary, #bce0fb);
+          line-height: 1.6rem;
+          letter-spacing: 0.5px;
+          font-size: 1.1rem;
           font-family: "Helvetica Neue";
+          margin: 0.5rem 0;
 
           @include tablet {
             font-size: 1rem;
+            line-height: 1.5rem;
           }
 
           @include mobile {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
+            line-height: 1.4rem;
           }
 
           @media screen and (min-width: 769px) and (max-width: 1170px) {
-            font-size: .8rem;
+            font-size: .9rem;
+            line-height: 1.4rem;
           }
         }
   
         .stacks {
-          color: #0972c0;
-          letter-spacing: 2px;
-          font-size: 1.2rem;
-          line-height: 1.3rem;
+          color: var(--color-textSecondary, #bce0fb);
+          letter-spacing: 1px;
+          font-size: 1rem;
+          line-height: 1.5rem;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          padding: 1rem;
+          background: rgba(188, 224, 251, 0.05);
+          border-radius: 0.5rem;
+          border: 1px solid rgba(188, 224, 251, 0.1);
+          transition: all 0.3s ease;
+
+          &:hover {
+            background: rgba(188, 224, 251, 0.1);
+            border-color: rgba(188, 224, 251, 0.3);
+          }
 
           @include tablet {
             line-height: 1.4rem;
+            font-size: 0.9rem;
           }
 
           @include mobile {
-            font-size: .9rem;
-            line-height: 1.2rem;
-
+            font-size: .85rem;
+            line-height: 1.3rem;
+            padding: 0.75rem;
           }
 
           @media screen and (min-width: 769px) and (max-width: 1170px) {
-            font-size: .7rem;
+            font-size: .8rem;
           }
         }
   
@@ -244,7 +312,12 @@
           justify-content: space-between;
           margin-top: .5rem;
           padding: 0 1rem 0 0;
+          gap: 1rem;
   
+          .link-wrapper {
+            position: relative;
+          }
+
           .link {
             display: flex;
             gap: 10px;
@@ -252,13 +325,53 @@
             align-items: center;
             cursor: pointer;
             z-index: 1000;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            background: rgba(188, 224, 251, 0.1);
+            border: 1px solid rgba(188, 224, 251, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
                   
+            &::before {
+              content: '';
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              width: 0;
+              height: 0;
+              border-radius: 50%;
+              background: rgba(188, 224, 251, 0.3);
+              transform: translate(-50%, -50%);
+              transition: width 0.6s, height 0.6s;
+            }
+
+            &:hover::before {
+              width: 300px;
+              height: 300px;
+            }
+
             &:hover {
-              transform: scale(1.1);
+              background: rgba(188, 224, 251, 0.2);
+              border-color: var(--color-primary, #bce0fb);
+              box-shadow: 0 4px 20px rgba(188, 224, 251, 0.4);
+              
+              span, svg {
+                position: relative;
+                z-index: 1;
+              }
             }
   
             span{
               color: #e1f0fd;
+              font-weight: 500;
+              position: relative;
+              z-index: 1;
+            }
+
+            svg {
+              position: relative;
+              z-index: 1;
             }
           }
         }

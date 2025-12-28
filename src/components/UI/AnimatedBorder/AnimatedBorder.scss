@@ -1,0 +1,89 @@
+@import '../../../App.scss';
+
+.animated-border {
+  position: relative;
+  padding: 2px;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  .border-top,
+  .border-right,
+  .border-bottom,
+  .border-left {
+    position: absolute;
+    z-index: 0;
+  }
+
+  .border-top {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-primary, #bce0fb),
+      transparent
+    );
+  }
+
+  .border-right {
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      var(--color-primary, #bce0fb),
+      transparent
+    );
+  }
+
+  .border-bottom {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-primary, #bce0fb),
+      transparent
+    );
+  }
+
+  .border-left {
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      var(--color-primary, #bce0fb),
+      transparent
+    );
+  }
+
+  .border-content {
+    position: relative;
+    z-index: 1;
+    background: var(--color-bgPrimary, #061829);
+    border-radius: calc(1rem - 2px);
+  }
+
+  &.border-accent {
+    .border-top,
+    .border-right,
+    .border-bottom,
+    .border-left {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--color-accent, #095a9b),
+        transparent
+      );
+    }
+  }
+}

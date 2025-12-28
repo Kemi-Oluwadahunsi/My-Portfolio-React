@@ -1,24 +1,52 @@
 @import "../../App.scss";
 
-    .btn-Scroll{
-    position: fixed;
-    bottom: 2.5rem;
-    font-size: 3rem;
-    z-index: 10001;
-    cursor: pointer;
-    color: green;
-    right: 2%;
-    background: none;
-    border-radius: 50px;
-    padding: 0px;
-    border: none;
-    opacity: 0.7;
+.btn-Scroll {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 2.5rem;
+  z-index: 10001;
+  cursor: pointer;
+  background: var(--color-glassBg, rgba(11, 24, 41, 0.7));
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-glassBorder, rgba(188, 224, 251, 0.2));
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 
-    @include tablet {
-        bottom: 2rem;
-    }
+  &:hover {
+    background: var(--color-primary, #bce0fb);
+    box-shadow: 0 4px 20px rgba(188, 224, 251, 0.4);
+    transform: translateY(-3px);
+  }
 
-    @include mobile {
-        bottom: 1.5rem;
-    }
+  svg {
+    color: var(--color-primary, #bce0fb);
+    transition: color 0.3s ease;
+  }
+
+  &:hover svg {
+    color: var(--color-bgPrimary, #061829);
+  }
+
+  @include tablet {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+  }
+
+  @include mobile {
+    bottom: 1rem;
+    right: 1rem;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+  }
 }

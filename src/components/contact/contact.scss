@@ -1,300 +1,272 @@
-@import "../../App.scss";
+@import '../../App.scss';
 
-.divider {
-    width: 98%;
-    margin: 5rem auto 0 auto;
-    color: #0f1215;
+.contact-section {
+  min-height: 100vh;
+  padding: 5rem 2rem;
+  background: linear-gradient(180deg, var(--color-bgPrimary, #061829), var(--color-accentSecondary, #505064));
+  position: relative;
+  overflow: hidden;
 
-    @include tablet {
-        margin: 5rem auto;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 30% 70%, rgba(188, 224, 251, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 70% 30%, rgba(80, 80, 100, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-glassBorder, rgba(188, 224, 251, 0.3)),
+      transparent
+    );
+    margin: 0 0 4rem 0;
+  }
+
+  .contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .contact-header {
+    text-align: center;
+    margin-bottom: 4rem;
+
+    .contact-title {
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--color-textPrimary, #ffffff);
+      margin-bottom: 1rem;
+      text-shadow: 0 0 20px rgba(188, 224, 251, 0.3);
+      background: linear-gradient(135deg, #ffffff, #bce0fb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+
+      @include tablet {
+        font-size: 3rem;
+      }
+
+      @include mobile {
+        font-size: 2.5rem;
+      }
     }
 
-   @media screen and (min-width: 769px) {
-    display: none;
-   }
-}
+    .contact-subtitle {
+      font-size: 1.2rem;
+      color: var(--color-textSecondary, #bce0fb);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
 
-.contact {
-    height: 100dvh;
-    max-width: screen;
-    display: flex;
-    align-items: center;
-    margin:2rem auto 2rem 8rem;
-    justify-content: space-evenly;
-    gap: 2rem;
-    position: relative;
-    padding-left: 5rem;
-    
-    
+      @include mobile {
+        font-size: 1rem;
+        padding: 0 1rem;
+      }
+    }
+  }
 
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: start;
 
     @include tablet {
-        max-width: 100%;
-        margin: 1rem 0 0 0;
-        flex-direction: column;
-        height: auto;
-        padding-left: 0;
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
 
     @include mobile {
-        max-width: 100%;
-        margin: 3rem 0 0 0;
-        flex-direction: column;
-        height: auto;
-        padding-left: 0;
-        gap: .5rem;
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
 
-    @media screen and (min-width: 769px) and (max-width: 1170px) {
-        margin-left: 5rem;
-    }
-
-    .contactText {
-        flex: 1;
+    .contact-info {
+      .info-card {
+        padding: 2.5rem;
         display: flex;
         flex-direction: column;
-        gap: 4rem;
-        width: fit-content;
-
-            @include tablet {
-                gap: 1rem;
-                align-items: center;
-            }
-
-            @include mobile {
-                gap: 1rem;
-                align-items: center;
-            }
-
-
-            .heading {
-                font-size: 5rem;
-                line-height: 6rem;
-
-                @include tablet {
-                    font-size: 3rem;
-                    line-height: 0;
-                    margin-bottom: 1.5rem;
-                }
-
-                @include mobile {
-                    font-size: 2rem;
-                    line-height: 0;
-                    margin-bottom: 1rem;
-                }
-
-                @media screen and (min-width: 769px) and (max-width: 1170px) {
-                    font-size: 3.5rem;
-                    line-height: 3.5rem;
-                }
-            }
-
-        .item {
-            display: flex;
-            flex-direction: column;
-            gap: .7rem;
-
-            @include tablet {
-                flex-direction: row;
-                align-items: center;
-                gap: .5rem;
-            }
-
-            @include mobile {
-                flex-direction: row;
-                align-items: center;
-                gap: .5rem;
-
-            }
-
-            span {
-                font-size: 1rem;
-
-            @include mobile {
-                font-size: 0.8rem;
-            }
-            }
-
-
-            .mail {
-                font-weight: 600;
-                margin-top: 0;
-                font-size: 1.2rem;
-
-                @include tablet {
-                    font-size: 1rem;
-                }
-
-                 @include mobile {
-                    font-size: 1rem;
-                }
-            }
-        }
-
-    }
-
-    .largeScreen {
-        flex: 1;
+        gap: 2rem;
         position: relative;
-        width: 50%;
-        padding-bottom: 2rem;
-        width: fit-content;
-        
-        .phoneSVG {
-            position: absolute;
-            stroke: #3fabf1;
-            margin: auto;
-            z-index: -10000;
-            width: 60%;
 
-
-
-            @include tablet {
-                display: none;
-            }
-
-             @include mobile {
-                display: none;
-            }
-
-           svg{
-             @media screen and (min-width:769px) and (max-width: 1170px) {
-                width: 90%;
-            }
-           }
+        @include mobile {
+          padding: 2rem 1.5rem;
         }
-        
-        .largeForm {
-            width: 70%;
+
+        .info-item {
+          display: flex;
+          gap: 1.5rem;
+          align-items: flex-start;
+
+          .info-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary, #bce0fb), var(--color-primaryDark, #8bc5f0));
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            
-            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-bgPrimary, #061829);
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(188, 224, 251, 0.4);
 
-            
-            @include tablet {
-                display: none;
+            svg {
+              width: 24px;
+              height: 24px;
+            }
+          }
+
+          .info-content {
+            flex: 1;
+
+            h3 {
+              font-size: 1.1rem;
+              font-weight: 600;
+              color: var(--color-primary, #bce0fb);
+              margin-bottom: 0.5rem;
             }
 
-             @include mobile {
-                display: none;
+            a {
+              color: var(--color-textSecondary, #bce0fb);
+              text-decoration: none;
+              font-size: 1rem;
+              transition: color 0.3s ease;
+              display: block;
+
+              &:hover {
+                color: var(--color-primary, #bce0fb);
+              }
             }
 
-            @media screen and (min-width: 769px) and (max-width: 1170px) {
-                width: 80%;
+            .phone-numbers {
+              display: flex;
+              flex-direction: column;
+              gap: 0.5rem;
+
+              a {
+                display: block;
+              }
             }
-
-
-            input, textarea {
-                padding: .8rem 1rem;
-                background-color: transparent;
-                border: 1px solid #bce0fb;
-                color: #3fabf1;
-                border-radius: 5px;
-                font-size: 1.2rem;               
-
-            }
-
-            button {
-                padding: .7rem;
-                border: none;
-                color: #061829;
-                background-color: #3fabf1;
-                font-size: 1.2rem;
-                font-weight: 600;
-                width: 80%;
-                margin: auto;
-                cursor: pointer;
-                border-radius: 5px;
-
-                @include tablet {
-                    width: 100%;
-                }
-
-                @include mobile {
-                    width: 100%;
-                }
-
-            }
-            @include tablet {
-             display: none;
-            }
-
-            @include mobile {
-                display: none;
-            }
-
+          }
         }
-
-        
+      }
     }
 
-
-    .smallScreen {
-        flex: 1;
+    .contact-form-wrapper {
+      .form-card {
+        padding: 2.5rem;
         position: relative;
-        width: 90%;
-        padding-bottom: 2rem;
 
-        .smallForm {
-            width: 80%;
+        @include mobile {
+          padding: 2rem 1.5rem;
+        }
+
+        .contact-form {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+
+          .form-group {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin: auto;
-            
-            
-            @include tablet {
-                width: 70%;
-                margin: auto;
+            gap: 0.5rem;
+
+            label {
+              font-size: 1rem;
+              font-weight: 600;
+              color: var(--color-textSecondary, #bce0fb);
+              margin-bottom: 0.25rem;
             }
 
-             @include mobile {
-                width: 100%;
+            input,
+            textarea {
+              width: 100%;
+              padding: 1rem;
+              background: var(--color-glassBg, rgba(11, 24, 41, 0.7));
+              border: 1px solid var(--color-glassBorder, rgba(188, 224, 251, 0.2));
+              border-radius: 0.5rem;
+              color: var(--color-textPrimary, #ffffff);
+              font-size: 1rem;
+              font-family: 'Helvetica Neue', sans-serif;
+              transition: all 0.3s ease;
+              resize: vertical;
+
+              &::placeholder {
+                color: var(--color-textMuted, #6b8fa3);
+              }
+
+              &:focus {
+                outline: none;
+                border-color: var(--color-primary, #bce0fb);
+                box-shadow: 0 0 0 3px rgba(188, 224, 251, 0.1);
+                background: var(--color-glassBg, rgba(11, 24, 41, 0.9));
+              }
+
+              &:hover {
+                border-color: var(--color-primary, #bce0fb);
+              }
             }
 
-
-            input, textarea {
-                padding: .8rem 1rem;
-                background-color: transparent;
-                border: 1px solid #bce0fb;
-                color: #3fabf1;
-                border-radius: 5px;
-
-                &::placeholder, input[type-text], input[type-email]{
-                    font-size: 1rem;
-                }
-
-               
-
+            textarea {
+              min-height: 150px;
+              font-family: 'Helvetica Neue', sans-serif;
             }
+          }
 
-            button {
-                padding: .7rem;
-                border: none;
-                color: #061829;
-                background-color: #3fabf1;
-                font-size: 1.2rem;
-                font-weight: 600;
-                width: 80%;
-                margin: auto;
-                cursor: pointer;
-                border-radius: 5px;
+          .submit-button {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+          }
 
-                @include tablet {
-                    width: 100%;
-                }
+          .error-message {
+            color: var(--color-error, #f87171);
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            text-align: center;
+            padding: 0.75rem;
+            background: rgba(248, 113, 113, 0.1);
+            border-radius: 0.5rem;
+            border: 1px solid rgba(248, 113, 113, 0.3);
+          }
 
-                @include mobile {
-                    width: 100%;
-                }
-            }
+          .success-message {
+            color: var(--color-success, #4ade80);
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            text-align: center;
+            padding: 0.75rem;
+            background: rgba(74, 222, 128, 0.1);
+            border-radius: 0.5rem;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+          }
         }
-        
-        
-        @include laptop {
-            display: none;
-        }   
+      }
     }
+  }
+}
+
+// Hide old classes that might cause conflicts
+.largeScreen,
+.smallScreen,
+.phoneSVG,
+.contactText,
+.heading,
+.item,
+.mail {
+  display: none !important;
 }

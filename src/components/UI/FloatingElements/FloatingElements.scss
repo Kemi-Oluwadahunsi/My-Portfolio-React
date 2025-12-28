@@ -1,0 +1,24 @@
+@import '../../../App.scss';
+
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.floating-element {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(188, 224, 251, 0.1) 0%,
+    transparent 70%
+  );
+  border: 1px solid rgba(188, 224, 251, 0.2);
+  backdrop-filter: blur(2px);
+}

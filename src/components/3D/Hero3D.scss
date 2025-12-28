@@ -1,0 +1,18 @@
+.hero-3d {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.3;
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
+  
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}

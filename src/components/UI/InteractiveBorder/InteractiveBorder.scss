@@ -1,0 +1,33 @@
+@import '../../../App.scss';
+
+.interactive-border {
+  position: relative;
+  padding: 2px;
+  border-radius: 1rem;
+  background: transparent;
+  overflow: hidden;
+
+  .border-gradient {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+      from 0deg,
+      var(--color-primary, #bce0fb),
+      var(--color-accent, #095a9b),
+      var(--color-primaryDark, #8bc5f0),
+      var(--color-primary, #bce0fb)
+    );
+    z-index: 0;
+  }
+
+  .border-content {
+    position: relative;
+    z-index: 1;
+    background: var(--color-bgPrimary, #061829);
+    border-radius: calc(1rem - 2px);
+    padding: 1.5rem;
+  }
+}

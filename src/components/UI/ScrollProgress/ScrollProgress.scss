@@ -1,0 +1,13 @@
+@import '../../../App.scss';
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-primary, #bce0fb);
+  transform-origin: 0%;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(188, 224, 251, 0.5);
+}

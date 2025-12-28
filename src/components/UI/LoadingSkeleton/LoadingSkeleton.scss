@@ -1,0 +1,22 @@
+@import '../../../App.scss';
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-bgSecondary, #0a1f33) 0%,
+    var(--color-bgTertiary, #0f2a3d) 50%,
+    var(--color-bgSecondary, #0a1f33) 100%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+  border-radius: 0.25rem;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

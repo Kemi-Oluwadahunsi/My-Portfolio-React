@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from '../Sidebar/sidebar'
 import './index.scss'
@@ -9,50 +10,86 @@ import Cursor from '../cursor/Cursor'
 import Navbar from '../navbar/Navbar'
 import ScrollArrow from '../backarrow/ScrollArrow'
 import Experience from '../workExperience/Experience'
+import ThemeToggle from '../UI/ThemeToggle/ThemeToggle'
+import LoadingSkeleton from '../UI/LoadingSkeleton/LoadingSkeleton'
+import Skills from '../Skills/Skills'
+import Background3D from '../3D/Background3D'
+import ParticleBackground from '../UI/ParticleBackground/ParticleBackground'
+
+// Lazy load heavy components
+const ParallaxLazy = lazy(() => Promise.resolve({ default: Parallax }))
+const ServicesLazy = lazy(() => Promise.resolve({ default: Services }))
+const PortfolioLazy = lazy(() => Promise.resolve({ default: Portfolio }))
+const ContactLazy = lazy(() => Promise.resolve({ default: Contact }))
+const ExperienceLazy = lazy(() => Promise.resolve({ default: Experience }))
+const SkillsLazy = lazy(() => Promise.resolve({ default: Skills }))
+const Background3DLazy = lazy(() => Promise.resolve({ default: Background3D }))
 
 const Layout = () => {
   return (
-    <div>
+    <div className="main-layout">
+      <ParticleBackground density={25} speed={0.4} />
       <Cursor />
       <ScrollArrow />
+      <ThemeToggle />
       <Navbar />
       <Sidebar />
-      <section className="App" id="section">
+      <main className="App" id="section" role="main">
         <div className="page">
-          <span className="tags top-tags ">&lt;body&gt;</span>
+          <span className="tags top-tags" aria-hidden="true">&lt;body&gt;</span>
 
           <Outlet />
 
-          <span className="tags bottom-tags ">
+          <span className="tags bottom-tags" aria-hidden="true">
             &lt;/body&gt;
             <br />
           </span>
-          
         </div>
+      </main>
+
+      <section id="firstParallaxSection" aria-label="Services section">
+        <Suspense fallback={<LoadingSkeleton width="100%" height="400px" />}>
+          <ParallaxLazy type="services" />
+        </Suspense>
       </section>
 
-      <section id="firstParallaxSection">
-        <Parallax type="services" />
+      <section className="servicesSection" aria-label="Services">
+        <Suspense fallback={<LoadingSkeleton width="100%" height="600px" />}>
+          <Background3DLazy intensity={0.2} />
+          <ServicesLazy />
+        </Suspense>
       </section>
 
-      <section className="servicesSection">
-        <Services />
+      <section className="skillsSection" id="skills" aria-label="Skills">
+        <Suspense fallback={<LoadingSkeleton width="100%" height="600px" />}>
+          <Background3DLazy intensity={0.15} />
+          <SkillsLazy />
+        </Suspense>
       </section>
 
-      <section className="experienceSection">
-        <Experience />
+      <section className="experienceSection" id="experience" aria-label="Work Experience">
+        <Suspense fallback={<LoadingSkeleton width="100%" height="500px" />}>
+          <Background3DLazy intensity={0.2} />
+          <ExperienceLazy />
+        </Suspense>
       </section>
 
-      <section className="secondParallaxSection">
-        <Parallax type="portfolio" />
+      <section className="secondParallaxSection" aria-label="Portfolio section">
+        <Suspense fallback={<LoadingSkeleton width="100%" height="400px" />}>
+          <ParallaxLazy type="portfolio" />
+        </Suspense>
       </section>
 
-      <section className="portfolioSection" id="portfolioSection">
-        <Portfolio />
+      <section className="portfolioSection" id="portfolioSection" aria-label="Portfolio">
+        <Suspense fallback={<LoadingSkeleton width="100%" height="800px" />}>
+          <PortfolioLazy />
+        </Suspense>
       </section>
 
-      <section className="contactSection " id="contact">
-        <Contact />
+      <section className="contactSection" id="contact" aria-label="Contact">
+        <Suspense fallback={<LoadingSkeleton width="100%" height="600px" />}>
+          <ContactLazy />
+        </Suspense>
       </section>
     </div>
   )
