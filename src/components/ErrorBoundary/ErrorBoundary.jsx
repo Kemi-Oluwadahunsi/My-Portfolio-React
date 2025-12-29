@@ -21,7 +21,7 @@ class ErrorBoundary extends React.Component {
         <div className="error-boundary">
           <div className="error-content">
             <h1>Oops! Something went wrong</h1>
-            <p>We're sorry for the inconvenience. Please try refreshing the page.</p>
+            <p>We&apos;re sorry for the inconvenience. Please try refreshing the page.</p>
             <button 
               onClick={() => window.location.reload()}
               className="error-button"

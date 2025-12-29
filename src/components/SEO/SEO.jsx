@@ -72,4 +72,5 @@ const SEO = ({
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export default SEO

@@ -9,6 +9,7 @@ const AnimatedCounter = ({ value, duration = 2, suffix = '', prefix = '' }) => {
   const springValue = useSpring(motionValue, {
     damping: 60,
     stiffness: 100,
+    duration: duration,
   })
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 

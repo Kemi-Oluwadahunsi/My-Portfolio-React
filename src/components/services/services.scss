@@ -3,13 +3,29 @@
 .services {
   background: linear-gradient(180deg, var(--color-bgPrimary, #061829), var(--color-accent, #095a9b));
   min-height: 100vh;
-  width: 100%;
+  width: 97%;
+  margin-left: 3%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 4rem 2rem;
   position: relative;
   overflow: hidden;
+
+  @include tablet {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  @include mobile {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  @include laptop {
+    padding-left: 6%;
+   
+  }
 
   .services-background {
     position: absolute;
@@ -65,7 +81,7 @@
     @include mobile {
       gap: 1rem;
       margin-right: 1rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.1rem;
     }
 
     p {
@@ -154,7 +170,7 @@
 
   .listContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2.5rem;
     max-width: 1400px;
     margin: 0 auto;
@@ -163,13 +179,19 @@
     z-index: 1;
 
     @include tablet {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
       padding: 1.5rem;
     }
 
     @include mobile {
       grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+
+    @media screen and (min-width: 769px) and (max-width: 1170px) {
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       padding: 1rem;
     }
@@ -184,15 +206,25 @@
     }
 
       .service-box {
-        height: 100%;
-        min-height: 200px;
+        height: 20rem;
         display: flex;
+        // border: 1px solid #bce0fb;
         flex-direction: column;
         gap: 1rem;
         padding: 1.5rem;
         position: relative;
         overflow: hidden;
         transition: all 0.3s ease;
+
+        @include tablet {
+          width: 20rem;
+          height: 18rem;
+        }
+
+        @include mobile {
+          width: 20rem;
+          height: 18rem;
+        }
         
         &::before {
           content: '';
@@ -244,6 +276,18 @@
           font-weight: 700;
           font-size: 1.2rem;
           box-shadow: 0 4px 15px rgba(188, 224, 251, 0.4);
+
+          @include tablet {
+            width: 30px;
+            height: 30px;
+            font-size: 1rem;
+        }
+
+          @include mobile {
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+          }
         }
       }
 
@@ -256,15 +300,18 @@
 
         @include tablet {
           font-size: 1.1rem;
+          letter-spacing: 0.6px;
         }
 
         @include mobile {
           font-size: 1rem;
+          letter-spacing: 0.5px;
         }
       }
 
       p {
-        font-size: 0.95rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
         line-height: 1.4;
         color: var(--color-textSecondary, #bce0fb);
         flex-grow: 1;

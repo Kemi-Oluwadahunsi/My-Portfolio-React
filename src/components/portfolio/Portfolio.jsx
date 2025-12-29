@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDisplay } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import { Link } from 'react-router-dom'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { portfolioItems } from '../../constants/portfolioData'
@@ -128,16 +127,16 @@ const Single = ({ item, index }) => {
                   whileTap={{ scale: 0.9 }}
                   className="link-wrapper"
                 >
-                  <Link
+                  <a
                     className="link interactive"
-                    to={item.live}
-                    rel="noreferrer"
+                    href={item.live}
+                    rel="noopener noreferrer"
                     target="_blank"
                     aria-label={`View live ${item.title} project`}
                   >
                     <FontAwesomeIcon icon={faDisplay} color="#bce0fb" />
                     <span>Live View</span>
-                  </Link>
+                  </a>
                 </motion.div>
 
                 <motion.div 
@@ -145,16 +144,16 @@ const Single = ({ item, index }) => {
                   whileTap={{ scale: 0.9 }}
                   className="link-wrapper"
                 >
-                  <Link
+                  <a
                     className="link interactive"
-                    to={item.gitHub}
-                    rel="noreferrer"
+                    href={item.gitHub}
+                    rel="noopener noreferrer"
                     target="_blank"
                     aria-label={`View ${item.title} source code on GitHub`}
                   >
                     <FontAwesomeIcon icon={faGithub} color="#bce0fb" />
                     <span>View Codes</span>
-                  </Link>
+                  </a>
                 </motion.div>
               </motion.div>
             </div>
@@ -179,7 +178,7 @@ Single.propTypes = {
 }
 
 const Portfolio = () => {
-  const [ref, inView] = useInView({
+  const [ref] = useInView({
     threshold: 0.1,
     triggerOnce: true,
   })
@@ -189,7 +188,7 @@ const Portfolio = () => {
       <motion.div
         className="progress"
         initial={{ opacity: 0, y: -20 }}
-        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
         <h1>Featured Works</h1>

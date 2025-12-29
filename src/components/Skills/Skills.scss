@@ -2,10 +2,28 @@
 
 .skills-section {
   min-height: 100vh;
+  width: 95%;
+  margin-left: 5%;
   padding: 5rem 2rem;
-  background: linear-gradient(180deg, var(--color-bgPrimary, #061829), var(--color-accentSecondary, #505064));
+  background: linear-gradient(
+    180deg,
+    var(--color-bgPrimary, #061829),
+    var(--color-accentSecondary, #505064)
+  );
   position: relative;
   overflow: hidden;
+
+  @include tablet {
+    margin-left: 0;
+    width: 100%;
+    padding: 3rem 2rem;
+  }
+
+  @include mobile {
+    margin-left: 0;
+    width: 100%;
+    padding: 2rem;
+  }
 
   &::before {
     content: '';
@@ -14,9 +32,16 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-      radial-gradient(circle at 50% 50%, rgba(188, 224, 251, 0.08) 0%, transparent 70%),
-      radial-gradient(circle at 20% 80%, rgba(80, 80, 100, 0.05) 0%, transparent 50%);
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(188, 224, 251, 0.08) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        circle at 20% 80%,
+        rgba(80, 80, 100, 0.05) 0%,
+        transparent 50%
+      );
     pointer-events: none;
     z-index: 0;
   }
@@ -35,11 +60,11 @@
       text-shadow: 0 0 20px rgba(188, 224, 251, 0.3);
 
       @include tablet {
-        font-size: 3rem;
+        font-size: 2.5rem;
       }
 
       @include mobile {
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
     }
 
@@ -49,8 +74,12 @@
       color: var(--color-textSecondary, #bce0fb);
       margin-bottom: 4rem;
 
+      @include tablet {
+        font-size: 1.2rem;
+      }
+
       @include mobile {
-        font-size: 1.1rem;
+        font-size: 1rem;
         margin-bottom: 2rem;
       }
     }
@@ -67,7 +96,7 @@
 
       .skill-item-wrapper {
         width: 100%;
-        
+
         .skill-glow {
           width: 100%;
         }

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { useScroll, useTransform } from 'framer-motion'
 import { motion } from 'framer-motion'
 import './BlurOnScroll.scss'

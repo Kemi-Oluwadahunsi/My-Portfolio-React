@@ -306,6 +306,25 @@ export const portfolioItems = [
 
 export const workExperience = [
   {
+    id: 4,
+    title: 'Software Engineer',
+    company: 'Etiqa Insurance & Takaful (Kuala lumpur, Malaysia, Hybrid)',
+    startDate: '04/2025',
+    endDate: 'Present',
+    details: [
+      {
+        id: 1,
+        detail:
+          'Engineered IAM solutions integrating LDAP directory services with OIDC protocols via PingID, strengthening security posture and streamlining authentication processes across enterprise applications.',
+      },
+      {
+        id: 2,
+        detail:
+          'Spearheaded the implementation of Module Federation architecture using Webpack 5, enabling micro-frontend capabilities that improved application modularity and team autonomy in development workflows.',
+      },
+    ],
+  },
+  {
     id: 3,
     title: 'Frontend Software Developer',
     company: 'Flit Incorporations (London UK, Remote)',
@@ -353,12 +372,22 @@ export const workExperience = [
       {
         id: 1,
         detail:
-          'Created 7 scalable and flexible single-page applications (SPAs) for brands and businesses, leading to a 15% improvement in user engagement and boosting client satisfaction by 90%.',
+          'Delivered 20+ production applications serving 10,000+ combined users',
       },
       {
         id: 2,
         detail:
-          'Collaborated with designers and other developers on 2 open-source projects, promoting a collaborative development environment and enhancing technical expertise.',
+          'Achieved over 90% client satisfaction rate with 100% project delivery',
+      },
+      {
+        id: 3,
+        detail:
+          'Improved average client user engagement by 15% through UX optimization',
+      },
+      {
+        id: 4,
+        detail:
+          'Responsive-first design ensuring 95%+ mobile performance scores ',
       },
     ],
   },

@@ -75,7 +75,7 @@ const Sidebar = () => {
         </motion.div>
 
         <nav>
-          {navItems.map((item, index) => (
+          {navItems.map((item) => (
             <motion.div
               key={item.to}
               variants={itemVariants}

@@ -15,7 +15,9 @@ function AnimatedSphere() {
   })
 
   return (
+    // eslint-disable-next-line react/no-unknown-property
     <mesh ref={meshRef} position={[0, 0, 0]}>
+      {/* eslint-disable-next-line react/no-unknown-property */}
       <icosahedronGeometry args={[1, 1]} />
       <MeshDistortMaterial
         color="#bce0fb"
@@ -39,7 +41,9 @@ const Hero3D = () => {
     >
       <Canvas camera={{ position: [0, 0, 5] }}>
         <Suspense fallback={null}>
+          {/* eslint-disable-next-line react/no-unknown-property */}
           <ambientLight intensity={0.5} />
+          {/* eslint-disable-next-line react/no-unknown-property */}
           <pointLight position={[10, 10, 10]} />
           <AnimatedSphere />
           <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />

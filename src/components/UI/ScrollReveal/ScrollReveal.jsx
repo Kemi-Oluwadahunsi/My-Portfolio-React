@@ -1,5 +1,4 @@
 import { useRef, useEffect } from 'react'
-import { motion, useInView } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import PropTypes from 'prop-types'
@@ -10,7 +9,6 @@ if (typeof window !== 'undefined' && typeof gsap !== 'undefined') {
 
 const ScrollReveal = ({ children, direction = 'up', delay = 0, duration = 0.8 }) => {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   useEffect(() => {
     if (ref.current) {

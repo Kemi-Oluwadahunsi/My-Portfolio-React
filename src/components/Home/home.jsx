@@ -132,13 +132,13 @@ const Home = () => {
           to="services"
         >
           <ScrollLink to="portfolioSection" smooth={true} duration={500}>
-            <Button variant="primary" size="lg">
+            <Button variant="primary" size="lg" className='flat-button'>
               See my Latest Works
             </Button>
           </ScrollLink>
 
           <ScrollLink to="contact" smooth={true} duration={500}>
-            <Button variant="outline" size="lg">
+            <Button variant="outline" size="lg" className='flat-button'>
               CONTACT ME
             </Button>
           </ScrollLink>
@@ -153,7 +153,8 @@ const Home = () => {
       >
         <img
           className="my-image"
-          src="/my-image3.webp"
+          // src="/my-image3.webp"
+          src="/new-image.png"
           alt="Kemi Oluwadahunsi - Frontend Developer"
           loading="lazy"
         />

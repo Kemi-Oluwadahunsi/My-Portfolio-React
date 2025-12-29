@@ -24,6 +24,7 @@
   .glow-content {
     position: relative;
     z-index: 1;
+    pointer-events: auto;
   }
 
   &.glow-low .glow-effect {

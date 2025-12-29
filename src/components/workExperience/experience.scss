@@ -1,15 +1,33 @@
 @import '../../App.scss';
 
 .experience {
+  width: 97%;
+  margin-left: 3%;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   min-height: 100vh;
   padding: 5rem 2rem;
-  background: linear-gradient(180deg, var(--color-accent, #095a9b), var(--color-bgPrimary, #061829));
+  background: linear-gradient(
+    180deg,
+    var(--color-accent, #095a9b),
+    var(--color-bgPrimary, #061829)
+  );
   position: relative;
   overflow: hidden;
+
+  @include tablet {
+    margin-left: 0;
+    width: 100%;
+    padding: 3rem 1rem;
+  }
+
+  @include mobile {
+    margin-left: 0;
+    width: 100%;
+    padding: 2rem 1rem;
+  }
 
   &::before {
     content: '';
@@ -18,9 +36,16 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-      radial-gradient(circle at 80% 20%, rgba(188, 224, 251, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 20% 80%, rgba(9, 90, 155, 0.1) 0%, transparent 50%);
+    background: radial-gradient(
+        circle at 80% 20%,
+        rgba(188, 224, 251, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 20% 80%,
+        rgba(9, 90, 155, 0.1) 0%,
+        transparent 50%
+      );
     pointer-events: none;
     z-index: 0;
   }
@@ -32,14 +57,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(188, 224, 251, 0.03) 2px,
-        rgba(188, 224, 251, 0.03) 4px
-      );
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(188, 224, 251, 0.03) 2px,
+      rgba(188, 224, 251, 0.03) 4px
+    );
     pointer-events: none;
     z-index: 0;
   }
@@ -53,6 +77,7 @@
     width: 100%;
     position: relative;
     z-index: 1;
+    overflow-x: hidden;
 
     h1 {
       font-size: 4rem;
@@ -62,11 +87,13 @@
       text-shadow: 0 0 20px rgba(188, 224, 251, 0.3);
 
       @include tablet {
-        font-size: 3rem;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
       }
 
       @include mobile {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        margin-bottom: 0.3rem;
       }
     }
 
@@ -79,7 +106,7 @@
 
       @include mobile {
         font-size: 1rem;
-        padding: 0.5rem 0 2rem;
+        padding: 0.5rem 0 0.5rem;
       }
     }
 
@@ -106,7 +133,7 @@
         perspective: 1000px;
         height: 100%;
         position: relative;
-        
+
         &::before {
           content: '';
           position: absolute;
@@ -114,8 +141,12 @@
           left: -10px;
           right: -10px;
           bottom: -10px;
-          background: linear-gradient(135deg, rgba(188, 224, 251, 0.1), rgba(9, 90, 155, 0.1));
-          border-radius: 1.5rem;
+          background: linear-gradient(
+            135deg,
+            rgba(188, 224, 251, 0.1),
+            rgba(9, 90, 155, 0.1)
+          );
+          border-radius: 1rem;
           opacity: 0;
           transition: opacity 0.3s ease;
           z-index: -1;
@@ -134,7 +165,18 @@
         overflow: visible;
         padding: 0;
         background: transparent;
-        border: none;
+
+        @include tablet {
+          height: 90%;
+          min-height: 330px;
+        }
+
+        @include mobile {
+          height: 90%;
+          min-height: 320px;
+          width: 90%;
+          margin: 0 auto;
+        }
 
         .card-front,
         .card-back {
@@ -142,17 +184,26 @@
           width: 100%;
           height: 100%;
           backface-visibility: hidden;
-          border-radius: 1.5rem;
+          border-radius: 1rem;
           padding: 2.5rem;
           display: flex;
           flex-direction: column;
           justify-content: center;
+
+          @include tablet {
+            padding: 2rem;
+          }
+
+          @include mobile {
+            padding: 2rem;
+          }
+
         }
 
         .card-front {
           background: var(--color-glassBg, rgba(11, 24, 41, 0.9));
           backdrop-filter: blur(20px);
-          border: 2px solid var(--color-glassBorder, rgba(188, 224, 251, 0.3));
+          // border: 2px solid var(--color-glassBorder, rgba(188, 224, 251, 0.3));
           color: var(--color-textPrimary, #ffffff);
           transform-style: preserve-3d;
 
@@ -163,11 +214,23 @@
             align-items: center;
             text-align: center;
 
+            @include tablet {
+              gap: 1.2rem;
+            }
+
+            @include mobile {
+              gap: 1rem;
+            }
+
             .card-icon {
               width: 70px;
               height: 70px;
               border-radius: 50%;
-              background: linear-gradient(135deg, var(--color-primary, #bce0fb), var(--color-primaryDark, #8bc5f0));
+              background: linear-gradient(
+                135deg,
+                var(--color-primary, #bce0fb),
+                var(--color-primaryDark, #8bc5f0)
+              );
               display: flex;
               align-items: center;
               justify-content: center;
@@ -175,6 +238,20 @@
               color: var(--color-bgPrimary, #061829);
               box-shadow: 0 8px 25px rgba(188, 224, 251, 0.4);
               margin-bottom: 1rem;
+
+              @include tablet {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+              }
+
+              @include mobile {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                margin-bottom: 0.3rem;
+              }
             }
 
             .expT {
@@ -184,8 +261,14 @@
               margin: 0;
               line-height: 1.3;
 
+              @include tablet {
+                font-size: 1.2rem;
+                letter-spacing: 0.5px;
+              }
+
               @include mobile {
-                font-size: 1.3rem;
+                font-size: 1rem;
+                letter-spacing: 0.3px;
               }
             }
 
@@ -193,6 +276,14 @@
               font-size: 1rem;
               color: var(--color-textSecondary, #bce0fb);
               font-weight: 500;
+
+              @include tablet {
+                font-size: 0.9rem;
+              }
+
+              @include mobile {
+                font-size: 0.8rem;
+              }
 
               span {
                 display: inline-block;
@@ -206,8 +297,12 @@
               font-weight: 500;
               line-height: 1.4;
 
-              @include mobile {
+              @include tablet {
                 font-size: 1rem;
+              }
+
+              @include mobile {
+                font-size: 0.8rem;
               }
             }
 
@@ -216,12 +311,26 @@
               font-size: 0.9rem;
               color: var(--color-textMuted, #6b8fa3);
               font-style: italic;
+
+              @include tablet {
+                font-size: 0.8rem;
+                margin-top: 0.5rem;
+              }
+
+              @include mobile {
+                font-size: 0.7rem;
+                margin-top: 0.3rem;
+              }
             }
           }
         }
 
         .card-back {
-          background: linear-gradient(135deg, var(--color-primary, #bce0fb), var(--color-primaryDark, #8bc5f0));
+          background: linear-gradient(
+            135deg,
+            var(--color-primary, #bce0fb),
+            var(--color-primaryDark, #8bc5f0)
+          );
           color: var(--color-bgPrimary, #061829);
           transform: rotateY(-180deg);
           transform-style: preserve-3d;
@@ -232,11 +341,27 @@
             gap: 1.5rem;
             height: 100%;
 
+            @include tablet {
+              gap: 1.2rem;
+            }
+
+            @include mobile {
+              gap: 1rem;
+            }
+
             .detail-title {
               display: flex;
               align-items: center;
               gap: 1rem;
               margin-bottom: 1rem;
+
+              @include tablet {
+                margin-bottom: 0.5rem;
+              }
+
+              @include mobile {
+                margin-bottom: 0.3rem;
+              }
 
               h4 {
                 font-weight: 700;
@@ -244,8 +369,12 @@
                 margin: 0;
                 color: var(--color-bgPrimary, #061829);
 
-                @include mobile {
+                @include tablet {
                   font-size: 1.1rem;
+                }
+
+                @include mobile {
+                  font-size: 1rem;
                 }
               }
 
@@ -260,26 +389,55 @@
               gap: 1.2rem;
               flex-grow: 1;
 
+              @include tablet {
+                gap: 1rem;
+              }
+
+              @include mobile {
+                gap: 0.5rem;
+              }
+
               .describe {
                 display: flex;
                 gap: 1rem;
                 align-items: flex-start;
+
+                @include tablet {
+                  gap: 0.5rem;
+                }
+
+                @include mobile {
+                  gap: 0.4rem;
+                }
 
                 .dotIcon {
                   font-size: 0.6rem;
                   margin-top: 0.6rem;
                   color: var(--color-bgPrimary, #061829);
                   flex-shrink: 0;
+
+                  @include tablet {
+                    font-size: 0.4rem;
+                    margin-top: 0.4rem;
+                  }
+
+                  @include mobile {
+                    font-size: 0.4rem;
+                    margin-top: 0.5rem;
+                  }
                 }
 
                 p {
-                  font-size: 1rem;
+                  font-size: 0.8rem;
                   line-height: 1.7;
                   color: var(--color-bgPrimary, #061829);
                   margin: 0;
 
+                  @include tablet {
+                    line-height: 1.6;
+                  }
+
                   @include mobile {
-                    font-size: 0.9rem;
                     line-height: 1.6;
                   }
                 }

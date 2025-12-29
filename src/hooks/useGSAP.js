@@ -18,6 +18,7 @@ export const useGSAP = (animationFn, dependencies = []) => {
 
       return () => ctx.revert()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies)
 
   return elementRef

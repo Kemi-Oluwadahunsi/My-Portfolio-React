@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 
 const TiltCard = ({ children, className = '', intensity = 15 }) => {
   const cardRef = useRef(null)
+  // eslint-disable-next-line no-unused-vars
   const [isHovered, setIsHovered] = useState(false)
 
   const rotateX = useSpring(useMotionValue(0), { stiffness: 300, damping: 30 })
