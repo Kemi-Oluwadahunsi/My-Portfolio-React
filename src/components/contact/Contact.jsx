@@ -361,6 +361,7 @@ const Contact = () => {
             Let&apos;s Work Together
           </motion.h1>
           <motion.div variants={variants} className="item">
+         
             <h2 className="mail">Mail:</h2>
 
             <span>oluwakemioluwadahunsi@gmail.com</span>

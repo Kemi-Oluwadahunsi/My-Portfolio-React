@@ -15,6 +15,10 @@
   transition: all 0.3s ease;
   text-decoration: none;
   font-family: inherit;
+  pointer-events: auto;
+  z-index: 1000;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(188, 224, 251, 0.3);
   
   &:disabled {
     opacity: 0.6;
