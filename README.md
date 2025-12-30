@@ -130,8 +130,4 @@ The project uses a comprehensive design system with:
 
 Private project - All rights reserved
 
----
-
 Built with ❤️ by Kemi Oluwadahunsi
-
-Also, fix the parrallax sections, especially the My projects section, when in view on mobile, the my projects text doesn't display until the i almost scrolled up the section before it displays, it should diplay as soon as I am in the sction scrolling.
