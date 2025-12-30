@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kodemaven-portfolio.vercel.app/sitemap.xml
+Sitemap: https://kemi-oluwadahunsi.vercel.app/sitemap.xml

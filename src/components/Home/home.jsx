@@ -16,7 +16,7 @@ const Hero3D = lazy(() => import('../3D/Hero3D'))
 
 const Home = () => {
   const [letterClass] = useState('text-animate')
-  const [ref, inView] = useInView({
+  const [ref] = useInView({
     threshold: 0.1,
     triggerOnce: true,
   })
@@ -64,8 +64,9 @@ const Home = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
+        staggerChildren: 0.15,
+        delayChildren: 0.4,
+        duration: 0.2,
       },
     },
   }
@@ -76,7 +77,8 @@ const Home = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.6,
+        ease: 'easeOut',
       },
     },
   }
@@ -87,7 +89,7 @@ const Home = () => {
       ref={ref}
       variants={containerVariants}
       initial="hidden"
-      animate={inView ? 'visible' : 'hidden'}
+      animate="visible"
     >
       <ParticleBackground density={30} speed={0.5} />
       <FloatingElements />
@@ -105,10 +107,11 @@ const Home = () => {
           <span className={`${letterClass} _14`}>&apos;m</span>
           <motion.img
             src={Kemi}
-            alt="introduction"
+            alt="Kemi - Creative introduction letter K"
             className="k-letter"
             whileHover={{ rotate: [0, -10, 10, -10, 0] }}
             transition={{ duration: 0.5 }}
+            loading="eager"
           />
           <AnimatedLetters
             letterClass={letterClass}
@@ -123,7 +126,11 @@ const Home = () => {
           />
         </motion.h1>
 
-        <motion.h2 variants={itemVariants}>
+        <motion.h2 
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible"
+        >
           <GradientText gradient="primary" animate={true}>
             Frontend Engineer / Enterprise Solutions
           </GradientText>
@@ -151,15 +158,16 @@ const Home = () => {
       <motion.div
         className="imageContainer"
         variants={itemVariants}
+        initial="hidden"
+        animate="visible"
         whileHover={{ scale: 1.05 }}
-        transition={{ duration: 0.3 }}
       >
         <div className="rotating-blob" />
         <img
           className="my-image"
-          src="/my-image-2-new.png"
+          src="/my-image-2-new.webp"
           alt="Kemi Oluwadahunsi - Frontend Developer"
-          loading="lazy"
+          loading="eager"
         />
       </motion.div>
     </motion.div>

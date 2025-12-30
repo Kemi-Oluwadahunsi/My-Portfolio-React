@@ -255,7 +255,7 @@ export const portfolioItems = [
       '|',
       ' Emailjs ',
     ],
-    live: 'https://kodemaven-portfolio.vercel.app/',
+    live: 'https://kemi-oluwadahunsi.vercel.app/',
     gitHub: 'https://github.com/Kemi-Oluwadahunsi/My-Portfolio-React',
   },
   {

@@ -6,6 +6,12 @@
   position: relative;
   overflow: hidden;
   margin-left: 3rem;
+  
+  // Ensure children are hidden until animation
+  .text-zone h2,
+  .imageContainer {
+    opacity: 0;
+  }
   @include tablet {
     margin-left: 0;
     height: 100dvh;
@@ -144,7 +150,6 @@ h2 {
   font-size: 1.3rem;
   font-family: sans-serif;
   letter-spacing: 3px;
-  animation: fadeIn 1s 1.8s backwards;
 
   @include tablet {
     font-size: 1rem;
@@ -324,6 +329,7 @@ h2 {
     z-index: 2;
     object-fit: cover;
     filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+    will-change: opacity;
 
     @include tablet {
       width: 100%;

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 const LoadingSkeleton = ({ 
   width = '100%', 
-  height = '1rem', 
+  height = '1rem',
   className = '' 
 }) => {
   return (
