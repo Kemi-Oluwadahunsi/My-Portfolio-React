@@ -1,0 +1,10 @@
+@import '../../../App.scss';
+
+.magnetic-button {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+}

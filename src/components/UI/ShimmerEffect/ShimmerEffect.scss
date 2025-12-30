@@ -1,0 +1,27 @@
+@import '../../../App.scss';
+
+.shimmer-container {
+  position: relative;
+  overflow: hidden;
+
+  .shimmer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(188, 224, 251, 0.4),
+      transparent
+    );
+    transform: skewX(-20deg);
+    z-index: 1;
+  }
+
+  .shimmer-content {
+    position: relative;
+    z-index: 2;
+  }
+}

@@ -1,0 +1,6 @@
+@import '../../../App.scss';
+
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}

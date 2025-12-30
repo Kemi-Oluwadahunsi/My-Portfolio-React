@@ -17,7 +17,41 @@ $primary-color: #bce0fb;
   src: url('./assets//fonts/CoolveticaRg-Regular.woff2') format('woff2');
 }
 
-input, textarea{
+// CSS Custom Properties (CSS Variables) for Theme
+:root {
+  // Primary Colors
+  --color-primary: #bce0fb;
+  --color-primaryDark: #8bc5f0;
+  --color-primaryLight: #d4eafc;
+  
+  // Background Colors
+  --color-bgPrimary: #061829;
+  --color-bgSecondary: #0a1f33;
+  --color-bgTertiary: #0f2a3d;
+  
+  // Accent Colors
+  --color-accent: #095a9b;
+  --color-accentSecondary: #505064;
+  --color-accentTertiary: #0c4e80;
+  
+  // Text Colors
+  --color-textPrimary: #ffffff;
+  --color-textSecondary: #bce0fb;
+  --color-textTertiary: #8bc5f0;
+  --color-textMuted: #6b8fa3;
+  
+  // Glassmorphism
+  --color-glassBg: rgba(11, 24, 41, 0.7);
+  --color-glassBorder: rgba(188, 224, 251, 0.2);
+  
+  // Transitions
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+}
+
+
+input, textarea {
   font-family: 'Helvetica Neue';
 }
 
@@ -29,19 +63,35 @@ input, textarea{
 }
 
 html {
-   overflow-x: hidden;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: #061829;
-  color: lightgray;
+  background-color: var(--color-bgPrimary, #061829);
+  color: var(--color-textPrimary, #ffffff);
   max-width: 1600px;
   margin: auto;
+  transition: background-color var(--transition-normal, 300ms ease-in-out),
+              color var(--transition-normal, 300ms ease-in-out);
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+// Smooth scroll behavior
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+// Focus styles for accessibility
+*:focus-visible {
+  outline: 2px solid var(--color-primary, #bce0fb);
+  outline-offset: 2px;
 }
 
 @mixin mobile {

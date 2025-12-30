@@ -1,292 +1,63 @@
-// @import '../../App.scss';
-
-// .services {
-//   background: linear-gradient(180deg, #061829, #095a9b);
-//   height: auto;
-//   width: screen;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-//   padding: 1rem 0;
-
-//   @include tablet {
-//     height: auto;
-//     padding-top: 0;
-//   }
-
-//   @include mobile {
-//     height: auto;
-//     padding-top: 0;
-//   }
-
-//   @media screen and (min-width: 769px) and (max-width: 1170px) {
-//     margin-left: 3rem;
-//     width: fit-content;
-//   }
-
-//   .textContainer {
-//     flex: 1;
-//     align-self: flex-end;
-//     display: flex;
-//     align-items: center;
-//     gap: 2rem;
-//     margin-right: 5rem;
-//     width: fit-content;
-
-//     @include tablet {
-//       gap: 1rem;
-//       margin-right: 2rem;
-//     }
-
-//     @include mobile {
-//       gap: 1rem;
-//       margin-right: 1rem;
-//     }
-
-//     @media screen and (min-width: 769px) and (max-width: 1170px) {
-//       margin-right: 3em;
-//     }
-
-//     p {
-//       font-weight: 200;
-//       font-size: 1.5rem;
-//       color: gray;
-//       text-align: right;
-//       font-family: 'Helvetica Neue';
-//       width: fit-content;
-
-//       @include tablet {
-//         font-size: 1rem;
-//         padding-top: 0.7rem;
-//       }
-
-//       @include mobile {
-//         font-size: 0.8rem;
-//         padding-top: 0.5rem;
-//       }
-
-//       @media screen and (min-width: 769px) and (max-width: 1170px) {
-//         font-size: 1rem;
-//       }
-
-//       span {
-//         display: block;
-//         font-family: 'Helvetica Neue';
-//       }
-//     }
-//   }
-
-//   .titleContainer {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     flex: 2;
-//     margin: auto;
-//     width: fit-content;
-//     line-height: 6rem;
-
-//     @include tablet {
-//       margin-top: 1.5rem;
-//     }
-
-//     @include mobile {
-//       margin-top: 1.5rem;
-//       line-height: 3rem;
-//     }
-
-//     @media screen and (min-width: 769px) and (max-width: 1170px) {
-//       padding-bottom: 5rem;
-//     }
-
-//     .title {
-//       display: flex;
-//       align-items: center;
-//       gap: 4rem;
-
-//       @include mobile {
-//         gap: 1rem;
-//       }
-
-//       @include tablet {
-//         gap: 2rem;
-//         line-height: 4rem;
-//       }
-
-//       @media screen and (min-width: 769px) and (max-width: 1170px) {
-//         gap: 0.5rem;
-//       }
-
-//       h1 {
-//         font-size: 5rem;
-//         font-weight: lighter;
-
-//         @include mobile {
-//           font-size: 2rem;
-//         }
-
-//         @include tablet {
-//           font-size: 3rem;
-//         }
-
-//         @media screen and (min-width: 769px) and (max-width: 1170px) {
-//           font-size: 3.5rem;
-//         }
-//       }
-//     }
-//   }
-
-//   .listContainer {
-//     display: flex;
-//     justify-content: center;
-//     margin: auto;
-//     padding: 0 1rem 0 0rem;
-//     flex-wrap: wrap;
-//     margin-top: 6rem;
-//     gap: 2rem;
-
-//     .slick-slide {
-//       display: flex;
-//       justify-content: center;
-//       width: 100%;
-//     }
-
-//     @include mobile {
-//       margin: 2rem auto;
-//       flex-direction: column;
-//       gap: 2rem;
-//       padding: 0;
-//     }
-
-//     @include tablet {
-//       margin: 2rem auto;
-//       max-width: 40rem;
-//       gap: 2rem;
-//       flex-wrap: wrap;
-//       padding: 0;
-//     }
-
-//     @media screen and (min-width: 769px) and (max-width: 1170px) {
-//       margin: 2rem auto;
-//       max-width: fit-content;
-//       gap: 2rem;
-//       flex-wrap: wrap;
-//       padding-left: 2rem;
-//     }
-
-//     .box {
-//       padding: 0 1rem;
-//       border: 0.5px solid #bddffa;
-//       display: flex;
-//       flex-direction: column;
-//       gap: 2rem;
-//       height: 19em;
-//       width: 25%;
-//       border-radius: 2rem;
-//       padding: 1rem 1rem 2rem 1rem;
-
-//       &:hover {
-//         transform: scale(0.95);
-//       }
-
-//       .serviceTitle {
-//         font-size: 1.4rem;
-//         animation: none;
-//         color: #3faaf1;
-
-//         @include tablet {
-//           font-size: 1.2rem;
-//         }
-
-//         @include mobile {
-//           font-size: 1.1rem;
-//         }
-//       }
-
-//       p {
-//         font-size: 1rem;
-
-//         line-height: 2rem;
-//         color: #f1f8fe;
-
-//         @include tablet {
-//           font-size: 1rem;
-//           line-height: 1.7rem;
-//         }
-
-//         @include mobile {
-//           font-size: 1rem;
-//           line-height: 1.7rem;
-//         }
-//       }
-
-//       @include mobile {
-//         border: 0.5px solid gray;
-//         border-radius: 10px;
-//         width: 80%;
-//         margin: auto;
-//         height: 17rem;
-
-//         &:hover {
-//           transform: none;
-//         }
-//       }
-
-//       @include tablet {
-//         border: 0.5px solid gray;
-//         border-radius: 10px;
-//         width: 45%;
-//         height: 19rem;
-//         margin: auto;
-//         gap: 1rem;
-
-//         &:hover {
-//           transform: none;
-//         }
-//       }
-
-//       @media screen and (min-width: 500px) and (max-width: 560px) {
-//         width: 46%;
-//         height: 20rem;
-//       }
-
-//       @media screen and (min-width: 769px) and (max-width: 1016px) {
-//         height: 23rem;
-//         width: 30%;
-//         border-radius: 10px;
-//       }
-
-//       @media screen and (min-width: 1017px) and (max-width: 1170px) {
-//         height: 20rem;
-//         width: 30%;
-//         border-radius: 10px;
-//       }
-//     }
-//   }
-// }
-
 @import '../../App.scss';
 
 .services {
-  background: linear-gradient(180deg, #061829, #095a9b);
-  height: auto;
-  width: 100%;
+  background: linear-gradient(180deg, var(--color-bgPrimary, #061829), var(--color-accent, #095a9b));
+  min-height: 100vh;
+  width: 97%;
+  margin-left: 3%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem 0;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
 
   @include tablet {
-    height: auto;
-    padding-top: 0;
+    margin-left: 0;
+    width: 100%;
   }
 
   @include mobile {
-    height: auto;
-    padding-top: 0;
+    margin-left: 0;
+    width: 100%;
   }
 
-  @media screen and (min-width: 769px) and (max-width: 1170px) {
-    padding-left: 3rem;
+  @include laptop {
+    padding-left: 6%;
+   
+  }
+
+  .services-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(188, 224, 251, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(9, 90, 155, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(188, 224, 251, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @include tablet {
+    padding: 3rem 1.5rem;
+  }
+
+  @include mobile {
+    padding: 2rem 1rem;
   }
 
   .textContainer {
@@ -296,47 +67,44 @@
     align-items: center;
     gap: 2rem;
     margin-right: 5rem;
+    margin-bottom: 2rem;
     width: fit-content;
+    position: relative;
+    z-index: 2;
 
     @include tablet {
       gap: 1rem;
       margin-right: 2rem;
+      margin-bottom: 1rem;
     }
 
     @include mobile {
       gap: 1rem;
       margin-right: 1rem;
-    }
-
-    @media screen and (min-width: 769px) and (max-width: 1170px) {
-      margin-right: 3em;
+      margin-bottom: 0.1rem;
     }
 
     p {
-      font-weight: 200;
+      font-weight: 300;
       font-size: 1.5rem;
-      color: gray;
+      color: var(--color-textSecondary, #bce0fb);
       text-align: right;
       font-family: 'Helvetica Neue';
       width: fit-content;
 
       @include tablet {
-        font-size: 1rem;
-        padding-top: 0.7rem;
+        font-size: 1.2rem;
       }
 
       @include mobile {
-        font-size: 0.8rem;
-        padding-top: 0.5rem;
-      }
-
-      @media screen and (min-width: 769px) and (max-width: 1170px) {
         font-size: 1rem;
       }
 
       span {
         display: block;
         font-family: 'Helvetica Neue';
+        color: var(--color-primary, #bce0fb);
+        font-weight: 400;
       }
     }
   }
@@ -345,22 +113,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 2;
-    margin: auto;
+    margin: 2rem auto 4rem;
     width: fit-content;
     line-height: 6rem;
+    position: relative;
+    z-index: 2;
 
     @include tablet {
-      margin-top: 1.5rem;
+      margin: 1.5rem auto 3rem;
+      line-height: 4rem;
     }
 
     @include mobile {
-      margin-top: 1.5rem;
+      margin: 1rem auto 2rem;
       line-height: 3rem;
-    }
-
-    @media screen and (min-width: 769px) and (max-width: 1170px) {
-      padding-bottom: 5rem;
     }
 
     .title {
@@ -374,188 +140,258 @@
 
       @include tablet {
         gap: 2rem;
-        line-height: 4rem;
-      }
-
-      @media screen and (min-width: 769px) and (max-width: 1170px) {
-        gap: 0.5rem;
       }
 
       h1 {
         font-size: 5rem;
-        font-weight: lighter;
+        font-weight: 300;
+        color: var(--color-textPrimary, #ffffff);
+        text-shadow: 0 0 20px rgba(188, 224, 251, 0.3);
 
         @include mobile {
-          font-size: 2rem;
+          font-size: 2.5rem;
         }
 
         @include tablet {
-          font-size: 3rem;
+          font-size: 3.5rem;
         }
 
-        @media screen and (min-width: 769px) and (max-width: 1170px) {
-          font-size: 3.5rem;
+        b {
+          font-weight: 700;
+          color: var(--color-primary, #bce0fb);
+          background: linear-gradient(135deg, #bce0fb, #8bc5f0);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
       }
     }
   }
 
   .listContainer {
-    margin: auto;
-    padding: 0 3rem 0 5rem;
-    margin-top: 6rem;
-    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
 
-    .slick-slider {
-      padding: 0 2rem;
-
-      @include mobile {
-        padding: 0 1rem;
-        width: 100%;
-      }
-
-      @media screen and (min-width: 769px) and (max-width: 1170px) {
-          width: 100%;
-          padding: 0 1rem;
-        }
-    }
-
-    
-
-    .slick-slide {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      padding: 0 1rem;
-    }
-     .slick-next,
-    .slick-prev {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 2.5rem;
-      height: 2.5rem;
-      background-color:  #095a9b;
-      border: none;
-      cursor: pointer;
-      z-index: 1;
-    }
-
-    .slick-next {
-      margin: 0;
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      padding: 1.5rem;
     }
 
     @include mobile {
-      padding: 0 1rem;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      padding: 0.5rem;
     }
 
-    @include tablet {
-      max-width: 40rem;
-      padding: 0;
+    &.accordion-mode {
+      gap: 0.5rem;
+
+      .service-card-wrapper {
+        cursor: pointer;
+        
+        &.expanded {
+          .service-box {
+            height: auto;
+          }
+        }
+      }
     }
 
     @media screen and (min-width: 769px) and (max-width: 1170px) {
-      margin: 2rem auto;
-      max-width: fit-content;
-      padding: 0 2rem 0 3rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding: 1rem;
     }
 
-    .box {
-      padding: 0 1rem;
-      border: 0.5px solid #bddffa;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      height: 19em;
-      width: 25%;
-      border-radius: 2rem;
-      padding: 1rem 1rem 2rem 1rem;
-
-      &:hover {
-        transform: scale(0.95);
+    .service-card-wrapper {
+      perspective: 1000px;
+      
+      .service-glow-wrapper {
+        width: 100%;
+        height: 100%;
       }
+    }
 
-      .serviceTitle {
-        font-size: 1.4rem;
-        animation: none;
-        color: #3faaf1;
+      .service-box {
+        height: 20rem;
+        display: flex;
+        // border: 1px solid #bce0fb;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
 
         @include tablet {
-          font-size: 1.2rem;
+          width: 20rem;
+          height: 18rem;
         }
 
         @include mobile {
-          font-size: 1.1rem;
+          width: 100%;
+          height: auto;
+          min-height: auto;
+          padding: 1rem;
+          gap: 0;
         }
 
-        @media screen and (min-width: 769px) and (max-width: 1170px) {
+        &.accordion-card {
+          height: auto;
+          
+          .service-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: 100%;
+
+            .serviceTitle {
+              flex: 1;
+              margin: 0;
+            }
+
+            .accordion-arrow {
+              color: var(--color-primary, #bce0fb);
+              font-size: 0.7rem;
+              opacity: 0.7;
+            }
+          }
+
+          .service-content {
+            overflow: hidden;
+            margin-top: 0.75rem;
+          }
+        }
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(188, 224, 251, 0.15), transparent);
+          transition: left 0.6s ease;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(188, 224, 251, 0.1) 0%, transparent 50%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+        }
+
+        &:hover {
+          &::before {
+            left: 100%;
+          }
+          &::after {
+            opacity: 1;
+          }
+        }
+
+      .service-header {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        @include mobile {
+          flex-direction: row;
+          align-items: center;
+        }
+      }
+
+      .service-icon {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.3rem;
+
+        @include mobile {
+          margin-bottom: 0;
+        }
+
+        .icon-circle {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: var(--color-primary, #bce0fb);
+          color: var(--color-bgPrimary, #061829);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
           font-size: 1.2rem;
+          box-shadow: 0 4px 15px rgba(188, 224, 251, 0.4);
+
+          @include tablet {
+            width: 30px;
+            height: 30px;
+            font-size: 1rem;
+        }
+
+          @include mobile {
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+          }
+        }
+      }
+
+      .serviceTitle {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--color-primary, #bce0fb);
+        margin: 0;
+        line-height: 1.2;
+
+        @include tablet {
+          font-size: 1.1rem;
+          letter-spacing: 0.6px;
+        }
+
+        @include mobile {
+          font-size: 1rem;
+          letter-spacing: 0.5px;
         }
       }
 
       p {
-        font-size: 1rem;
-        line-height: 2rem;
-        color: #f1f8fe;
-        padding-top: 2rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+        line-height: 1.4;
+        color: var(--color-textSecondary, #bce0fb);
+        flex-grow: 1;
+        margin: 0;
 
         @include tablet {
-          font-size: 1rem;
-          line-height: 1.7rem;
+          font-size: 0.9rem;
+          line-height: 1.2;
         }
 
         @include mobile {
-          font-size: 0.9rem;
-          line-height: 1.7rem;
-        }
-
-        @media screen and (min-width: 769px) and (max-width: 1170px) {
-          line-height: 1.6rem;
-          
-         
+          font-size: 0.85rem;
+          line-height: 1.2;
         }
       }
 
-      @include mobile {
-        border: 0.5px solid gray;
-        border-radius: 10px;
-        width: 100%;
-        margin: auto;
-        height: 20rem;
-
-        &:hover {
-          transform: none;
-        }
-      }
-
-      @include tablet {
-        border: 0.5px solid gray;
-        border-radius: 10px;
-        width: 100%;
-        height: 21rem;
-        margin: auto;
-        gap: 1rem;
-
-        &:hover {
-          transform: none;
-        }
-      }
-
-      @media screen and (min-width: 500px) and (max-width: 560px) {
-        width: 46%;
-        height: 20rem;
-      }
-
-      @media screen and (min-width: 769px) and (max-width: 1016px) {
-        height: 23rem;
-        width: 30%;
-        border-radius: 10px;
-      }
-
-      @media screen and (min-width: 1017px) and (max-width: 1170px) {
-        height: 23rem;
-        width: 30%;
-        border-radius: 10px;
+      .service-line {
+        height: 3px;
+        background: linear-gradient(90deg, var(--color-primary, #bce0fb), transparent);
+        border-radius: 2px;
+        margin-top: auto;
       }
     }
   }
