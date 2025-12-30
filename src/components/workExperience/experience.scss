@@ -29,6 +29,12 @@
     padding: 2rem 1rem;
   }
 
+  @include laptop {
+    width: 100%;
+    margin-left: 0;
+    padding: 2rem 1rem;
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -197,7 +203,6 @@
           @include mobile {
             padding: 2rem;
           }
-
         }
 
         .card-front {

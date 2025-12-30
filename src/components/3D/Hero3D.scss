@@ -6,6 +6,7 @@
   height: 100%;
   z-index: 0;
   opacity: 0.3;
+  pointer-events: none;
   
   @media (max-width: 768px) {
     display: none;
@@ -14,5 +15,6 @@
   canvas {
     width: 100% !important;
     height: 100% !important;
+    pointer-events: none;
   }
 }

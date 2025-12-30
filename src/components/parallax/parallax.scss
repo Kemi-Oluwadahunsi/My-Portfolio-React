@@ -9,17 +9,22 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    z-index: 0;
    
     @include tablet {
         height: 90vh;
         margin-left: 0;
         width: 100%;
+        z-index: 0;
     }
 
     @include mobile {
         height: 70vh;
         width: 100%;
         margin: 0;
+        z-index: 0;
+        position: relative;
+        margin-top: 0;
     }
 
     .parallax-title {
