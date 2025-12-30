@@ -103,9 +103,9 @@ const Services = () => {
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h2>
+          <h1>
             <b>Unique</b> Ideas
-          </h2>
+          </h1>
         </motion.div>
 
         <motion.div
@@ -114,9 +114,9 @@ const Services = () => {
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <h2>
+          <h1>
             <b>For Your</b> Business.
-          </h2>
+          </h1>
         </motion.div>
       </div>
 
