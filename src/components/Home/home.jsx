@@ -40,20 +40,23 @@ const Home = () => {
     'i',
   ]
   const jobArray = [
-    'W',
-    'e',
-    'b',
-    ' ',
-    'D',
-    'e',
-    'v',
-    'e',
-    'l',
+    'S',
     'o',
-    'p',
+    'f',
+    't',
+    'w',
+    'a',
+    'r',
+    'e',
+    ' ',
+    'E',
+    'n',
+    'g',
+    'i',
+    'n',
+    'e',
     'e',
     'r',
-    '.',
   ]
 
   const containerVariants = {
@@ -122,7 +125,7 @@ const Home = () => {
 
         <motion.h2 variants={itemVariants}>
           <GradientText gradient="primary" animate={true}>
-            Frontend Developer / Code Enthusiast
+            Frontend Engineer / Enterprise Solutions
           </GradientText>
         </motion.h2>
 
@@ -151,10 +154,10 @@ const Home = () => {
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.3 }}
       >
+        <div className="rotating-blob" />
         <img
           className="my-image"
-          // src="/my-image3.webp"
-          src="/new-image.png"
+          src="/my-image-2-new.png"
           alt="Kemi Oluwadahunsi - Frontend Developer"
           loading="lazy"
         />

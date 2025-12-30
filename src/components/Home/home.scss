@@ -2,54 +2,66 @@
 
 .home-page {
   height: 100dvh;
-  width: screen;
+  width: 100%;
   position: relative;
   overflow: hidden;
-
+  margin-left: 3rem;
   @include tablet {
-    margin-top: 0;
-    height: 50%;
+    margin-left: 0;
+    height: 100dvh;
+    min-height: 100dvh;
+    padding: 5rem 1.5rem 2rem;
   }
 
   @include mobile {
-    margin-top: 0;
-    height: 50%;
+    margin-left: 0;
+    height: 100dvh;
+    min-height: 100dvh;
+    padding: 5rem 1rem 2rem;
   }
+
+  @media screen and (min-width: 769px) and (max-width: 1170px) {
+    margin-left: 4rem;
+  }
+
   .text-zone {
     position: absolute;
-    left: 10%;
+    left: 8%;
     top: 50%;
     transform: translateY(-50%);
-    width: 52%;
-    max-height: 90%;
     width: fit-content;
+    max-width: 50%;
+    z-index: 2;
 
     @include mobile {
-      left: 0;
-      padding-left: 3%;
-      width: 100vw;
-      top: 35%;
+      position: absolute;
+      left: 4%;
+      top: 45%;
+      transform: translateY(-50%);
+      width: 100%;
+      max-width: 100%;
+      text-align: left;
     }
 
     @include tablet {
-      left: 0;
-      padding-left: 5%;
-      width: 100vw;
-      top: 35%;
+      position: absolute;
+      left: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      max-width: 100%;
+      text-align: left;
     }
 
-    // @media screen and (min-width:769px) and (max-width: 1170px) {
-    //    width: 65%;
-    // }
-
-    //  @media screen and (min-width:1171px) and (max-width: 1439px) {
-    //    width: 55%;
-    // }
+    @media screen and (min-width: 769px) and (max-width: 1170px) {
+      left: 6%;
+      max-width: 48%;
+    }
   }
 
   h1 {
     color: #bce0fb;
-    font-size: 4.9rem;
+    font-size: 4rem;
     margin: 0;
     font-family: 'Coolvetica';
     font-weight: 400;
@@ -58,6 +70,8 @@
     text-shadow: 0 0 10px rgba(188, 224, 251, 0.5),
       0 0 20px rgba(188, 224, 251, 0.3), 0 0 30px rgba(188, 224, 251, 0.2);
     position: relative;
+
+   
 
     @include tablet {
       font-size: 2.5rem;
@@ -125,7 +139,7 @@
 
 h2 {
   color: #3fabf1;
-  margin: 1.25rem 0;
+  margin: 2rem 0;
   font-weight: 400;
   font-size: 1.3rem;
   font-family: sans-serif;
@@ -139,6 +153,7 @@ h2 {
   @include mobile {
     font-size: 0.9rem;
     margin: 0.8rem 0;
+    letter-spacing: 2px;
   }
 }
 
@@ -162,17 +177,17 @@ h2 {
     color: #bce0fb;
     font-size: 1.2rem;
     font-weight: 400;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
     font-family: sans-serif;
     text-decoration: none;
-    padding: 0.8rem 1.5rem;
+    padding: 0.6rem 1.5rem;
     border: 1px solid #3fabf1;
-    margin-top: 2rem;
     float: left;
     animation: fadeIn 1s 1.8s backwards;
     width: fit-content;
     cursor: pointer;
     border-radius: 0.5rem;
+    margin-top: 1rem;
 
     &:hover {
       background: transparent;
@@ -182,7 +197,6 @@ h2 {
     @include mobile {
       margin-top: 0;
       font-size: 0.6rem;
-      letter-spacing: 2px;
       padding: 0.5rem 0.8rem;
       width: auto;
     }
@@ -197,83 +211,132 @@ h2 {
 }
 
 .imageContainer {
-  height: 100%;
-  width: 40%;
+  width: 450px;
+  height: 80%;
   position: absolute;
   right: 5%;
-  top: 10%;
+  top: 40%;
   transform: translateY(-50%);
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  &::before {
-    content: '';
+  // Rotating blob background
+  .rotating-blob {
     position: absolute;
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
+    width: 110%;
+    height: 110%;
+    top: -5%;
+    left: -5%;
     background: linear-gradient(
       135deg,
-      rgba(188, 224, 251, 0.2),
-      rgba(9, 90, 155, 0.2)
+      rgba(9, 90, 155, 0.7) 0%,
+      rgba(188, 224, 251, 0.5) 25%,
+      rgba(63, 171, 241, 0.6) 50%,
+      rgba(9, 114, 192, 0.7) 75%,
+      rgba(188, 224, 251, 0.5) 100%
     );
-    border-radius: 50%;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     filter: blur(30px);
-    z-index: -1;
-    animation: pulse 3s ease-in-out infinite;
+    z-index: 1;
+    animation: rotateBlob 20s linear infinite, morphBlob 10s ease-in-out infinite;
   }
 
-  @keyframes pulse {
-    0%,
+  @keyframes rotateBlob {
+    0% {
+      transform: rotate(0deg);
+    }
     100% {
-      opacity: 0.5;
-      transform: scale(1);
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes morphBlob {
+    0%, 100% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    25% {
+      border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
     }
     50% {
-      opacity: 0.8;
-      transform: scale(1.1);
+      border-radius: 50% 60% 30% 60% / 30% 40% 70% 60%;
+    }
+    75% {
+      border-radius: 40% 60% 50% 40% / 60% 50% 40% 60%;
     }
   }
 
   @include tablet {
-    height: 10rem;
-    width: 10rem;
-    margin-right: 5rem;
-    border: 1px solid #3fabf1;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 220px;
+    height: 240px;
+    right: 5%;
+    top: 15%;
+    position: absolute;
+    transform: none;
+
+    .rotating-blob {
+      width: 130%;
+      height: 130%;
+      top: -7%;
+      left: -15%;
+      filter: blur(18px);
+    }
   }
 
   @include mobile {
-    height: 9rem;
-    width: 9rem;
-    margin-right: 2rem;
-    border: 1px solid #3fabf1;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 120px;
+    height: 150px;
+    right: 8%;
+    top: 12%;
+    position: absolute;
+    transform: none;
+
+    .rotating-blob {
+      width: 140%;
+      height: 140%;
+      top: -15%;
+      left: -20%;
+      filter: blur(15px);
+    }
   }
 
   @media screen and (min-width: 769px) and (max-width: 1170px) {
-    width: 33%;
+    width: 320px;
+    height: 320px;
+    right: 3%;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 500px;
+    height: 500px;
+
+    .rotating-blob {
+      filter: blur(35px);
+    }
   }
 
   .my-image {
-    width: 80%;
+    width: 85%;
+    height: 100%;
+    max-height: 100%;
+    position: relative;
+    z-index: 2;
+    object-fit: cover;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
 
     @include tablet {
-      width: 65%;
-      margin-top: -15px;
-      margin-right: 10px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
     }
 
     @include mobile {
-      width: 62%;
-      margin-top: -15px;
-      margin-right: 10px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
     }
   }
 }

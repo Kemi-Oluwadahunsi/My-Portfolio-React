@@ -117,19 +117,3 @@ export const theme = {
   },
 }
 
-// Light theme variant
-export const lightTheme = {
-  ...theme,
-  colors: {
-    ...theme.colors,
-    bgPrimary: '#f8fafc',
-    bgSecondary: '#f1f5f9',
-    bgTertiary: '#e2e8f0',
-    textPrimary: '#0f172a',
-    textSecondary: '#1e293b',
-    textTertiary: '#334155',
-    textMuted: '#64748b',
-    glassBg: 'rgba(255, 255, 255, 0.7)',
-    glassBorder: 'rgba(15, 23, 42, 0.1)',
-  },
-}

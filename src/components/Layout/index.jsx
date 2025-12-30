@@ -10,7 +10,6 @@ import Cursor from '../cursor/Cursor'
 import Navbar from '../navbar/Navbar'
 import ScrollArrow from '../backarrow/ScrollArrow'
 import Experience from '../workExperience/Experience'
-import ThemeToggle from '../UI/ThemeToggle/ThemeToggle'
 import LoadingSkeleton from '../UI/LoadingSkeleton/LoadingSkeleton'
 import Skills from '../Skills/Skills'
 import Background3D from '../3D/Background3D'
@@ -31,7 +30,6 @@ const Layout = () => {
       <ParticleBackground density={25} speed={0.4} />
       <Cursor />
       <ScrollArrow />
-      <ThemeToggle />
       <Navbar />
       <Sidebar />
       <main className="App" id="section" role="main">

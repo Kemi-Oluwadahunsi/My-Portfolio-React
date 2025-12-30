@@ -133,3 +133,6 @@ Private project - All rights reserved
 ---
 
 Built with ❤️ by Kemi Oluwadahunsi
+
+
+The services and skills sections, on mobile and tab

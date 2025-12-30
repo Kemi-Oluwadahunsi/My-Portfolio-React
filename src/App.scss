@@ -50,18 +50,6 @@ $primary-color: #bce0fb;
   --transition-slow: 500ms ease-in-out;
 }
 
-// Light Theme Variables
-body.light-theme {
-  --color-bgPrimary: #f8fafc;
-  --color-bgSecondary: #f1f5f9;
-  --color-bgTertiary: #e2e8f0;
-  --color-textPrimary: #0f172a;
-  --color-textSecondary: #1e293b;
-  --color-textTertiary: #334155;
-  --color-textMuted: #64748b;
-  --color-glassBg: rgba(255, 255, 255, 0.7);
-  --color-glassBorder: rgba(15, 23, 42, 0.1);
-}
 
 input, textarea {
   font-family: 'Helvetica Neue';
