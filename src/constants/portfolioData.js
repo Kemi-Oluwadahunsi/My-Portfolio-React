@@ -447,8 +447,8 @@ export const socialLinks = {
   facebook: 'https://www.facebook.com/kaliceagbabiaka1',
   twitter: 'https://twitter.com/km_oluwadahunsi',
   github: 'https://github.com/Kemi-Oluwadahunsi/',
-  whatsapp: 'https://wa.me/+2348146433203',
-  resume: 'https://drive.google.com/file/d/16UtRHmT24i8D7G7tWkT76RmITayqOQ8i/view?usp=drive_link',
+  whatsapp: 'https://wa.me/+601113219046',
+  resume: 'https://drive.google.com/file/d/1AHjaNJzkormHRRTxMsc5BmWneqNWbCqj/view?usp=drive_link',
 }
 
 export const contactInfo = {
