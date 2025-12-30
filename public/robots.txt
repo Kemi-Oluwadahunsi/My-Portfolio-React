@@ -1,0 +1,13 @@
+# robots.txt for KodeMaven Portfolio
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://kemi-oluwadahunsi.vercel.app/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1
+

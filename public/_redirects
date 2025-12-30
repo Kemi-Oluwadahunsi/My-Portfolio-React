@@ -1,0 +1,9 @@
+# Netlify redirects file (for Netlify deployments)
+# For Vercel, use vercel.json instead
+
+# SPA fallback - redirect all routes to index.html
+/*    /index.html   200
+
+# Optional: Redirect old URLs if needed
+# /old-path    /new-path    301
+

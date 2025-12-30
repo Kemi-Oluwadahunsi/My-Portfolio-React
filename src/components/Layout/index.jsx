@@ -14,7 +14,7 @@ import LoadingSkeleton from '../UI/LoadingSkeleton/LoadingSkeleton'
 import Skills from '../Skills/Skills'
 import Background3D from '../3D/Background3D'
 import ParticleBackground from '../UI/ParticleBackground/ParticleBackground'
-
+import SkipLink from '../UI/SkipLink/SkipLink'
 // Lazy load heavy components
 const ParallaxLazy = lazy(() => Promise.resolve({ default: Parallax }))
 const ServicesLazy = lazy(() => Promise.resolve({ default: Services }))
@@ -24,15 +24,17 @@ const ExperienceLazy = lazy(() => Promise.resolve({ default: Experience }))
 const SkillsLazy = lazy(() => Promise.resolve({ default: Skills }))
 const Background3DLazy = lazy(() => Promise.resolve({ default: Background3D }))
 
+
 const Layout = () => {
   return (
     <div className="main-layout">
+      <SkipLink />
       <ParticleBackground density={25} speed={0.4} />
       <Cursor />
       <ScrollArrow />
       <Navbar />
       <Sidebar />
-      <main className="App" id="section" role="main">
+      <main className="App" id="main-content" role="main" aria-label="Main content">
         <div className="page">
           <span className="tags top-tags" aria-hidden="true">&lt;body&gt;</span>
 

@@ -59,6 +59,8 @@ const Navbar = () => {
       {/* navbar for phone-tab view */}
       <motion.div 
         className="small-screens"
+        role="navigation"
+        aria-label="Main navigation"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
@@ -86,7 +88,9 @@ const Navbar = () => {
                 onClick={toggleMobileContent}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                aria-label="Toggle navigation menu"
+                aria-label={showMobileContent ? "Close navigation menu" : "Open navigation menu"}
+                aria-expanded={showMobileContent}
+                aria-controls="mobile-navigation"
               >
                 <AnimatePresence mode="wait">
                   {showMobileContent ? (
@@ -119,6 +123,10 @@ const Navbar = () => {
             {showMobileContent && (
               <motion.div
                 className="bg visible"
+                id="mobile-navigation"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Mobile navigation menu"
                 initial={{ opacity: 0, x: '100%' }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: '100%' }}
@@ -126,6 +134,7 @@ const Navbar = () => {
               >
                 <motion.ul 
                   className="navigationItems"
+                  role="menubar"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
