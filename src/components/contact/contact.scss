@@ -1,4 +1,4 @@
-@import "../../App.scss";
+@import '../../App.scss';
 
 .divider {
   width: 98%;
@@ -34,11 +34,15 @@
   gap: 6rem;
   position: relative;
   margin-left: 5rem;
-  background: linear-gradient(180deg, var(--color-bgPrimary, #061829), var(--color-accent, #095a9b));
+  background: linear-gradient(
+    180deg,
+    var(--color-bgPrimary, #061829),
+    var(--color-accent, #095a9b)
+  );
 
   @include tablet {
-margin-left: 0;
-width: 100%;
+    margin-left: 0;
+    width: 100%;
   }
   @include mobile {
     margin-left: 0;
@@ -52,9 +56,16 @@ width: 100%;
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-      radial-gradient(circle at 30% 70%, rgba(188, 224, 251, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 70% 30%, rgba(9, 90, 155, 0.1) 0%, transparent 50%);
+    background: radial-gradient(
+        circle at 30% 70%,
+        rgba(188, 224, 251, 0.1) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 70% 30%,
+        rgba(9, 90, 155, 0.1) 0%,
+        transparent 50%
+      );
     pointer-events: none;
     z-index: 0;
   }
@@ -135,7 +146,6 @@ width: 100%;
       display: flex;
       align-items: center;
       gap: 0.5rem;
-
 
       @include tablet {
         flex-direction: row;
@@ -293,7 +303,11 @@ width: 100%;
 
       button {
         padding: 0.875rem 1.5rem;
-        background: linear-gradient(135deg, var(--color-primary, #bce0fb), var(--color-primaryDark, #8bc5f0));
+        background: linear-gradient(
+          135deg,
+          var(--color-primary, #bce0fb),
+          var(--color-primaryDark, #8bc5f0)
+        );
         border: none;
         border-radius: 0.5rem;
         color: var(--color-bgPrimary, #061829);
@@ -425,7 +439,11 @@ width: 100%;
 
       button {
         padding: 1rem 1.75rem;
-        background: linear-gradient(135deg, var(--color-primary, #bce0fb), var(--color-primaryDark, #8bc5f0));
+        background: linear-gradient(
+          135deg,
+          var(--color-primary, #bce0fb),
+          var(--color-primaryDark, #8bc5f0)
+        );
         border: none;
         border-radius: 0.5rem;
         color: var(--color-bgPrimary, #061829);
