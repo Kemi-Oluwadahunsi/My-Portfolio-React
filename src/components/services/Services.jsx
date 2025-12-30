@@ -1,10 +1,10 @@
 import './services.scss'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { services } from '../../constants/portfolioData'
 import GlassCard from '../UI/GlassCard/GlassCard'
 import GlowCard from '../UI/GlowCard/GlowCard'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -20,6 +20,18 @@ const Services = () => {
   const titleRef = useRef(null)
   const cardsRef = useRef(null)
   const containerRef = useRef(null)
+  const [expandedCard, setExpandedCard] = useState(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 480)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   useEffect(() => {
     if (titleRef.current && inView) {
@@ -64,6 +76,12 @@ const Services = () => {
     }
   }, [inView])
 
+  const toggleCard = (id) => {
+    if (isMobile) {
+      setExpandedCard(expandedCard === id ? null : id)
+    }
+  }
+
   return (
     <div className="services" ref={ref}>
       <div ref={containerRef} className="services-background" />
@@ -102,34 +120,59 @@ const Services = () => {
         </motion.div>
       </div>
 
-      <div className="listContainer" ref={cardsRef}>
+      <div className={`listContainer ${isMobile ? 'accordion-mode' : ''}`} ref={cardsRef}>
         {services.map((service, index) => (
           <motion.div
             key={service.id}
-            className="service-card-wrapper"
-            whileHover={{ y: -15, scale: 1.03 }}
+            className={`service-card-wrapper ${isMobile && expandedCard === service.id ? 'expanded' : ''}`}
+            whileHover={!isMobile ? { y: -15, scale: 1.03 } : {}}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            onClick={() => toggleCard(service.id)}
           >
             <GlowCard intensity="medium" className="service-glow-wrapper">
-              <GlassCard className="service-box">
-              <div className="service-icon">
-                <motion.div
-                  className="icon-circle"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  {index + 1}
-                </motion.div>
-              </div>
-              <h2 className="serviceTitle">{service.title}</h2>
-              <p>{service.description}</p>
-              <motion.div
-                className="service-line"
-                initial={{ width: 0 }}
-                whileInView={{ width: '100%' }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                viewport={{ once: true }}
-              />
+              <GlassCard className={`service-box ${isMobile ? 'accordion-card' : ''}`}>
+                <div className="service-header">
+                  <div className="service-icon">
+                    <motion.div
+                      className="icon-circle"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      {index + 1}
+                    </motion.div>
+                  </div>
+                  <h2 className="serviceTitle">{service.title}</h2>
+                  {isMobile && (
+                    <motion.span 
+                      className="accordion-arrow"
+                      animate={{ rotate: expandedCard === service.id ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      ▼
+                    </motion.span>
+                  )}
+                </div>
+                
+                <AnimatePresence>
+                  {(!isMobile || expandedCard === service.id) && (
+                    <motion.div
+                      className="service-content"
+                      initial={isMobile ? { height: 0, opacity: 0 } : false}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={isMobile ? { height: 0, opacity: 0 } : {}}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    >
+                      <p>{service.description}</p>
+                      <motion.div
+                        className="service-line"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: '100%' }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        viewport={{ once: true }}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </GlassCard>
             </GlowCard>
           </motion.div>

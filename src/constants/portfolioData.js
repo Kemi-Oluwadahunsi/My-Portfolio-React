@@ -4,7 +4,7 @@ export const portfolioItems = [
     title: '00tracker Proxy Platform',
     img: '/images/00tracker.webp',
     description:
-      '00tracker is a dynamic, fully responsive, high-converting, and engaging web application for purchasing proxy addresses, utilizing React.js, Tailwind CSS, and Redux Toolkit for efficient state, product & user management. Integrated with secure user authentication systems, including login persistence via the Redux store, CAPTCHA integration for enhanced security, and protected routes to safeguard sensitive areas of the platform.',
+      '00tracker is a dynamic, fully responsive, high-converting, and engaging web application for purchasing proxy addresses, utilizing Redux Toolkit for efficient state, product & user management. Integrated with secure user authentication systems, including login persistence, CAPTCHA integration for enhanced security, and protected routes to safeguard sensitive areas of the platform.',
     stacks: [
       'ReactJS ',
       '|',
@@ -29,8 +29,6 @@ export const portfolioItems = [
       ' ExpressJs ',
       '|',
       ' React-paginate ',
-      '|',
-      ' Sonner ',
     ],
     live: 'https://00tracker.com',
     gitHub: 'https://github.com/Kemi-Oluwadahunsi',
