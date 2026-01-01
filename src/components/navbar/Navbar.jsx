@@ -170,7 +170,7 @@ const Navbar = () => {
                     transition={{ delay: 0.5 }}
                   >
                     <Link
-                      to="https://drive.google.com/file/d/1o6CjnbtFY2wWcTVGypu_MR4MGjXfZidU/view?usp=sharing"
+                      to="https://drive.google.com/file/d/1tJgWBOmxZ1hlfbFtRdryVnHNSfKuqahr/view?usp=sharing"
                       target="_blank"
                       rel="noreferrer"
                       className="resume navLinks"
@@ -193,7 +193,7 @@ const Navbar = () => {
                       { icon: faFacebook, href: 'https://www.facebook.com/kaliceagbabiaka1', label: 'Facebook' },
                       { icon: faXTwitter, href: 'https://twitter.com/km_oluwadahunsi', label: 'Twitter' },
                       { icon: faGithub, href: 'https://github.com/Kemi-Oluwadahunsi/', label: 'GitHub' },
-                      { icon: faWhatsapp, href: 'https://wa.me/+2348146433203', label: 'WhatsApp' },
+                      { icon: faWhatsapp, href: 'https://wa.me/+601113219046', label: 'WhatsApp' },
                     ].map((social, index) => (
                       <motion.li
                         key={social.href}
