@@ -106,7 +106,7 @@ const Sidebar = () => {
               activeclassname="active"
               className="resume-link"
               target="_blank"
-              to="https://drive.google.com/file/d/1AHjaNJzkormHRRTxMsc5BmWneqNWbCqj/view?usp=drive_link"
+              to="https://drive.google.com/file/d/1o6CjnbtFY2wWcTVGypu_MR4MGjXfZidU/view?usp=sharing"
               aria-label="Resume"
             >
               <FontAwesomeIcon icon={faBook} color="#bddffa" />

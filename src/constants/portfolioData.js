@@ -448,7 +448,7 @@ export const socialLinks = {
   twitter: 'https://twitter.com/km_oluwadahunsi',
   github: 'https://github.com/Kemi-Oluwadahunsi/',
   whatsapp: 'https://wa.me/+601113219046',
-  resume: 'https://drive.google.com/file/d/1AHjaNJzkormHRRTxMsc5BmWneqNWbCqj/view?usp=drive_link',
+  resume: 'https://drive.google.com/file/d/1o6CjnbtFY2wWcTVGypu_MR4MGjXfZidU/view?usp=sharing',
 }
 
 export const contactInfo = {

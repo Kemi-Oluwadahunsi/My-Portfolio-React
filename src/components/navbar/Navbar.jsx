@@ -170,7 +170,7 @@ const Navbar = () => {
                     transition={{ delay: 0.5 }}
                   >
                     <Link
-                      to="https://drive.google.com/file/d/1AHjaNJzkormHRRTxMsc5BmWneqNWbCqj/view?usp=drive_link"
+                      to="https://drive.google.com/file/d/1o6CjnbtFY2wWcTVGypu_MR4MGjXfZidU/view?usp=sharing"
                       target="_blank"
                       rel="noreferrer"
                       className="resume navLinks"
