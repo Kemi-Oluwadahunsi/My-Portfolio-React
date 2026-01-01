@@ -10,11 +10,11 @@ const SEO = ({
   keywords,
   author = 'Kemi Oluwadahunsi'
 }) => {
-  const defaultTitle = 'Kemi Oluwadahunsi | Frontend Developer | React Specialist | KodeMaven'
-  const defaultDescription = 'Frontend Developer specializing in React.js, modern web applications, and creative solutions. View my portfolio of responsive websites, SPAs, e-commerce platforms, and brand portfolios.'
+  const defaultTitle = 'Kemi Oluwadahunsi | Software Engineer | React Specialist | KodeMaven'
+  const defaultDescription = 'Software Engineer specializing in enterprise solutions, IAM architecture, and full-stack development. Expert in Module Federation, micro-frontend architecture, and scalable web applications. Delivered 20+ production applications serving 10,000+ users with a focus on security, performance, and modern engineering practices.'
   const defaultImage = 'https://kemi-oluwadahunsi.vercel.app/my-image-2-new.webp'
   const defaultUrl = 'https://kemi-oluwadahunsi.vercel.app/'
-  const defaultKeywords = 'Frontend Developer, React Developer, Web Developer, JavaScript, React.js, Portfolio, Web Design, UI/UX, Single Page Applications, E-commerce, Frontend Engineer, Software Engineer, React Specialist, Next.js, TypeScript, HTML5, CSS3, SCSS, Framer Motion, GSAP, Three.js'
+  const defaultKeywords = 'Software Engineer, Enterprise Solutions, IAM Architecture, Module Federation, Micro-frontend, Full Stack Developer, React Specialist, JavaScript, TypeScript, Node.js, Express.js, MongoDB, OIDC, LDAP, Webpack 5, React.js, Next.js, Enterprise Software, Scalable Applications, Authentication Systems'
 
   const seo = {
     title: title ? `${title} | KodeMaven` : defaultTitle,
@@ -32,7 +32,7 @@ const SEO = ({
     '@type': 'Person',
     name: 'Kemi Oluwadahunsi',
     alternateName: 'KodeMaven, TechMrs',
-    jobTitle: 'Frontend Developer',
+    jobTitle: 'Software Engineer',
     url: defaultUrl,
     sameAs: [
       'https://www.linkedin.com/in/oluwakemioluwadahunsi/',
@@ -53,7 +53,7 @@ const SEO = ({
       'Bootstrap',
       'Material UI',
       'Ant Design',
-      'Frontend Development',
+      'Software Engineering',
       'Web Development',
       'Next.js',
       'HTML5',
@@ -73,7 +73,7 @@ const SEO = ({
   const websiteJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'KodeMaven Portfolio',
+    name: 'Kemi Oluwadahunsi Portfolio',
     url: defaultUrl,
     author: {
       '@type': 'Person',
@@ -120,7 +120,7 @@ const SEO = ({
       <meta property="og:image" content={seo.image} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content="Kemi Oluwadahunsi - Frontend Developer Portfolio" />
+      <meta property="og:image:alt" content="Kemi Oluwadahunsi - Software Engineer Portfolio" />
       <meta property="og:site_name" content="KodeMaven Portfolio" />
       <meta property="og:locale" content="en_US" />
 
@@ -130,7 +130,7 @@ const SEO = ({
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:image" content={seo.image} />
-      <meta name="twitter:image:alt" content="Kemi Oluwadahunsi - Frontend Developer Portfolio" />
+      <meta name="twitter:image:alt" content="Kemi Oluwadahunsi - Software Engineer Portfolio" />
       <meta name="twitter:creator" content="@km_oluwadahunsi" />
       <meta name="twitter:site" content="@km_oluwadahunsi" />
 

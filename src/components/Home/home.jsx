@@ -166,7 +166,7 @@ const Home = () => {
         <img
           className="my-image"
           src="/my-image-2-new.webp"
-          alt="Kemi Oluwadahunsi - Frontend Developer"
+          alt="Kemi Oluwadahunsi - Software Engineer"
           loading="eager"
         />
       </motion.div>

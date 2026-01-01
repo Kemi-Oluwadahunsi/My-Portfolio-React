@@ -11,9 +11,9 @@ export default defineConfig({
       registerType: 'prompt',
       includeAssets: ['favicon.png', 'robots.txt', 'sitemap.xml', 'images/*.webp'],
       manifest: {
-        name: 'Kemi Oluwadahunsi - Frontend Developer Portfolio',
+        name: 'Kemi Oluwadahunsi - Software Engineer Portfolio',
         short_name: 'KodeMaven',
-        description: 'Portfolio of Kemi Oluwadahunsi - Frontend Developer specializing in React.js, modern web applications, and creative solutions',
+        description: 'Portfolio of Kemi Oluwadahunsi - Software Engineer specializing in React.js, modern web applications, and creative solutions',
         theme_color: '#061829',
         background_color: '#061829',
         display: 'standalone',
