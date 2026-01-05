@@ -28,6 +28,7 @@ const Background3DLazy = lazy(() => Promise.resolve({ default: Background3D }))
 const Layout = () => {
   return (
     <div className="main-layout">
+      <PWAUpdate />
       <ParticleBackground density={25} speed={0.4} />
       <Cursor />
       <ScrollArrow />
