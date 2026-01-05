@@ -2,33 +2,11 @@ import { useEffect, useState } from 'react'
 import './PWAUpdate.scss'
 
 const PWAUpdate = () => {
-  const [updateAvailable, setUpdateAvailable] = useState(false)
   const [deferredPrompt, setDeferredPrompt] = useState(null)
   const [showInstallPrompt, setShowInstallPrompt] = useState(false)
   const [isOffline, setIsOffline] = useState(!navigator.onLine)
 
   useEffect(() => {
-    // Check for service worker updates
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
-        setUpdateAvailable(true)
-      })
-
-      // Check for updates periodically
-      const checkForUpdates = () => {
-        navigator.serviceWorker.getRegistration().then((registration) => {
-          if (registration) {
-            registration.update()
-          }
-        })
-      }
-
-      // Check for updates every hour
-      const updateInterval = setInterval(checkForUpdates, 60 * 60 * 1000)
-
-      return () => clearInterval(updateInterval)
-    }
-
     // Handle beforeinstallprompt event
     const handleBeforeInstallPrompt = (e) => {
       e.preventDefault()
@@ -96,26 +74,7 @@ const PWAUpdate = () => {
 
   return (
     <div className="pwa-update-container">
-      {updateAvailable && (
-        <div className="pwa-update-banner">
-          <div className="pwa-update-content">
-            <span className="pwa-update-icon">🔄</span>
-            <div className="pwa-update-text">
-              <strong>Update Available</strong>
-              <p>A new version of the app is available.</p>
-            </div>
-            <div className="pwa-update-actions">
-              <button onClick={handleUpdate} className="pwa-update-button">
-                Update Now
-              </button>
-              <button onClick={handleDismiss} className="pwa-dismiss-button">
-                Later
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
+      
       {showInstallPrompt && !updateAvailable && !isOffline && (
         <div className="pwa-install-banner">
           <div className="pwa-install-content">
