@@ -14,7 +14,6 @@ import LoadingSkeleton from '../UI/LoadingSkeleton/LoadingSkeleton'
 import Skills from '../Skills/Skills'
 import Background3D from '../3D/Background3D'
 import ParticleBackground from '../UI/ParticleBackground/ParticleBackground'
-import PWAUpdate from '../UI/PWAUpdate/PWAUpdate'
 
 // Lazy load heavy components
 const ParallaxLazy = lazy(() => Promise.resolve({ default: Parallax }))
@@ -29,7 +28,6 @@ const Background3DLazy = lazy(() => Promise.resolve({ default: Background3D }))
 const Layout = () => {
   return (
     <div className="main-layout">
-      <PWAUpdate />
       <ParticleBackground density={25} speed={0.4} />
       <Cursor />
       <ScrollArrow />
