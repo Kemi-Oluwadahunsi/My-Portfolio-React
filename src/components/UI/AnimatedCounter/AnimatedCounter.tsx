@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import { useInView, useMotionValue, useSpring } from 'framer-motion'
-import './AnimatedCounter.scss'
 import PropTypes from 'prop-types'
 
 const AnimatedCounter = ({ value, duration = 2, suffix = '', prefix = '' }) => {

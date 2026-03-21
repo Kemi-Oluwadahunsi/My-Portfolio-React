@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import './Button.scss'
 import PropTypes from 'prop-types'
 
 const Button = ({ 

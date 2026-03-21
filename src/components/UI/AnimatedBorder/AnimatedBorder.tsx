@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import './AnimatedBorder.scss'
 import PropTypes from 'prop-types'
 
 const AnimatedBorder = ({ children, className = '', color = 'primary' }) => {

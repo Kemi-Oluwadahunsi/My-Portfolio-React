@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import './RippleButton.scss'
 import PropTypes from 'prop-types'
 
 const RippleButton = ({ children, onClick, className = '', ...props }) => {

@@ -1,4 +1,3 @@
-import "./parallax.scss"
 import { useRef, useEffect } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { gsap } from "gsap"

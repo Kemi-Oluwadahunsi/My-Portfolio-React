@@ -1,188 +1,192 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import emailjs from '@emailjs/browser'
+import { Mail, MapPin, Send, Linkedin, Github, Twitter, CheckCircle2, Loader2 } from 'lucide-react'
 import { contactInfo, socialLinks } from '../../constants/portfolioData'
-import { Send, Github, Linkedin, Twitter, Mail, ArrowRight, CheckCircle, AlertCircle } from 'lucide-react'
 
-type FormState = { name: string; email: string; message: string }
-type Status = 'idle' | 'sending' | 'success' | 'error'
+type Status = 'idle' | 'sending' | 'sent' | 'error'
 
 const Contact = () => {
+  const [ref, inView] = useInView({ threshold: 0.05, triggerOnce: true })
   const formRef = useRef<HTMLFormElement>(null)
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  const [form, setForm] = useState<FormState>({ name: '', email: '', message: '' })
   const [status, setStatus] = useState<Status>('idle')
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    if (!form.name || !form.email || !form.message) return
+    if (!formRef.current) return
     setStatus('sending')
     try {
-      await emailjs.sendForm(
-        'service_l5v9o2d',
-        'template_4ydhzmq',
-        formRef.current!,
-        'PE_S_eZ_H0nBimpSo'
-      )
-      setStatus('success')
-      setForm({ name: '', email: '', message: '' })
+      await emailjs.sendForm('service_id', 'template_4ydhzmq', formRef.current, 'PE_S_eZ_H0nBimpSo')
+      setStatus('sent')
+      formRef.current.reset()
     } catch {
       setStatus('error')
     }
   }
 
-  const socials = [
-    { href: socialLinks.linkedin, Icon: Linkedin, label: 'LinkedIn' },
-    { href: socialLinks.github, Icon: Github, label: 'GitHub' },
-    { href: socialLinks.twitter, Icon: Twitter, label: 'X / Twitter' },
-    { href: `mailto:${contactInfo.email}`, Icon: Mail, label: 'Email' },
-  ]
-
   return (
-    <section id="contact" className="section-py border-t border-white/[0.04]">
-      <div className="section-wrap" ref={ref}>
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Left */}
+    <section id="contact" className="section-py border-t border-white/[0.04]" ref={ref}>
+      <div className="section-wrap">
+        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start">
+
+          {/* Left — info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <span className="eyebrow">Get in touch</span>
+            <span className="eyebrow">Contact</span>
             <h2 className="display-title">Let's build something</h2>
-            <p className="text-slate-400 text-[1.05rem] leading-relaxed mt-4 max-w-md">
-              {contactInfo.availability}
+            <p className="section-desc mt-4 max-w-sm">
+              Open to senior engineering roles, MFE architecture consulting, and technical
+              writing collaborations. Response within 48 hours.
             </p>
 
-            <div className="mt-8 space-y-3">
-              {[
-                { label: 'Response time', value: 'Within 48 hours' },
-                { label: 'Location', value: 'Kuala Lumpur, Malaysia' },
-                { label: 'Time zone', value: 'MYT (UTC+8)' },
-                { label: 'Email', value: contactInfo.email },
-              ].map((item) => (
-                <div key={item.label} className="flex items-center justify-between py-2.5 border-b border-white/[0.04]">
-                  <span className="text-sm text-slate-500">{item.label}</span>
-                  <span className="text-sm text-white font-medium">{item.value}</span>
-                </div>
-              ))}
+            <div className="mt-8 space-y-4">
+              <a
+                href={`mailto:${contactInfo.email}`}
+                className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors group"
+              >
+                <span className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-500/20 transition-colors">
+                  <Mail size={15} />
+                </span>
+                <span className="text-sm">{contactInfo.email}</span>
+              </a>
+
+              <div className="flex items-center gap-3 text-slate-500">
+                <span className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center">
+                  <MapPin size={15} />
+                </span>
+                <span className="text-sm">Kuala Lumpur, Malaysia</span>
+              </div>
             </div>
 
-            <div className="flex items-center gap-3 mt-8">
-              {socials.map(({ href, Icon, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  title={label}
-                  className="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-400 hover:text-white transition-colors"
-                >
-                  <Icon size={15} />
-                </a>
-              ))}
+            {/* Social */}
+            <div className="mt-8 pt-8 border-t border-white/[0.06]">
+              <p className="text-xs font-mono text-slate-600 uppercase tracking-widest mb-4">Find me on</p>
+              <div className="flex gap-2">
+                {[
+                  { icon: Linkedin, href: socialLinks.linkedin, label: 'LinkedIn' },
+                  { icon: Github,   href: socialLinks.github,   label: 'GitHub'   },
+                  { icon: Twitter,  href: socialLinks.twitter,  label: 'X'        },
+                ].map(({ icon: Icon, href, label }) => (
+                  <a
+                    key={href}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={label}
+                    className="w-10 h-10 rounded-xl border border-white/[0.08] flex items-center justify-center text-slate-500 hover:text-white hover:border-white/20 hover:bg-white/5 transition-all duration-200"
+                  >
+                    <Icon size={16} />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Availability badge */}
+            <div className="mt-8 inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-green-500/5 border border-green-500/15">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+              </span>
+              <span className="text-xs text-green-400/80 font-mono">Available for new opportunities</span>
             </div>
           </motion.div>
 
-          {/* Right: Form */}
+          {/* Right — form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <div className="glass-card p-6 lg:p-8">
-              {status === 'success' ? (
-                <div className="flex flex-col items-center text-center py-8 gap-4">
-                  <CheckCircle size={40} className="text-emerald-400" />
-                  <h3 className="font-display text-xl font-bold text-white">Message sent!</h3>
-                  <p className="text-slate-400 text-sm">I'll get back to you within 48 hours.</p>
-                  <button onClick={() => setStatus('idle')} className="btn-ghost mt-2">
-                    Send another
-                  </button>
-                </div>
-              ) : (
-                <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+            {status === 'sent' ? (
+              <div className="glass-card p-10 flex flex-col items-center justify-center text-center gap-4 min-h-[320px]">
+                <CheckCircle2 size={40} className="text-green-400" />
+                <h3 className="text-white font-semibold text-lg">Message sent!</h3>
+                <p className="text-slate-400 text-sm max-w-xs">
+                  Thanks for reaching out. I'll get back to you within 48 hours.
+                </p>
+                <button onClick={() => setStatus('idle')} className="btn-outline mt-2">
+                  Send another
+                </button>
+              </div>
+            ) : (
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-mono text-slate-500 mb-1.5 uppercase tracking-wider">Name</label>
+                    <label className="block text-xs font-mono text-slate-500 mb-2">Name</label>
                     <input
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
+                      name="from_name"
+                      required
                       placeholder="Your name"
-                      required
-                      className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-blue-500/50 focus:bg-blue-500/5 transition-all"
+                      className="w-full px-4 py-3 rounded-xl bg-navy-800 border border-white/[0.08] text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-blue-500/50 focus:bg-navy-700 transition-colors"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-mono text-slate-500 mb-1.5 uppercase tracking-wider">Email</label>
+                    <label className="block text-xs font-mono text-slate-500 mb-2">Email</label>
                     <input
-                      name="email"
+                      name="reply_to"
                       type="email"
-                      value={form.email}
-                      onChange={handleChange}
+                      required
                       placeholder="your@email.com"
-                      required
-                      className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-blue-500/50 focus:bg-blue-500/5 transition-all"
+                      className="w-full px-4 py-3 rounded-xl bg-navy-800 border border-white/[0.08] text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-blue-500/50 focus:bg-navy-700 transition-colors"
                     />
                   </div>
-                  <div>
-                    <label className="block text-xs font-mono text-slate-500 mb-1.5 uppercase tracking-wider">Message</label>
-                    <textarea
-                      name="message"
-                      value={form.message}
-                      onChange={handleChange}
-                      placeholder="Tell me about your project or opportunity..."
-                      required
-                      rows={5}
-                      className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-blue-500/50 focus:bg-blue-500/5 transition-all resize-none"
-                    />
-                  </div>
+                </div>
 
-                  {status === 'error' && (
-                    <div className="flex items-center gap-2 text-red-400 text-sm p-3 bg-red-500/10 rounded-xl border border-red-500/20">
-                      <AlertCircle size={14} />
-                      Something went wrong. Try emailing me directly.
-                    </div>
+                <div>
+                  <label className="block text-xs font-mono text-slate-500 mb-2">Subject</label>
+                  <input
+                    name="subject"
+                    placeholder="What's this about?"
+                    className="w-full px-4 py-3 rounded-xl bg-navy-800 border border-white/[0.08] text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-blue-500/50 focus:bg-navy-700 transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono text-slate-500 mb-2">Message</label>
+                  <textarea
+                    name="message"
+                    required
+                    rows={5}
+                    placeholder="Tell me about the project, role, or collaboration..."
+                    className="w-full px-4 py-3 rounded-xl bg-navy-800 border border-white/[0.08] text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-blue-500/50 focus:bg-navy-700 transition-colors resize-none"
+                  />
+                </div>
+
+                {status === 'error' && (
+                  <p className="text-red-400 text-xs font-mono">
+                    Something went wrong. Email me directly at {contactInfo.email}
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === 'sending'}
+                  className="btn-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {status === 'sending' ? (
+                    <><Loader2 size={15} className="animate-spin" /> Sending...</>
+                  ) : (
+                    <><Send size={15} /> Send message</>
                   )}
-
-                  <button
-                    type="submit"
-                    disabled={status === 'sending'}
-                    className="btn-blue w-full justify-center mt-1"
-                  >
-                    {status === 'sending' ? (
-                      <>Sending... <span className="animate-spin">⟳</span></>
-                    ) : (
-                      <>Send message <ArrowRight size={14} /></>
-                    )}
-                  </button>
-                </form>
-              )}
-            </div>
+                </button>
+              </form>
+            )}
           </motion.div>
         </div>
+      </div>
 
-        {/* Footer line */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.6 }}
-          className="mt-16 pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4"
-        >
-          <p className="text-xs text-slate-600 font-mono">
-            © {new Date().getFullYear()} Oluwakemi Oluwadahunsi · Built with React + TypeScript
-          </p>
-          <p className="text-xs text-slate-600 font-mono flex items-center gap-1">
-            Designed & engineered with
-            <span className="text-red-500/60">♥</span>
-            in Kuala Lumpur
-          </p>
-        </motion.div>
+      {/* Footer line */}
+      <div className="section-wrap mt-20 pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row justify-between items-center gap-3">
+        <span className="text-xs font-mono text-slate-700">
+          © {new Date().getFullYear()} Oluwakemi Oluwadahunsi
+        </span>
+        <span className="text-xs font-mono text-slate-700">
+          Built with React · TypeScript · Tailwind v4
+        </span>
       </div>
     </section>
   )

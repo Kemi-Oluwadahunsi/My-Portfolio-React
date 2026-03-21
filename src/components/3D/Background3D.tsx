@@ -2,7 +2,6 @@ import { useRef, Suspense } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Stars, OrbitControls } from '@react-three/drei'
 import { motion } from 'framer-motion'
-import './Background3D.scss'
 
 function FloatingParticles() {
   const meshRef = useRef()

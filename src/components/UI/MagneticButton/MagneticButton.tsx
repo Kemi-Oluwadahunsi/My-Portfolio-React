@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import './MagneticButton.scss'
 import PropTypes from 'prop-types'
 
 const MagneticButton = ({ children, className = '', ...props }) => {

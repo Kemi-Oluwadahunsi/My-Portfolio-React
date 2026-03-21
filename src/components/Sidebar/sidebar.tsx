@@ -1,7 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll'
 import { motion } from 'framer-motion'
-import './sidebar.scss';
 import Logo from '/images/logo.webp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {

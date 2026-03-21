@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import './HoverGlow.scss'
 import PropTypes from 'prop-types'
 
 const HoverGlow = ({ children, className = '', color = 'primary' }) => {

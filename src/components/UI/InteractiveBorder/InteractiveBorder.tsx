@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import './InteractiveBorder.scss'
 import PropTypes from 'prop-types'
 
 const InteractiveBorder = ({ children, className = '' }) => {

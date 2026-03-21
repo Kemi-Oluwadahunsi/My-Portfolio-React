@@ -2,7 +2,6 @@ import { useRef, Suspense } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars, MeshDistortMaterial } from '@react-three/drei'
 import { motion } from 'framer-motion'
-import './Hero3D.scss'
 
 function AnimatedSphere() {
   const meshRef = useRef()

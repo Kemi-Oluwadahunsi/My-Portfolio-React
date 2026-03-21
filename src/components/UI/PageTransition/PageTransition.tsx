@@ -1,5 +1,4 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import './PageTransition.scss'
 import PropTypes from 'prop-types'
 
 const PageTransition = ({ children, pathname }) => {

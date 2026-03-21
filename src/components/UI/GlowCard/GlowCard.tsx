@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import './GlowCard.scss'
 import PropTypes from 'prop-types'
 
 const GlowCard = ({ children, className = '', intensity = 'medium' }) => {

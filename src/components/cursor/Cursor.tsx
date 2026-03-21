@@ -1,83 +1,56 @@
-import { useEffect, useState } from 'react'
-import './cursor.scss'
-import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 
 const Cursor = () => {
-  const [isHovering, setIsHovering] = useState(false)
-  const [isClicking, setIsClicking] = useState(false)
-  
-  const cursorX = useMotionValue(-100)
-  const cursorY = useMotionValue(-100)
-  
-  const springConfig = { damping: 25, stiffness: 700 }
-  const cursorXSpring = useSpring(cursorX, springConfig)
-  const cursorYSpring = useSpring(cursorY, springConfig)
+  const dotRef   = useRef<HTMLDivElement>(null)
+  const ringRef  = useRef<HTMLDivElement>(null)
+  const pos      = useRef({ x: 0, y: 0 })
+  const ring     = useRef({ x: 0, y: 0 })
+  const rafRef   = useRef<number>(0)
 
   useEffect(() => {
-    const moveCursor = (e) => {
-      cursorX.set(e.clientX - 16)
-      cursorY.set(e.clientY - 16)
-    }
+    // Only on desktop
+    if (window.matchMedia('(pointer: coarse)').matches) return
 
-    const handleMouseEnter = (e) => {
-      if (
-        e.target.tagName === 'BUTTON' ||
-        e.target.tagName === 'A' ||
-        e.target.closest('button') ||
-        e.target.closest('a') ||
-        e.target.closest('.interactive')
-      ) {
-        setIsHovering(true)
+    const move = (e: MouseEvent) => { pos.current = { x: e.clientX, y: e.clientY } }
+    window.addEventListener('mousemove', move)
+
+    const animate = () => {
+      ring.current.x += (pos.current.x - ring.current.x) * 0.12
+      ring.current.y += (pos.current.y - ring.current.y) * 0.12
+
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate(${pos.current.x - 4}px, ${pos.current.y - 4}px)`
       }
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate(${ring.current.x - 16}px, ${ring.current.y - 16}px)`
+      }
+      rafRef.current = requestAnimationFrame(animate)
     }
+    rafRef.current = requestAnimationFrame(animate)
 
-    const handleMouseLeave = () => {
-      setIsHovering(false)
-    }
+    const addHover  = () => ringRef.current?.classList.add('scale-150',    'opacity-50')
+    const rmvHover  = () => ringRef.current?.classList.remove('scale-150', 'opacity-50')
 
-    const handleMouseDown = () => setIsClicking(true)
-    const handleMouseUp = () => setIsClicking(false)
-
-    window.addEventListener('mousemove', moveCursor)
-    document.addEventListener('mouseenter', handleMouseEnter, true)
-    document.addEventListener('mouseleave', handleMouseLeave, true)
-    window.addEventListener('mousedown', handleMouseDown)
-    window.addEventListener('mouseup', handleMouseUp)
+    document.querySelectorAll('a, button, [role="button"]').forEach(el => {
+      el.addEventListener('mouseenter', addHover)
+      el.addEventListener('mouseleave', rmvHover)
+    })
 
     return () => {
-      window.removeEventListener('mousemove', moveCursor)
-      document.removeEventListener('mouseenter', handleMouseEnter, true)
-      document.removeEventListener('mouseleave', handleMouseLeave, true)
-      window.removeEventListener('mousedown', handleMouseDown)
-      window.removeEventListener('mouseup', handleMouseUp)
+      window.removeEventListener('mousemove', move)
+      cancelAnimationFrame(rafRef.current)
     }
-  }, [cursorX, cursorY])
+  }, [])
 
   return (
     <>
-      <motion.div
-        className="cursor"
-        style={{
-          translateX: cursorXSpring,
-          translateY: cursorYSpring,
-        }}
-        animate={{
-          scale: isClicking ? 0.8 : isHovering ? 1.5 : 1,
-          opacity: isHovering ? 0.8 : 1,
-        }}
-        transition={{ type: 'spring', stiffness: 500, damping: 28 }}
+      <div
+        ref={dotRef}
+        className="pointer-events-none fixed top-0 left-0 z-[999] w-2 h-2 rounded-full bg-blue-400 will-change-transform hidden lg:block"
       />
-      <motion.div
-        className="cursor-follower"
-        style={{
-          translateX: cursorXSpring,
-          translateY: cursorYSpring,
-        }}
-        animate={{
-          scale: isHovering ? 2 : 1,
-          opacity: isHovering ? 0.3 : 0.5,
-        }}
-        transition={{ type: 'spring', stiffness: 150, damping: 15 }}
+      <div
+        ref={ringRef}
+        className="pointer-events-none fixed top-0 left-0 z-[998] w-8 h-8 rounded-full border border-blue-400/40 will-change-transform transition-transform duration-150 hidden lg:block"
       />
     </>
   )

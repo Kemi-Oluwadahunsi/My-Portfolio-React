@@ -1,4 +1,3 @@
-import './LoadingSkeleton.scss'
 import PropTypes from 'prop-types'
 import { motion } from 'framer-motion'
 

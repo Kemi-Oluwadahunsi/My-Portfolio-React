@@ -191,3 +191,237 @@
     background-size: 32px 32px;
   }
 }
+
+/* ── Design token classes used across all components ─ */
+
+.glass-card {
+  background-color: var(--color-navy-800);
+  border: 1px solid rgb(255 255 255 / 0.06);
+  border-radius: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  border-color: rgb(59 130 246 / 0.18);
+  box-shadow: 0 8px 40px rgb(0 0 0 / 0.45);
+}
+
+/* Section layout helpers */
+.section-py   { padding-block: 6rem; }
+.section-wrap { max-width: 72rem; margin-inline: auto; padding-inline: 1.5rem; }
+
+/* Typography tokens */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-brand-blue-light);
+  gap: 0.5rem;
+}
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 1.5rem;
+  height: 1px;
+  background: var(--color-brand-blue-light);
+  opacity: 0.6;
+}
+
+.display-title {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  margin-top: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.section-desc {
+  color: #94A3B8;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  margin-top: 1rem;
+}
+
+/* Gradient heading (large numbers / labels) */
+.gradient-h {
+  background: linear-gradient(135deg, var(--color-brand-blue-light), var(--color-brand-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Pill variants */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  background-color: rgb(59 130 246 / 0.08);
+  color: #93C5FD;
+  border: 1px solid rgb(59 130 246 / 0.18);
+  white-space: nowrap;
+  line-height: 1.4;
+}
+.pill-green {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  background-color: rgb(16 185 129 / 0.08);
+  color: #6EE7B7;
+  border: 1px solid rgb(16 185 129 / 0.2);
+  white-space: nowrap;
+  line-height: 1.4;
+}
+.pill-amber {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  background-color: rgb(245 158 11 / 0.08);
+  color: #FCD34D;
+  border: 1px solid rgb(245 158 11 / 0.2);
+  white-space: nowrap;
+  line-height: 1.4;
+}
+.pill-purple {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  background-color: rgb(139 92 246 / 0.08);
+  color: #C4B5FD;
+  border: 1px solid rgb(139 92 246 / 0.2);
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+/* ── Aliases used across components ─────── */
+.section-py    { padding-block: 6rem; }
+.section-wrap  { max-width: 72rem; margin-inline: auto; padding-inline: 1.5rem; }
+.eyebrow       { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #60A5FA; display: flex; align-items: center; gap: 0.5rem; }
+.display-title { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 600; color: #fff; line-height: 1.2; margin-top: 0.5rem; }
+.section-desc  { color: #94A3B8; font-size: 1.0rem; line-height: 1.7; max-width: 40rem; margin-top: 0.75rem; }
+.font-display  { font-family: var(--font-sans); }
+
+/* Glass card — used by Experience, CaseStudies, Contact, Writing */
+.glass-card {
+  background-color: rgba(10, 22, 40, 0.7);
+  border: 1px solid rgb(255 255 255 / 0.07);
+  border-radius: 1rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  border-color: rgb(59 130 246 / 0.18);
+}
+
+/* Pill variants */
+.pill {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.18rem 0.6rem;
+  border-radius: 9999px;
+  background-color: rgb(59 130 246 / 0.08);
+  color: #93C5FD;
+  border: 1px solid rgb(59 130 246 / 0.18);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+.pill-amber {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.18rem 0.6rem;
+  border-radius: 9999px;
+  background-color: rgb(245 158 11 / 0.1);
+  color: #FCD34D;
+  border: 1px solid rgb(245 158 11 / 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+.pill-green {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.18rem 0.6rem;
+  border-radius: 9999px;
+  background-color: rgb(16 185 129 / 0.1);
+  color: #6EE7B7;
+  border: 1px solid rgb(16 185 129 / 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+.pill-purple {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.18rem 0.6rem;
+  border-radius: 9999px;
+  background-color: rgb(139 92 246 / 0.1);
+  color: #C4B5FD;
+  border: 1px solid rgb(139 92 246 / 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+
+/* Gradient heading — used for stat numbers */
+.gradient-h {
+  background: linear-gradient(135deg, #60A5FA, #3B82F6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Button variants used in Contact */
+.btn-blue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  background-color: #3B82F6;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 0 20px rgb(59 130 246 / 0.25);
+}
+.btn-blue:hover   { background-color: #60A5FA; box-shadow: none; }
+.btn-blue:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  color: #94A3B8;
+  font-weight: 500;
+  font-size: 0.875rem;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: rgb(255 255 255 / 0.25); color: #fff; }

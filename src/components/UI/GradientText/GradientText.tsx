@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import './GradientText.scss'
 import PropTypes from 'prop-types'
 
 const GradientText = ({ 

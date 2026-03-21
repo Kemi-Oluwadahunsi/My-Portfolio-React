@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import './ParticleBackground.scss'
 
 const ParticleBackground = ({ density = 50, speed = 1 }) => {
   const canvasRef = useRef(null)

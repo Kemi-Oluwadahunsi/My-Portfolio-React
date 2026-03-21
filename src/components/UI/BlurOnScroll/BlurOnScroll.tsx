@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import { useScroll, useTransform } from 'framer-motion'
 import { motion } from 'framer-motion'
-import './BlurOnScroll.scss'
 import PropTypes from 'prop-types'
 
 const BlurOnScroll = ({ children, className = '' }) => {

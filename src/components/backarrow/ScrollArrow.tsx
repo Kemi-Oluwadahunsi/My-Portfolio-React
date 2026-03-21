@@ -1,50 +1,31 @@
-import { faArrowCircleUp } from "@fortawesome/free-solid-svg-icons"
-import "./scrollarrow.scss"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-
+import { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowUp } from 'lucide-react'
 
 const ScrollArrow = () => {
-    const [isVisible, setIsVisible] = useState(false)
+  const [visible, setVisible] = useState(false)
 
-    useEffect(() => {
-      const handleScroll = () => {
-        setIsVisible(window.scrollY > 100)
-      }
-      
-      window.addEventListener('scroll', handleScroll)
-      return () => window.removeEventListener('scroll', handleScroll)
-    }, []);
-
-    const goTop = () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      })
-    };
+  useEffect(() => {
+    const handler = () => setVisible(window.scrollY > 400)
+    window.addEventListener('scroll', handler, { passive: true })
+    return () => window.removeEventListener('scroll', handler)
+  }, [])
 
   return (
     <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          className="btn-Scroll"
-          initial={{ opacity: 0, scale: 0, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0, y: 20 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-          onClick={goTop}
-          whileHover={{ scale: 1.1, y: -5 }}
-          whileTap={{ scale: 0.9 }}
+      {visible && (
+        <motion.button
+          key="scroll-top"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.2 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Scroll to top"
+          className="fixed bottom-8 right-6 z-40 w-10 h-10 rounded-xl border border-white/10 bg-navy-800/80 backdrop-blur-sm flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-500/40 hover:bg-blue-500/10 transition-all duration-200"
         >
-          <motion.div
-            animate={{ y: [0, -5, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            <FontAwesomeIcon icon={faArrowCircleUp} color="white" />
-          </motion.div>
-        </motion.div>
+          <ArrowUp size={16} />
+        </motion.button>
       )}
     </AnimatePresence>
   )

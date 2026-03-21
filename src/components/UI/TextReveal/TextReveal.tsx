@@ -1,7 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { useInView } from 'framer-motion'
 import { gsap } from 'gsap'
-import './TextReveal.scss'
 import PropTypes from 'prop-types'
 
 const TextReveal = ({ children, className = '', direction = 'up' }) => {

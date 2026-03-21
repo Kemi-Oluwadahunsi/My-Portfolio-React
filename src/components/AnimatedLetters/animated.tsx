@@ -1,4 +1,3 @@
-import '../Layout/index.scss'
 import PropTypes from 'prop-types'
 
 const AnimatedLetters = ({ letterClass, strArray, idx }) => {

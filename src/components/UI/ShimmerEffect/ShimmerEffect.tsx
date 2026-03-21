@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import './ShimmerEffect.scss'
 import PropTypes from 'prop-types'
 
 const ShimmerEffect = ({ children, className = '' }) => {

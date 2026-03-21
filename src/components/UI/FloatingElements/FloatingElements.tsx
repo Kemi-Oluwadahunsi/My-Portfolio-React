@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import './FloatingElements.scss'
 
 const FloatingElements = () => {
   const elements = Array.from({ length: 6 }, (_, i) => ({

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import './Tooltip.scss'
 import PropTypes from 'prop-types'
 
 const Tooltip = ({ children, text, position = 'top' }) => {

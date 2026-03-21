@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
-import './TiltCard.scss'
 import PropTypes from 'prop-types'
 
 const TiltCard = ({ children, className = '', intensity = 15 }) => {
