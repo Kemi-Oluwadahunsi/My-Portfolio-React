@@ -425,3 +425,14 @@
   transition: border-color 0.2s, color 0.2s;
 }
 .btn-ghost:hover { border-color: rgb(255 255 255 / 0.25); color: #fff; }
+
+/* ── ParticleBackground canvas ──────────── */
+.particle-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
