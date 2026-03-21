@@ -16,7 +16,7 @@ if (typeof window !== 'undefined' && typeof gsap !== 'undefined') {
 const experiences = workExperience
 
 const Each = ({ experience }) => {
-  const [isHovered, setIsHovered] = useState(false)
+  const [isFlipped, setIsFlipped] = useState(false)
   const cardRef = useRef(null)
   const rotateX = useSpring(useMotionValue(0), { stiffness: 300, damping: 30 })
   const rotateY = useSpring(useMotionValue(0), { stiffness: 300, damping: 30 })
@@ -39,7 +39,14 @@ const Each = ({ experience }) => {
   const handleMouseLeave = () => {
     rotateX.set(0)
     rotateY.set(0)
-    setIsHovered(false)
+    setIsFlipped(false)
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      setIsFlipped(prev => !prev)
+    }
   }
 
   return (
@@ -47,8 +54,14 @@ const Each = ({ experience }) => {
       ref={cardRef}
       className="experience-card-wrapper"
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={handleMouseLeave}
+      onFocus={() => setIsFlipped(true)}
+      onBlur={() => setIsFlipped(false)}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+      aria-label={`${experience.title} at ${experience.company}. Press Enter to view details.`}
       style={{
         rotateX,
         rotateY,
@@ -60,7 +73,7 @@ const Each = ({ experience }) => {
       <GlassCard className="experience-card">
         <motion.div
           className="card-front"
-          animate={{ rotateY: isHovered ? 180 : 0 }}
+          animate={{ rotateY: isFlipped ? 180 : 0 }}
           transition={{ duration: 0.6, ease: 'easeInOut' }}
           style={{ transformStyle: 'preserve-3d' }}
         >
@@ -77,17 +90,17 @@ const Each = ({ experience }) => {
             <h3 className="company">{experience.company}</h3>
             <motion.div
               className="flip-hint"
-              animate={{ opacity: isHovered ? 0 : 1 }}
+              animate={{ opacity: isFlipped ? 0 : 1 }}
               transition={{ duration: 0.3 }}
             >
-              <span>Hover to see details</span>
+              <span>Hover or press Enter to see details</span>
             </motion.div>
           </div>
         </motion.div>
 
         <motion.div
           className="card-back"
-          animate={{ rotateY: isHovered ? 0 : -180 }}
+          animate={{ rotateY: isFlipped ? 0 : -180 }}
           transition={{ duration: 0.6, ease: 'easeInOut' }}
           style={{ transformStyle: 'preserve-3d' }}
         >

@@ -1,6 +1,6 @@
 import './home.scss'
 import Kemi from '/images/creative-Kemi.webp'
-import { useState, lazy, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import AnimatedLetters from '../AnimatedLetters/animated'
 import '../AnimatedLetters/animated.scss'
 import { Link as ScrollLink } from 'react-scroll'
@@ -15,8 +15,8 @@ import FloatingElements from '../UI/FloatingElements/FloatingElements'
 const Hero3D = lazy(() => import('../3D/Hero3D'))
 
 const Home = () => {
-  const [letterClass] = useState('text-animate')
-  const [ref] = useInView({
+  const letterClass = 'text-animate'
+  const { ref } = useInView({
     threshold: 0.1,
     triggerOnce: true,
   })
@@ -139,7 +139,6 @@ const Home = () => {
         <motion.div
           className="buttons"
           variants={itemVariants}
-          to="services"
         >
           <ScrollLink to="portfolioSection" smooth={true} duration={500}>
             <Button variant="primary" size="lg" className='flat-button'>

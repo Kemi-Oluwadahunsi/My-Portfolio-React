@@ -22,12 +22,12 @@ const navItems = [
   { icon: faEnvelope, to: 'contact', className: 'contact-link', label: 'Contact' },
 ]
 
-const socialLinks = [
+const sidebarSocialLinks = [
   { icon: faLinkedin, href: 'https://www.linkedin.com/in/oluwakemioluwadahunsi/', label: 'LinkedIn' },
   { icon: faFacebook, href: 'https://www.facebook.com/kaliceagbabiaka1', label: 'Facebook' },
   { icon: faXTwitter, href: 'https://twitter.com/km_oluwadahunsi', label: 'Twitter' },
-  { icon: faGithub, href: 'http://github.com/Kemi-Oluwadahunsi/', label: 'GitHub' },
-  { icon: faWhatsapp, href: 'http://wa.me/+2348146433203', label: 'WhatsApp' },
+  { icon: faGithub, href: 'https://github.com/Kemi-Oluwadahunsi/', label: 'GitHub' },
+  { icon: faWhatsapp, href: import.meta.env.VITE_WHATSAPP_LINK_NG || '#', label: 'WhatsApp' },
 ]
 
 const Sidebar = () => {
@@ -115,7 +115,7 @@ const Sidebar = () => {
         </nav>
 
         <motion.ul variants={itemVariants}>
-          {socialLinks.map((social, index) => (
+          {sidebarSocialLinks.map((social, index) => (
             <motion.li
               key={social.href}
               initial={{ opacity: 0, y: 20 }}

@@ -494,3 +494,28 @@
     }
   }
 }
+
+// Form field validation styles
+.form-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.field-error {
+  color: #f87171;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  padding-left: 0.25rem;
+}
+
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border-color: #f87171 !important;
+  box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.3);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

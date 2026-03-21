@@ -2,12 +2,6 @@ import '../Layout/index.scss'
 import PropTypes from 'prop-types'
 
 const AnimatedLetters = ({ letterClass, strArray, idx }) => {
-  AnimatedLetters.propTypes = {
-    letterClass: PropTypes.string.isRequired,
-    strArray: PropTypes.array.isRequired,
-    idx: PropTypes.number.isRequired,
-  }
-
   return (
     <span>
       {strArray.map((char, i) => (
@@ -17,6 +11,12 @@ const AnimatedLetters = ({ letterClass, strArray, idx }) => {
       ))}
     </span>
   )
+}
+
+AnimatedLetters.propTypes = {
+  letterClass: PropTypes.string.isRequired,
+  strArray: PropTypes.array.isRequired,
+  idx: PropTypes.number.isRequired,
 }
 
 export default AnimatedLetters

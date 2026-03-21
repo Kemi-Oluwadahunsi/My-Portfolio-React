@@ -2,27 +2,20 @@ import { lazy, Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from '../Sidebar/sidebar'
 import './index.scss'
-import Parallax from '../parallax/Parallax'
-import Services from '../services/Services'
-import Portfolio from '../portfolio/Portfolio'
-import Contact from '../contact/Contact'
 import Cursor from '../cursor/Cursor'
 import Navbar from '../navbar/Navbar'
 import ScrollArrow from '../backarrow/ScrollArrow'
-import Experience from '../workExperience/Experience'
 import LoadingSkeleton from '../UI/LoadingSkeleton/LoadingSkeleton'
-import Skills from '../Skills/Skills'
-import Background3D from '../3D/Background3D'
 import ParticleBackground from '../UI/ParticleBackground/ParticleBackground'
 
-// Lazy load heavy components
-const ParallaxLazy = lazy(() => Promise.resolve({ default: Parallax }))
-const ServicesLazy = lazy(() => Promise.resolve({ default: Services }))
-const PortfolioLazy = lazy(() => Promise.resolve({ default: Portfolio }))
-const ContactLazy = lazy(() => Promise.resolve({ default: Contact }))
-const ExperienceLazy = lazy(() => Promise.resolve({ default: Experience }))
-const SkillsLazy = lazy(() => Promise.resolve({ default: Skills }))
-const Background3DLazy = lazy(() => Promise.resolve({ default: Background3D }))
+// Lazy load heavy components with actual code splitting
+const Parallax = lazy(() => import('../parallax/Parallax'))
+const Services = lazy(() => import('../services/Services'))
+const Portfolio = lazy(() => import('../portfolio/Portfolio'))
+const Contact = lazy(() => import('../contact/Contact'))
+const Experience = lazy(() => import('../workExperience/Experience'))
+const Skills = lazy(() => import('../Skills/Skills'))
+const Background3D = lazy(() => import('../3D/Background3D'))
 
 
 const Layout = () => {
@@ -48,46 +41,46 @@ const Layout = () => {
 
       <section id="firstParallaxSection" aria-label="Services section">
         <Suspense fallback={<LoadingSkeleton width="100%" height="400px" />}>
-          <ParallaxLazy type="services" />
+          <Parallax type="services" />
         </Suspense>
       </section>
 
       <section className="servicesSection" aria-label="Services">
         <Suspense fallback={<LoadingSkeleton width="100%" height="600px" />}>
-          <Background3DLazy intensity={0.2} />
-          <ServicesLazy />
+          <Background3D intensity={0.2} />
+          <Services />
         </Suspense>
       </section>
 
       <section className="skillsSection" id="skills" aria-label="Skills">
         <Suspense fallback={<LoadingSkeleton width="100%" height="600px" />}>
-          <Background3DLazy intensity={0.15} />
-          <SkillsLazy />
+          <Background3D intensity={0.15} />
+          <Skills />
         </Suspense>
       </section>
 
       <section className="experienceSection" id="experience" aria-label="Work Experience">
         <Suspense fallback={<LoadingSkeleton width="100%" height="500px" />}>
-          <Background3DLazy intensity={0.2} />
-          <ExperienceLazy />
+          <Background3D intensity={0.2} />
+          <Experience />
         </Suspense>
       </section>
 
       <section className="secondParallaxSection" aria-label="Portfolio section">
         <Suspense fallback={<LoadingSkeleton width="100%" height="400px" />}>
-          <ParallaxLazy type="portfolio" />
+          <Parallax type="portfolio" />
         </Suspense>
       </section>
 
       <section className="portfolioSection" id="portfolioSection" aria-label="Portfolio">
         <Suspense fallback={<LoadingSkeleton width="100%" height="800px" />}>
-          <PortfolioLazy />
+          <Portfolio />
         </Suspense>
       </section>
 
       <section className="contactSection" id="contact" aria-label="Contact">
         <Suspense fallback={<LoadingSkeleton width="100%" height="600px" />}>
-          <ContactLazy />
+          <Contact />
         </Suspense>
       </section>
     </div>

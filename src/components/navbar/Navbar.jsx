@@ -40,12 +40,19 @@ const Navbar = () => {
       }
     }
 
+    let ticking = false
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 50)
+          ticking = false
+        })
+        ticking = true
+      }
     }
 
     document.addEventListener('click', handleClickOutside)
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
     return () => {
       document.removeEventListener('click', handleClickOutside)
@@ -193,7 +200,7 @@ const Navbar = () => {
                       { icon: faFacebook, href: 'https://www.facebook.com/kaliceagbabiaka1', label: 'Facebook' },
                       { icon: faXTwitter, href: 'https://twitter.com/km_oluwadahunsi', label: 'Twitter' },
                       { icon: faGithub, href: 'https://github.com/Kemi-Oluwadahunsi/', label: 'GitHub' },
-                      { icon: faWhatsapp, href: 'https://wa.me/+601113219046', label: 'WhatsApp' },
+                      { icon: faWhatsapp, href: import.meta.env.VITE_WHATSAPP_LINK || '#', label: 'WhatsApp' },
                     ].map((social, index) => (
                       <motion.li
                         key={social.href}

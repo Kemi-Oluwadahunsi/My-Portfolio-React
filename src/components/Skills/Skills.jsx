@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import GradientText from '../UI/GradientText/GradientText'
 import {
   Lock,
@@ -86,13 +86,22 @@ const Skills = () => {
 const SkillCard = ({ skill, index, inView }) => {
   const [isHovered, setIsHovered] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const ticking = useRef(false)
   const IconComponent = skill.icon
 
   const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    setMousePosition({ x, y })
+    if (!ticking.current) {
+      window.requestAnimationFrame(() => {
+        const rect = e.currentTarget?.getBoundingClientRect()
+        if (rect) {
+          const x = e.clientX - rect.left
+          const y = e.clientY - rect.top
+          setMousePosition({ x, y })
+        }
+        ticking.current = false
+      })
+      ticking.current = true
+    }
   }
 
   return (

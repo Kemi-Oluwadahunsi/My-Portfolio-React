@@ -447,11 +447,14 @@ export const socialLinks = {
   facebook: 'https://www.facebook.com/kaliceagbabiaka1',
   twitter: 'https://twitter.com/km_oluwadahunsi',
   github: 'https://github.com/Kemi-Oluwadahunsi/',
-  whatsapp: 'https://wa.me/+601113219046',
+  whatsapp: import.meta.env.VITE_WHATSAPP_LINK || '#',
   resume: 'https://drive.google.com/file/d/1tJgWBOmxZ1hlfbFtRdryVnHNSfKuqahr/view?usp=sharing',
 }
 
 export const contactInfo = {
-  email: 'oluwakemioluwadahunsi@gmail.com',
-  phone: ['(+60) 111-321-9046', '(+234) 814-643-3203'],
+  email: import.meta.env.VITE_CONTACT_EMAIL || '',
+  phone: [
+    import.meta.env.VITE_CONTACT_PHONE_1 || '',
+    import.meta.env.VITE_CONTACT_PHONE_2 || '',
+  ],
 }

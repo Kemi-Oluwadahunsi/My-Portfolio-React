@@ -1,21 +1,28 @@
 import { faArrowCircleUp } from "@fortawesome/free-solid-svg-icons"
 import "./scrollarrow.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 
 
 const ScrollArrow = () => {
     const [isVisible, setIsVisible] = useState(false)
+    const ticking = useRef(false)
+
+    const handleScroll = useCallback(() => {
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          setIsVisible(window.scrollY > 100)
+          ticking.current = false
+        })
+        ticking.current = true
+      }
+    }, [])
 
     useEffect(() => {
-      const handleScroll = () => {
-        setIsVisible(window.scrollY > 100)
-      }
-      
-      window.addEventListener('scroll', handleScroll)
+      window.addEventListener('scroll', handleScroll, { passive: true })
       return () => window.removeEventListener('scroll', handleScroll)
-    }, []);
+    }, [handleScroll]);
 
     const goTop = () => {
       window.scrollTo({

@@ -214,7 +214,7 @@ CarouselCard.propTypes = {
 }
 
 const Portfolio = () => {
-  const [ref] = useInView({
+  const { ref } = useInView({
     threshold: 0.1,
     triggerOnce: true,
   })
