@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { Quote } from 'lucide-react'
 import { testimonials } from '../../constants/portfolioData'
 
 const Testimonials = () => {
@@ -12,40 +13,31 @@ const Testimonials = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-12 text-center"
         >
-          <span className="section-label">Social Proof</span>
-          <h2 className="section-title">From the People I've Worked With</h2>
+          <span className="section-label">Social proof</span>
+          <h2 className="section-title">What Leaders Say</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-          {testimonials.map((t, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {testimonials.map((t, index) => (
             <motion.div
               key={t.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="card p-6 flex flex-col gap-5"
+              transition={{ duration: 0.5, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+              className="card p-6 flex flex-col"
             >
-              {/* Quote mark */}
-              <span
-                className="text-4xl font-serif leading-none"
-                style={{ color: 'var(--color-brand-blue)', opacity: 0.4 }}
-              >
-                "
-              </span>
-
-              <p className="text-slate-300 text-sm leading-relaxed -mt-3 flex-1">
-                {t.quote}
+              <Quote size={22} className="text-blue-500/40 mb-4 shrink-0" />
+              <p className="text-slate-300 text-sm leading-relaxed flex-1 mb-6 italic">
+                "{t.quote}"
               </p>
-
-              <div className="flex items-center gap-3 pt-3 border-t" style={{ borderColor: 'rgb(255 255 255 / 0.06)' }}>
+              <div className="flex items-center gap-3">
                 <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold shrink-0"
+                  className="w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm shrink-0"
                   style={{
-                    background: 'rgb(59 130 246 / 0.15)',
-                    color: 'var(--color-brand-blue-light)',
-                    border: '1px solid rgb(59 130 246 / 0.2)',
+                    background: 'linear-gradient(135deg, var(--color-brand-blue-dark), var(--color-brand-blue))',
+                    color: '#fff',
                   }}
                 >
                   {t.initials}
