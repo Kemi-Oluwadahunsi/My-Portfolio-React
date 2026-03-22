@@ -1,19 +1,28 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown, faDotCircle, faBriefcase } from '@fortawesome/free-solid-svg-icons'
 import './experience.scss'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { workExperience } from '../../constants/portfolioData'
 import GlassCard from '../UI/GlassCard/GlassCard'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-if (typeof window !== 'undefined' && typeof gsap !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
-}
 
 const experiences = workExperience
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 100, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.8, ease: [0.215, 0.61, 0.355, 1] },
+  },
+}
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.2 } },
+}
 
 const Each = ({ experience }) => {
   const [isFlipped, setIsFlipped] = useState(false)
@@ -28,12 +37,9 @@ const Each = ({ experience }) => {
     const centerY = rect.top + rect.height / 2
     const mouseX = e.clientX - centerX
     const mouseY = e.clientY - centerY
-    
-    const rotateXValue = (mouseY / rect.height) * -10
-    const rotateYValue = (mouseX / rect.width) * 10
-    
-    rotateX.set(rotateXValue)
-    rotateY.set(rotateYValue)
+
+    rotateX.set((mouseY / rect.height) * -10)
+    rotateY.set((mouseX / rect.width) * 10)
   }
 
   const handleMouseLeave = () => {
@@ -45,7 +51,7 @@ const Each = ({ experience }) => {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault()
-      setIsFlipped(prev => !prev)
+      setIsFlipped((prev) => !prev)
     }
   }
 
@@ -53,6 +59,7 @@ const Each = ({ experience }) => {
     <motion.div
       ref={cardRef}
       className="experience-card-wrapper"
+      variants={cardVariants}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={handleMouseLeave}
@@ -136,34 +143,6 @@ const Experience = () => {
     threshold: 0.1,
     triggerOnce: true,
   })
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    if (containerRef.current && inView) {
-      const cards = containerRef.current.children
-      gsap.fromTo(
-        cards,
-        {
-          opacity: 0,
-          y: 100,
-          scale: 0.8,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      )
-    }
-  }, [inView])
 
   return (
     <div className="experience" ref={ref}>
@@ -184,11 +163,16 @@ const Experience = () => {
           Hover over each card to view Job Details
         </motion.p>
 
-        <div className="card-wrapper" ref={containerRef}>
+        <motion.div
+          className="card-wrapper"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+        >
           {experiences.map((item) => (
             <Each experience={item} key={item.id} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   )

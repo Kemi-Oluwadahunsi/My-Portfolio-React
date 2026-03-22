@@ -1,54 +1,23 @@
-import { useRef, useEffect } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { motion } from 'framer-motion'
 import PropTypes from 'prop-types'
 
-if (typeof window !== 'undefined' && typeof gsap !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
-}
-
 const ScrollReveal = ({ children, direction = 'up', delay = 0, duration = 0.8 }) => {
-  const ref = useRef(null)
-
-  useEffect(() => {
-    if (ref.current) {
-      const element = ref.current
-      const from = {
-        opacity: 0,
-        y: direction === 'up' ? 100 : direction === 'down' ? -100 : 0,
-        x: direction === 'left' ? 100 : direction === 'right' ? -100 : 0,
-        scale: 0.9,
-      }
-
-      const to = {
-        opacity: 1,
-        y: 0,
-        x: 0,
-        scale: 1,
-        duration,
-        delay,
-        ease: 'power3.out',
-      }
-
-      gsap.fromTo(
-        element,
-        from,
-        {
-          ...to,
-          scrollTrigger: {
-            trigger: element,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      )
-    }
-  }, [direction, delay, duration])
+  const initial = {
+    opacity: 0,
+    y: direction === 'up' ? 100 : direction === 'down' ? -100 : 0,
+    x: direction === 'left' ? 100 : direction === 'right' ? -100 : 0,
+    scale: 0.9,
+  }
 
   return (
-    <div ref={ref} style={{ opacity: 0 }}>
+    <motion.div
+      initial={initial}
+      whileInView={{ opacity: 1, y: 0, x: 0, scale: 1 }}
+      viewport={{ once: false, margin: '0px 0px -15% 0px' }}
+      transition={{ duration, delay, ease: [0.215, 0.61, 0.355, 1] }}
+    >
       {children}
-    </div>
+    </motion.div>
   )
 }
 

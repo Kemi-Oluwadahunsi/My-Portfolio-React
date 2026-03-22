@@ -148,7 +148,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'animation-vendor': ['framer-motion', 'gsap'],
+          'animation-vendor': ['framer-motion'],
           'three-vendor': ['three', '@react-three/fiber', '@react-three/drei']
         }
       }
@@ -156,6 +156,6 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'framer-motion', 'gsap']
+    include: ['react', 'react-dom', 'framer-motion']
   }
 })

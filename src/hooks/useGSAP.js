@@ -1,27 +1,14 @@
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef } from 'react'
+import { useInView } from 'framer-motion'
 
-// Register ScrollTrigger plugin
-if (typeof window !== 'undefined' && typeof gsap !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
+/**
+ * Utility hook that returns a ref and whether the element is in view.
+ * Drop-in replacement for the old GSAP-based useGSAP hook.
+ */
+export const useScrollReveal = (options = {}) => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px', ...options })
+  return { ref, isInView }
 }
 
-export const useGSAP = (animationFn, dependencies = []) => {
-  const elementRef = useRef(null)
-
-  useEffect(() => {
-    if (elementRef.current && animationFn) {
-      const ctx = gsap.context(() => {
-        animationFn(elementRef.current)
-      })
-
-      return () => ctx.revert()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, dependencies)
-
-  return elementRef
-}
-
-export default useGSAP
+export default useScrollReveal
