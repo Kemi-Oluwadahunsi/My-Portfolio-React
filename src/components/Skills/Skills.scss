@@ -5,11 +5,7 @@
   width: 95%;
   margin-left: 5%;
   padding: 5rem 2rem;
-  background: linear-gradient(
-    180deg,
-    var(--color-bgPrimary, #061829),
-    var(--color-accentSecondary, #505064)
-  );
+  background: transparent;
   position: relative;
   overflow: hidden;
 
@@ -48,7 +44,7 @@
   }
 
   .skills-container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     position: relative;
     z-index: 2;
@@ -71,64 +67,48 @@
 
     .skills-subtitle {
       text-align: center;
-      font-size: 1.3rem;
+      font-size: 1.15rem;
       color: var(--color-textSecondary, #bce0fb);
       margin-bottom: 4rem;
-      opacity: 0.9;
+      opacity: 0.8;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
 
       @include tablet {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         margin-bottom: 3rem;
       }
 
       @include mobile {
-        font-size: 1rem;
+        font-size: 0.95rem;
         margin-bottom: 2rem;
       }
     }
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 2rem;
-      justify-items: center;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
 
       @include tablet {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 1.5rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
       }
 
       @include mobile {
-        // Hexagonal grid layout for mobile
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-auto-rows: minmax(72px, auto);
-        gap: 0.7rem;
-        margin: 0 auto;
-        padding: 1rem 0.75rem;
-        justify-items: center;
-        align-items: center;
+        grid-template-columns: 1fr;
+        gap: 1rem;
       }
     }
   }
 }
 
+// Card wrapper with perspective for 3D tilt
 .skill-card-wrapper {
-  perspective: 1000px;
+  perspective: 800px;
   width: 100%;
-  height: 180px;
-  max-width: 180px;
-
-  @include tablet {
-    height: 160px;
-    max-width: 150px;
-  }
-
-  @include mobile {
-    height: 72px;
-    max-width: 70px;
-    width: 70px;
-  }
+  display: flex;
 }
 
 .skill-card {
@@ -137,17 +117,16 @@
   position: relative;
   transform-style: preserve-3d;
   cursor: pointer;
+  display: flex;
 }
 
 .skill-card-inner {
   width: 100%;
-  height: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1.5rem;
+  flex: 1;
+  padding: 1.5rem;
   border-radius: 20px;
   overflow: hidden;
 
@@ -159,10 +138,9 @@
   );
 
   // Neomorphism shadows - embossed effect
-  box-shadow: 
-    // Outer shadows (dark)
-    -8px -8px 16px rgba(0, 0, 0, 0.4), 8px 8px 16px rgba(0, 0, 0, 0.3),
-    // Inner highlights (light)
+  box-shadow:
+    -8px -8px 16px rgba(0, 0, 0, 0.4),
+    8px 8px 16px rgba(0, 0, 0, 0.3),
     inset -4px -4px 8px rgba(188, 224, 251, 0.05),
     inset 4px 4px 8px rgba(0, 0, 0, 0.2);
 
@@ -170,154 +148,195 @@
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
   @include tablet {
-    padding: 1.5rem 1rem;
+    padding: 1.25rem;
     border-radius: 16px;
-    box-shadow: -6px -6px 12px rgba(0, 0, 0, 0.4),
+    box-shadow:
+      -6px -6px 12px rgba(0, 0, 0, 0.4),
       6px 6px 12px rgba(0, 0, 0, 0.3),
       inset -3px -3px 6px rgba(188, 224, 251, 0.05),
       inset 3px 3px 6px rgba(0, 0, 0, 0.2);
   }
 
   @include mobile {
-    padding: 0.55rem 0.4rem;
+    padding: 1.1rem;
     border-radius: 14px;
-    box-shadow: -3px -3px 7px rgba(0, 0, 0, 0.45),
+    box-shadow:
+      -3px -3px 7px rgba(0, 0, 0, 0.45),
       3px 3px 7px rgba(0, 0, 0, 0.35),
       inset -2px -2px 5px rgba(188, 224, 251, 0.1),
-      inset 2px 2px 5px rgba(0, 0, 0, 0.25), 0 0 10px rgba(188, 224, 251, 0.12);
-    flex-direction: column;
+      inset 2px 2px 5px rgba(0, 0, 0, 0.25),
+      0 0 10px rgba(188, 224, 251, 0.12);
     border: 1px solid rgba(188, 224, 251, 0.12);
+  }
+
+  // Exploring variant - amber accent
+  &.exploring {
+    border-color: rgba(251, 191, 36, 0.15);
   }
 
   // Hover state - more pronounced neomorphism
   .skill-card:hover & {
-    box-shadow: 
-      // Enhanced outer shadows
-      -12px -12px 24px rgba(0, 0, 0, 0.5), 12px 12px 24px rgba(0, 0, 0, 0.4),
-      // Enhanced inner highlights with color
+    box-shadow:
+      -12px -12px 24px rgba(0, 0, 0, 0.5),
+      12px 12px 24px rgba(0, 0, 0, 0.4),
       inset -6px -6px 12px rgba(188, 224, 251, 0.15),
       inset 6px 6px 12px rgba(0, 0, 0, 0.3),
-      // Outer glow
       0 0 30px rgba(188, 224, 251, 0.2);
-
     border-color: rgba(188, 224, 251, 0.3);
 
     @include tablet {
-      box-shadow: -8px -8px 16px rgba(0, 0, 0, 0.5),
+      box-shadow:
+        -8px -8px 16px rgba(0, 0, 0, 0.5),
         8px 8px 16px rgba(0, 0, 0, 0.4),
         inset -4px -4px 8px rgba(188, 224, 251, 0.15),
-        inset 4px 4px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(188, 224, 251, 0.2);
+        inset 4px 4px 8px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(188, 224, 251, 0.2);
     }
 
     @include mobile {
-      box-shadow: -5px -5px 10px rgba(0, 0, 0, 0.55),
+      box-shadow:
+        -5px -5px 10px rgba(0, 0, 0, 0.55),
         5px 5px 10px rgba(0, 0, 0, 0.45),
         inset -3px -3px 6px rgba(188, 224, 251, 0.25),
         inset 3px 3px 6px rgba(0, 0, 0, 0.35),
         0 0 15px rgba(188, 224, 251, 0.35);
       border-color: rgba(188, 224, 251, 0.25);
     }
+
+    &.exploring {
+      border-color: rgba(251, 191, 36, 0.35);
+      box-shadow:
+        -12px -12px 24px rgba(0, 0, 0, 0.5),
+        12px 12px 24px rgba(0, 0, 0, 0.4),
+        inset -6px -6px 12px rgba(251, 191, 36, 0.1),
+        inset 6px 6px 12px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(251, 191, 36, 0.15);
+    }
   }
 
   // Active/pressed state
   &:active {
-    box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.4),
+    box-shadow:
+      inset 4px 4px 8px rgba(0, 0, 0, 0.4),
       inset -4px -4px 8px rgba(188, 224, 251, 0.1);
     transform: scale(0.98);
-
-    @include mobile {
-      box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.4),
-        inset -1px -1px 3px rgba(188, 224, 251, 0.1);
-    }
   }
 }
 
-.skill-icon-container {
-  position: relative;
-  margin-bottom: 1rem;
-  z-index: 2;
+// Mouse-tracking glow
+.skill-glow {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(40px);
 
   @include mobile {
-    margin-bottom: 0.3rem;
+    width: 120px;
+    height: 120px;
+    filter: blur(25px);
   }
 }
 
-.skill-icon {
-  width: 48px;
-  height: 48px;
-  display: block;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-  transition: filter 0.3s ease;
+// Top accent bar
+.card-accent-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3fabf1, #bce0fb, transparent);
+  border-radius: 2px 2px 0 0;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
 
-  @include tablet {
-    width: 40px;
-    height: 40px;
-  }
-
-  @include mobile {
-    width: 24px;
-    height: 24px;
+  &.amber {
+    background: linear-gradient(90deg, #fbbf24, #fcd34d, transparent);
   }
 
   .skill-card:hover & {
-    filter: drop-shadow(0 6px 12px rgba(188, 224, 251, 0.4));
+    opacity: 1;
   }
 }
 
-.skill-name {
-  font-size: 1.1rem;
+// Category header
+.group-category {
+  font-family: monospace;
+  font-size: 0.72rem;
   font-weight: 600;
-  color: var(--color-textPrimary, #ffffff);
-  text-align: center;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #8ecdf7;
+  margin: 0 0 1rem;
   position: relative;
-  z-index: 2;
-  transition: text-shadow 0.3s ease;
+  z-index: 1;
 
-  @include tablet {
-    font-size: 1rem;
+  &.amber {
+    color: #fbbf24;
   }
 
   @include mobile {
     font-size: 0.65rem;
-    font-weight: 600;
-    line-height: 1.25;
-    letter-spacing: 0.3px;
-    word-break: break-word;
-    hyphens: auto;
-  }
-
-  .skill-card:hover & {
-    text-shadow: 0 2px 8px rgba(188, 224, 251, 0.5);
+    margin-bottom: 0.75rem;
+    letter-spacing: 1.5px;
   }
 }
 
-.skill-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 150px;
-  height: 150px;
-  background: radial-gradient(
-    circle,
-    rgba(188, 224, 251, 0.3) 0%,
-    transparent 70%
-  );
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
+// Skill pills container
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  position: relative;
   z-index: 1;
-  filter: blur(20px);
 
   @include mobile {
-    width: 50px;
-    height: 50px;
-    filter: blur(8px);
+    gap: 0.35rem;
   }
 }
 
-// Additional 3D depth effect
+// Individual pill
+.skill-pill {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border-radius: 50px;
+  background: rgba(63, 171, 241, 0.06);
+  border: 1px solid rgba(63, 171, 241, 0.18);
+  color: #a8d8f8;
+  font-size: 0.75rem;
+  font-family: monospace;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    border-color: rgba(63, 171, 241, 0.5);
+    background: rgba(63, 171, 241, 0.12);
+    color: #bce0fb;
+  }
+
+  &.amber {
+    background: rgba(251, 191, 36, 0.06);
+    border-color: rgba(251, 191, 36, 0.2);
+    color: #fcd34d;
+
+    &:hover {
+      border-color: rgba(251, 191, 36, 0.5);
+      background: rgba(251, 191, 36, 0.12);
+      color: #fde68a;
+    }
+  }
+
+  @include mobile {
+    font-size: 0.65rem;
+    padding: 0.22rem 0.55rem;
+  }
+}
+
+// 3D depth border effect
 .skill-card::before {
   content: '';
   position: absolute;
@@ -341,7 +360,7 @@
   }
 
   @include mobile {
-    border-radius: 12px;
+    border-radius: 16px;
   }
 }
 

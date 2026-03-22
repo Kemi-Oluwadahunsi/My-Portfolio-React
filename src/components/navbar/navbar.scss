@@ -109,7 +109,6 @@
       align-items: center;
       justify-content: flex-start;
       padding-top: 5rem;
-      gap: 2rem;
       z-index: 9998;
       border-bottom-left-radius: 10px;
       pointer-events: auto;
@@ -131,6 +130,8 @@
         padding: 0;
         margin: 0;
         width: 100%;
+        flex: 1;
+        overflow-y: auto;
 
         li {
           width: 100%;
@@ -140,18 +141,18 @@
 
         .navLinks {
           display: block;
-          font-size: 1.2rem;
+          font-size: 1rem;
           font-weight: 500;
           color: #bce0fb;
           text-decoration: none;
-          padding: 1rem 1.5rem;
+          padding: 0.6rem 1.5rem;
           transition: all 0.3s ease;
           border-bottom: 1px solid rgba(188, 224, 251, 0.1);
           cursor: pointer;
 
           @include mobile {
-            font-size: 1rem;
-            padding: 0.875rem 1.25rem;
+            font-size: 0.9rem;
+            padding: 0.5rem 1.25rem;
           }
 
           &:hover {
@@ -165,9 +166,9 @@
           border: 1px solid #3fabf1;
           background-color: #bce0fb;
           color: #0c0c1d !important;
-          padding: 0.75rem 1.5rem;
+          padding: 0.5rem 1.25rem;
           border-radius: 8px;
-          margin-top: 1rem;
+          margin-top: 0.5rem;
           font-weight: 600;
           text-decoration: none;
           transition: all 0.3s ease;
@@ -191,8 +192,8 @@
       .socialIcons {
         display: flex;
         width: 100%;
-        padding: 1.5rem;
-        margin-top: auto;
+        padding: 0.75rem 1.5rem;
+        flex-shrink: 0;
         border-top: 1px solid rgba(188, 224, 251, 0.1);
 
         ul {
@@ -218,22 +219,22 @@
               display: flex;
               align-items: center;
               justify-content: center;
-              width: 45px;
-              height: 45px;
+              width: 36px;
+              height: 36px;
               border-radius: 50%;
               background-color: #bce0fb;
               transition: all 0.3s ease;
 
               @include mobile {
-                width: 40px;
-                height: 40px;
+                width: 32px;
+                height: 32px;
               }
 
               svg {
-                font-size: 1.25rem;
+                font-size: 1rem;
 
                 @include mobile {
-                  font-size: 1.1rem;
+                  font-size: 0.9rem;
                 }
               }
 

@@ -148,10 +148,14 @@ const Navbar = () => {
                 >
                   {[
                     { to: 'section', label: 'Home' },
-                    { to: 'services', label: 'Services' },
-                    { to: 'skills', label: 'Skills' },
+                    { to: 'services', label: 'Expertise' },
+                    { to: 'portfolioSection', label: 'Work' },
+                    { to: 'architecture', label: 'Architecture' },
                     { to: 'experience', label: 'Experience' },
-                    { to: 'portfolio', label: 'Portfolio' },
+                    { to: 'skills', label: 'Skills' },
+                    { to: 'writing', label: 'Writing' },
+                    { to: 'opensource', label: 'Open Source' },
+                    { to: 'testimonials', label: 'Testimonials' },
                     { to: 'contact', label: 'Contact' },
                   ].map((item, index) => (
                     <motion.li
@@ -165,6 +169,7 @@ const Navbar = () => {
                         to={item.to}
                         smooth={true}
                         duration={1000}
+                        containerId="scroll-container"
                         onClick={closeMobileContent}
                       >
                         {item.label}

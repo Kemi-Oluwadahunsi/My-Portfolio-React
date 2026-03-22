@@ -1,0 +1,47 @@
+@import '../../App.scss';
+
+.case-study-page {
+  min-height: 100vh;
+  background: var(--color-bgPrimary, #061829);
+  color: var(--color-textPrimary, #ffffff);
+  padding: 2rem;
+
+  .case-study-nav {
+    max-width: 1000px;
+    margin: 0 auto 2rem;
+    padding-top: 1rem;
+
+    .back-link {
+      color: #8ecdf7;
+      text-decoration: none;
+      font-family: monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #3fabf1;
+      }
+    }
+  }
+
+  .case-study-content {
+    max-width: 1000px;
+    margin: 0 auto;
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 20px rgba(188, 224, 251, 0.3);
+
+      @include mobile {
+        font-size: 1.75rem;
+      }
+    }
+
+    .case-study-placeholder {
+      color: #94a3b8;
+      font-size: 1.1rem;
+    }
+  }
+}

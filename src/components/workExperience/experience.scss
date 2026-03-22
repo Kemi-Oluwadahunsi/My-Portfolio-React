@@ -1,38 +1,22 @@
 @import '../../App.scss';
 
 .experience {
-  width: 97%;
-  margin-left: 3%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   min-height: 100vh;
   padding: 5rem 2rem;
-  background: linear-gradient(
-    180deg,
-    var(--color-accent, #095a9b),
-    var(--color-bgPrimary, #061829)
-  );
+  background: transparent;
   position: relative;
   overflow: hidden;
 
   @include tablet {
-    margin-left: 0;
-    width: 100%;
     padding: 3rem 1rem;
   }
 
   @include mobile {
-    margin-left: 0;
-    width: 100%;
-    padding: 2rem 1rem;
-  }
-
-  @include laptop {
-    width: 100%;
-    margin-left: 0;
-    padding: 2rem 1rem;
+    padding: 2rem 0.75rem;
   }
 
   &::before {
@@ -44,32 +28,14 @@
     bottom: 0;
     background: radial-gradient(
         circle at 80% 20%,
-        rgba(188, 224, 251, 0.15) 0%,
+        rgba(188, 224, 251, 0.1) 0%,
         transparent 50%
       ),
       radial-gradient(
         circle at 20% 80%,
-        rgba(9, 90, 155, 0.1) 0%,
+        rgba(9, 90, 155, 0.08) 0%,
         transparent 50%
       );
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(188, 224, 251, 0.03) 2px,
-      rgba(188, 224, 251, 0.03) 4px
-    );
     pointer-events: none;
     z-index: 0;
   }
@@ -78,379 +44,366 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1400px;
+    max-width: 1000px;
     margin: 0 auto;
     width: 100%;
     position: relative;
     z-index: 1;
-    overflow-x: hidden;
 
     h1 {
-      font-size: 4rem;
+      font-size: 3.5rem;
       text-align: center;
       color: var(--color-textPrimary, #ffffff);
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
       text-shadow: 0 0 20px rgba(188, 224, 251, 0.3);
 
       @include tablet {
         font-size: 2.5rem;
-        margin-bottom: 0.5rem;
       }
 
       @include mobile {
         font-size: 2rem;
-        margin-bottom: 0.3rem;
       }
     }
 
-    .click-card {
+    .section-subtitle {
       text-align: center;
-      padding: 1rem 0 3rem;
-      font-size: 1.2rem;
-      color: var(--color-textSecondary, #bce0fb);
+      font-size: 1.15rem;
+      color: var(--color-textSecondary, #8bc5f0);
+      margin-bottom: 3rem;
       font-style: italic;
 
       @include mobile {
         font-size: 1rem;
-        padding: 0.5rem 0 0.5rem;
+        margin-bottom: 2rem;
       }
     }
+  }
+}
 
-    .card-wrapper {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 3rem;
-      width: 100%;
-      padding: 2rem;
+/* ───── Timeline ───── */
+.timeline {
+  position: relative;
+  width: 100%;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
 
-      @include tablet {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        padding: 1.5rem;
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(188, 224, 251, 0.35) 10%,
+    rgba(188, 224, 251, 0.35) 90%,
+    transparent
+  );
+  transform: translateX(-50%);
+
+  @include tablet {
+    left: 20px;
+  }
+
+  @include mobile {
+    left: 16px;
+  }
+}
+
+/* ───── Timeline Item ───── */
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 0 2.5rem 3rem;
+
+  &.left {
+    align-self: flex-start;
+    margin-left: 0;
+    padding-right: 3rem;
+    text-align: right;
+
+    .timeline-dot-wrapper {
+      right: -8px;
+      left: auto;
+    }
+
+    .timeline-card {
+      margin-left: auto;
+    }
+  }
+
+  &.right {
+    align-self: flex-end;
+    margin-left: auto;
+    padding-left: 3rem;
+
+    .timeline-dot-wrapper {
+      left: -8px;
+      right: auto;
+    }
+  }
+
+  @include tablet {
+    width: 100%;
+    padding: 0 1rem 2rem 3rem;
+    margin-left: 0 !important;
+    text-align: left !important;
+    align-self: stretch !important;
+
+    &.left,
+    &.right {
+      padding-left: 3rem;
+      padding-right: 1rem;
+
+      .timeline-dot-wrapper {
+        left: 14px;
+        right: auto;
       }
 
-      @include mobile {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        padding: 1rem;
-      }
-
-      .experience-card-wrapper {
-        perspective: 1000px;
-        height: 100%;
-        position: relative;
-
-        &::before {
-          content: '';
-          position: absolute;
-          top: -10px;
-          left: -10px;
-          right: -10px;
-          bottom: -10px;
-          background: linear-gradient(
-            135deg,
-            rgba(188, 224, 251, 0.1),
-            rgba(9, 90, 155, 0.1)
-          );
-          border-radius: 1rem;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-          z-index: -1;
-          filter: blur(20px);
-        }
-
-        &:hover::before {
-          opacity: 1;
-        }
-      }
-
-      .experience-card {
-        height: 100%;
-        min-height: 400px;
-        position: relative;
-        overflow: visible;
-        padding: 0;
-        background: transparent;
-
-        @include tablet {
-          height: 90%;
-          min-height: 330px;
-        }
-
-        @include mobile {
-          height: 90%;
-          min-height: 350px;
-          width: 100%;
-          margin: 0 auto;
-        }
-
-        .card-front,
-        .card-back {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          backface-visibility: hidden;
-          border-radius: 1rem;
-          padding: 2.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-
-          @include tablet {
-            padding: 2rem;
-          }
-
-          @include mobile {
-            padding: 1.5rem;
-          }
-        }
-
-        .card-front {
-          background: var(--color-glassBg, rgba(11, 24, 41, 0.9));
-          backdrop-filter: blur(20px);
-          // border: 2px solid var(--color-glassBorder, rgba(188, 224, 251, 0.3));
-          color: var(--color-textPrimary, #ffffff);
-          transform-style: preserve-3d;
-
-          .card-content {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            align-items: center;
-            text-align: center;
-
-            @include tablet {
-              gap: 1.2rem;
-            }
-
-            @include mobile {
-              gap: 1rem;
-            }
-
-            .card-icon {
-              width: 70px;
-              height: 70px;
-              border-radius: 50%;
-              background: linear-gradient(
-                135deg,
-                var(--color-primary, #bce0fb),
-                var(--color-primaryDark, #8bc5f0)
-              );
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              font-size: 1.8rem;
-              color: var(--color-bgPrimary, #061829);
-              box-shadow: 0 8px 25px rgba(188, 224, 251, 0.4);
-              margin-bottom: 1rem;
-
-              @include tablet {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-                margin-bottom: 0.5rem;
-              }
-
-              @include mobile {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-                margin-bottom: 0.3rem;
-              }
-            }
-
-            .expT {
-              font-size: 1.5rem;
-              font-weight: 700;
-              color: var(--color-primary, #bce0fb);
-              margin: 0;
-              line-height: 1.3;
-
-              @include tablet {
-                font-size: 1.2rem;
-                letter-spacing: 0.5px;
-              }
-
-              @include mobile {
-                font-size: 1rem;
-                letter-spacing: 0.3px;
-              }
-            }
-
-            .date {
-              font-size: 1rem;
-              color: var(--color-textSecondary, #bce0fb);
-              font-weight: 500;
-
-              @include tablet {
-                font-size: 0.9rem;
-              }
-
-              @include mobile {
-                font-size: 0.8rem;
-              }
-
-              span {
-                display: inline-block;
-              }
-            }
-
-            .company {
-              font-size: 1.1rem;
-              color: var(--color-textTertiary, #8bc5f0);
-              margin: 0;
-              font-weight: 500;
-              line-height: 1.4;
-
-              @include tablet {
-                font-size: 1rem;
-              }
-
-              @include mobile {
-                font-size: 0.8rem;
-              }
-            }
-
-            .flip-hint {
-              margin-top: 1rem;
-              font-size: 0.9rem;
-              color: var(--color-textMuted, #6b8fa3);
-              font-style: italic;
-
-              @include tablet {
-                font-size: 0.8rem;
-                margin-top: 0.5rem;
-              }
-
-              @include mobile {
-                font-size: 0.7rem;
-                margin-top: 0.3rem;
-              }
-            }
-          }
-        }
-
-        .card-back {
-          background: linear-gradient(
-            135deg,
-            var(--color-primary, #bce0fb),
-            var(--color-primaryDark, #8bc5f0)
-          );
-          color: var(--color-bgPrimary, #061829);
-          transform: rotateY(-180deg);
-          transform-style: preserve-3d;
-
-          .card-content {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            height: 100%;
-
-            @include tablet {
-              gap: 1.2rem;
-            }
-
-            @include mobile {
-              gap: 1rem;
-            }
-
-            .detail-title {
-              display: flex;
-              align-items: center;
-              gap: 1rem;
-              margin-bottom: 1rem;
-
-              @include tablet {
-                margin-bottom: 0.5rem;
-              }
-
-              @include mobile {
-                margin-bottom: 0.3rem;
-              }
-
-              h4 {
-                font-weight: 700;
-                font-size: 1.3rem;
-                margin: 0;
-                color: var(--color-bgPrimary, #061829);
-
-                @include tablet {
-                  font-size: 1.1rem;
-                }
-
-                @include mobile {
-                  font-size: 1rem;
-                }
-              }
-
-              svg {
-                color: var(--color-bgPrimary, #061829);
-              }
-            }
-
-            .description {
-              display: flex;
-              flex-direction: column;
-              gap: 1.2rem;
-              flex-grow: 1;
-
-              @include tablet {
-                gap: 1rem;
-              }
-
-              @include mobile {
-                gap: 0.5rem;
-              }
-
-              .describe {
-                display: flex;
-                gap: 1rem;
-                align-items: flex-start;
-
-                @include tablet {
-                  gap: 0.5rem;
-                }
-
-                @include mobile {
-                  gap: 0.4rem;
-                }
-
-                .dotIcon {
-                  font-size: 0.6rem;
-                  margin-top: 0.6rem;
-                  color: var(--color-bgPrimary, #061829);
-                  flex-shrink: 0;
-
-                  @include tablet {
-                    font-size: 0.4rem;
-                    margin-top: 0.4rem;
-                  }
-
-                  @include mobile {
-                    font-size: 0.4rem;
-                    margin-top: 0.5rem;
-                  }
-                }
-
-                p {
-                  font-size: 0.8rem;
-                  line-height: 1.7;
-                  color: var(--color-bgPrimary, #061829);
-                  margin: 0;
-
-                  @include tablet {
-                    line-height: 1.6;
-                  }
-
-                  @include mobile {
-                    line-height: 1.6;
-                  }
-                }
-              }
-            }
-          }
-        }
+      .timeline-card {
+        margin-left: 0;
+        max-width: 100%;
       }
     }
+  }
+
+  @include mobile {
+    width: 100%;
+    padding: 0 0.5rem 1.5rem 2.5rem;
+    margin-left: 0 !important;
+    text-align: left !important;
+    align-self: stretch !important;
+
+    &.left,
+    &.right {
+      padding-left: 2.5rem;
+      padding-right: 0.5rem;
+
+      .timeline-dot-wrapper {
+        left: 10px;
+        right: auto;
+      }
+
+      .timeline-card {
+        margin-left: 0;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+/* ───── Timeline Dot ───── */
+.timeline-dot-wrapper {
+  position: absolute;
+  top: 0.5rem;
+  z-index: 2;
+}
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-primaryDark, #8bc5f0);
+  border: 3px solid var(--color-bgPrimary, #061829);
+  box-shadow: 0 0 10px rgba(188, 224, 251, 0.4);
+
+  &.current {
+    background: #22c55e;
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.5);
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(34, 197, 94, 0.4); }
+  50% { box-shadow: 0 0 18px rgba(34, 197, 94, 0.7); }
+}
+
+/* ───── Timeline Card ───── */
+.timeline-card {
+  background: rgba(11, 24, 41, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(188, 224, 251, 0.12);
+  border-radius: 1rem;
+  padding: 1.75rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  max-width: 420px;
+
+  &:hover,
+  &:focus-visible {
+    border-color: rgba(188, 224, 251, 0.3);
+    box-shadow: 0 8px 30px rgba(188, 224, 251, 0.08);
+    outline: none;
+  }
+
+  @include mobile {
+    padding: 1.25rem;
+    max-width: 100%;
+  }
+}
+
+/* ───── Card Header ───── */
+.card-header {
+  text-align: left;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.current-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+}
+
+.date-range {
+  font-size: 0.85rem;
+  color: var(--color-textSecondary, #8bc5f0);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-primary, #bce0fb);
+  margin: 0 0 0.25rem;
+  line-height: 1.3;
+
+  @include mobile {
+    font-size: 1.1rem;
+  }
+}
+
+.card-company {
+  font-size: 1rem;
+  color: var(--color-textPrimary, #ffffff);
+  margin: 0 0 0.15rem;
+  font-weight: 500;
+
+  @include mobile {
+    font-size: 0.9rem;
+  }
+}
+
+.card-location {
+  font-size: 0.85rem;
+  color: var(--color-textMuted, #6b8fa3);
+  margin: 0;
+}
+
+/* ───── Card Body (expandable) ───── */
+.card-body {
+  overflow: hidden;
+  margin-top: 0.75rem;
+}
+
+.highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+
+  li {
+    position: relative;
+    padding-left: 1.1rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--color-textSecondary, #bce0fb);
+    text-align: left;
+
+    &::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--color-primaryDark, #8bc5f0);
+      font-weight: bold;
+    }
+
+    @include mobile {
+      font-size: 0.82rem;
+    }
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag-pill {
+  font-size: 0.72rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(188, 224, 251, 0.08);
+  border: 1px solid rgba(188, 224, 251, 0.15);
+  color: var(--color-textSecondary, #8bc5f0);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  white-space: nowrap;
+}
+
+.expand-hint {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.78rem;
+  color: var(--color-textMuted, #6b8fa3);
+  font-style: italic;
+  text-align: left;
+}
+
+/* ───── Resume CTA ───── */
+.resume-cta {
+  display: inline-block;
+  margin-top: 2.5rem;
+  padding: 0.85rem 2rem;
+  border-radius: 999px;
+  background: rgba(188, 224, 251, 0.08);
+  border: 1px solid rgba(188, 224, 251, 0.2);
+  color: var(--color-primary, #bce0fb);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(188, 224, 251, 0.15);
+    border-color: rgba(188, 224, 251, 0.4);
+    box-shadow: 0 4px 20px rgba(188, 224, 251, 0.15);
+  }
+
+  @include mobile {
+    font-size: 0.85rem;
+    padding: 0.7rem 1.5rem;
+    margin-top: 2rem;
   }
 }

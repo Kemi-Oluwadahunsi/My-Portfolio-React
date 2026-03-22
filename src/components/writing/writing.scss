@@ -1,0 +1,243 @@
+@import '../../App.scss';
+
+.writing {
+  width: 100%;
+  min-height: 100vh;
+  padding: 5rem 2rem;
+  background: transparent;
+  position: relative;
+
+  @include tablet { padding: 3rem 1rem; }
+  @include mobile { padding: 2rem 0.75rem; }
+}
+
+.writing-container {
+  max-width: 1000px;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 3.5rem;
+    text-align: center;
+    color: var(--color-textPrimary, #ffffff);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(188, 224, 251, 0.3);
+
+    @include tablet { font-size: 2.5rem; }
+    @include mobile { font-size: 2rem; }
+  }
+
+  .section-subtitle {
+    text-align: center;
+    font-size: 1.05rem;
+    color: var(--color-textSecondary, #8bc5f0);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+
+    @include mobile {
+      font-size: 0.92rem;
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+/* ───── Writing Group ───── */
+.writing-group {
+  margin-bottom: 2.5rem;
+
+  .group-title {
+    font-size: 1.25rem;
+    color: var(--color-primary, #bce0fb);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    padding-left: 0.5rem;
+    border-left: 3px solid rgba(188, 224, 251, 0.3);
+
+    @include mobile { font-size: 1.1rem; }
+  }
+}
+
+.writing-grid {
+  display: grid;
+  gap: 1.25rem;
+
+  &.ebooks {
+    grid-template-columns: repeat(2, 1fr);
+    @include mobile { grid-template-columns: 1fr; }
+  }
+
+  &.carousels {
+    grid-template-columns: repeat(2, 1fr);
+    @include mobile { grid-template-columns: 1fr; }
+  }
+
+  &.posts {
+    grid-template-columns: repeat(2, 1fr);
+    @include mobile { grid-template-columns: 1fr; }
+  }
+}
+
+/* ───── Writing Card ───── */
+.writing-card {
+  background: rgba(11, 24, 41, 0.75);
+  border: 1px solid rgba(188, 224, 251, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    border-color: rgba(188, 224, 251, 0.25);
+    box-shadow: 0 4px 20px rgba(188, 224, 251, 0.06);
+  }
+
+  @include mobile {
+    padding: 1.1rem;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .card-type {
+    font-size: 0.72rem;
+    color: var(--color-textMuted, #6b8fa3);
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    color: var(--color-textPrimary, #ffffff);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.35;
+
+    @include mobile { font-size: 1.05rem; }
+  }
+
+  p {
+    font-size: 0.88rem;
+    color: var(--color-textSecondary, #8bc5f0);
+    line-height: 1.55;
+    margin: 0;
+
+    @include mobile { font-size: 0.82rem; }
+  }
+}
+
+/* ───── Status Badge ───── */
+.status-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+
+  &.amber {
+    background: rgba(234, 179, 8, 0.15);
+    border: 1px solid rgba(234, 179, 8, 0.3);
+    color: #fbbf24;
+  }
+
+  &.blue {
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #60a5fa;
+  }
+
+  &.green {
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #22c55e;
+  }
+}
+
+/* ───── Day Counter (Carousel Series) ───── */
+.day-counter {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  .day-bar {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(188, 224, 251, 0.1);
+    overflow: hidden;
+
+    .day-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #22c55e, #86efac);
+      transition: width 0.5s ease;
+    }
+  }
+
+  .day-text {
+    font-size: 0.75rem;
+    color: #22c55e;
+    font-weight: 600;
+    white-space: nowrap;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+}
+
+/* ───── Card Tags ───── */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+.tag-pill {
+  font-size: 0.7rem;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(188, 224, 251, 0.08);
+  border: 1px solid rgba(188, 224, 251, 0.12);
+  color: var(--color-textSecondary, #8bc5f0);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+/* ───── Card Link ───── */
+.card-link {
+  font-size: 0.85rem;
+  color: var(--color-primary, #bce0fb);
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+/* ───── Blog CTA card ───── */
+.blog-cta {
+  border-style: dashed;
+  border-color: rgba(188, 224, 251, 0.15);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+  .blog-link {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    border: 1px solid rgba(188, 224, 251, 0.2);
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(188, 224, 251, 0.1);
+      border-color: rgba(188, 224, 251, 0.4);
+    }
+  }
+}

@@ -97,10 +97,6 @@ a {
 @mixin mobile {
   @media (max-width: 480px) {
      @content;
-    html {
-      scroll-snap-type: none;
-      scroll-snap-align: none;
-    }
   }
 }
 
@@ -108,15 +104,6 @@ a {
 @mixin tablet {
    @media screen and (min-width:481px) and (max-width: 900px) {
     @content;
-    html {
-      scroll-snap-type: none;
-      scroll-snap-align: none;
-    }
-    
-    #section {
-      height: 30rem;
-     
-    }
   }
 }
 

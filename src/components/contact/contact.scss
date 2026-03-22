@@ -34,11 +34,7 @@
   gap: 6rem;
   position: relative;
   margin-left: 5rem;
-  background: linear-gradient(
-    180deg,
-    var(--color-bgPrimary, #061829),
-    var(--color-accent, #095a9b)
-  );
+  background: transparent;
 
   @include tablet {
     margin-left: 0;

@@ -6,13 +6,29 @@ import '../AnimatedLetters/animated.scss'
 import { Link as ScrollLink } from 'react-scroll'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import Button from '../UI/Button/Button'
 import GradientText from '../UI/GradientText/GradientText'
 import ParticleBackground from '../UI/ParticleBackground/ParticleBackground'
 import FloatingElements from '../UI/FloatingElements/FloatingElements'
+import AnimatedCounter from '../UI/AnimatedCounter/AnimatedCounter'
+import MagneticButton from '../UI/MagneticButton/MagneticButton'
+import { socialLinks } from '../../constants/portfolioData'
 
 // Lazy load 3D component
 const Hero3D = lazy(() => import('../3D/Hero3D'))
+
+const roles = [
+  'Micro Frontend Architect',
+  'Software Engineer',
+  'React · TypeScript · Next.js',
+  'Node.js · Webpack 5 MF',
+]
+
+const stats = [
+  { value: 4, suffix: '+', label: 'Years enterprise experience' },
+  { value: 1, suffix: 'M+', label: 'Users on production systems' },
+  { value: 20, suffix: '+', label: 'Production apps shipped' },
+  { value: 600, suffix: '+', label: 'Staff on live MFE platform' },
+]
 
 const Home = () => {
   const letterClass = 'text-animate'
@@ -99,6 +115,14 @@ const Home = () => {
       </Suspense>
 
       <div className="text-zone">
+        <motion.div
+          className="availability-badge"
+          variants={itemVariants}
+        >
+          <span className="pulse-dot" />
+          Available for senior roles &amp; consulting
+        </motion.div>
+
         <motion.h1 variants={itemVariants}>
           <span className={letterClass}>H</span>
           <span className={`${letterClass} _12`}>i,</span>
@@ -126,31 +150,38 @@ const Home = () => {
           />
         </motion.h1>
 
-        <motion.h2 
+        <motion.div
+          className="role-pills"
           variants={itemVariants}
-          initial="hidden"
-          animate="visible"
         >
-          <GradientText gradient="primary" animate={true}>
-            Frontend Engineer / Enterprise Solutions
-          </GradientText>
-        </motion.h2>
+          {roles.map((role) => (
+            <span key={role} className="pill">{role}</span>
+          ))}
+        </motion.div>
+
+        <motion.p
+          className="bio"
+          variants={itemVariants}
+        >
+          I design and build scalable enterprise frontends and distributed
+          micro-frontend systems.
+        </motion.p>
 
         <motion.div
           className="buttons"
           variants={itemVariants}
         >
-          <ScrollLink to="portfolioSection" smooth={true} duration={500}>
-            <Button variant="primary" size="lg" className='flat-button'>
-              See my Latest Works
-            </Button>
+          <ScrollLink to="portfolioSection" smooth={true} duration={500} containerId="scroll-container">
+            <MagneticButton className="flat-button primary-magnetic">
+              View Featured Work
+            </MagneticButton>
           </ScrollLink>
 
-          <ScrollLink to="contact" smooth={true} duration={500}>
-            <Button variant="outline" size="lg" className='flat-button'>
-              CONTACT ME
-            </Button>
-          </ScrollLink>
+          <a href={socialLinks.resume} target="_blank" rel="noreferrer">
+            <MagneticButton className="flat-button outline-magnetic">
+              Download Resume
+            </MagneticButton>
+          </a>
         </motion.div>
       </div>
 
@@ -165,9 +196,25 @@ const Home = () => {
         <img
           className="my-image"
           src="/my-image-2-new.webp"
-          alt="Kemi Oluwadahunsi - Software Engineer"
+          alt="Kemi Oluwadahunsi — Software Engineer"
           loading="eager"
         />
+      </motion.div>
+
+      <motion.div
+        className="stats-grid"
+        variants={itemVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {stats.map((stat) => (
+          <div key={stat.label} className="stat-card">
+            <GradientText gradient="primary" animate={false}>
+              <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+            </GradientText>
+            <span className="stat-label">{stat.label}</span>
+          </div>
+        ))}
       </motion.div>
     </motion.div>
   )

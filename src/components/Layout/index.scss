@@ -1,5 +1,50 @@
 @import "../../App.scss";
 
+// ─── Unified page background ───
+// Single gradient that flows through the entire page,
+// eliminating sharp transitions between sections.
+.main-layout {
+    position: relative;
+    background:
+        // Subtle radial accent glows at strategic vertical positions
+        radial-gradient(ellipse 80% 40% at 20% 30%, rgba(9, 90, 155, 0.12) 0%, transparent 100%),
+        radial-gradient(ellipse 60% 30% at 80% 55%, rgba(80, 80, 100, 0.08) 0%, transparent 100%),
+        radial-gradient(ellipse 70% 35% at 30% 80%, rgba(9, 90, 155, 0.1) 0%, transparent 100%),
+        // Long vertical gradient — navy → deep blue → navy (seamless loop feel)
+        linear-gradient(
+            180deg,
+            #061829 0%,
+            #07203a 8%,
+            #0a2d4d 18%,
+            #0c3a5e 30%,
+            #095a9b 45%,
+            #0c4e80 55%,
+            #0a3458 65%,
+            #082a48 75%,
+            #071f38 85%,
+            #061829 100%
+        );
+}
+
+// ─── Scroll snap container ───
+.scroll-container {
+    scroll-snap-type: y proximity;
+    overflow-y: auto;
+    height: 100vh;
+
+    @include tablet {
+        scroll-snap-type: none;
+    }
+
+    @include mobile {
+        scroll-snap-type: none;
+    }
+}
+
+.snap-section {
+    scroll-snap-align: start;
+}
+
 .page {
     width: screen;
     height: 100%;
@@ -67,5 +112,66 @@
 
     @include mobile {
         height: 50%;
+    }
+}
+
+// ─── Glow-line section divider ───
+// A soft breathing line instead of a hard separator.
+.glow-divider {
+    width: 100%;
+    padding: 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 60%;
+        max-width: 600px;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(63, 171, 241, 0.12) 25%,
+            rgba(63, 171, 241, 0.3) 50%,
+            rgba(63, 171, 241, 0.12) 75%,
+            transparent 100%
+        );
+        box-shadow: 0 0 8px rgba(63, 171, 241, 0.1);
+    }
+}
+
+// ─── Site footer ───
+.site-footer {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+    z-index: 2;
+
+    @include tablet {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        padding: 1.25rem 1.5rem;
+    }
+
+    @include mobile {
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    p {
+        color: #64748b;
+        font-size: 0.75rem;
+        font-family: monospace;
+        letter-spacing: 0.5px;
+        margin: 0;
     }
 }

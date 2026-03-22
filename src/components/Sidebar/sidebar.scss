@@ -33,22 +33,22 @@
     }
 
     nav {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
       position: absolute;
-      top: 30%;
+      top: 50%;
+      transform: translateY(-50%);
       width: 100%;
-
-      @media screen and (min-width: 769px) and (max-width: 1170px) {
-        top: 20%;
-      }
+      gap: 0.15rem;
 
       a {
-        font-size: 1.5rem;
+        font-size: 1.1rem;
         color: #0c0c1d;
         display: block;
-        line-height: 1.5rem;
-        height: 2.4em;
+        line-height: 1.2rem;
+        height: 2em;
         position: relative;
         text-decoration: none;
 
@@ -123,6 +123,36 @@
         }
       }
 
+      a.services-link {
+        &:after {
+          content: 'EXPERTISE';
+        }
+      }
+
+      a.architecture-link {
+        &:after {
+          content: 'ARCH';
+        }
+      }
+
+      a.writing-link {
+        &:after {
+          content: 'WRITING';
+        }
+      }
+
+      a.opensource-link {
+        &:after {
+          content: 'OSS';
+        }
+      }
+
+      a.testimonials-link {
+        &:after {
+          content: 'REVIEWS';
+        }
+      }
+
       a.resume-link {
         &:after {
           content: 'RESUME';
@@ -148,9 +178,9 @@
 
       li {
         a {
-          padding: 0.3em 0;
+          padding: 0.2em 0;
           display: block;
-          font-size: 1.2rem;
+          font-size: 1rem;
           height: fit-content;
 
           &:hover svg {

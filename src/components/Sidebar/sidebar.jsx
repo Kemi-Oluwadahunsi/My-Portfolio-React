@@ -11,14 +11,24 @@ import {
   faEnvelope,
   faHome,
   faCode,
+  faSitemap,
+  faCubes,
+  faPenNib,
+  faCodeBranch,
+  faQuoteLeft,
 } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faGithub, faLinkedin, faWhatsapp, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 
 const navItems = [
   { icon: faHome, to: 'section', className: 'home-link', label: 'Home' },
-  { icon: faBriefcase, to: 'portfolio', className: 'portfolio-link', label: 'Portfolio' },
+  { icon: faBriefcase, to: 'services', className: 'services-link', label: 'Expertise' },
+  { icon: faCode, to: 'portfolioSection', className: 'portfolio-link', label: 'Work' },
+  { icon: faSitemap, to: 'architecture', className: 'architecture-link', label: 'Architecture' },
   { icon: faBriefcaseClock, to: 'experience', className: 'experience-link', label: 'Experience' },
-  { icon: faCode, to: 'skills', className: 'skills-link', label: 'Skills' },
+  { icon: faCubes, to: 'skills', className: 'skills-link', label: 'Skills' },
+  { icon: faPenNib, to: 'writing', className: 'writing-link', label: 'Writing' },
+  { icon: faCodeBranch, to: 'opensource', className: 'opensource-link', label: 'Open Source' },
+  { icon: faQuoteLeft, to: 'testimonials', className: 'testimonials-link', label: 'Testimonials' },
   { icon: faEnvelope, to: 'contact', className: 'contact-link', label: 'Contact' },
 ]
 
@@ -89,6 +99,7 @@ const Sidebar = () => {
                 to={item.to}
                 smooth={true}
                 duration={1000}
+                containerId="scroll-container"
                 aria-label={item.label}
               >
                 <FontAwesomeIcon icon={item.icon} color="#bddffa" />

@@ -9,26 +9,36 @@ const ScrollArrow = () => {
     const [isVisible, setIsVisible] = useState(false)
     const ticking = useRef(false)
 
+    const getScrollContainer = useCallback(() => {
+      return document.querySelector('.scroll-container') || window
+    }, [])
+
     const handleScroll = useCallback(() => {
       if (!ticking.current) {
         window.requestAnimationFrame(() => {
-          setIsVisible(window.scrollY > 100)
+          const container = getScrollContainer()
+          const scrollTop = container === window ? window.scrollY : container.scrollTop
+          setIsVisible(scrollTop > 100)
           ticking.current = false
         })
         ticking.current = true
       }
-    }, [])
+    }, [getScrollContainer])
 
     useEffect(() => {
-      window.addEventListener('scroll', handleScroll, { passive: true })
-      return () => window.removeEventListener('scroll', handleScroll)
-    }, [handleScroll]);
+      const container = getScrollContainer()
+      const target = container === window ? window : container
+      target.addEventListener('scroll', handleScroll, { passive: true })
+      return () => target.removeEventListener('scroll', handleScroll)
+    }, [handleScroll, getScrollContainer]);
 
     const goTop = () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      })
+      const container = getScrollContainer()
+      if (container === window) {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      } else {
+        container.scrollTo({ top: 0, behavior: 'smooth' })
+      }
     };
 
   return (

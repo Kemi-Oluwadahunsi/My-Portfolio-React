@@ -46,7 +46,7 @@ const Services = () => {
   }
 
   return (
-    <div className="services" ref={ref}>
+    <div className="services" id="services" ref={ref}>
       <div ref={containerRef} className="services-background" />
       <motion.div
         className="textContainer"
@@ -55,7 +55,8 @@ const Services = () => {
         transition={{ duration: 0.8 }}
       >
         <p>
-          I focus on helping your brand grow <span>and move forward</span>
+          Four years shipping enterprise-grade systems{' '}
+          <span>across frontend, IAM & full-stack</span>
         </p>
       </motion.div>
 
@@ -67,7 +68,7 @@ const Services = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <h1>
-            <b>Unique</b> Ideas
+            <b>Crafting</b> Solutions
           </h1>
         </motion.div>
 
@@ -78,7 +79,7 @@ const Services = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <h1>
-            <b>For Your</b> Business.
+            <b>That</b> Scale.
           </h1>
         </motion.div>
       </div>
@@ -90,7 +91,7 @@ const Services = () => {
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
       >
-        {services.map((service, index) => (
+        {services.map((service) => (
           <motion.div
             key={service.id}
             className={`service-card-wrapper ${isMobile && expandedCard === service.id ? 'expanded' : ''}`}
@@ -102,16 +103,8 @@ const Services = () => {
           >
             <GlowCard intensity="medium" className="service-glow-wrapper">
               <GlassCard className={`service-box ${isMobile ? 'accordion-card' : ''}`}>
+                <div className="card-accent-bar" />
                 <div className="service-header">
-                  <div className="service-icon">
-                    <motion.div
-                      className="icon-circle"
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      {index + 1}
-                    </motion.div>
-                  </div>
                   <h2 className="serviceTitle">{service.title}</h2>
                   {isMobile && (
                     <motion.span
@@ -134,6 +127,13 @@ const Services = () => {
                       transition={{ duration: 0.3, ease: 'easeInOut' }}
                     >
                       <p>{service.description}</p>
+                      {service.tags && (
+                        <div className="service-tags">
+                          {service.tags.map((tag) => (
+                            <span key={tag} className="service-tag">{tag}</span>
+                          ))}
+                        </div>
+                      )}
                       <motion.div
                         className="service-line"
                         initial={{ width: 0 }}

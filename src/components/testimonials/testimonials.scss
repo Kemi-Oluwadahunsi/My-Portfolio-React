@@ -1,0 +1,149 @@
+@import '../../App.scss';
+
+.testimonials {
+  width: 100%;
+  min-height: 60vh;
+  padding: 5rem 2rem;
+  background: transparent;
+  position: relative;
+
+  @include tablet { padding: 3rem 1rem; }
+  @include mobile { padding: 2rem 0.75rem; }
+}
+
+.testimonials-container {
+  max-width: 1000px;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 3.5rem;
+    text-align: center;
+    color: var(--color-textPrimary, #ffffff);
+    margin-bottom: 2.5rem;
+    text-shadow: 0 0 20px rgba(188, 224, 251, 0.3);
+
+    @include tablet { font-size: 2.5rem; }
+    @include mobile {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+/* ───── Grid ───── */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ───── Card ───── */
+.testimonial-card {
+  background: rgba(11, 24, 41, 0.75);
+  border: 1px solid rgba(188, 224, 251, 0.1);
+  border-radius: 1rem;
+  padding: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    border-color: rgba(188, 224, 251, 0.25);
+    box-shadow: 0 6px 25px rgba(188, 224, 251, 0.06);
+  }
+
+  @include mobile {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+}
+
+/* ───── Decorative Quote Mark ───── */
+.quote-mark {
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-size: 5rem;
+  line-height: 1;
+  color: rgba(188, 224, 251, 0.07);
+  font-family: Georgia, serif;
+  pointer-events: none;
+  user-select: none;
+
+  @include mobile {
+    font-size: 3.5rem;
+    top: 0.25rem;
+    left: 0.75rem;
+  }
+}
+
+/* ───── Quote ───── */
+.testimonial-quote {
+  font-size: 1rem;
+  color: var(--color-textSecondary, #bce0fb);
+  line-height: 1.7;
+  margin: 0;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+
+  @include mobile {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+}
+
+/* ───── Author ───── */
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: auto;
+}
+
+.author-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(188, 224, 251, 0.25), rgba(9, 90, 155, 0.35));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  span {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-primary, #bce0fb);
+    letter-spacing: 0.05em;
+  }
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.author-name {
+  font-size: 0.92rem;
+  color: var(--color-textPrimary, #ffffff);
+  font-weight: 600;
+}
+
+.author-role {
+  font-size: 0.8rem;
+  color: var(--color-textSecondary, #8bc5f0);
+}
+
+.author-company {
+  font-size: 0.75rem;
+  color: var(--color-textMuted, #6b8fa3);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
