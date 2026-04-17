@@ -1,4 +1,4 @@
-# robots.txt for KodeMaven Portfolio
+# robots.txt for Kemi-Oluwadahunsi Portfolio
 
 User-agent: *
 Allow: /

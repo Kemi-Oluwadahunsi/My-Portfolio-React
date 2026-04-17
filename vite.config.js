@@ -12,7 +12,7 @@ export default defineConfig({
       includeAssets: ['favicon.png', 'robots.txt', 'sitemap.xml', 'images/*.webp'],
       manifest: {
         name: 'Kemi Oluwadahunsi - Software Engineer Portfolio',
-        short_name: 'KodeMaven',
+        short_name: 'Kemi-Oluwadahunsi',
         description: 'Portfolio of Kemi Oluwadahunsi - Software Engineer specializing in React.js, modern web applications, and creative solutions',
         theme_color: '#061829',
         background_color: '#061829',

@@ -1,4 +1,4 @@
-# KodeMaven Portfolio - Modern React Portfolio
+# Kemi-Oluwadahunsi Portfolio - Modern React Portfolio
 
 A modern, high-performance portfolio website built with React, Vite, and cutting-edge web technologies.
 

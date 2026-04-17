@@ -10,14 +10,14 @@ const SEO = ({
   keywords,
   author = 'Kemi Oluwadahunsi'
 }) => {
-  const defaultTitle = 'Kemi Oluwadahunsi | Software Engineer | React Specialist | KodeMaven'
+  const defaultTitle = 'Kemi Oluwadahunsi | Software Engineer | React Specialist | Kemi-Oluwadahunsi'
   const defaultDescription = 'Software Engineer specializing in enterprise solutions, IAM architecture, and full-stack development. Expert in Module Federation, micro-frontend architecture, and scalable web applications. Delivered 20+ production applications serving 10,000+ users with a focus on security, performance, and modern engineering practices.'
   const defaultImage = 'https://kemi-oluwadahunsi.vercel.app/my-image-2-new.webp'
   const defaultUrl = 'https://kemi-oluwadahunsi.vercel.app/'
   const defaultKeywords = 'Software Engineer, Enterprise Solutions, IAM Architecture, Module Federation, Micro-frontend, Full Stack Developer, React Specialist, JavaScript, TypeScript, Node.js, Express.js, MongoDB, OIDC, LDAP, Webpack 5, React.js, Next.js, Enterprise Software, Scalable Applications, Authentication Systems'
 
   const seo = {
-    title: title ? `${title} | KodeMaven` : defaultTitle,
+    title: title ? `${title} | Kemi-Oluwadahunsi` : defaultTitle,
     description: description || defaultDescription,
     image: image || defaultImage,
     url: url || defaultUrl,
@@ -31,7 +31,7 @@ const SEO = ({
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: 'Kemi Oluwadahunsi',
-    alternateName: 'KodeMaven, TechMrs',
+    alternateName: 'Kemi-Oluwadahunsi, TechMrs',
     jobTitle: 'Software Engineer',
     url: defaultUrl,
     sameAs: [
@@ -121,7 +121,7 @@ const SEO = ({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content="Kemi Oluwadahunsi - Software Engineer Portfolio" />
-      <meta property="og:site_name" content="KodeMaven Portfolio" />
+      <meta property="og:site_name" content="Kemi-Oluwadahunsi Portfolio" />
       <meta property="og:locale" content="en_US" />
 
       {/* Twitter */}
@@ -139,7 +139,7 @@ const SEO = ({
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-      <meta name="apple-mobile-web-app-title" content="KodeMaven" />
+      <meta name="apple-mobile-web-app-title" content="Kemi-Oluwadahunsi" />
 
       {/* JSON-LD Structured Data */}
       <script type="application/ld+json">

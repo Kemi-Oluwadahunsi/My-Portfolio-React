@@ -363,7 +363,7 @@ export const workExperience = [
   {
     id: 1,
     title: 'Software Developer',
-    company: 'Kodemaven (freelancing)',
+    company: 'Kemi-Oluwadahunsi (freelancing)',
     startDate: '01/2022',
     endDate: 'Present',
     details: [
