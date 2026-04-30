@@ -141,7 +141,7 @@ const Layout = () => {
 
         <footer className="site-footer" role="contentinfo">
           <p>&copy; 2026 Oluwakemi Oluwadahunsi</p>
-          <p>Built with React &middot; SCSS &middot; Vite &middot; Framer Motion</p>
+          <p>All rights reserved.</p>
         </footer>
       </div>
     </div>

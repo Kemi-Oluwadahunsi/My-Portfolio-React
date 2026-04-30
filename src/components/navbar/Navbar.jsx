@@ -87,8 +87,8 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <img src={Logo} alt="KodeMaven Logo" />
-              <h3>KodeMaven</h3>
+              <img src={Logo} alt="KeMi Logo" />
+              <h3>KeMi</h3>
             </motion.div>
             <motion.div className="toggleButton">
               <motion.button 
@@ -166,10 +166,13 @@ const Navbar = () => {
                     >
                       <ScrollLink
                         className="navLinks"
+                        activeClass="active"
+                        spy={true}
                         to={item.to}
                         smooth={true}
                         duration={1000}
                         containerId="scroll-container"
+                        offset={-100}
                         onClick={closeMobileContent}
                       >
                         {item.label}

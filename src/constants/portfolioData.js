@@ -1,18 +1,97 @@
 export const portfolioItems = [
   {
-    id: 11,
+    id: 1,
     title: '00tracker Proxy Platform',
     img: '/images/00tracker.webp',
     description:
       'High-converting proxy platform with Redux Toolkit state management, secure auth, CAPTCHA, login persistence, and protected routes.',
-    stacks: ['React', 'Tailwind CSS', 'Redux Toolkit', 'Node.js', 'Express.js', 'Socket.io', 'Bcrypt.js'],
+    stacks: [
+      'React',
+      'Tailwind CSS',
+      'Redux Toolkit',
+      'Node.js',
+      'Express.js',
+      'Socket.io',
+      'Bcrypt.js',
+    ],
     live: 'https://00tracker.com',
     gitHub: 'https://github.com/Kemi-Oluwadahunsi',
     category: 'full-stack',
     hasCaseStudy: false,
   },
   {
-    id: 12,
+    id: 2,
+    title: 'Herbiskea',
+    img: '/images/herbiskea.webp',
+    description:
+      'Full-stack natural beauty intelligence platform featuring 220+ ingredient database with compatibility & substitution tools, 128 expert-curated skincare/haircare recipes, AI-powered skin analysis, custom formulation builder, full e-commerce with Paystack checkout, and a 46-post educational blog — all with dark mode, real-time notifications, and responsive design.',
+    stacks: [
+      'Next.js',
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'Prisma',
+      'PostgreSQL',
+      'NextAuth',
+      'Framer Motion',
+      'Paystack',
+      'Cloudinary',
+    ],
+    live: 'https://herbiskea.com',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Herbiskea',
+    category: 'full-stack',
+    hasCaseStudy: true,
+    caseStudyId: 'herbiskea',
+  },
+  {
+    id: 3,
+    title: 'VisKit',
+    img: '/images/VisKit.webp', // alt: "VisKit data visualization library hero — a grid of colorful SVG charts including line, bar, area, scatter, pie, radar, and heatmap rendered in a dark theme"
+    description:
+      'Composable, tree-shakeable, TypeScript-first React data visualization library with 19 chart types across cartesian, radial, and specialized categories, a Canvas renderer for 10k+ point datasets, 4 theme presets, 5 tooltip variants, physics-based animations, full keyboard navigation, screen-reader accessible data tables, and a Storybook-driven component catalogue — architected as a 6-package pnpm monorepo with Turborepo parallel builds.',
+    stacks: [
+      'React 19',
+      'TypeScript',
+      'D3.js',
+      'Vite',
+      'Turborepo',
+      'Storybook',
+      'Vitest',
+      '@react-spring/web',
+      '@floating-ui/react',
+      'tsup',
+    ],
+    live: '#', // Storybook deployment URL when ready
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/VisKit',
+    category: 'library',
+    hasCaseStudy: true,
+    caseStudyId: 'viskit',
+  },
+  {
+    id: 4,
+    title: 'ReadyUI React',
+    img: '/images/ReadyUI.webp', // alt: "ReadyUI React component library documentation homepage showing the component grid and dark mode interface"
+    description:
+      'Open-source React UI component library published on npm — 50+ production-ready, fully configurable components with Tailwind CSS v4, universal dark mode, accessibility (ARIA + keyboard navigation), drag-and-drop, CSS-only animations, and tree-shakeable ES/CJS builds. Ships a pre-built stylesheet so consumers need zero Tailwind config. Accompanied by a comprehensive interactive documentation site with live previews, code examples, and per-prop API reference for every component.',
+    stacks: [
+      'React 18',
+      'Tailwind CSS v4',
+      'Vite',
+      'Rollup',
+      'CSS Keyframes',
+      'Prism.js',
+      'React Router v7',
+      'npm',
+      'Vercel',
+    ],
+    live: 'https://readyui-docs.vercel.app',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/ReadyToUse-React-Components',
+    category: 'open-source library',
+    hasCaseStudy: true,
+    caseStudyId: 'readyui-react',
+  },
+  {
+    id: 5,
     title: 'Roots to Bloom Beauty',
     img: '/images/RtB.webp',
     description:
@@ -25,19 +104,31 @@ export const portfolioItems = [
     caseStudyId: 'roots-to-bloom',
   },
   {
-    id: 1,
-    title: 'KCOAT Ecommerce App',
-    img: '/images/kcoat.webp',
+    id: 6,
+    title: 'Timesheet Automation — Etiqa',
+    img: '/images/timesheet-automation.webp', // alt: "Timesheet Automation app showing calendar view with leave management and PDF preview for Etiqa contract staff"
     description:
-      'Full-stack fashion ecommerce with cart, Stripe payments, and responsive design for a trendy clothing brand.',
-    stacks: ['React', 'Tailwind CSS', 'Node.js', 'Express.js', 'MySQL', 'Stripe'],
-    live: 'https://kcoat.netlify.app',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/KCOAT-Project',
-    category: 'full-stack',
-    hasCaseStudy: false,
+      'Enterprise React micro-frontend for Etiqa contract staff timesheet management — featuring an interactive calendar with leave tracking (AL/ML/FTO with half-day support), Malaysian public holiday detection, overtime calculation, PDF generation filling the official company template via pdf-lib, digital signature upload, and leave balance tracking with negative-balance warnings. Built with Webpack 5 Module Federation for seamless integration into the Angular ConnecTiQa host portal, with offline-first localStorage persistence and multi-environment deployments (SIT/UAT/Production).',
+    stacks: [
+      'React 19',
+      'TypeScript',
+      'Webpack 5',
+      'Module Federation',
+      'Tailwind CSS',
+      'shadcn/ui',
+      'pdf-lib',
+      'Radix UI',
+      'Vitest',
+      'date-holidays',
+    ],
+    live: 'https://www-gold.etiqapartner.com.my/timesheet-automation',
+    gitHub: '#',
+    category: 'enterprise',
+    hasCaseStudy: true,
+    caseStudyId: 'timesheet-automation-etiqa',
   },
   {
-    id: 2,
+    id: 7,
     title: 'Astonish Designs Fashion',
     img: '/images/astonish-finished.webp',
     description:
@@ -49,19 +140,7 @@ export const portfolioItems = [
     hasCaseStudy: false,
   },
   {
-    id: 3,
-    title: 'Quotes-Quest App',
-    img: '/images/quotes-quest.webp',
-    description:
-      'Look up motivational quotes, create custom designs on shirts, and share on social media.',
-    stacks: ['React', 'Tailwind CSS', 'Firebase', 'Node.js', 'Express.js', 'Framer Motion'],
-    live: 'https://quotes-quest.vercel.app/',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Quotes-Quest-Fullstack',
-    category: 'full-stack',
-    hasCaseStudy: false,
-  },
-  {
-    id: 5,
+    id: 8,
     title: 'Blogging API',
     img: '/images/bloggingAPI.webp',
     description:
@@ -74,6 +153,25 @@ export const portfolioItems = [
   },
   {
     id: 9,
+    title: 'Quotes-Quest App',
+    img: '/images/quotes-quest.webp',
+    description:
+      'Look up motivational quotes, create custom designs on shirts, and share on social media.',
+    stacks: [
+      'React',
+      'Tailwind CSS',
+      'Firebase',
+      'Node.js',
+      'Express.js',
+      'Framer Motion',
+    ],
+    live: 'https://quotes-quest.vercel.app/',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Quotes-Quest-Fullstack',
+    category: 'full-stack',
+    hasCaseStudy: false,
+  }, 
+  {
+    id: 10,
     title: 'Mood Buddie',
     img: '/images/moodbuddie.webp',
     description:
@@ -85,12 +183,18 @@ export const portfolioItems = [
     hasCaseStudy: false,
   },
   {
-    id: 8,
+    id: 11,
     title: 'News-Alive',
     img: '/images/news.webp',
     description:
       'Modern news aggregation app with search, filters, and category browsing. Built with Redux Toolkit for state management.',
-    stacks: ['React', 'Tailwind CSS', 'Redux Toolkit', 'Framer Motion', 'Axios'],
+    stacks: [
+      'React',
+      'Tailwind CSS',
+      'Redux Toolkit',
+      'Framer Motion',
+      'Axios',
+    ],
     live: '#',
     gitHub: 'https://github.com/Kemi-Oluwadahunsi/News-Alive',
     category: 'frontend',
@@ -114,7 +218,17 @@ export const workExperience = [
       'Built and shipped Timesheet Automation for all 600+ contract staff — React MFE integrated into Angular + ASP.NET MVC host',
       'Achieved 30% improvement in application load times through code-splitting, lazy loading, and performance profiling',
     ],
-    tags: ['Webpack 5', 'Module Federation', 'React', 'TypeScript', 'LDAP', 'OIDC', 'PingID', 'Node.js', 'TSOA'],
+    tags: [
+      'Webpack 5',
+      'Module Federation',
+      'React',
+      'TypeScript',
+      'LDAP',
+      'OIDC',
+      'PingID',
+      'Node.js',
+      'TSOA',
+    ],
   },
   {
     id: 3,
@@ -166,27 +280,82 @@ export const workExperience = [
 export const skillGroups = [
   {
     category: 'Frontend Core',
-    skills: ['React.js', 'Next.js', 'TypeScript', 'JavaScript (ES2020+)', 'HTML5', 'CSS3', 'Tailwind CSS', 'SCSS', 'Redux Toolkit', 'Zustand', 'Framer Motion'],
+    skills: [
+      'React.js',
+      'Next.js',
+      'TypeScript',
+      'JavaScript (ES2020+)',
+      'HTML5',
+      'CSS3',
+      'Tailwind CSS',
+      'SCSS',
+      'Redux Toolkit',
+      'Zustand',
+      'Framer Motion',
+    ],
   },
   {
     category: 'Architecture & Tooling',
-    skills: ['Webpack 5', 'Module Federation', 'Micro Frontend Architecture', 'Vite', 'TSOA', 'Rollup', 'Storybook', 'CI/CD', 'Git'],
+    skills: [
+      'Webpack 5',
+      'Module Federation',
+      'Micro Frontend Architecture',
+      'Vite',
+      'TSOA',
+      'Rollup',
+      'Storybook',
+      'CI/CD',
+      'Git',
+    ],
   },
   {
     category: 'Backend & Databases',
-    skills: ['Node.js', 'Express.js', 'REST APIs', 'MongoDB', 'PostgreSQL', 'Redis', 'pgvector', 'Firebase', 'JWT', 'Prisma'],
+    skills: [
+      'Node.js',
+      'Express.js',
+      'REST APIs',
+      'MongoDB',
+      'PostgreSQL',
+      'Redis',
+      'pgvector',
+      'Firebase',
+      'JWT',
+      'Prisma',
+    ],
   },
   {
     category: 'Security & Auth',
-    skills: ['LDAP', 'OIDC', 'OAuth 2.0', 'PingID', 'IAM', 'Session Management', 'Protected Routes'],
+    skills: [
+      'LDAP',
+      'OIDC',
+      'OAuth 2.0',
+      'PingID',
+      'IAM',
+      'Session Management',
+      'Protected Routes',
+    ],
   },
   {
     category: 'Testing & Quality',
-    skills: ['Jest', 'Cypress', 'Supertest', 'React Testing Library', 'ESLint', 'Husky'],
+    skills: [
+      'Jest',
+      'Cypress',
+      'Supertest',
+      'React Testing Library',
+      'ESLint',
+      'Husky',
+    ],
   },
   {
     category: 'Currently Exploring',
-    skills: ['Angular', 'ASP.NET MVC', 'C#', 'Chrome Extension APIs', 'VSCode Extension API', 'Python'],
+    skills: [
+      'Angular',
+      'ASP.NET MVC',
+      'C#',
+      'Chrome Extension APIs',
+      'VSCode Extension API',
+      'Python',
+    ],
   },
 ]
 
@@ -196,7 +365,12 @@ export const services = [
     title: 'Micro Frontend Architecture',
     description:
       'Design and implement production MFE systems using Webpack 5 Module Federation across multiple teams and deployment boundaries. Shell app design, shared dependency strategy, and runtime federation.',
-    tags: ['Webpack 5', 'Module Federation', 'Shell Apps', 'Runtime Federation'],
+    tags: [
+      'Webpack 5',
+      'Module Federation',
+      'Shell Apps',
+      'Runtime Federation',
+    ],
   },
   {
     id: 2,
@@ -224,7 +398,12 @@ export const services = [
     title: 'Technical Writing & Education',
     description:
       'Deep-dive content for engineering audiences. Authoring a two-book series on Micro Frontends with Webpack 5. LinkedIn and X content creator with a focus on making hard concepts simple.',
-    tags: ['Ebook Authoring', 'Technical Writing', 'LinkedIn', 'Developer Education'],
+    tags: [
+      'Ebook Authoring',
+      'Technical Writing',
+      'LinkedIn',
+      'Developer Education',
+    ],
   },
   {
     id: 6,
@@ -241,7 +420,8 @@ export const socialLinks = {
   twitter: 'https://twitter.com/km_oluwadahunsi',
   github: 'https://github.com/Kemi-Oluwadahunsi/',
   whatsapp: import.meta.env.VITE_WHATSAPP_LINK || '#',
-  resume: 'https://drive.google.com/file/d/1tJgWBOmxZ1hlfbFtRdryVnHNSfKuqahr/view?usp=sharing',
+  resume:
+    'https://drive.google.com/file/d/1tJgWBOmxZ1hlfbFtRdryVnHNSfKuqahr/view?usp=sharing',
 }
 
 export const contactInfo = {
@@ -324,7 +504,7 @@ export const writingData = [
       'Regular deep-dive content on MFE architecture, TypeScript patterns, Next.js, Node.js, and engineering career growth.',
     status: 'published',
     url: 'https://www.linkedin.com/in/oluwakemioluwadahunsi/',
-    tags: ['MFE', 'TypeScript', 'Next.js', 'Engineering Career'],
+    tags: ['MFE', 'TypeScript', 'React.js', 'Next.js', 'Engineering Career', 'AI in Engineering'],
   },
 ]
 
@@ -344,11 +524,29 @@ export const openSourceData = {
         '50+ production-ready React components with full TypeScript support. Drop into any React project with zero config. Interactive Storybook docs.',
       stats: { components: '50+' },
       links: {
-        github: 'https://github.com/Kemi-Oluwadahunsi/ReadyToUse-React-Components',
+        github:
+          'https://github.com/Kemi-Oluwadahunsi/ReadyToUse-React-Components',
         npm: 'https://www.npmjs.com/package/readyui-react',
-        storybook: 'https://kemi-oluwadahunsi.github.io/ReadyToUse-React-Components/',
+        storybook:
+          'https://kemi-oluwadahunsi.github.io/ReadyToUse-React-Components/',
       },
       tags: ['React', 'TypeScript', 'Component Library', 'Storybook', 'npm'],
+      status: 'active',
+    },
+    {
+      id: 'viskit',
+      name: 'Viskit Charting Library',
+      description:
+        'A powerful charting library for React with full TypeScript support. Provides a wide range of customizable charts and interactive visualizations.',
+      stats: { ChartTypes: '40+' },
+      links: {
+        github:
+          'https://github.com/Kemi-Oluwadahunsi/Viskit-Charting-Library',
+        npm: 'https://www.npmjs.com/package/viskit',
+        storybook:
+          'https://kemi-oluwadahunsi.github.io/Viskit-Charting-Library/',
+      },
+      tags: ['React', 'TypeScript', 'Charting Library', 'Storybook', 'npm'],
       status: 'active',
     },
   ],
@@ -379,7 +577,11 @@ export const architectureData = {
   diagramLabel: 'Runtime federation topology',
   nodes: {
     shell: { label: 'Shell App (Host)', type: 'host' },
-    idp: { label: 'IDP App', type: 'idp', detail: 'LDAP + OIDC (PingID) · org-wide standard' },
+    idp: {
+      label: 'IDP App',
+      type: 'idp',
+      detail: 'LDAP + OIDC (PingID) · org-wide standard',
+    },
     remotes: [
       { label: 'Timesheet App', detail: 'React + Angular shell' },
       { label: 'Claims Portal', detail: 'Team A remote' },

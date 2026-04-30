@@ -1,6 +1,5 @@
 import './home.scss'
 import Kemi from '/images/creative-Kemi.webp'
-import { lazy, Suspense } from 'react'
 import AnimatedLetters from '../AnimatedLetters/animated'
 import '../AnimatedLetters/animated.scss'
 import { Link as ScrollLink } from 'react-scroll'
@@ -12,9 +11,6 @@ import FloatingElements from '../UI/FloatingElements/FloatingElements'
 import AnimatedCounter from '../UI/AnimatedCounter/AnimatedCounter'
 import MagneticButton from '../UI/MagneticButton/MagneticButton'
 import { socialLinks } from '../../constants/portfolioData'
-
-// Lazy load 3D component
-const Hero3D = lazy(() => import('../3D/Hero3D'))
 
 const roles = [
   'Micro Frontend Architect',
@@ -110,10 +106,6 @@ const Home = () => {
       <ParticleBackground density={30} speed={0.5} />
       <FloatingElements />
       
-      <Suspense fallback={null}>
-        <Hero3D />
-      </Suspense>
-
       <div className="text-zone">
         <motion.div
           className="availability-badge"

@@ -1,517 +1,527 @@
 @import '../../App.scss';
 
-.divider {
-  width: 98%;
-  margin: 5rem auto 0 auto;
-  border: none;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(188, 224, 251, 0.3),
-    transparent
-  );
-
-  @include tablet {
-    margin: 3rem auto;
-  }
-
-  @include mobile {
-    margin: 2rem auto;
-  }
-
-  @media screen and (min-width: 769px) {
-    display: none;
-  }
-}
-
+// ─── Contact Section ───
 .contact {
   min-height: 100vh;
-  width: 94%;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6rem;
+  padding: 6rem 2rem 4rem;
   position: relative;
   margin-left: 5rem;
-  background: transparent;
+
+  @media screen and (min-width: 769px) and (max-width: 1170px) {
+    margin-left: 4rem;
+    padding: 5rem 2rem 3rem;
+  }
 
   @include tablet {
     margin-left: 0;
-    width: 100%;
-  }
-  @include mobile {
-    margin-left: 0;
-    width: 100%;
+    padding: 4rem 1.5rem 3rem;
+    min-height: auto;
   }
 
+  @include mobile {
+    margin-left: 0;
+    padding: 3rem 1rem 2rem;
+    min-height: auto;
+  }
+
+  // Subtle radial background accents
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: radial-gradient(
-        circle at 30% 70%,
-        rgba(188, 224, 251, 0.1) 0%,
-        transparent 50%
+        ellipse 50% 40% at 25% 60%,
+        rgba(188, 224, 251, 0.06) 0%,
+        transparent 70%
       ),
       radial-gradient(
-        circle at 70% 30%,
-        rgba(9, 90, 155, 0.1) 0%,
-        transparent 50%
+        ellipse 40% 35% at 75% 35%,
+        rgba(9, 90, 155, 0.06) 0%,
+        transparent 70%
       );
     pointer-events: none;
     z-index: 0;
   }
+}
+
+// ─── Section Header ───
+.contact__header {
+  text-align: center;
+  max-width: 600px;
+  margin-bottom: 3.5rem;
+  position: relative;
+  z-index: 1;
 
   @include tablet {
-    flex-direction: column;
-    padding: 4rem 2rem;
-    margin-left: 0;
-    gap: 2.5rem;
-    min-height: auto;
+    margin-bottom: 2.5rem;
   }
 
   @include mobile {
-    flex-direction: column;
-    padding: 3rem 1.25rem;
-    margin-left: 0;
-    gap: 2rem;
-    min-height: auto;
+    margin-bottom: 2rem;
+  }
+}
+
+.contact__label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-accent, #095a9b);
+  margin-bottom: 0.75rem;
+}
+
+.contact__title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #ffffff 30%, #bce0fb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+
+  @include tablet {
+    font-size: 2.75rem;
+  }
+
+  @include mobile {
+    font-size: 2.25rem;
   }
 
   @media screen and (min-width: 769px) and (max-width: 1170px) {
-    margin-left: 4rem;
-    padding: 4rem 3rem 4rem 6rem;
-    gap: 4rem;
+    font-size: 3rem;
+  }
+}
+
+.contact__subtitle {
+  font-size: 1rem;
+  color: rgba(188, 224, 251, 0.6);
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
+
+  @include mobile {
+    font-size: 0.9rem;
+  }
+}
+
+// ─── Two-Panel Layout ───
+.contact__panels {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 4rem;
+  width: 100%;
+  max-width: 1000px;
+  position: relative;
+  z-index: 1;
+
+  @media screen and (min-width: 769px) and (max-width: 1170px) {
+    max-width: 850px;
+    gap: 3rem;
   }
 
-  .contactText {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 450px;
-    position: relative;
-    z-index: 2;
-
-    @include tablet {
-      align-items: center;
-      text-align: center;
-      gap: 0.5rem;
-      max-width: 100%;
-      padding: 0 1rem;
-    }
-
-    @include mobile {
-      align-items: center;
-      text-align: center;
-      gap: 0;
-      max-width: 100%;
-      padding: 0 0.5rem;
-    }
-
-    .heading {
-      font-size: 4rem;
-      font-weight: 700;
-      line-height: 1.1;
-      background: linear-gradient(135deg, #ffffff, #bce0fb);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 0 30px rgba(188, 224, 251, 0.3);
-
-      @include tablet {
-        font-size: 2.75rem;
-        margin-bottom: 0.5rem;
-      }
-
-      @include mobile {
-        font-size: 2.25rem;
-        margin-bottom: 0.25rem;
-      }
-
-      @media screen and (min-width: 769px) and (max-width: 1170px) {
-        font-size: 3.25rem;
-      }
-    }
-
-    .item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-
-      @include tablet {
-        flex-direction: row;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 0.25rem;
-      }
-
-      @include mobile {
-        flex-direction: row;
-        align-items: center;
-        gap: 0.4rem;
-        margin-bottom: 0;
-      }
-
-      span {
-        font-size: 0.95rem;
-        color: rgba(188, 224, 251, 0.7);
-        font-weight: 400;
-        letter-spacing: 0.3px;
-
-        @include tablet {
-          font-size: 0.9rem;
-        }
-
-        @include mobile {
-          font-size: 0.8rem;
-        }
-      }
-
-      .mail {
-        font-size: 1.15rem;
-        font-weight: 500;
-        color: var(--color-primary, #bce0fb);
-        transition: color 0.3s ease;
-        letter-spacing: 0.2px;
-
-        @include tablet {
-          font-size: 1rem;
-        }
-
-        @include mobile {
-          font-size: 0.9rem;
-        }
-
-        &:hover {
-          color: #ffffff;
-        }
-      }
-    }
+  @include tablet {
+    grid-template-columns: 1fr;
+    max-width: 550px;
+    gap: 2rem;
   }
 
-  // Desktop Form
-  .largeScreen {
-    flex: 1;
-    position: relative;
-    max-width: 400px;
-    z-index: 2;
+  @include mobile {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    gap: 1.5rem;
+  }
+}
 
-    @media screen and (min-width: 1440px) {
-      max-width: 450px;
-    }
+// ─── Left Panel — Info Card ───
+.contact__info-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: rgba(6, 24, 41, 0.55);
+  border: 1px solid rgba(188, 224, 251, 0.12);
+  border-radius: 1rem;
+  backdrop-filter: blur(12px);
 
-    @include tablet {
-      display: none;
-    }
+  @include mobile {
+    padding: 1.5rem;
+    gap: 1.25rem;
+  }
+}
 
-    @include mobile {
-      display: none;
-    }
+// Info items
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
 
-    .phoneSVG {
-      position: absolute;
-      top: 50%;
-      left: 40%;
-      transform: translate(-50%, -50%);
-      width: 90%;
-      height: 90%;
-      z-index: -1;
-      opacity: 0.25;
-
-      @media screen and (min-width: 1440px) {
-        width: 100%;
-        height: 100%;
-      }
-
-      svg {
-        stroke: var(--color-primary, #bce0fb);
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-    .largeForm {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      padding: 1.75rem;
-      background: rgba(6, 24, 41, 0.6);
-      border: 1px solid rgba(188, 224, 251, 0.2);
-      border-radius: 0.875rem;
-      backdrop-filter: blur(10px);
-
-      @media screen and (min-width: 1440px) {
-        padding: 2rem;
-        gap: 1.25rem;
-      }
-
-      @media screen and (min-width: 769px) and (max-width: 1170px) {
-        padding: 1.5rem;
-        gap: 1rem;
-      }
-
-      input,
-      textarea {
-        width: 100%;
-        padding: 0.875rem 1rem;
-        background: rgba(11, 24, 41, 0.7);
-        border: 1px solid rgba(188, 224, 251, 0.2);
-        border-radius: 0.5rem;
-        color: #ffffff;
-        font-size: 0.9rem;
-        font-family: 'Helvetica Neue', sans-serif;
-        transition: all 0.3s ease;
-
-        @media screen and (min-width: 1440px) {
-          padding: 1rem 1.125rem;
-          font-size: 0.95rem;
-        }
-
-        &::placeholder {
-          color: rgba(188, 224, 251, 0.5);
-          font-size: 0.875rem;
-        }
-
-        &:focus {
-          outline: none;
-          border-color: var(--color-primary, #bce0fb);
-          box-shadow: 0 0 0 2px rgba(188, 224, 251, 0.1);
-        }
-
-        &:hover {
-          border-color: rgba(188, 224, 251, 0.4);
-        }
-      }
-
-      textarea {
-        min-height: 100px;
-        resize: vertical;
-
-        @media screen and (min-width: 1440px) {
-          min-height: 120px;
-        }
-      }
-
-      button {
-        padding: 0.875rem 1.5rem;
-        background: linear-gradient(
-          135deg,
-          var(--color-primary, #bce0fb),
-          var(--color-primaryDark, #8bc5f0)
-        );
-        border: none;
-        border-radius: 0.5rem;
-        color: var(--color-bgPrimary, #061829);
-        font-size: 0.95rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin-top: 0.5rem;
-
-        @media screen and (min-width: 1440px) {
-          padding: 1rem 1.75rem;
-          font-size: 1rem;
-        }
-
-        &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(188, 224, 251, 0.4);
-        }
-
-        &:active {
-          transform: translateY(0);
-        }
-
-        &:disabled {
-          opacity: 0.7;
-          cursor: not-allowed;
-          transform: none;
-        }
-      }
-
-      .error-message {
-        color: #f87171;
-        font-size: 0.8rem;
-        text-align: center;
-        padding: 0.75rem;
-        background: rgba(248, 113, 113, 0.1);
-        border-radius: 0.5rem;
-        border: 1px solid rgba(248, 113, 113, 0.3);
-        margin-top: 0.25rem;
-      }
-
-      .success-message {
-        color: #4ade80;
-        font-size: 0.8rem;
-        text-align: center;
-        padding: 0.75rem;
-        background: rgba(74, 222, 128, 0.1);
-        border-radius: 0.5rem;
-        border: 1px solid rgba(74, 222, 128, 0.3);
-        margin-top: 0.25rem;
-      }
-    }
+  &--availability {
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(188, 224, 251, 0.08);
+    margin-bottom: 0.25rem;
   }
 
-  // Mobile/Tablet Form
-  .smallScreen {
-    display: none;
-    width: 100%;
-    max-width: 500px;
-    position: relative;
-    z-index: 2;
+  &__icon {
+    color: var(--color-accent, #095a9b);
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+    width: 1rem;
+  }
 
-    @include tablet {
-      display: block;
-      max-width: 450px;
-    }
+  &__label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(188, 224, 251, 0.45);
+    margin-bottom: 0.2rem;
+  }
 
-    @include mobile {
-      display: block;
-      max-width: 100%;
-    }
+  &__text {
+    font-size: 0.9rem;
+    color: rgba(188, 224, 251, 0.8);
+    line-height: 1.5;
+  }
 
-    .smallForm {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      padding: 2rem;
-      background: rgba(6, 24, 41, 0.6);
-      border: 1px solid rgba(188, 224, 251, 0.2);
-      border-radius: 1rem;
-      backdrop-filter: blur(10px);
+  &__link {
+    text-decoration: none;
+    transition: color 0.3s ease;
 
-      @include mobile {
-        padding: 1.5rem;
-        gap: 1rem;
-      }
-
-      input,
-      textarea {
-        width: 100%;
-        padding: 1rem 1.125rem;
-        background: rgba(11, 24, 41, 0.7);
-        border: 1px solid rgba(188, 224, 251, 0.2);
-        border-radius: 0.5rem;
-        color: #ffffff;
-        font-size: 1rem;
-        font-family: 'Helvetica Neue', sans-serif;
-        transition: all 0.3s ease;
-
-        @include mobile {
-          padding: 0.875rem 1rem;
-          font-size: 0.95rem;
-        }
-
-        &::placeholder {
-          color: rgba(188, 224, 251, 0.5);
-          font-size: 0.95rem;
-
-          @include mobile {
-            font-size: 0.9rem;
-          }
-        }
-
-        &:focus {
-          outline: none;
-          border-color: var(--color-primary, #bce0fb);
-          box-shadow: 0 0 0 2px rgba(188, 224, 251, 0.1);
-        }
-      }
-
-      textarea {
-        min-height: 120px;
-        resize: vertical;
-
-        @include mobile {
-          min-height: 100px;
-        }
-      }
-
-      button {
-        padding: 1rem 1.75rem;
-        background: linear-gradient(
-          135deg,
-          var(--color-primary, #bce0fb),
-          var(--color-primaryDark, #8bc5f0)
-        );
-        border: none;
-        border-radius: 0.5rem;
-        color: var(--color-bgPrimary, #061829);
-        font-size: 1.05rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin-top: 0.5rem;
-
-        @include mobile {
-          padding: 0.875rem 1.5rem;
-          font-size: 1rem;
-        }
-
-        &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(188, 224, 251, 0.3);
-        }
-
-        &:disabled {
-          opacity: 0.7;
-          cursor: not-allowed;
-          transform: none;
-        }
-      }
-
-      .error-message {
-        color: #f87171;
-        font-size: 0.85rem;
-        text-align: center;
-        padding: 0.75rem;
-        background: rgba(248, 113, 113, 0.1);
-        border-radius: 0.5rem;
-        border: 1px solid rgba(248, 113, 113, 0.3);
-        margin-top: 0.25rem;
-      }
-
-      .success-message {
-        color: #4ade80;
-        font-size: 0.85rem;
-        text-align: center;
-        padding: 0.75rem;
-        background: rgba(74, 222, 128, 0.1);
-        border-radius: 0.5rem;
-        border: 1px solid rgba(74, 222, 128, 0.3);
-        margin-top: 0.25rem;
-      }
+    &:hover {
+      color: #ffffff;
     }
   }
 }
 
-// Form field validation styles
-.form-field {
+.availability-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.6);
+  flex-shrink: 0;
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+@keyframes pulse-green {
+  0%,
+  100% {
+    box-shadow: 0 0 6px rgba(74, 222, 128, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(74, 222, 128, 0.8);
+  }
+}
+
+// Social links
+.contact__socials {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(188, 224, 251, 0.08);
+
+  .info-item__label {
+    margin-bottom: 0.75rem;
+  }
+}
+
+.social-icons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 0.5rem;
+  background: rgba(11, 24, 41, 0.6);
+  border: 1px solid rgba(188, 224, 251, 0.15);
+  color: rgba(188, 224, 251, 0.7);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+
+  &:hover {
+    color: #ffffff;
+    border-color: var(--color-accent, #095a9b);
+    background: rgba(9, 90, 155, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(9, 90, 155, 0.25);
+  }
+}
+
+// ─── Right Panel — Form ───
+.contact__form-wrapper {
+  position: relative;
+}
+
+.contact__phone-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  z-index: 2;
+  opacity: 1;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    stroke: var(--color-primary, #bce0fb);
+    width: 100%;
+    height: 100%;
+  }
+
+  @include tablet {
+    display: none;
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.contact__form {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  gap: 1.25rem;
+  padding: 2rem;
+  background: rgba(6, 24, 41, 0.55);
+  border: 1px solid rgba(188, 224, 251, 0.12);
+  border-radius: 1rem;
+  backdrop-filter: blur(12px);
+
+  @include mobile {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+}
+
+// ─── Form Fields — Floating Labels ───
+.form-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    position: absolute;
+    top: 0.9rem;
+    left: 1rem;
+    font-size: 0.9rem;
+    color: rgba(188, 224, 251, 0.45);
+    pointer-events: none;
+    transition: all 0.25s ease;
+    background: transparent;
+    z-index: 1;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 1rem;
+    padding-top: 1.5rem;
+    background: rgba(11, 24, 41, 0.6);
+    border: 1px solid rgba(188, 224, 251, 0.15);
+    border-radius: 0.625rem;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    appearance: none;
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-accent, #095a9b);
+      box-shadow: 0 0 0 3px rgba(9, 90, 155, 0.15);
+    }
+
+    &:hover:not(:focus) {
+      border-color: rgba(188, 224, 251, 0.3);
+    }
+  }
+
+  select {
+    cursor: pointer;
+    padding-top: 1.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(188,224,251,0.5)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+
+    option {
+      background: #0a1f33;
+      color: #ffffff;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+
+    @include mobile {
+      min-height: 100px;
+    }
+  }
+
+  // Float label up when focused or has value
+  input:focus + label,
+  input:not(:placeholder-shown) + label,
+  textarea:focus + label,
+  textarea:not(:placeholder-shown) + label,
+  select:focus + label,
+  &.has-value select + label {
+    top: 0.35rem;
+    font-size: 0.65rem;
+    color: var(--color-accent, #095a9b);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  // Error state
+  &.has-error {
+    input,
+    textarea,
+    select {
+      border-color: #f87171;
+      box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.15);
+    }
+
+    label {
+      color: #f87171;
+    }
+  }
+
+  // Validation check icon
+  .field-check {
+    position: absolute;
+    right: 1rem;
+    top: 1.1rem;
+    color: #4ade80;
+    font-size: 0.85rem;
+  }
+
+  .char-count {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.75rem;
+    font-size: 0.7rem;
+    color: rgba(188, 224, 251, 0.3);
+    pointer-events: none;
+  }
 }
 
 .field-error {
   color: #f87171;
-  font-size: 0.8rem;
-  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
   padding-left: 0.25rem;
 }
 
-input[aria-invalid="true"],
-textarea[aria-invalid="true"] {
-  border-color: #f87171 !important;
-  box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.3);
+// ─── Submit Button ───
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--color-accent, #095a9b),
+    var(--color-accentTertiary, #0c4e80)
+  );
+  border: 1px solid rgba(188, 224, 251, 0.2);
+  border-radius: 0.625rem;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(188, 224, 251, 0.15),
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(9, 90, 155, 0.4);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+  }
+
+  &.submitting {
+    background: rgba(9, 90, 155, 0.4);
+    border-color: rgba(188, 224, 251, 0.1);
+  }
+
+  &.success {
+    background: linear-gradient(135deg, #166534, #15803d);
+    border-color: rgba(74, 222, 128, 0.3);
+  }
 }
 
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+// ─── Status Messages ───
+.error-message {
+  color: #f87171;
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 0.75rem;
+  background: rgba(248, 113, 113, 0.08);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(248, 113, 113, 0.2);
+}
+
+.success-message {
+  color: #4ade80;
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 0.75rem;
+  background: rgba(74, 222, 128, 0.08);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(74, 222, 128, 0.2);
 }

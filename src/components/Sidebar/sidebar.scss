@@ -24,6 +24,7 @@
 
       h3 {
         color: #3fabf1;
+        text-align: center;
         font-size: 0.8rem;
         margin-top: 0.1rem;
         font-family: sans-serif;
@@ -54,6 +55,10 @@
 
         i {
           transition: all 0.3s ease-out;
+        }
+
+        svg {
+          transition: transform 0.3s ease, filter 0.3s ease, color 0.3s ease;
         }
 
         &:hover {
@@ -162,6 +167,21 @@
       a.active {
         svg {
           color: #bce0fb;
+          transform: scale(1.25);
+          filter: drop-shadow(0 0 6px rgba(188, 224, 251, 0.6));
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: -0.5rem;
+          top: 30%;
+          transform: translateY(-50%);
+          width: 3px;
+          height: 1.2rem;
+          background: #bce0fb;
+          border-radius: 0 2px 2px 0;
+          box-shadow: 0 0 8px rgba(188, 224, 251, 0.5);
         }
       }
     }

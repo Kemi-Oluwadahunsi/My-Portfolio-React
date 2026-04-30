@@ -18,6 +18,7 @@
 
     .nav {
       display: flex;
+      text-align: center;
       align-items: center;
       justify-content: space-between;
       padding: 2rem 3rem;
@@ -158,6 +159,24 @@
           &:hover {
             background-color: rgba(188, 224, 251, 0.1);
             color: #3fabf1;
+          }
+
+          &.active {
+            color: #3fabf1;
+            background-color: rgba(63, 171, 241, 0.12);
+            position: relative;
+
+            &::before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 15%;
+              height: 70%;
+              width: 3px;
+              background: #3fabf1;
+              border-radius: 0 2px 2px 0;
+              box-shadow: 0 0 8px rgba(63, 171, 241, 0.5);
+            }
           }
         }
 

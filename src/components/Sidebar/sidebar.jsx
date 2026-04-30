@@ -79,8 +79,8 @@ const Sidebar = () => {
           whileTap={{ scale: 0.95 }}
         >
           <Link className="logo" to="/" aria-label="Home">
-            <img src={Logo} alt="KodeMaven Logo" />
-            <h3 className="sub-logo">KodeMaven</h3>
+            <img src={Logo} alt="KeMi Logo" />
+            <h3 className="sub-logo">KeMi</h3>
           </Link>
         </motion.div>
 
@@ -94,12 +94,14 @@ const Sidebar = () => {
             >
               <ScrollLink
                 exact="true"
-                activeclassname="active"
+                activeClass="active"
+                spy={true}
                 className={item.className}
                 to={item.to}
                 smooth={true}
                 duration={1000}
                 containerId="scroll-container"
+                offset={-100}
                 aria-label={item.label}
               >
                 <FontAwesomeIcon icon={item.icon} color="#bddffa" />
