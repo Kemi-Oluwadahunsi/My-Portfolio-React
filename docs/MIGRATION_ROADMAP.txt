@@ -721,13 +721,13 @@ STATUS KEY:
 
     a. Update title: "Let's Work Together"
     b. Update subtitle: "Open to senior engineering roles, MFE architecture
-       consulting, and technical writing collaborations"
+       consulting, and technical writing collaborations" (Don't add yet)
 
     c. LEFT PANEL — Contact Information:
        - Availability status: "Available for opportunities"
          (with green dot indicator)
-       - Location: "Lagos, Nigeria · Open to remote"
-       - Email: kemilat50@gmail.com
+       - Location: "Kuala Lumpur, Malaysia · Open to remote"
+       - Email: oluwakemioluwadahunsi@gmail.com
        - Response time: "Usually within 48 hours"
        - Social links: LinkedIn, GitHub, X/Twitter, Email
        - Preferred contact methods listed

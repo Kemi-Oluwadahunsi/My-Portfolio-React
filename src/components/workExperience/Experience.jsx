@@ -1,23 +1,26 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown, faDotCircle, faBriefcase } from '@fortawesome/free-solid-svg-icons'
 import './experience.scss'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { workExperience } from '../../constants/portfolioData'
-import GlassCard from '../UI/GlassCard/GlassCard'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-if (typeof window !== 'undefined' && typeof gsap !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.2 } },
 }
 
-const experiences = workExperience
+const cardVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.215, 0.61, 0.355, 1] },
+  },
+}
 
-const Each = ({ experience }) => {
-  const [isHovered, setIsHovered] = useState(false)
+const TimelineCard = ({ experience, index }) => {
   const cardRef = useRef(null)
+  const [expanded, setExpanded] = useState(false)
   const rotateX = useSpring(useMotionValue(0), { stiffness: 300, damping: 30 })
   const rotateY = useSpring(useMotionValue(0), { stiffness: 300, damping: 30 })
 
@@ -26,94 +29,95 @@ const Each = ({ experience }) => {
     const rect = cardRef.current.getBoundingClientRect()
     const centerX = rect.left + rect.width / 2
     const centerY = rect.top + rect.height / 2
-    const mouseX = e.clientX - centerX
-    const mouseY = e.clientY - centerY
-    
-    const rotateXValue = (mouseY / rect.height) * -10
-    const rotateYValue = (mouseX / rect.width) * 10
-    
-    rotateX.set(rotateXValue)
-    rotateY.set(rotateYValue)
+    rotateX.set(((e.clientY - centerY) / rect.height) * -6)
+    rotateY.set(((e.clientX - centerX) / rect.width) * 6)
   }
 
   const handleMouseLeave = () => {
     rotateX.set(0)
     rotateY.set(0)
-    setIsHovered(false)
   }
+
+  const isLeft = index % 2 === 0
 
   return (
     <motion.div
-      ref={cardRef}
-      className="experience-card-wrapper"
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: 'preserve-3d',
-      }}
-      whileHover={{ scale: 1.05, z: 50 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      className={`timeline-item ${isLeft ? 'left' : 'right'}`}
+      variants={cardVariants}
     >
-      <GlassCard className="experience-card">
+      <div className="timeline-dot-wrapper">
+        <div className={`timeline-dot ${experience.current ? 'current' : ''}`} />
+      </div>
+
+      <motion.div
+        ref={cardRef}
+        className="timeline-card"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onClick={() => setExpanded((prev) => !prev)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            setExpanded((prev) => !prev)
+          }
+        }}
+        tabIndex={0}
+        role="button"
+        aria-expanded={expanded}
+        aria-label={`${experience.title} at ${experience.company}. Click to ${expanded ? 'collapse' : 'expand'} details.`}
+        style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+        whileHover={{ scale: 1.02 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      >
+        <div className="card-header">
+          <div className="card-meta">
+            {experience.current && (
+              <span className="current-badge">Current</span>
+            )}
+            <span className="date-range">
+              {experience.startDate} — {experience.endDate}
+            </span>
+          </div>
+          <h3 className="card-title">{experience.title}</h3>
+          <p className="card-company">{experience.company}</p>
+          {experience.location && (
+            <p className="card-location">{experience.location}</p>
+          )}
+        </div>
+
         <motion.div
-          className="card-front"
-          animate={{ rotateY: isHovered ? 180 : 0 }}
-          transition={{ duration: 0.6, ease: 'easeInOut' }}
-          style={{ transformStyle: 'preserve-3d' }}
+          className="card-body"
+          initial={false}
+          animate={{
+            height: expanded ? 'auto' : 0,
+            opacity: expanded ? 1 : 0,
+          }}
+          transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
         >
-          <div className="card-content">
-            <div className="card-icon">
-              <FontAwesomeIcon icon={faBriefcase} />
-            </div>
-            <h2 className="expT">{experience.title}</h2>
-            <div className="date">
-              <span>
-                {experience.startDate} - <span>{experience.endDate}</span>
-              </span>
-            </div>
-            <h3 className="company">{experience.company}</h3>
-            <motion.div
-              className="flip-hint"
-              animate={{ opacity: isHovered ? 0 : 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <span>Hover to see details</span>
-            </motion.div>
+          <ul className="highlights">
+            {experience.highlights.map((highlight, i) => (
+              <motion.li
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                animate={expanded ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: i * 0.08 }}
+              >
+                {highlight}
+              </motion.li>
+            ))}
+          </ul>
+
+          <div className="tags">
+            {experience.tags.map((tag) => (
+              <span key={tag} className="tag-pill">{tag}</span>
+            ))}
           </div>
         </motion.div>
 
-        <motion.div
-          className="card-back"
-          animate={{ rotateY: isHovered ? 0 : -180 }}
-          transition={{ duration: 0.6, ease: 'easeInOut' }}
-          style={{ transformStyle: 'preserve-3d' }}
-        >
-          <div className="card-content">
-            <div className="detail-title">
-              <h4>Job Details</h4>
-              <FontAwesomeIcon icon={faArrowDown} />
-            </div>
-
-            <div className="description">
-              {experience.details.map((data) => (
-                <motion.div
-                  key={data.id}
-                  className="describe"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: data.id * 0.1 }}
-                >
-                  <FontAwesomeIcon icon={faDotCircle} className="dotIcon" />
-                  <p>{data.detail}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </GlassCard>
+        <span className="expand-hint">
+          {expanded ? 'Click to collapse' : 'Click to expand'}
+        </span>
+      </motion.div>
     </motion.div>
   )
 }
@@ -123,59 +127,51 @@ const Experience = () => {
     threshold: 0.1,
     triggerOnce: true,
   })
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    if (containerRef.current && inView) {
-      const cards = containerRef.current.children
-      gsap.fromTo(
-        cards,
-        {
-          opacity: 0,
-          y: 100,
-          scale: 0.8,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      )
-    }
-  }, [inView])
 
   return (
     <div className="experience" ref={ref}>
       <div className="experienceContain">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
           Work Experience
         </motion.h1>
         <motion.p
-          className="click-card"
+          className="section-subtitle"
           initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          Hover over each card to view Job Details
+          4+ years building enterprise-scale web applications
         </motion.p>
 
-        <div className="card-wrapper" ref={containerRef}>
-          {experiences.map((item) => (
-            <Each experience={item} key={item.id} />
+        <motion.div
+          className="timeline"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+        >
+          <div className="timeline-line" />
+          {workExperience.map((item, index) => (
+            <TimelineCard experience={item} key={item.id} index={index} />
           ))}
-        </div>
+        </motion.div>
+
+        <motion.a
+          className="resume-cta"
+          href="https://drive.google.com/file/d/1tJgWBOmxZ1hlfbFtRdryVnHNSfKuqahr/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          whileHover={{ scale: 1.03, y: -2 }}
+          whileTap={{ scale: 0.97 }}
+        >
+          Download Full Resume
+        </motion.a>
       </div>
     </div>
   )

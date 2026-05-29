@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import './cursor.scss'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 
 const Cursor = () => {
   const [isHovering, setIsHovering] = useState(false)
   const [isClicking, setIsClicking] = useState(false)
+  const ticking = useRef(false)
   
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
@@ -15,8 +16,14 @@ const Cursor = () => {
 
   useEffect(() => {
     const moveCursor = (e) => {
-      cursorX.set(e.clientX - 16)
-      cursorY.set(e.clientY - 16)
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          cursorX.set(e.clientX - 16)
+          cursorY.set(e.clientY - 16)
+          ticking.current = false
+        })
+        ticking.current = true
+      }
     }
 
     const handleMouseEnter = (e) => {

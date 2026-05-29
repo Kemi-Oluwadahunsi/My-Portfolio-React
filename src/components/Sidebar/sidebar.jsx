@@ -11,23 +11,33 @@ import {
   faEnvelope,
   faHome,
   faCode,
+  faSitemap,
+  faCubes,
+  faPenNib,
+  faCodeBranch,
+  faQuoteLeft,
 } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faGithub, faLinkedin, faWhatsapp, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 
 const navItems = [
-  { icon: faHome, to: 'section', className: 'home-link', label: 'Home' },
-  { icon: faBriefcase, to: 'portfolio', className: 'portfolio-link', label: 'Portfolio' },
+  { icon: faHome, to: 'main-content', className: 'home-link', label: 'Home' },
+  { icon: faBriefcase, to: 'services', className: 'services-link', label: 'Expertise' },
+  { icon: faCode, to: 'portfolioSection', className: 'portfolio-link', label: 'Work' },
+  { icon: faSitemap, to: 'architecture', className: 'architecture-link', label: 'Architecture' },
   { icon: faBriefcaseClock, to: 'experience', className: 'experience-link', label: 'Experience' },
-  { icon: faCode, to: 'skills', className: 'skills-link', label: 'Skills' },
+  { icon: faCubes, to: 'skills', className: 'skills-link', label: 'Skills' },
+  { icon: faPenNib, to: 'writing', className: 'writing-link', label: 'Writing' },
+  { icon: faCodeBranch, to: 'opensource', className: 'opensource-link', label: 'Open Source' },
+  { icon: faQuoteLeft, to: 'testimonials', className: 'testimonials-link', label: 'Testimonials' },
   { icon: faEnvelope, to: 'contact', className: 'contact-link', label: 'Contact' },
 ]
 
-const socialLinks = [
-  { icon: faLinkedin, href: 'https://www.linkedin.com/in/oluwakemioluwadahunsi/', label: 'LinkedIn' },
-  { icon: faFacebook, href: 'https://www.facebook.com/kaliceagbabiaka1', label: 'Facebook' },
-  { icon: faXTwitter, href: 'https://twitter.com/km_oluwadahunsi', label: 'Twitter' },
-  { icon: faGithub, href: 'http://github.com/Kemi-Oluwadahunsi/', label: 'GitHub' },
-  { icon: faWhatsapp, href: 'http://wa.me/+2348146433203', label: 'WhatsApp' },
+const sidebarSocialLinks = [
+  { icon: faLinkedin, href: import.meta.env.VITE_LINKEDIN_URL || '#', label: 'LinkedIn' },
+  { icon: faFacebook, href: import.meta.env.VITE_FACEBOOK_URL || '#', label: 'Facebook' },
+  { icon: faXTwitter, href: import.meta.env.VITE_TWITTER_URL || '#', label: 'Twitter' },
+  { icon: faGithub, href: import.meta.env.VITE_GITHUB_URL || '#', label: 'GitHub' },
+  { icon: faWhatsapp, href: import.meta.env.VITE_WHATSAPP_LINK_NG || '#', label: 'WhatsApp' },
 ]
 
 const Sidebar = () => {
@@ -84,11 +94,14 @@ const Sidebar = () => {
             >
               <ScrollLink
                 exact="true"
-                activeclassname="active"
+                activeClass="active"
+                spy={true}
                 className={item.className}
                 to={item.to}
                 smooth={true}
                 duration={1000}
+                containerId="scroll-container"
+                offset={-100}
                 aria-label={item.label}
               >
                 <FontAwesomeIcon icon={item.icon} color="#bddffa" />
@@ -115,7 +128,7 @@ const Sidebar = () => {
         </nav>
 
         <motion.ul variants={itemVariants}>
-          {socialLinks.map((social, index) => (
+          {sidebarSocialLinks.map((social, index) => (
             <motion.li
               key={social.href}
               initial={{ opacity: 0, y: 20 }}

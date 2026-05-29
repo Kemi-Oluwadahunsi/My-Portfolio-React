@@ -1,27 +1,44 @@
 import { faArrowCircleUp } from "@fortawesome/free-solid-svg-icons"
 import "./scrollarrow.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 
 
 const ScrollArrow = () => {
     const [isVisible, setIsVisible] = useState(false)
+    const ticking = useRef(false)
+
+    const getScrollContainer = useCallback(() => {
+      return document.querySelector('.scroll-container') || window
+    }, [])
+
+    const handleScroll = useCallback(() => {
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          const container = getScrollContainer()
+          const scrollTop = container === window ? window.scrollY : container.scrollTop
+          setIsVisible(scrollTop > 100)
+          ticking.current = false
+        })
+        ticking.current = true
+      }
+    }, [getScrollContainer])
 
     useEffect(() => {
-      const handleScroll = () => {
-        setIsVisible(window.scrollY > 100)
-      }
-      
-      window.addEventListener('scroll', handleScroll)
-      return () => window.removeEventListener('scroll', handleScroll)
-    }, []);
+      const container = getScrollContainer()
+      const target = container === window ? window : container
+      target.addEventListener('scroll', handleScroll, { passive: true })
+      return () => target.removeEventListener('scroll', handleScroll)
+    }, [handleScroll, getScrollContainer]);
 
     const goTop = () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      })
+      const container = getScrollContainer()
+      if (container === window) {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      } else {
+        container.scrollTo({ top: 0, behavior: 'smooth' })
+      }
     };
 
   return (

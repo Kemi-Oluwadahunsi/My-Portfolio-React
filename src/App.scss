@@ -70,8 +70,8 @@ html {
 body {
   background-color: var(--color-bgPrimary, #061829);
   color: var(--color-textPrimary, #ffffff);
-  max-width: 1600px;
-  margin: auto;
+  // max-width: 1600px;
+  // margin: auto;
   transition: background-color var(--transition-normal, 300ms ease-in-out),
               color var(--transition-normal, 300ms ease-in-out);
 }
@@ -97,10 +97,6 @@ a {
 @mixin mobile {
   @media (max-width: 480px) {
      @content;
-    html {
-      scroll-snap-type: none;
-      scroll-snap-align: none;
-    }
   }
 }
 
@@ -108,15 +104,6 @@ a {
 @mixin tablet {
    @media screen and (min-width:481px) and (max-width: 900px) {
     @content;
-    html {
-      scroll-snap-type: none;
-      scroll-snap-align: none;
-    }
-    
-    #section {
-      height: 30rem;
-     
-    }
   }
 }
 
@@ -124,6 +111,18 @@ a {
   @media (min-width: 769px) {
     @content;
 
+  }
+}
+
+// Accessibility: Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

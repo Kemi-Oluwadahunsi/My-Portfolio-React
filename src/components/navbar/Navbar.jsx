@@ -40,12 +40,19 @@ const Navbar = () => {
       }
     }
 
+    let ticking = false
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 50)
+          ticking = false
+        })
+        ticking = true
+      }
     }
 
     document.addEventListener('click', handleClickOutside)
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
     return () => {
       document.removeEventListener('click', handleClickOutside)
@@ -140,11 +147,15 @@ const Navbar = () => {
                   transition={{ delay: 0.2 }}
                 >
                   {[
-                    { to: 'section', label: 'Home' },
-                    { to: 'services', label: 'Services' },
-                    { to: 'skills', label: 'Skills' },
+                    { to: 'main-content', label: 'Home' },
+                    { to: 'services', label: 'Expertise' },
+                    { to: 'portfolioSection', label: 'Work' },
+                    { to: 'architecture', label: 'Architecture' },
                     { to: 'experience', label: 'Experience' },
-                    { to: 'portfolio', label: 'Portfolio' },
+                    { to: 'skills', label: 'Skills' },
+                    { to: 'writing', label: 'Writing' },
+                    { to: 'opensource', label: 'Open Source' },
+                    { to: 'testimonials', label: 'Testimonials' },
                     { to: 'contact', label: 'Contact' },
                   ].map((item, index) => (
                     <motion.li
@@ -155,9 +166,13 @@ const Navbar = () => {
                     >
                       <ScrollLink
                         className="navLinks"
+                        activeClass="active"
+                        spy={true}
                         to={item.to}
                         smooth={true}
                         duration={1000}
+                        containerId="scroll-container"
+                        offset={-100}
                         onClick={closeMobileContent}
                       >
                         {item.label}
@@ -189,11 +204,11 @@ const Navbar = () => {
                 >
                   <ul>
                     {[
-                      { icon: faLinkedin, href: 'https://www.linkedin.com/in/oluwakemioluwadahunsi/', label: 'LinkedIn' },
-                      { icon: faFacebook, href: 'https://www.facebook.com/kaliceagbabiaka1', label: 'Facebook' },
-                      { icon: faXTwitter, href: 'https://twitter.com/km_oluwadahunsi', label: 'Twitter' },
-                      { icon: faGithub, href: 'https://github.com/Kemi-Oluwadahunsi/', label: 'GitHub' },
-                      { icon: faWhatsapp, href: 'https://wa.me/+601113219046', label: 'WhatsApp' },
+                      { icon: faLinkedin, href: import.meta.env.VITE_LINKEDIN_URL || '#', label: 'LinkedIn' },
+                      { icon: faFacebook, href: import.meta.env.VITE_FACEBOOK_URL || '#', label: 'Facebook' },
+                      { icon: faXTwitter, href: import.meta.env.VITE_TWITTER_URL || '#', label: 'Twitter' },
+                      { icon: faGithub, href: import.meta.env.VITE_GITHUB_URL || '#', label: 'GitHub' },
+                      { icon: faWhatsapp, href: import.meta.env.VITE_WHATSAPP_LINK || '#', label: 'WhatsApp' },
                     ].map((social, index) => (
                       <motion.li
                         key={social.href}

@@ -1,31 +1,36 @@
 import { useEffect, useRef } from 'react'
-import { useInView, useMotionValue, useSpring } from 'framer-motion'
+import { useInView } from 'framer-motion'
 import './AnimatedCounter.scss'
 import PropTypes from 'prop-types'
 
 const AnimatedCounter = ({ value, duration = 2, suffix = '', prefix = '' }) => {
   const ref = useRef(null)
-  const motionValue = useMotionValue(0)
-  const springValue = useSpring(motionValue, {
-    damping: 60,
-    stiffness: 100,
-    duration: duration,
-  })
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const isInView = useInView(ref, { once: true })
 
   useEffect(() => {
-    if (isInView) {
-      motionValue.set(value)
-    }
-  }, [motionValue, isInView, value])
+    if (!isInView || !ref.current) return
 
-  useEffect(() => {
-    springValue.on('change', (latest) => {
+    const startTime = performance.now()
+    const durationMs = duration * 1000
+
+    const step = (currentTime) => {
+      const elapsed = currentTime - startTime
+      const progress = Math.min(elapsed / durationMs, 1)
+      // easeOutQuart
+      const eased = 1 - Math.pow(1 - progress, 4)
+      const current = Math.round(eased * value)
+
       if (ref.current) {
-        ref.current.textContent = `${prefix}${Math.floor(latest)}${suffix}`
+        ref.current.textContent = `${prefix}${current}${suffix}`
       }
-    })
-  }, [springValue, prefix, suffix])
+
+      if (progress < 1) {
+        requestAnimationFrame(step)
+      }
+    }
+
+    requestAnimationFrame(step)
+  }, [isInView, value, duration, prefix, suffix])
 
   return <span ref={ref} className="animated-counter">{prefix}0{suffix}</span>
 }

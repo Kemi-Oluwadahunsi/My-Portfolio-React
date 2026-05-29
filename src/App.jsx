@@ -8,6 +8,8 @@ import ScrollProgress from './components/UI/ScrollProgress/ScrollProgress'
 // Lazy load components for code splitting
 const Layout = lazy(() => import('./components/Layout'))
 const Home = lazy(() => import('./components/Home/home'))
+const CaseStudyPage = lazy(() => import('./components/casestudy/CaseStudyPage'))
+const NotFound = lazy(() => import('./components/NotFound/NotFound'))
 
 function App() {
   return (
@@ -26,8 +28,10 @@ function App() {
       }>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home />}></Route>
+            <Route index element={<Home />} />
           </Route>
+          <Route path="/case-study/:id" element={<CaseStudyPage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </>
