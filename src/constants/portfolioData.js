@@ -410,10 +410,10 @@ export const services = [
 ]
 
 export const socialLinks = {
-  linkedin: 'https://www.linkedin.com/in/oluwakemioluwadahunsi/',
-  facebook: 'https://www.facebook.com/kaliceagbabiaka1',
-  twitter: 'https://twitter.com/km_oluwadahunsi',
-  github: 'https://github.com/Kemi-Oluwadahunsi/',
+  linkedin: import.meta.env.VITE_LINKEDIN_URL || '#',
+  facebook: import.meta.env.VITE_FACEBOOK_URL || '#',
+  twitter: import.meta.env.VITE_TWITTER_URL || '#',
+  github: import.meta.env.VITE_GITHUB_URL || '#',
   whatsapp: import.meta.env.VITE_WHATSAPP_LINK || '#',
   resume:
     'https://drive.google.com/file/d/1tJgWBOmxZ1hlfbFtRdryVnHNSfKuqahr/view?usp=sharing',

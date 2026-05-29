@@ -147,7 +147,7 @@ const Navbar = () => {
                   transition={{ delay: 0.2 }}
                 >
                   {[
-                    { to: 'section', label: 'Home' },
+                    { to: 'main-content', label: 'Home' },
                     { to: 'services', label: 'Expertise' },
                     { to: 'portfolioSection', label: 'Work' },
                     { to: 'architecture', label: 'Architecture' },
@@ -204,10 +204,10 @@ const Navbar = () => {
                 >
                   <ul>
                     {[
-                      { icon: faLinkedin, href: 'https://www.linkedin.com/in/oluwakemioluwadahunsi/', label: 'LinkedIn' },
-                      { icon: faFacebook, href: 'https://www.facebook.com/kaliceagbabiaka1', label: 'Facebook' },
-                      { icon: faXTwitter, href: 'https://twitter.com/km_oluwadahunsi', label: 'Twitter' },
-                      { icon: faGithub, href: 'https://github.com/Kemi-Oluwadahunsi/', label: 'GitHub' },
+                      { icon: faLinkedin, href: import.meta.env.VITE_LINKEDIN_URL || '#', label: 'LinkedIn' },
+                      { icon: faFacebook, href: import.meta.env.VITE_FACEBOOK_URL || '#', label: 'Facebook' },
+                      { icon: faXTwitter, href: import.meta.env.VITE_TWITTER_URL || '#', label: 'Twitter' },
+                      { icon: faGithub, href: import.meta.env.VITE_GITHUB_URL || '#', label: 'GitHub' },
                       { icon: faWhatsapp, href: import.meta.env.VITE_WHATSAPP_LINK || '#', label: 'WhatsApp' },
                     ].map((social, index) => (
                       <motion.li

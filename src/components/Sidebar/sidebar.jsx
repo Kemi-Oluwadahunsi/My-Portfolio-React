@@ -20,7 +20,7 @@ import {
 import { faFacebook, faGithub, faLinkedin, faWhatsapp, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 
 const navItems = [
-  { icon: faHome, to: 'section', className: 'home-link', label: 'Home' },
+  { icon: faHome, to: 'main-content', className: 'home-link', label: 'Home' },
   { icon: faBriefcase, to: 'services', className: 'services-link', label: 'Expertise' },
   { icon: faCode, to: 'portfolioSection', className: 'portfolio-link', label: 'Work' },
   { icon: faSitemap, to: 'architecture', className: 'architecture-link', label: 'Architecture' },
@@ -33,10 +33,10 @@ const navItems = [
 ]
 
 const sidebarSocialLinks = [
-  { icon: faLinkedin, href: 'https://www.linkedin.com/in/oluwakemioluwadahunsi/', label: 'LinkedIn' },
-  { icon: faFacebook, href: 'https://www.facebook.com/kaliceagbabiaka1', label: 'Facebook' },
-  { icon: faXTwitter, href: 'https://twitter.com/km_oluwadahunsi', label: 'Twitter' },
-  { icon: faGithub, href: 'https://github.com/Kemi-Oluwadahunsi/', label: 'GitHub' },
+  { icon: faLinkedin, href: import.meta.env.VITE_LINKEDIN_URL || '#', label: 'LinkedIn' },
+  { icon: faFacebook, href: import.meta.env.VITE_FACEBOOK_URL || '#', label: 'Facebook' },
+  { icon: faXTwitter, href: import.meta.env.VITE_TWITTER_URL || '#', label: 'Twitter' },
+  { icon: faGithub, href: import.meta.env.VITE_GITHUB_URL || '#', label: 'GitHub' },
   { icon: faWhatsapp, href: import.meta.env.VITE_WHATSAPP_LINK_NG || '#', label: 'WhatsApp' },
 ]
 
