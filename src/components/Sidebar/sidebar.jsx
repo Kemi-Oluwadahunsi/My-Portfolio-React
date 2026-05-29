@@ -79,7 +79,7 @@ const Sidebar = () => {
           whileTap={{ scale: 0.95 }}
         >
           <Link className="logo" to="/" aria-label="Home">
-            <img src={Logo} alt="KeMi Logo" />
+            <img src={Logo} alt="Kemi-Oluwadahunsi Logo" />
             <h3 className="sub-logo">KeMi</h3>
           </Link>
         </motion.div>

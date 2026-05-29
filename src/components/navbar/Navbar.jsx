@@ -87,7 +87,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <img src={Logo} alt="KeMi Logo" />
+              <img src={Logo} alt="Kemi-Oluwadahunsi Logo" />
               <h3>KeMi</h3>
             </motion.div>
             <motion.div className="toggleButton">

@@ -258,7 +258,7 @@ export const workExperience = [
   {
     id: 1,
     title: 'Freelance Software Developer',
-    company: 'KodeMaven',
+    company: 'Kemi-Oluwadahunsi',
     location: 'Kuala Lumpur, Malaysia',
     startDate: 'Jan 2022',
     endDate: 'Present',

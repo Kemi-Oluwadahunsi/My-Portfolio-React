@@ -835,9 +835,11 @@ STATUS KEY:
     - Simple, elegant footer at bottom of Layout
     - Content:
       * Left: "© 2026 Oluwakemi Oluwadahunsi"
+      * Right: "Built with React · SCSS · Vite · Framer Motion"
     - Design: thin top border (glow-line style), monospace text,
       subtle color (#64748b), centered on mobile
     - Optional: quick-nav links (repeat section names)
+    - Optional: "Back to top" smooth scroll button
 
   DESIGN:
     - Minimal, single-line footer
