@@ -16,7 +16,7 @@ const categories = [
   { key: 'frontend', label: 'Frontend' },
 ]
 
-const Single = ({ item, index }) => {
+const Single = ({ item, index, featured = false }) => {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
   const cardRef = useRef(null)
   const navigate = useNavigate()
@@ -44,7 +44,7 @@ const Single = ({ item, index }) => {
       animate={inView ? { opacity: 1, scale: 1 } : {}}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="portfolio-item"
+      className={`portfolio-item ${featured ? 'featured' : ''}`}
     >
       <GlowCard intensity="medium" className="portfolio-glow-wrapper">
         <motion.div
@@ -124,6 +124,7 @@ const Single = ({ item, index }) => {
 Single.propTypes = {
   item: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
+  featured: PropTypes.bool,
 }
 
 const CarouselCard = ({ item }) => {
@@ -243,7 +244,7 @@ const Portfolio = () => {
         <motion.div className="portfolio-grid" layout>
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item, index) => (
-              <Single item={item} key={item.id} index={index} />
+              <Single item={item} key={item.id} index={index} featured={index === 0} />
             ))}
           </AnimatePresence>
         </motion.div>

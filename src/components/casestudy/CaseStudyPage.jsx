@@ -1,7 +1,7 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence, MotionConfig } from 'framer-motion'
+import { motion, MotionConfig, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -13,16 +13,15 @@ import {
   faLightbulb,
   faLayerGroup,
   faChartLine,
-  faClock,
   faBolt,
   faRocket,
-  faImages,
-  faExpand,
-  faXmark,
   faChevronLeft,
   faChevronRight,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { TimeLine } from 'readyui-react'
+import 'readyui-react/styles.css'
 import AnimatedCounter from '../UI/AnimatedCounter/AnimatedCounter'
 import { caseStudies } from '../../constants/caseStudiesData'
 import './casestudy.scss'
@@ -93,124 +92,103 @@ const ImpactCard = ({ metric, value, description }) => {
   )
 }
 
-// ─── Timeline Item ───
-const TimelineItem = ({ phase, duration, description, index }) => (
-  <motion.div className="timeline-item" variants={fadeUp}>
-    <div className="timeline-marker">
-      <span className="timeline-number">{String(index + 1).padStart(2, '0')}</span>
-      <div className="timeline-line" />
-    </div>
-    <div className="timeline-content">
-      <div className="timeline-header">
-        <h3>{phase}</h3>
-        <span className="timeline-duration">
-          <FontAwesomeIcon icon={faClock} /> {duration}
-        </span>
-      </div>
-      <p>{description}</p>
-    </div>
-  </motion.div>
-)
 
-// ─── Gallery Section with Lightbox ───
-const GallerySection = ({ gallery }) => {
-  const [lightboxIndex, setLightboxIndex] = useState(null)
-  const [ref, inView] = useInView({ threshold: 0.15, triggerOnce: true })
 
-  const openLightbox = (i) => setLightboxIndex(i)
-  const closeLightbox = () => setLightboxIndex(null)
-  const prevImage = () => setLightboxIndex((prev) => (prev > 0 ? prev - 1 : gallery.length - 1))
-  const nextImage = () => setLightboxIndex((prev) => (prev < gallery.length - 1 ? prev + 1 : 0))
+// ─── Feature Image Carousel ───
+const FeatureCarousel = ({ images, title, onImageClick }) => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const hasMultiple = images.length > 1
+
+  const goNext = (e) => {
+    e.stopPropagation()
+    setCurrentIndex((prev) => (prev + 1) % images.length)
+  }
+
+  const goPrev = (e) => {
+    e.stopPropagation()
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
+  }
+
+  return (
+    <div className="feature-carousel">
+      <img
+        src={images[currentIndex]}
+        alt={`${title} — image ${currentIndex + 1}`}
+        className="feature-carousel__img"
+        loading="lazy"
+        onClick={() => onImageClick(currentIndex)}
+      />
+      {hasMultiple && (
+        <>
+          <button className="feature-carousel__arrow feature-carousel__arrow--prev" onClick={goPrev} aria-label="Previous image">
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
+          <button className="feature-carousel__arrow feature-carousel__arrow--next" onClick={goNext} aria-label="Next image">
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
+        </>
+      )}
+    </div>
+  )
+}
+
+// ─── Feature Lightbox ───
+const FeatureLightbox = ({ images, startIndex, title, onClose }) => {
+  const [activeIndex, setActiveIndex] = useState(startIndex)
+  const hasMultiple = images.length > 1
+
+  const goNext = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % images.length)
+  }, [images.length])
+
+  const goPrev = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + images.length) % images.length)
+  }, [images.length])
 
   useEffect(() => {
     const handleKey = (e) => {
-      if (lightboxIndex === null) return
-      if (e.key === 'Escape') closeLightbox()
-      if (e.key === 'ArrowLeft') prevImage()
-      if (e.key === 'ArrowRight') nextImage()
+      if (e.key === 'Escape') onClose()
+      else if (e.key === 'ArrowRight') goNext()
+      else if (e.key === 'ArrowLeft') goPrev()
     }
-    window.addEventListener('keydown', handleKey)
-    return () => window.removeEventListener('keydown', handleKey)
-  })
+    document.addEventListener('keydown', handleKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', handleKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose, goNext, goPrev])
 
   return (
-    <>
-      <motion.section
-        ref={ref}
-        id="gallery"
-        className="cs-section cs-gallery"
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-        variants={stagger}
-      >
-        <motion.div className="cs-section-label" variants={fadeUp}>
-          <FontAwesomeIcon icon={faImages} />
-          <span>04</span>
-        </motion.div>
-        <motion.h2 variants={fadeUp}>Visual Walkthrough</motion.h2>
-        <motion.p className="cs-section-desc" variants={fadeUp}>
-          Key screens and interfaces that bring the platform to life.
-        </motion.p>
-        <motion.div className="cs-gallery-grid" variants={stagger}>
-          {gallery.map((item, i) => (
-            <motion.div
-              key={i}
-              className="gallery-item"
-              variants={scaleIn}
-              onClick={() => openLightbox(i)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && openLightbox(i)}
-              aria-label={`View: ${item.caption}`}
-            >
-              <div className="gallery-image">
-                <img src={item.image} alt={item.caption} loading="lazy" />
-                <div className="gallery-overlay">
-                  <FontAwesomeIcon icon={faExpand} />
-                </div>
-              </div>
-              <p className="gallery-caption">{item.caption}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.section>
-
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightboxIndex !== null && (
-          <motion.div
-            className="cs-lightbox"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeLightbox}
-          >
-            <button className="lb-close" onClick={closeLightbox} aria-label="Close lightbox">
-              <FontAwesomeIcon icon={faXmark} />
-            </button>
-            <button className="lb-prev" onClick={(e) => { e.stopPropagation(); prevImage() }} aria-label="Previous image">
-              <FontAwesomeIcon icon={faChevronLeft} />
-            </button>
-            <motion.div
-              className="lb-content"
-              key={lightboxIndex}
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img src={gallery[lightboxIndex].image} alt={gallery[lightboxIndex].caption} />
-              <p className="lb-caption">{gallery[lightboxIndex].caption}</p>
-              <span className="lb-counter">{lightboxIndex + 1} / {gallery.length}</span>
-            </motion.div>
-            <button className="lb-next" onClick={(e) => { e.stopPropagation(); nextImage() }} aria-label="Next image">
-              <FontAwesomeIcon icon={faChevronRight} />
-            </button>
-          </motion.div>
+    <motion.div
+      className="cs-lightbox"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      onClick={onClose}
+    >
+      <button className="lb-close" onClick={onClose} aria-label="Close lightbox">
+        <FontAwesomeIcon icon={faTimes} />
+      </button>
+      {hasMultiple && (
+        <>
+          <button className="lb-prev" onClick={(e) => { e.stopPropagation(); goPrev() }} aria-label="Previous image">
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
+          <button className="lb-next" onClick={(e) => { e.stopPropagation(); goNext() }} aria-label="Next image">
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
+        </>
+      )}
+      <div className="lb-content" onClick={(e) => e.stopPropagation()}>
+        <img src={images[activeIndex]} alt={`${title} — image ${activeIndex + 1}`} />
+        <p className="lb-caption">{title}</p>
+        {hasMultiple && (
+          <span className="lb-counter">{activeIndex + 1} / {images.length}</span>
         )}
-      </AnimatePresence>
-    </>
+      </div>
+    </motion.div>
   )
 }
 
@@ -219,6 +197,7 @@ const CaseStudyPage = () => {
   const navigate = useNavigate()
   const pageRef = useRef(null)
   const study = caseStudies[id]
+  const [lightbox, setLightbox] = useState(null)
 
   // Scroll to top and manage focus on route change
   useEffect(() => {
@@ -232,7 +211,7 @@ const CaseStudyPage = () => {
     return (
       <div className="case-study-page case-study-not-found">
         <nav className="case-study-nav">
-          <Link to="/" className="back-link">
+          <Link to="/#portfolioSection" className="back-link">
             <FontAwesomeIcon icon={faArrowLeft} /> Back to Portfolio
           </Link>
         </nav>
@@ -252,7 +231,6 @@ const CaseStudyPage = () => {
     { id: 'challenge', label: 'Challenge' },
     { id: 'approach', label: 'Approach' },
     { id: 'features', label: 'Features' },
-    { id: 'gallery', label: 'Gallery' },
     { id: 'impact', label: 'Impact' },
     { id: 'tech', label: 'Tech Stack' },
     { id: 'timeline', label: 'Timeline' },
@@ -298,7 +276,7 @@ const CaseStudyPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Link to="/" className="back-link">
+        <Link to="/#portfolioSection" className="back-link">
           <FontAwesomeIcon icon={faArrowLeft} />
           <span>Back to Portfolio</span>
         </Link>
@@ -385,33 +363,36 @@ const CaseStudyPage = () => {
         </motion.div>
         <motion.h2 variants={fadeUp}>Key Features</motion.h2>
         <motion.div className="cs-feature-grid" variants={stagger}>
-          {study.features.map((feat, i) => (
-            <motion.div key={i} className="feature-card" variants={fadeUp}>
-              {feat.image && (
-                <div className="feature-image">
-                  <img src={feat.image} alt={feat.title} loading="lazy" />
+          {study.features.map((feat, i) => {
+            const images = feat.images || (feat.image ? [feat.image] : [])
+            return (
+              <motion.div key={i} className="feature-card" variants={fadeUp}>
+                {images.length > 0 && (
+                  <div className="feature-image">
+                    <FeatureCarousel
+                      images={images}
+                      title={feat.title}
+                      onImageClick={(index) => setLightbox({ images, startIndex: index, title: feat.title })}
+                    />
+                  </div>
+                )}
+                <div className="feature-body">
+                  <span className="feature-number">{String(i + 1).padStart(2, '0')}</span>
+                  <h3>{feat.title}</h3>
+                  <p>{feat.description}</p>
                 </div>
-              )}
-              <div className="feature-body">
-                <span className="feature-number">{String(i + 1).padStart(2, '0')}</span>
-                <h3>{feat.title}</h3>
-                <p>{feat.description}</p>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            )
+          })}
         </motion.div>
       </Section>
 
-      {/* ─── Screenshot Gallery ─── */}
-      {study.gallery && study.gallery.length > 0 && (
-        <GallerySection gallery={study.gallery} />
-      )}
 
       {/* ─── Impact Metrics ─── */}
       <Section className="cs-section cs-impact" id="impact">
         <motion.div className="cs-section-label" variants={fadeUp}>
           <FontAwesomeIcon icon={faChartLine} />
-          <span>05</span>
+          <span>04</span>
         </motion.div>
         <motion.h2 variants={fadeUp}>Measurable Impact</motion.h2>
         <motion.div className="cs-impact-grid" variants={stagger}>
@@ -425,7 +406,7 @@ const CaseStudyPage = () => {
       <Section className="cs-section cs-tech" id="tech">
         <motion.div className="cs-section-label" variants={fadeUp}>
           <FontAwesomeIcon icon={faCode} />
-          <span>06</span>
+          <span>05</span>
         </motion.div>
         <motion.h2 variants={fadeUp}>Tech Stack</motion.h2>
         <motion.div className="cs-tech-groups" variants={stagger}>
@@ -446,13 +427,21 @@ const CaseStudyPage = () => {
       <Section className="cs-section cs-timeline" id="timeline">
         <motion.div className="cs-section-label" variants={fadeUp}>
           <FontAwesomeIcon icon={faRocket} />
-          <span>07</span>
+          <span>06</span>
         </motion.div>
         <motion.h2 variants={fadeUp}>Development Timeline</motion.h2>
-        <motion.div className="cs-timeline-items" variants={stagger}>
-          {study.timeline.map((item, i) => (
-            <TimelineItem key={i} {...item} index={i} />
-          ))}
+        <motion.div variants={fadeUp} className="cs-readyui-timeline">
+          <TimeLine
+            variant="alternating"
+            lineColor="bg-blue-500"
+            className="cs-timeline-wrapper"
+            items={study.timeline.map((item, i) => ({
+              id: i + 1,
+              title: item.phase,
+              description: item.description,
+              date: item.duration,
+            }))}
+          />
         </motion.div>
       </Section>
 
@@ -460,7 +449,7 @@ const CaseStudyPage = () => {
       <Section className="cs-section cs-learnings" id="learnings">
         <motion.div className="cs-section-label" variants={fadeUp}>
           <FontAwesomeIcon icon={faLightbulb} />
-          <span>08</span>
+          <span>07</span>
         </motion.div>
         <motion.h2 variants={fadeUp}>Key Learnings</motion.h2>
         <motion.div className="cs-learning-list" variants={stagger}>
@@ -497,6 +486,17 @@ const CaseStudyPage = () => {
           <FontAwesomeIcon icon={faArrowLeft} /> Back to All Projects
         </Link>
       </motion.div>
+      {/* ─── Lightbox ─── */}
+      <AnimatePresence>
+        {lightbox && (
+          <FeatureLightbox
+            images={lightbox.images}
+            startIndex={lightbox.startIndex}
+            title={lightbox.title}
+            onClose={() => setLightbox(null)}
+          />
+        )}
+      </AnimatePresence>
     </div>
     </MotionConfig>
   )

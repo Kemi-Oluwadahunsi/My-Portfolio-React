@@ -186,7 +186,7 @@
 
 // ─── Hero Section ───
 .cs-hero {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 4rem 2rem 3rem;
   text-align: center;
@@ -212,14 +212,12 @@
 }
 
 .cs-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 700;
-  line-height: 1.1;
+  font-family: 'Coolvetica', sans-serif;
+  line-height: 1.05;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #ffffff 0%, #bce0fb 60%, #8bc5f0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-textPrimary, #ffffff);
 }
 
 .cs-meta {
@@ -250,7 +248,9 @@
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
-  border: 1px solid rgba(188, 224, 251, 0.1);
+  border: 1px solid rgba(188, 224, 251, 0.08);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3),
+              0 8px 24px rgba(9, 90, 155, 0.15);
 
   img {
     width: 100%;
@@ -261,7 +261,7 @@
   &-glow {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(6, 24, 41, 0.6), transparent 40%);
+    background: linear-gradient(to top, rgba(6, 24, 41, 0.5), transparent 30%);
     pointer-events: none;
   }
 }
@@ -276,9 +276,14 @@
 
   @include mobile { padding: 3rem 1rem; }
 
+  & + .cs-section {
+    border-top: 1px solid rgba(188, 224, 251, 0.04);
+  }
+
   h2 {
     font-size: clamp(1.8rem, 3.5vw, 2.5rem);
     font-weight: 700;
+    font-family: 'Coolvetica', sans-serif;
     margin-bottom: 1.5rem;
     color: var(--color-textPrimary, #ffffff);
   }
@@ -415,7 +420,7 @@
   border: 1px solid rgba(188, 224, 251, 0.08);
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
+  clip-path: inset(0 round 1rem);
   display: flex;
   flex-direction: column;
 
@@ -424,7 +429,8 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba(188, 224, 251, 0.05);
 
-    .feature-image img {
+    .feature-image img,
+    .feature-carousel__img {
       transform: scale(1.03);
     }
   }
@@ -432,14 +438,64 @@
   .feature-image {
     width: 100%;
     aspect-ratio: 16 / 10;
-    overflow: hidden;
     border-bottom: 1px solid rgba(188, 224, 251, 0.06);
+    position: relative;
+    display: flex;
+    overflow: hidden;
+  }
 
-    img {
+  .feature-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    &__img {
       width: 100%;
       height: 100%;
+      max-height: 100%;
       object-fit: cover;
+      object-position: top;
+      cursor: pointer;
       transition: transform 0.5s ease;
+      display: block;
+    }
+
+    &__arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.45);
+      border: 1.5px solid rgba(188, 224, 251, 0.5);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-primary, #bce0fb);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 1;
+      z-index: 100;
+      font-size: 0.85rem;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.6);
+        border-color: var(--color-primary, #bce0fb);
+        transform: translateY(-50%) scale(1.15);
+      }
+
+      &--prev { left: 0.5rem; }
+      &--next { right: 0.5rem; }
+    }
+
+    &__dots {
+      display: none;
+    }
+
+    &__dot {
+      display: none;
     }
   }
 
@@ -481,12 +537,24 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 
+  .gallery-item:first-child {
+    grid-column: span 2;
+  }
+
   @include tablet {
     grid-template-columns: repeat(2, 1fr);
+
+    .gallery-item:first-child {
+      grid-column: span 2;
+    }
   }
 
   @include mobile {
     grid-template-columns: 1fr;
+
+    .gallery-item:first-child {
+      grid-column: span 1;
+    }
   }
 }
 
@@ -677,13 +745,15 @@
   text-align: center;
   padding: 2rem 1rem;
   border-radius: 1rem;
-  background: rgba(11, 24, 41, 0.7);
-  border: 1px solid rgba(188, 224, 251, 0.1);
-  transition: all 0.3s ease;
+  background: rgba(10, 31, 51, 0.5);
+  border: 1px solid rgba(188, 224, 251, 0.06);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 
   &:hover {
-    border-color: rgba(188, 224, 251, 0.25);
-    box-shadow: 0 0 25px rgba(188, 224, 251, 0.06);
+    border-color: rgba(188, 224, 251, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(9, 90, 155, 0.12);
   }
 
   .impact-value {
@@ -755,92 +825,121 @@
   }
 }
 
-// ─── Timeline ───
-.cs-timeline-items {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+// ── Widen the timeline section ──
+.cs-section.cs-timeline {
+  max-width: 1100px;
 }
 
-.timeline-item {
-  display: flex;
-  gap: 1.5rem;
-  position: relative;
+// ─── ReadyUI TimeLine Overrides ───
+.cs-readyui-timeline {
+  // Card containers
+  .bg-white,
+  [class*="bg-white"] {
+    background: rgba(11, 24, 41, 0.75) !important;
+    border: 1px solid rgba(188, 224, 251, 0.12) !important;
+    border-radius: 12px !important;
+    padding: 1.25rem 1.5rem !important;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2) !important;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
-  .timeline-marker {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-    width: 40px;
-
-    .timeline-number {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(188, 224, 251, 0.08);
-      border: 1.5px solid rgba(188, 224, 251, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: var(--color-primary, #bce0fb);
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      flex-shrink: 0;
-    }
-
-    .timeline-line {
-      width: 1.5px;
-      flex: 1;
-      background: linear-gradient(to bottom, rgba(188, 224, 251, 0.2), transparent);
-      margin-top: 0.5rem;
+    &:hover {
+      border-color: rgba(188, 224, 251, 0.25) !important;
+      box-shadow: 0 4px 24px rgba(188, 224, 251, 0.08) !important;
     }
   }
 
-  .timeline-content {
-    padding-bottom: 2.5rem;
-    flex: 1;
-
-    .timeline-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 0.5rem;
-      flex-wrap: wrap;
-
-      h3 {
-        font-size: 1.05rem;
-        font-weight: 600;
-        color: var(--color-textPrimary, #ffffff);
-        margin: 0;
-      }
-
-      .timeline-duration {
-        font-size: 0.75rem;
-        color: var(--color-textMuted, #6b8fa3);
-        font-family: 'SF Mono', 'Fira Code', monospace;
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-
-        svg { font-size: 0.65rem; }
-      }
-    }
-
-    p {
-      font-size: 0.88rem;
-      line-height: 1.65;
-      color: var(--color-textSecondary, #bce0fb);
-      margin: 0;
-    }
+  // Titles
+  h3 {
+    font-size: 1.05rem !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    margin: 0 0 0.25rem !important;
   }
 
-  &:last-child {
-    .timeline-line { display: none; }
-    .timeline-content { padding-bottom: 0; }
+  // Date / duration
+  .text-xs {
+    font-size: 0.75rem !important;
+    color: #6b8fa3 !important;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+
+  // Description text
+  .text-sm {
+    font-size: 0.88rem !important;
+    line-height: 1.65 !important;
+    color: #bce0fb !important;
+  }
+
+  // Dot / circle nodes
+  .rounded-full {
+    background: #095a9b !important;
+    box-shadow: 0 0 0 4px rgba(9, 90, 155, 0.25) !important;
+  }
+
+  // Vertical connector line
+  .w-0\.5,
+  [class*="w-0.5"] {
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(188, 224, 251, 0.18) 10%,
+      rgba(188, 224, 251, 0.18) 90%,
+      transparent
+    ) !important;
+    opacity: 1 !important;
+  }
+
+  // Tag badges
+  .rounded-full:not(.h-8):not(.h-10):not([class*="w-8"]):not([class*="w-10"]) {
+    background: rgba(188, 224, 251, 0.1) !important;
+    color: #bce0fb !important;
+  }
+
+  // Fix white text colors from Tailwind dark mode that isn't active
+  .text-gray-900,
+  [class*="text-gray-900"] {
+    color: #ffffff !important;
+  }
+
+  .text-gray-600,
+  [class*="text-gray-600"] {
+    color: #bce0fb !important;
+  }
+
+  .text-gray-400,
+  .text-gray-500,
+  [class*="text-gray-400"],
+  [class*="text-gray-500"] {
+    color: #6b8fa3 !important;
+  }
+
+  // Ring color on dots
+  .ring-4 {
+    --tw-ring-color: rgba(6, 24, 41, 0.8);
+    box-shadow: 0 0 0 4px rgba(6, 24, 41, 0.8) !important;
+  }
+
+  // Border color override
+  .border-gray-200,
+  [class*="border-gray"] {
+    border-color: rgba(188, 224, 251, 0.12) !important;
+  }
+
+  // Shadow overrides
+  .shadow-sm {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  // Add a little vertical gap between cards on mobile.
+  @include mobile {
+    .space-y-6 > * + *,
+    [class*="space-y-6"] > * + * {
+      margin-top: 0.75rem;
+    }
   }
 }
+
 
 // ─── Key Learnings ───
 .cs-learning-list {

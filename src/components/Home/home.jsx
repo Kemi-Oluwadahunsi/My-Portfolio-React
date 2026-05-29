@@ -107,13 +107,13 @@ const Home = () => {
       <FloatingElements />
       
       <div className="text-zone">
-        <motion.div
+        {/* <motion.div
           className="availability-badge"
           variants={itemVariants}
         >
           <span className="pulse-dot" />
           Available for senior roles &amp; consulting
-        </motion.div>
+        </motion.div> */}
 
         <motion.h1 variants={itemVariants}>
           <span className={letterClass}>H</span>
@@ -146,8 +146,16 @@ const Home = () => {
           className="role-pills"
           variants={itemVariants}
         >
-          {roles.map((role) => (
-            <span key={role} className="pill">{role}</span>
+          {roles.map((role, i) => (
+            <motion.span
+              key={role}
+              className="pill"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 2.0 + i * 0.1, ease: [0.25, 1, 0.5, 1] }}
+            >
+              {role}
+            </motion.span>
           ))}
         </motion.div>
 
@@ -199,13 +207,19 @@ const Home = () => {
         initial="hidden"
         animate="visible"
       >
-        {stats.map((stat) => (
-          <div key={stat.label} className="stat-card">
+        {stats.map((stat, i) => (
+          <motion.div
+            key={stat.label}
+            className="stat-card"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 1.5 + i * 0.12, ease: [0.25, 1, 0.5, 1] }}
+          >
             <GradientText gradient="primary" animate={false}>
               <AnimatedCounter value={stat.value} suffix={stat.suffix} />
             </GradientText>
             <span className="stat-label">{stat.label}</span>
-          </div>
+          </motion.div>
         ))}
       </motion.div>
     </motion.div>

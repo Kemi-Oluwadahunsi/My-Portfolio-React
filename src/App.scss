@@ -70,8 +70,8 @@ html {
 body {
   background-color: var(--color-bgPrimary, #061829);
   color: var(--color-textPrimary, #ffffff);
-  max-width: 1600px;
-  margin: auto;
+  // max-width: 1600px;
+  // margin: auto;
   transition: background-color var(--transition-normal, 300ms ease-in-out),
               color var(--transition-normal, 300ms ease-in-out);
 }

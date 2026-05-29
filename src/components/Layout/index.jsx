@@ -1,5 +1,5 @@
-import { lazy, Suspense } from 'react'
-import { Outlet } from 'react-router-dom'
+import { lazy, Suspense, useEffect } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
 import Sidebar from '../Sidebar/sidebar'
 import './index.scss'
 import Cursor from '../cursor/Cursor'
@@ -27,6 +27,35 @@ const SectionFallback = ({ height = '600px' }) => (
 )
 
 const Layout = () => {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (!location.hash) return
+
+    const targetId = location.hash.replace('#', '')
+    const scrollToTarget = () => {
+      const target = document.getElementById(targetId)
+      if (!target) return false
+
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      return true
+    }
+
+    // Retry briefly to handle route transitions and lazy content timing.
+    if (scrollToTarget()) return
+
+    let attempts = 0
+    const maxAttempts = 10
+    const interval = window.setInterval(() => {
+      attempts += 1
+      if (scrollToTarget() || attempts >= maxAttempts) {
+        window.clearInterval(interval)
+      }
+    }, 120)
+
+    return () => window.clearInterval(interval)
+  }, [location.hash])
+
   return (
     <div className="main-layout">
       <ParticleBackground density={25} speed={0.4} />

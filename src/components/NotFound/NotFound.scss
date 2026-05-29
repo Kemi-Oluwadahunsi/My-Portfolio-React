@@ -1,0 +1,215 @@
+.not-found-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bgPrimary, #061829);
+  padding: 2rem;
+}
+
+// ─── Ambient Background ───
+.nf-ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  &-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.4;
+
+    &--1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(188, 224, 251, 0.12), transparent 70%);
+      top: -10%;
+      right: -5%;
+      animation: nf-float 18s ease-in-out infinite;
+    }
+
+    &--2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(100, 180, 255, 0.08), transparent 70%);
+      bottom: -15%;
+      left: -10%;
+      animation: nf-float 22s ease-in-out infinite reverse;
+    }
+
+    &--3 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(188, 224, 251, 0.06), transparent 70%);
+      top: 40%;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: nf-float 15s ease-in-out infinite 3s;
+    }
+  }
+}
+
+@keyframes nf-float {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(20px, -20px); }
+  66% { transform: translate(-15px, 15px); }
+}
+
+// ─── Grid Background ───
+.nf-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(188, 224, 251, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(188, 224, 251, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+// ─── Content ───
+.nf-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+// ─── 404 Glitch Text ───
+.nf-glitch {
+  position: relative;
+}
+
+.nf-404 {
+  font-size: clamp(6rem, 20vw, 12rem);
+  font-weight: 900;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: transparent;
+  background: linear-gradient(135deg, rgba(188, 224, 251, 0.9), rgba(100, 180, 255, 0.6));
+  -webkit-background-clip: text;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  position: relative;
+  text-shadow: 0 0 80px rgba(188, 224, 251, 0.15);
+
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(188, 224, 251, 0.9), rgba(100, 180, 255, 0.6));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  &::before {
+    animation: nf-glitch-1 3s infinite linear alternate-reverse;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  }
+
+  &::after {
+    animation: nf-glitch-2 3s infinite linear alternate-reverse;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes nf-glitch-1 {
+  0%, 90%, 100% { transform: translate(0); }
+  92% { transform: translate(3px, -1px); }
+  94% { transform: translate(-3px, 1px); }
+  96% { transform: translate(2px, 0); }
+  98% { transform: translate(-2px, -1px); }
+}
+
+@keyframes nf-glitch-2 {
+  0%, 90%, 100% { transform: translate(0); }
+  91% { transform: translate(-2px, 1px); }
+  93% { transform: translate(3px, -1px); }
+  95% { transform: translate(-1px, 2px); }
+  97% { transform: translate(2px, 1px); }
+}
+
+// ─── Icon ───
+.nf-icon {
+  font-size: 2rem;
+  color: rgba(188, 224, 251, 0.4);
+}
+
+// ─── Title & Description ───
+.nf-title {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+}
+
+.nf-desc {
+  font-size: 1.05rem;
+  color: rgba(188, 224, 251, 0.6);
+  max-width: 400px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+// ─── Actions ───
+.nf-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.nf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.8rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &--primary {
+    background: rgba(188, 224, 251, 0.1);
+    border: 1.5px solid rgba(188, 224, 251, 0.25);
+    color: var(--color-primary, #bce0fb);
+
+    &:hover {
+      background: rgba(188, 224, 251, 0.18);
+      border-color: rgba(188, 224, 251, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(188, 224, 251, 0.1);
+    }
+  }
+}
+
+// ─── Responsive ───
+@media (max-width: 600px) {
+  .nf-content {
+    gap: 1.2rem;
+  }
+
+  .nf-icon {
+    font-size: 1.5rem;
+  }
+
+  .nf-desc {
+    font-size: 0.95rem;
+  }
+
+  .nf-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}

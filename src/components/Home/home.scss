@@ -15,7 +15,7 @@
   @include tablet {
     margin-left: 0;
     height: auto;
-    min-height: 100dvh;
+    min-height: auto;
     padding: 5rem 1.5rem 2rem;
     overflow-y: auto;
     display: flex;
@@ -25,8 +25,8 @@
   @include mobile {
     margin-left: 0;
     height: auto;
-    min-height: 100dvh;
-    padding: 5rem 1rem 2rem;
+    min-height: auto;
+    padding: 5rem 1rem 1.5rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -53,7 +53,7 @@
       width: 100%;
       max-width: 100%;
       text-align: left;
-      padding-top: 8rem;
+      padding-top: 6rem;
       padding-right: 1rem;
     }
 
@@ -83,8 +83,10 @@
     font-weight: 400;
     line-height: 6rem;
     width: fit-content;
-    text-shadow: 0 0 10px rgba(188, 224, 251, 0.5),
-      0 0 20px rgba(188, 224, 251, 0.3), 0 0 30px rgba(188, 224, 251, 0.2);
+    text-shadow: 0 0 7px rgba(188, 224, 251, 0.8),
+      0 0 20px rgba(188, 224, 251, 0.5),
+      0 0 40px rgba(188, 224, 251, 0.3),
+      0 0 80px rgba(9, 90, 155, 0.4);
     position: relative;
 
    
@@ -167,7 +169,7 @@ h2 {
 
   @include mobile {
     font-size: 0.9rem;
-    margin: 0.8rem 0;
+    margin: 1.2rem 0;
     letter-spacing: 2px;
   }
 }
@@ -196,35 +198,44 @@ h2 {
     font-family: sans-serif;
     text-decoration: none;
     padding: 0.6rem 1.5rem;
-    border: 1px solid #3fabf1;
-    float: left;
+    border: 1px solid transparent;
     animation: fadeIn 1s 1.8s backwards;
     width: fit-content;
     cursor: pointer;
     border-radius: 0.5rem;
     margin-top: 1rem;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 
     &.primary-magnetic {
-      background: rgba(63, 171, 241, 0.12);
-      border-color: #3fabf1;
-      color: #bce0fb;
+      background: var(--color-primary, #bce0fb);
+      border-color: transparent;
+      color: var(--color-bgPrimary, #061829);
+      font-weight: 600;
+      letter-spacing: 1px;
+
+      &:hover {
+        background: var(--color-primaryDark, #8bc5f0);
+        color: var(--color-bgPrimary, #061829);
+        box-shadow: 0 0 30px rgba(188, 224, 251, 0.2);
+      }
     }
 
     &.outline-magnetic {
       background: transparent;
-      border-color: rgba(188, 224, 251, 0.3);
-      color: #bce0fb;
-    }
+      border-color: rgba(188, 224, 251, 0.2);
+      color: var(--color-primary, #bce0fb);
 
-    &:hover {
-      background: transparent;
-      color: #3fabf1;
+      &:hover {
+        background: rgba(188, 224, 251, 0.08);
+        border-color: rgba(188, 224, 251, 0.4);
+        color: var(--color-primary, #bce0fb);
+      }
     }
 
     @include mobile {
-      margin-top: 10px;
-      font-size: 0.6rem;
-      padding: 0.5rem 0.8rem;
+      margin-top: 1.5rem;
+      font-size: 0.7rem;
+      padding: 0.5rem 0.9rem;
       width: auto;
     }
 
@@ -252,22 +263,22 @@ h2 {
   // Rotating blob background
   .rotating-blob {
     position: absolute;
-    width: 110%;
-    height: 110%;
+    width: 120%;
+    height: 120%;
     top: -5%;
     left: -5%;
     background: linear-gradient(
       135deg,
-      rgba(9, 90, 155, 0.7) 0%,
-      rgba(188, 224, 251, 0.5) 25%,
-      rgba(63, 171, 241, 0.6) 50%,
-      rgba(9, 114, 192, 0.7) 75%,
-      rgba(188, 224, 251, 0.5) 100%
+      rgba(9, 90, 155, 0.8) 0%,
+      rgba(12, 78, 128, 0.6) 25%,
+      rgba(188, 224, 251, 0.5) 50%,
+      rgba(139, 197, 240, 0.6) 75%,
+      rgba(9, 90, 155, 0.75) 100%
     );
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    filter: blur(30px);
+    filter: blur(20px);
     z-index: 1;
-    animation: rotateBlob 20s linear infinite, morphBlob 10s ease-in-out infinite;
+    animation: rotateBlob 12s linear infinite, morphBlob 8s ease-in-out infinite;
   }
 
   @keyframes rotateBlob {
@@ -350,7 +361,8 @@ h2 {
     position: relative;
     z-index: 2;
     object-fit: cover;
-    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 12px 40px rgba(9, 90, 155, 0.35))
+            drop-shadow(0 4px 16px rgba(0, 0, 0, 0.25));
     will-change: opacity;
 
     @include tablet {
@@ -371,18 +383,19 @@ h2 {
 
 // Availability badge
 .availability-badge {
-  // display: inline-flex;
-  display: none;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.4rem 0.9rem;
+  padding: 0.4rem 1rem;
   border-radius: 50px;
-  background: rgba(16, 185, 129, 0.08);
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  background: rgba(16, 185, 129, 0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(16, 185, 129, 0.15);
   color: #34d399;
-  font-size: 0.75rem;
-  font-family: monospace;
-  margin-bottom: 1.2rem;
+  font-size: 0.72rem;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
   animation: fadeIn 1s 0.5s backwards;
 
   .pulse-dot {
@@ -428,20 +441,22 @@ h2 {
 
   .pill {
     display: inline-block;
-    padding: 0.35rem 0.85rem;
+    padding: 0.4rem 1rem;
     border-radius: 50px;
-    background: rgba(63, 171, 241, 0.06);
-    border: 1px solid rgba(63, 171, 241, 0.2);
-    color: #8ecdf7;
+    background: rgba(9, 90, 155, 0.15);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(188, 224, 251, 0.1);
+    color: var(--color-textTertiary, #8bc5f0);
     font-size: 0.78rem;
-    font-family: monospace;
-    letter-spacing: 0.5px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    letter-spacing: 0.03em;
     white-space: nowrap;
-    transition: border-color 0.3s ease, background 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 
     &:hover {
-      border-color: rgba(63, 171, 241, 0.5);
-      background: rgba(63, 171, 241, 0.1);
+      border-color: rgba(188, 224, 251, 0.25);
+      background: rgba(9, 90, 155, 0.25);
+      box-shadow: 0 0 20px rgba(9, 90, 155, 0.2);
     }
   }
 
@@ -467,12 +482,13 @@ h2 {
 
 // Bio paragraph
 .bio {
-  color: #8ba3bf;
-  font-size: 1rem;
-  line-height: 1.7;
-  font-family: sans-serif;
+  color: var(--color-textSecondary, #bce0fb);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  font-family: 'DM Sans', sans-serif;
   margin-top: 1.2rem;
-  max-width: 500px;
+  max-width: 520px;
+  opacity: 0.8;
   animation: fadeIn 1s 1.7s backwards;
 
   .highlight {
@@ -481,9 +497,9 @@ h2 {
   }
 
   @include mobile {
-    font-size: 0.8rem;
-    line-height: 1.5;
-    margin-top: 0.2rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-top: 0.8rem;
   }
 
   @include tablet {
@@ -514,16 +530,19 @@ h2 {
   }
 
   .stat-card {
-    background: rgba(10, 22, 40, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(10, 31, 51, 0.5);
+    border: 1px solid rgba(188, 224, 251, 0.08);
     border-radius: 12px;
     padding: 0.9rem 0.7rem;
     text-align: center;
-    backdrop-filter: blur(10px);
-    transition: border-color 0.3s ease;
+    backdrop-filter: blur(16px);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 
     &:hover {
-      border-color: rgba(63, 171, 241, 0.25);
+      border-color: rgba(188, 224, 251, 0.2);
+      box-shadow: 0 8px 32px rgba(9, 90, 155, 0.2);
+      transform: translateY(-2px);
     }
 
     .stat-value {

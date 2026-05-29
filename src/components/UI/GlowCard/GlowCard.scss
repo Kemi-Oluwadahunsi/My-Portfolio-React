@@ -5,6 +5,9 @@
   overflow: hidden;
   border-radius: 1rem;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 
   .glow-effect {
     position: absolute;
@@ -25,6 +28,9 @@
     position: relative;
     z-index: 1;
     pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 
   &.glow-low .glow-effect {

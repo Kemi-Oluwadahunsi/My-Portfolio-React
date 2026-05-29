@@ -22,7 +22,7 @@ export const portfolioItems = [
   {
     id: 2,
     title: 'Herbiskea',
-    img: '/images/herbiskea.webp',
+    img: '/images/case-studies/herbiskea/herbiskea-new.webp',
     description:
       'Full-stack natural beauty intelligence platform featuring 220+ ingredient database with compatibility & substitution tools, 128 expert-curated skincare/haircare recipes, AI-powered skin analysis, custom formulation builder, full e-commerce with Paystack checkout, and a 46-post educational blog — all with dark mode, real-time notifications, and responsive design.',
     stacks: [
@@ -43,12 +43,12 @@ export const portfolioItems = [
     hasCaseStudy: true,
     caseStudyId: 'herbiskea',
   },
-  {
+{
     id: 3,
     title: 'VisKit',
-    img: '/images/VisKit.webp', // alt: "VisKit data visualization library hero — a grid of colorful SVG charts including line, bar, area, scatter, pie, radar, and heatmap rendered in a dark theme"
+    img: '/images/viskit.webp',
     description:
-      'Composable, tree-shakeable, TypeScript-first React data visualization library with 19 chart types across cartesian, radial, and specialized categories, a Canvas renderer for 10k+ point datasets, 4 theme presets, 5 tooltip variants, physics-based animations, full keyboard navigation, screen-reader accessible data tables, and a Storybook-driven component catalogue — architected as a 6-package pnpm monorepo with Turborepo parallel builds.',
+      'Composable, tree-shakeable, TypeScript-first React data visualization library with 48 chart types across cartesian, radial, hierarchical, flow, and specialized categories, a Canvas renderer for 10k+ point datasets, 4 theme presets with 85+ design tokens, 5 tooltip variants, physics-based animations, full keyboard navigation, screen-reader accessible data tables, and a 56-story Storybook catalogue — architected as a 5-package pnpm monorepo with Turborepo parallel builds.',
     stacks: [
       'React 19',
       'TypeScript',
@@ -61,16 +61,16 @@ export const portfolioItems = [
       '@floating-ui/react',
       'tsup',
     ],
-    live: '#', // Storybook deployment URL when ready
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/VisKit',
-    category: 'library',
+    live: 'https://kemi-oluwadahunsi.github.io/Viskit-Charting-Library/',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Viskit-Charting-Library',
+    category: 'react-library',
     hasCaseStudy: true,
     caseStudyId: 'viskit',
   },
   {
     id: 4,
     title: 'ReadyUI React',
-    img: '/images/ReadyUI.webp', // alt: "ReadyUI React component library documentation homepage showing the component grid and dark mode interface"
+    img: '/images/case-studies/readyui/getting-started.webp', // alt: "ReadyUI React component library documentation homepage showing the component grid and dark mode interface"
     description:
       'Open-source React UI component library published on npm — 50+ production-ready, fully configurable components with Tailwind CSS v4, universal dark mode, accessibility (ARIA + keyboard navigation), drag-and-drop, CSS-only animations, and tree-shakeable ES/CJS builds. Ships a pre-built stylesheet so consumers need zero Tailwind config. Accompanied by a comprehensive interactive documentation site with live previews, code examples, and per-prop API reference for every component.',
     stacks: [
@@ -86,7 +86,7 @@ export const portfolioItems = [
     ],
     live: 'https://readyui-docs.vercel.app',
     gitHub: 'https://github.com/Kemi-Oluwadahunsi/ReadyToUse-React-Components',
-    category: 'open-source library',
+    category: 'react-library',
     hasCaseStudy: true,
     caseStudyId: 'readyui-react',
   },
@@ -105,8 +105,8 @@ export const portfolioItems = [
   },
   {
     id: 6,
-    title: 'Timesheet Automation — Etiqa',
-    img: '/images/timesheet-automation.webp', // alt: "Timesheet Automation app showing calendar view with leave management and PDF preview for Etiqa contract staff"
+    title: 'Timesheet Automation ',
+    img: '/images/case-studies/timesheet/timesheet-hero.webp', // alt: "Timesheet Automation app showing calendar view with leave management and PDF preview for Etiqa contract staff"
     description:
       'Enterprise React micro-frontend for Etiqa contract staff timesheet management — featuring an interactive calendar with leave tracking (AL/ML/FTO with half-day support), Malaysian public holiday detection, overtime calculation, PDF generation filling the official company template via pdf-lib, digital signature upload, and leave balance tracking with negative-balance warnings. Built with Webpack 5 Module Federation for seamless integration into the Angular ConnecTiQa host portal, with offline-first localStorage persistence and multi-environment deployments (SIT/UAT/Production).',
     stacks: [
@@ -121,11 +121,11 @@ export const portfolioItems = [
       'Vitest',
       'date-holidays',
     ],
-    live: 'https://www-gold.etiqapartner.com.my/timesheet-automation',
-    gitHub: '#',
+    live: 'https://tentacle-timesheet-automation.vercel.app',
+    gitHub: 'https://github.maybank.com/Oluwakemi-Ademiotibo-Oluwadahunsi/Timesheet-Automation',
     category: 'enterprise',
     hasCaseStudy: true,
-    caseStudyId: 'timesheet-automation-etiqa',
+    caseStudyId: 'timesheet-automation',
   },
   {
     id: 7,
@@ -148,55 +148,50 @@ export const portfolioItems = [
     stacks: ['Node.js', 'Express.js', 'MongoDB', 'JWT', 'Jest', 'Winston'],
     live: 'https://blogging-api-tasy.onrender.com',
     gitHub: 'https://github.com/Kemi-Oluwadahunsi/intermediate-backend-exam',
-    category: 'full-stack',
+    category: 'backend',
     hasCaseStudy: false,
   },
-  {
-    id: 9,
-    title: 'Quotes-Quest App',
-    img: '/images/quotes-quest.webp',
-    description:
-      'Look up motivational quotes, create custom designs on shirts, and share on social media.',
-    stacks: [
-      'React',
-      'Tailwind CSS',
-      'Firebase',
-      'Node.js',
-      'Express.js',
-      'Framer Motion',
-    ],
-    live: 'https://quotes-quest.vercel.app/',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Quotes-Quest-Fullstack',
-    category: 'full-stack',
-    hasCaseStudy: false,
-  }, 
-  {
-    id: 10,
-    title: 'Mood Buddie',
-    img: '/images/moodbuddie.webp',
-    description:
-      'Mood tracking app with visualized charts, calendar views, customizable emojis, colors, and activities.',
-    stacks: ['React', 'Tailwind CSS', 'Recharts', 'Axios'],
-    live: 'https://mood-buddie.vercel.app/',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Mood-Tracker-App-Project',
-    category: 'frontend',
-    hasCaseStudy: false,
-  },
+ 
   {
     id: 11,
-    title: 'News-Alive',
-    img: '/images/news.webp',
+    title: 'Kemory',
+    img: '/images/kemory-ink.webp',
     description:
-      'Modern news aggregation app with search, filters, and category browsing. Built with Redux Toolkit for state management.',
+      'Full-stack blogging platform where writers publish articles, engage through comments and likes, and build an audience. Features a rich text editor, email verification with account locking, password reset, user profiles, and a dashboard with analytics.',
     stacks: [
       'React',
+      'TypeScript',
       'Tailwind CSS',
       'Redux Toolkit',
       'Framer Motion',
-      'Axios',
+      'Node.js',
+      'Express',
+      'MongoDB',
+      'Resend',
+      'Cloudinary',
     ],
-    live: '#',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/News-Alive',
+    live: 'https://kemory.ink',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Kemory',
+    category: 'fullstack',
+    hasCaseStudy: false,
+  },
+  {
+    id: 12,
+    title: 'Personal Portfolio',
+    img: '/images/my-portfolio.webp',
+    description:
+      'A polished developer portfolio featuring smooth page transitions, parallax scrolling, 3D particle backgrounds, interactive timeline, and case study deep-dives. Built with a component-driven architecture, lazy-loaded routes, and optimized for performance and accessibility.',
+    stacks: [
+      'React',
+      'SCSS',
+      'Framer Motion',
+      'GSAP',
+      'Three.js',
+      'Vite',
+      'React Router',
+    ],
+    live: 'https://kemi-oluwadahunsi.com',
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/My-Portfolio-React',
     category: 'frontend',
     hasCaseStudy: false,
   },
@@ -215,7 +210,7 @@ export const workExperience = [
       'Architected enterprise MFE authentication platform (IDP) using Webpack 5 Module Federation — now the standardized auth handler across all teams at Etiqa',
       'Engineered dual-flow IAM system integrating LDAP (staff) and OIDC via PingID (agents), securing 500+ internal users on a 1M+ user platform',
       'Drove API standardization across microservices using TSOA with Node.js/Express.js, reducing integration bugs by 40%',
-      'Built and shipped Timesheet Automation for all 600+ contract staff — React MFE integrated into Angular + ASP.NET MVC host',
+      'Built and shipped efor all 600+ contract staff — React MFE integrated into Angular + ASP.NET MVC host',
       'Achieved 30% improvement in application load times through code-splitting, lazy loading, and performance profiling',
     ],
     tags: [
@@ -504,12 +499,19 @@ export const writingData = [
       'Regular deep-dive content on MFE architecture, TypeScript patterns, Next.js, Node.js, and engineering career growth.',
     status: 'published',
     url: 'https://www.linkedin.com/in/oluwakemioluwadahunsi/',
-    tags: ['MFE', 'TypeScript', 'React.js', 'Next.js', 'Engineering Career', 'AI in Engineering'],
+    tags: [
+      'MFE',
+      'TypeScript',
+      'React.js',
+      'Next.js',
+      'Engineering Career',
+      'AI in Engineering',
+    ],
   },
 ]
 
 export const blogLink = {
-  url: '#',
+  url: 'https://kemory.vercel.app/u/kemory-writer',
   title: 'Read My Blog',
   description:
     'I write about software development, frontend architecture, and engineering best practices.',
@@ -540,8 +542,7 @@ export const openSourceData = {
         'A powerful charting library for React with full TypeScript support. Provides a wide range of customizable charts and interactive visualizations.',
       stats: { ChartTypes: '40+' },
       links: {
-        github:
-          'https://github.com/Kemi-Oluwadahunsi/Viskit-Charting-Library',
+        github: 'https://github.com/Kemi-Oluwadahunsi/Viskit-Charting-Library',
         npm: 'https://www.npmjs.com/package/viskit',
         storybook:
           'https://kemi-oluwadahunsi.github.io/Viskit-Charting-Library/',

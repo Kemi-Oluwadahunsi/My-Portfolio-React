@@ -7,22 +7,22 @@
     position: relative;
     background:
         // Subtle radial accent glows at strategic vertical positions
-        radial-gradient(ellipse 80% 40% at 20% 30%, rgba(9, 90, 155, 0.12) 0%, transparent 100%),
-        radial-gradient(ellipse 60% 30% at 80% 55%, rgba(80, 80, 100, 0.08) 0%, transparent 100%),
-        radial-gradient(ellipse 70% 35% at 30% 80%, rgba(9, 90, 155, 0.1) 0%, transparent 100%),
-        // Long vertical gradient — navy → deep blue → navy (seamless loop feel)
+        radial-gradient(ellipse 80% 40% at 20% 30%, rgba(9, 90, 155, 0.08) 0%, transparent 100%),
+        radial-gradient(ellipse 60% 30% at 80% 55%, rgba(80, 80, 100, 0.05) 0%, transparent 100%),
+        radial-gradient(ellipse 70% 35% at 30% 80%, rgba(9, 90, 155, 0.06) 0%, transparent 100%),
+        // Long vertical gradient — deep navy throughout for galaxy feel
         linear-gradient(
             180deg,
-            #061829 0%,
-            #07203a 8%,
-            #0a2d4d 18%,
-            #0c3a5e 30%,
-            #095a9b 45%,
-            #0c4e80 55%,
-            #0a3458 65%,
-            #082a48 75%,
-            #071f38 85%,
-            #061829 100%
+            #040e1a 0%,
+            #051524 8%,
+            #071e35 18%,
+            #092847 30%,
+            #0a3460 45%,
+            #092d52 55%,
+            #07223e 65%,
+            #061c33 75%,
+            #051528 85%,
+            #040e1a 100%
         );
 }
 
@@ -51,11 +51,11 @@
     height: 100%;
 
     @include tablet {
-        height: 50vh;
+        height: auto;
     }
 
     @include mobile {
-        height: 50vh;
+        height: auto;
     }
 }
 

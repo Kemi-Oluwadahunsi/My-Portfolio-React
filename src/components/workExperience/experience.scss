@@ -44,7 +44,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1000px;
+    max-width: 60rem;
     margin: 0 auto;
     width: 100%;
     position: relative;
@@ -123,7 +123,7 @@
   &.left {
     align-self: flex-start;
     margin-left: 0;
-    padding-right: 3rem;
+    padding-right: 1.5rem;
     text-align: right;
 
     .timeline-dot-wrapper {
@@ -229,10 +229,10 @@
   backdrop-filter: blur(16px);
   border: 1px solid rgba(188, 224, 251, 0.12);
   border-radius: 1rem;
-  padding: 1.75rem;
+  padding: 1.75rem 1.75rem 2.5rem;
   cursor: pointer;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  max-width: 420px;
+  width: 100%;
 
   &:hover,
   &:focus-visible {
@@ -323,6 +323,7 @@
 .card-body {
   overflow: hidden;
   margin-top: 0.75rem;
+  padding-bottom: 1rem;
 }
 
 .highlights {
@@ -373,7 +374,8 @@
 
 .expand-hint {
   display: block;
-  margin-top: 0.75rem;
+  margin-top: 1rem;
+  padding-bottom: 0.25rem;
   font-size: 0.78rem;
   color: var(--color-textMuted, #6b8fa3);
   font-style: italic;
