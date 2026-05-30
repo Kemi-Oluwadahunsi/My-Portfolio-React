@@ -7,6 +7,7 @@ const statusConfig = {
   'in-progress': { label: 'Writing Now', className: 'amber' },
   'coming-soon': { label: 'Coming Soon', className: 'blue' },
   published: { label: 'Published', className: 'green' },
+  Done: { label: 'Available Now', className: 'green' },
 }
 
 const containerVariants = {
@@ -58,6 +59,22 @@ const WritingCard = ({ item }) => {
         >
           {item.platform ? `View on ${item.platform} →` : 'Learn more →'}
         </a>
+      )}
+
+      {item.salesLinks && (
+        <div className="sales-links">
+          {item.salesLinks.map((link) => (
+            <a
+              key={link.platform}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`card-link sales-btn ${link.url === '#' ? 'disabled' : ''}`}
+            >
+              Get on {link.platform} →
+            </a>
+          ))}
+        </div>
       )}
     </motion.div>
   )

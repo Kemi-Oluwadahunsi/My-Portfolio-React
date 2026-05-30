@@ -102,21 +102,26 @@ const Architecture = () => {
           <div className="ebook-tags">
             {architectureData.ebookCta.tags.map((tag, i) => (
               <span
-                className={`ebook-tag ${tag.includes('progress') ? 'amber' : 'blue'}`}
+                className={`ebook-tag ${tag.includes('Coming') ? 'amber' : 'blue'}`}
                 key={i}
               >
                 {tag}
               </span>
             ))}
           </div>
-          <a
-            href={architectureData.ebookCta.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cta-link"
-          >
-            Follow for updates →
-          </a>
+          <div className="ebook-sales-links">
+            {architectureData.ebookCta.salesLinks.map((link) => (
+              <a
+                key={link.platform}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`cta-link sales-btn ${link.url === '#' ? 'disabled' : ''}`}
+              >
+                Get on {link.platform} →
+              </a>
+            ))}
+          </div>
         </motion.div>
       </div>
     </div>

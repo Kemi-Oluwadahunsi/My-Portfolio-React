@@ -455,8 +455,12 @@ export const writingData = [
     title: 'Micro Frontends with Webpack 5 Module Federation — Book 1',
     description:
       'From Zero to Your First Production MFE. Covers Module Federation fundamentals, shell architecture, shared dependency strategy, and production deployment — from real enterprise implementation at scale.',
-    status: 'in-progress',
+    status: 'Done',
     tags: ['MFE', 'Webpack 5', 'Module Federation', 'React', 'Enterprise'],
+    salesLinks: [
+      { platform: 'Selar', url: import.meta.env.VITE_MFE_BOOK1_SELAR_URL || '#' },
+      { platform: 'Leanpub', url: import.meta.env.VITE_MFE_BOOK1_LEANPUB_URL || '#' },
+    ],
   },
   {
     id: 'mfe-ebook-2',
@@ -608,7 +612,10 @@ new ModuleFederationPlugin({
     heading: 'Micro Frontends with Webpack 5 — The Ebook Series',
     description:
       'Everything I learned building production MFE systems — written as a two-book series for engineers who want the real patterns, not the happy path.',
-    tags: ['Book 1: In progress', 'Book 2: Coming soon'],
-    url: 'https://www.linkedin.com/in/oluwakemioluwadahunsi/',
+    tags: ['Book 1: Available now', 'Book 2: Coming soon'],
+    salesLinks: [
+      { platform: 'Selar', url: import.meta.env.VITE_MFE_BOOK1_SELAR_URL || '#' },
+      { platform: 'Leanpub', url: import.meta.env.VITE_MFE_BOOK1_LEANPUB_URL || '#' },
+    ],
   },
 }
