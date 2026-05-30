@@ -311,4 +311,17 @@
     background: rgba(188, 224, 251, 0.1);
     border-color: rgba(188, 224, 251, 0.4);
   }
+
+  &.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}
+
+.ebook-sales-links {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
 }

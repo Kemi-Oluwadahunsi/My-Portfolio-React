@@ -217,6 +217,35 @@
   &:hover {
     color: #ffffff;
   }
+
+  &.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}
+
+/* ───── Sales Links ───── */
+.sales-links {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  flex-wrap: wrap;
+
+  .sales-btn {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(188, 224, 251, 0.2);
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(188, 224, 251, 0.1);
+      border-color: rgba(188, 224, 251, 0.4);
+    }
+  }
 }
 
 /* ───── Blog CTA card ───── */
