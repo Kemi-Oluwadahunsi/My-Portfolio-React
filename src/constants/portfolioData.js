@@ -342,6 +342,17 @@ export const skillGroups = [
     ],
   },
   {
+    category: 'AI & Automation',
+    skills: [
+      'LLM Integration',
+      'OpenAI API',
+      'Model Context Protocol (MCP)',
+      'Multi-Agent Systems',
+      'AI-Driven Test Automation',
+      'Workflow Automation',
+    ],
+  },
+  {
     category: 'Currently Exploring',
     skills: [
       'Angular',
@@ -459,7 +470,6 @@ export const writingData = [
     tags: ['MFE', 'Webpack 5', 'Module Federation', 'React', 'Enterprise'],
     salesLinks: [
       { platform: 'Selar', url: import.meta.env.VITE_MFE_BOOK1_SELAR_URL || '#' },
-      { platform: 'Leanpub', url: import.meta.env.VITE_MFE_BOOK1_LEANPUB_URL || '#' },
     ],
   },
   {
@@ -615,7 +625,6 @@ new ModuleFederationPlugin({
     tags: ['Book 1: Available now', 'Book 2: Coming soon'],
     salesLinks: [
       { platform: 'Selar', url: import.meta.env.VITE_MFE_BOOK1_SELAR_URL || '#' },
-      { platform: 'Leanpub', url: import.meta.env.VITE_MFE_BOOK1_LEANPUB_URL || '#' },
     ],
   },
 }
