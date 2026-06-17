@@ -238,6 +238,7 @@
 /* ───── Ebook CTA ───── */
 .ebook-cta {
   width: 100%;
+  margin-top: 1rem;
   background: rgba(11, 24, 41, 0.6);
   border: 1px solid rgba(188, 224, 251, 0.1);
   border-radius: 1rem;
@@ -246,6 +247,7 @@
 
   @include mobile {
     padding: 1.25rem;
+    margin-top: 0.7rem;
   }
 
   h3 {

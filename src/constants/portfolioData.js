@@ -482,6 +482,18 @@ export const writingData = [
     tags: ['MFE', 'Advanced', 'Cross-Framework', 'Performance'],
   },
   {
+    id: 'augmented-developer',
+    type: 'ebook',
+    title: 'The Augmented Developer — Real Lessons from Coding in the AI Era',
+    description:
+      'A short, practical guide for developers navigating AI. Covers how LLMs work, the mindset shift, AI-assisted coding best practices, where to draw the human-AI line, and staying relevant — from real experience building production software with AI tools.',
+    status: 'Done',
+    tags: ['AI', 'Developer Productivity', 'LLMs', 'Prompt Engineering', 'Career Growth'],
+    salesLinks: [
+      { platform: 'Selar', url: import.meta.env.VITE_AUGMENTED_DEV_SELAR_URL || '#' },
+    ],
+  },
+  {
     id: '30-days-react',
     type: 'carousel-series',
     title: '30 Days of React',
@@ -618,13 +630,24 @@ new ModuleFederationPlugin({
     '@etiqa/api-manager': { singleton: true },
   },
 })`,
-  ebookCta: {
-    heading: 'Micro Frontends with Webpack 5 — The Ebook Series',
-    description:
-      'Everything I learned building production MFE systems — written as a two-book series for engineers who want the real patterns, not the happy path.',
-    tags: ['Book 1: Available now', 'Book 2: Coming soon'],
-    salesLinks: [
-      { platform: 'Selar', url: import.meta.env.VITE_MFE_BOOK1_SELAR_URL || '#' },
-    ],
-  },
+  ebookCta: [
+    {
+      heading: 'Micro Frontends with Webpack 5 — The Ebook Series',
+      description:
+        'Everything I learned building production MFE systems — written as a two-book series for engineers who want the real patterns, not the happy path.',
+      tags: ['Book 1: Available now', 'Book 2: Coming soon'],
+      salesLinks: [
+        { platform: 'Selar', url: import.meta.env.VITE_MFE_BOOK1_SELAR_URL || '#' },
+      ],
+    },
+    {
+      heading: 'The Augmented Developer — Real Lessons from Coding in the AI Era',
+      description:
+        'Everything I learned navigating AI as a working developer — written as a short, honest guide for engineers who want the practical truth, not the hype.',
+      tags: ['Free for everyone', 'Available now'],
+      salesLinks: [
+        { platform: 'Selar', url: import.meta.env.VITE_AUGMENTED_DEV_SELAR_URL || '#' },
+      ],
+    },
+  ],
 }
