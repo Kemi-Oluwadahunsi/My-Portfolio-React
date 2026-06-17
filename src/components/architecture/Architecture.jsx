@@ -90,39 +90,42 @@ const Architecture = () => {
           </pre>
         </motion.div>
 
-        {/* Ebook CTA */}
-        <motion.div
-          className="ebook-cta"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.7 }}
-        >
-          <h3>{architectureData.ebookCta.heading}</h3>
-          <p>{architectureData.ebookCta.description}</p>
-          <div className="ebook-tags">
-            {architectureData.ebookCta.tags.map((tag, i) => (
-              <span
-                className={`ebook-tag ${tag.includes('Coming') ? 'amber' : 'blue'}`}
-                key={i}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-          <div className="ebook-sales-links">
-            {architectureData.ebookCta.salesLinks.map((link) => (
-              <a
-                key={link.platform}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`cta-link sales-btn ${link.url === '#' ? 'disabled' : ''}`}
-              >
-                Get on {link.platform} →
-              </a>
-            ))}
-          </div>
-        </motion.div>
+        {/* Ebook CTAs */}
+        {architectureData.ebookCta.map((ebook, index) => (
+          <motion.div
+            key={index}
+            className="ebook-cta"
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.7 + index * 0.15 }}
+          >
+            <h3>{ebook.heading}</h3>
+            <p>{ebook.description}</p>
+            <div className="ebook-tags">
+              {ebook.tags.map((tag, i) => (
+                <span
+                  className={`ebook-tag ${tag.includes('Coming') ? 'amber' : 'blue'}`}
+                  key={i}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <div className="ebook-sales-links">
+              {ebook.salesLinks.map((link) => (
+                <a
+                  key={link.platform}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`cta-link sales-btn ${link.url === '#' ? 'disabled' : ''}`}
+                >
+                  Get on {link.platform} →
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   )
