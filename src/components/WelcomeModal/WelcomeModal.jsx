@@ -2,16 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 // import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import {
-  ArrowUpRight,
-//
-  Briefcase,
-  Code,
-  Download,
-  Rocket,
-  Sparkles,
-  X,
-} from 'lucide-react'
+import { ArrowUpRight, Download, X } from 'lucide-react'
+import { lockScroll } from '../../hooks/lockScroll'
 import { socialLinks } from '../../constants/portfolioData'
 import './welcomeModal.scss'
 
@@ -20,62 +12,33 @@ const SHOW_DELAY_MS = 3000
 const HOME_TIMEZONE = 'Asia/Kuala_Lumpur'
 const BOT_PATTERN = /bot|crawl|spider|lighthouse|headless/i
 
-const audiences = [
+const prompts = [
   {
-    icon: Briefcase,
-    title: "I'm hiring",
-    text: 'Remote roles: see what I have built and where I have done it',
+    lead: 'Hiring?',
     links: [
-      { label: 'Projects', section: 'portfolioSection' },
-      { label: 'Experience', section: 'experience' },
+      { label: 'See my projects', section: 'portfolioSection' },
+      { label: 'my experience', section: 'experience' },
     ],
   },
-  {
-    icon: Rocket,
-    title: 'I have a project',
-    text: 'Freelance work: see how I can help you',
-    action: { section: 'services' },
-  },
-  {
-    icon: Code,
-    title: "I'm a developer",
-    text: 'Open-source libraries, case studies and ebooks',
-    action: { section: 'opensource' },
-  },
-  {
-    icon: Sparkles,
-    title: 'Just exploring',
-    text: 'Take me to the site',
-    action: { close: true },
-  },
+  { lead: 'Have a project?', links: [{ label: 'See how I can help', section: 'services' }] },
+  { lead: 'Developer?', links: [{ label: 'Open-source, case studies and ebooks', section: 'opensource' }] },
 ]
-
-// const latestProjects = [
-//   { id: 'kemory', title: 'Kemory', tag: 'Full-stack publishing platform' },
-//   { id: 'herbiskea', title: 'Herbiskea', tag: 'AI-powered beauty e-commerce' },
-//   { id: 'viskit', title: 'VisKit', tag: '48-chart React library' },
-// ]
-
-// const latestWriting = [
-//   { title: 'Micro Frontends with Webpack 5', tag: 'Ebook · Book 1' },
-//   { title: 'The Augmented Developer', tag: 'Ebook · Coding in the AI era' },
-// ]
 
 const formatTime = (timeZone) =>
   new Intl.DateTimeFormat([], { hour: 'numeric', minute: '2-digit', timeZone }).format(new Date())
 
 const getVisitorContext = () => {
-  const hour = new Date().getHours()
-  const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening'
   const visitorTime = formatTime(undefined)
   const homeTime = formatTime(HOME_TIMEZONE)
-  return { greeting, visitorTime, homeTime, sameTime: visitorTime === homeTime }
+  return { visitorTime, homeTime, sameTime: visitorTime === homeTime }
 }
+
+const WELCOME_TEXT = "Hi! Welcome to my corner of the web 💻"
 
 const WelcomeDialog = ({ onClose }) => {
   const reduced = useReducedMotion()
   const dialogRef = useRef(null)
-  const [{ greeting, visitorTime, homeTime, sameTime }] = useState(getVisitorContext)
+  const [{ visitorTime, homeTime, sameTime }] = useState(getVisitorContext)
 
   const goToSection = useCallback(
     (id) => {
@@ -90,9 +53,7 @@ const WelcomeDialog = ({ onClose }) => {
 
   useEffect(() => {
     const previouslyFocused = document.activeElement
-    const scroller = document.getElementById('scroll-container')
-    const previousOverflow = scroller?.style.overflow
-    if (scroller) scroller.style.overflow = 'hidden'
+    const unlockScroll = lockScroll()
     dialogRef.current?.querySelector('.welcome-close')?.focus()
 
     const onKeyDown = (e) => {
@@ -114,7 +75,7 @@ const WelcomeDialog = ({ onClose }) => {
 
     return () => {
       document.removeEventListener('keydown', onKeyDown)
-      if (scroller) scroller.style.overflow = previousOverflow ?? ''
+      unlockScroll()
       if (previouslyFocused instanceof HTMLElement) previouslyFocused.focus()
     }
   }, [onClose])
@@ -168,21 +129,21 @@ const WelcomeDialog = ({ onClose }) => {
               Open to remote roles &amp; freelance projects
             </motion.p>
 
-            <motion.h2
+            <motion.h3
               id="welcome-title"
               className="welcome-greeting"
-              aria-label={`${greeting}, welcome!`}
+              aria-label="Hi, this is Kemi. Glad you're here"
               variants={greetingContainer}
             >
-              {[...`${greeting} 👋`].map((char, i) => (
+              {[...WELCOME_TEXT].map((char, i) => (
                 <motion.span key={i} variants={letter} aria-hidden="true">
                   {char === ' ' ? '\u00A0' : char}
                 </motion.span>
               ))}
-            </motion.h2>
+            </motion.h3>
 
             <motion.p className="welcome-intro" variants={item}>
-              I&apos;m Kemi, a software engineer building enterprise micro-frontends and full-stack products.
+              I&apos;m a software engineer, mentor, and technical author with 5 years of experience building web applications and AI-powered solutions.
             </motion.p>
             <motion.p className="welcome-time" variants={item}>
               {sameTime
@@ -190,95 +151,28 @@ const WelcomeDialog = ({ onClose }) => {
                 : `${visitorTime} for you · ${homeTime} for me (Kuala Lumpur)`}
             </motion.p>
 
-            <motion.h3 className="welcome-label" variants={item}>
-              What brings you here?
-            </motion.h3>
-            <div className="welcome-audiences">
-              {audiences.map(({ icon: Icon, title, text, action, links }) => {
-                const body = (
-                  <>
-                    <span className="icon" aria-hidden="true">
-                      <Icon size={20} />
-                    </span>
-                    <span className="copy">
-                      <strong>{title}</strong>
-                      <span>{text}</span>
-                      {links && (
-                        <span className="links">
-                          {links.map((l) => (
-                            <button key={l.section} type="button" onClick={() => goToSection(l.section)}>
-                              {l.label} <ArrowUpRight size={13} aria-hidden="true" />
-                            </button>
-                          ))}
-                        </span>
-                      )}
-                    </span>
-                  </>
-                )
-
-                // Cards with several destinations can't be a single button.
-                return links ? (
-                  <motion.div key={title} className="welcome-audience" variants={item}>
-                    {body}
-                  </motion.div>
-                ) : (
-                  <motion.button
-                    key={title}
-                    type="button"
-                    className="welcome-audience"
-                    variants={item}
-                    onClick={() => (action.section ? goToSection(action.section) : onClose())}
-                  >
-                    {body}
-                  </motion.button>
-                )
-              })}
-            </div>
-
-            {/* <motion.h3 className="welcome-label" variants={item}>
-              Latest
-            </motion.h3>
-            <div className="welcome-latest">
-              <motion.div variants={item}>
-                <h4>Projects</h4>
-                <ul>
-                  {latestProjects.map((p) => (
-                    <li key={p.id}>
-                      <Link to={`/case-study/${p.id}`} onClick={onClose}>
-                        <span>
-                          <strong>{p.title}</strong>
-                          <small>{p.tag}</small>
-                        </span>
-                        <ArrowUpRight size={16} aria-hidden="true" />
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-              <motion.div variants={item}>
-                <h4>Writing</h4>
-                <ul>
-                  {latestWriting.map((w) => (
-                    <li key={w.title}>
-                      <button type="button" onClick={() => goToSection('writing')}>
-                        <span>
-                          <strong>{w.title}</strong>
-                          <small>{w.tag}</small>
-                        </span>
-                        <BookOpen size={16} aria-hidden="true" />
+            <motion.ul className="welcome-prompts" variants={item}>
+              {prompts.map(({ lead, links }) => (
+                <li key={lead}>
+                  <span>{lead}</span>
+                  {links.map((l, i) => (
+                    <span key={l.section}>
+                      {i > 0 && ' · '}
+                      <button type="button" onClick={() => goToSection(l.section)}>
+                        {l.label} <ArrowUpRight size={14} aria-hidden="true" />
                       </button>
-                    </li>
+                    </span>
                   ))}
-                </ul>
-              </motion.div>
-            </div> */}
+                </li>
+              ))}
+            </motion.ul>
 
             <motion.div className="welcome-footer" variants={item}>
               <a href={socialLinks.resume} target="_blank" rel="noreferrer">
                 <Download size={16} aria-hidden="true" /> Download resume
               </a>
               <button type="button" onClick={onClose}>
-                Skip
+                Just exploring
               </button>
             </motion.div>
           </motion.div>
