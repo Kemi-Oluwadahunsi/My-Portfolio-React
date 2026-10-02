@@ -43,7 +43,7 @@ export const portfolioItems = [
     hasCaseStudy: true,
     caseStudyId: 'herbiskea',
   },
-{
+  {
     id: 3,
     title: 'VisKit',
     img: '/images/viskit.webp',
@@ -122,7 +122,8 @@ export const portfolioItems = [
       'date-holidays',
     ],
     live: 'https://tentacle-timesheet-automation.vercel.app',
-    gitHub: 'https://github.maybank.com/Oluwakemi-Ademiotibo-Oluwadahunsi/Timesheet-Automation',
+    gitHub:
+      'https://github.maybank.com/Oluwakemi-Ademiotibo-Oluwadahunsi/Timesheet-Automation',
     category: 'enterprise',
     hasCaseStudy: true,
     caseStudyId: 'timesheet-automation',
@@ -151,7 +152,7 @@ export const portfolioItems = [
     category: 'backend',
     hasCaseStudy: false,
   },
- 
+
   {
     id: 11,
     title: 'Kemory',
@@ -202,7 +203,7 @@ export const portfolioItems = [
 
 export const workExperience = [
   {
-    id: 4,
+    id: 5,
     title: 'Software Engineer / Product Owner',
     company: 'Etiqa Insurance & Takaful',
     location: 'Kuala Lumpur, Malaysia · Hybrid',
@@ -210,11 +211,16 @@ export const workExperience = [
     endDate: 'Present',
     current: true,
     highlights: [
-      'Architected enterprise MFE authentication platform (IDP) using Webpack 5 Module Federation — now the standardized auth handler across all teams at Etiqa',
-      'Engineered dual-flow IAM system integrating LDAP (staff) and OIDC via PingID (agents), securing 500+ internal users on a 1M+ user platform',
-      'Drove API standardization across microservices using TSOA with Node.js/Express.js, reducing integration bugs by 40%',
-      'Built and shipped efor all 600+ contract staff — React MFE integrated into Angular + ASP.NET MVC host',
-      'Achieved 30% improvement in application load times through code-splitting, lazy loading, and performance profiling',
+      'Architected the micro-frontend system for an enterprise insurance platform serving 1M+ users using Webpack 5 Module Federation, cutting deployment dependencies by 30% and enabling autonomous team workflows',
+      "Engineered Etiqa's centralized authentication and authorization system, adopted org-wide via Module Federation and powering authentication across every Etiqa application, with the backend hosted on API7",
+      'Built dual-flow IAM across all 5 Etiqa Groups: agent access through LDAP and staff access through PingID (OIDC)',
+      "Own end-to-end research, architecture and development of SecureTiQa, Etiqa's second-factor authorization (MFA) feature, using Keycloak for user authentication and Client-Initiated Backchannel Authentication (CIBA) for decoupled approval flows",
+      'Designed and developed a custom decoupled authenticator SPI and an approval service that acts as the signing core, tying the authentication and authorization components of the SecureTiQa flow together',
+      'Built an AI-powered mobile test automation agent that fetches Jira epics, reads BRDs and user stories, auto-generates test cases and scripts per ticket and subticket, executes them, and posts reports with per-case screenshots back to Jira, significantly reducing manual QA effort',
+      'Shipped a company-wide timesheet automation tool for 600+ contract staff, a React micro-frontend integrated into an Angular + ASP.NET MVC host, earning the Beyond Expectations Award (Q1 2026)',
+      'As Product Owner, drove an automation opportunity research initiative across Etiqa departments, turning findings into prioritised engineering work',
+      'Led API standardization across services using TSOA with Node.js and Express.js, reducing integration bugs by 40% and automating API documentation',
+      'Achieved a 30% improvement in application performance through code-splitting, lazy loading and performance profiling',
     ],
     tags: [
       'Webpack 5',
@@ -224,8 +230,38 @@ export const workExperience = [
       'LDAP',
       'OIDC',
       'PingID',
+      'Keycloak',
+      'CIBA',
       'Node.js',
       'TSOA',
+      'API7',
+      'AI Agents',
+      'Jira',
+    ],
+  },
+  {
+    id: 4,
+    title: 'Freelance Software Developer',
+    company: 'KodeMaven',
+    location: 'Kuala Lumpur, Malaysia',
+    startDate: 'Jan 2022',
+    endDate: 'Present',
+    current: true,
+    highlights: [
+      'Founded a freelance software development business, delivering 20+ production-grade web applications across fintech, e-commerce, SME and education sectors',
+      '95% client satisfaction rate, 100% on-time delivery, with recurring business from 60% of clients',
+      'Architected scalable single-page applications with React.js and Next.js, improving average client user engagement by 20%',
+      'Integrated third-party APIs including Stripe, Firebase and Email.js for payments, authentication and communication features',
+      'Optimized every deliverable to under 2s load time and 90%+ Lighthouse scores through code-splitting and lazy loading',
+    ],
+    tags: [
+      'React',
+      'Next.js',
+      'TypeScript',
+      'Node.js',
+      'Stripe',
+      'Firebase',
+      'Full-stack',
     ],
   },
   {
@@ -237,9 +273,11 @@ export const workExperience = [
     endDate: 'May 2025',
     current: false,
     highlights: [
-      'Redesigned and rebuilt 15+ interactive financial training modules, improving learner engagement by 18%',
+      'Redesigned and rebuilt 15+ interactive financial training modules with updated UI/UX, improving learner engagement by 18%',
       'Reduced module load times by 25% and average file sizes by 30% through animation and performance optimization',
-      'Converted legacy Adobe Edge Animate content to modern standards for cross-device compatibility',
+      'Converted legacy Adobe Edge Animate content to modern standards with Adobe Animate for cross-device compatibility',
+      'Worked with instructional designers to turn complex financial concepts into interactive animations and visual learning experiences',
+      'Applied responsive design so modules run seamlessly across desktop, tablet and mobile',
     ],
     tags: ['JavaScript', 'Adobe Animate', 'Responsive Design', 'Performance'],
   },
@@ -252,26 +290,26 @@ export const workExperience = [
     endDate: 'Sep 2024',
     current: false,
     highlights: [
-      'Built high-converting IP address marketplace processing 500+ daily transactions with Redux Toolkit',
-      'Reduced unauthorized access attempts by 85% through CAPTCHA, login persistence, and protected route architecture',
-      'Developed real-time support ticket system cutting response times by 35%',
+      'Built a high-converting IP address marketplace with dynamic product management, processing 500+ daily transactions with Redux Toolkit',
+      'Reduced unauthorized access attempts by 85% through CAPTCHA, login persistence and protected route architecture',
+      'Developed a real-time support ticket system on REST APIs for ticket creation and tracking, cutting response times by 35%',
+      'Delivered an admin dashboard with Redux Toolkit for platform operations management, as frontend lead',
     ],
     tags: ['React', 'Redux Toolkit', 'Node.js', 'REST APIs', 'Socket.io'],
   },
   {
     id: 1,
-    title: 'Freelance Software Developer',
-    company: 'Kemi-Oluwadahunsi',
-    location: 'Kuala Lumpur, Malaysia',
-    startDate: 'Jan 2022',
-    endDate: 'Present',
-    current: true,
+    title: 'Frontend Software Developer (Volunteer)',
+    company: 'Technology For Social Change and Impact',
+    location: 'Lagos, Nigeria · Remote',
+    startDate: 'Sep 2023',
+    endDate: 'Feb 2024',
+    current: false,
     highlights: [
-      'Delivered 20+ production-grade web applications across fintech, e-commerce, SME, and education sectors',
-      '95% client satisfaction rate, 100% on-time delivery, 60% client return rate',
-      'All deliverables average <2s load time and 90%+ Lighthouse scores',
+      'Collaborated on the functional development of the MVP for the Tech4Dev Alumni Project',
+      'Audited 500+ lines of JavaScript weekly, fixed 15+ bugs, and improved code maintainability by 10% by enforcing the style guide in code reviews',
     ],
-    tags: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Full-stack'],
+    tags: ['JavaScript', 'Code Review', 'Open Source'],
   },
 ]
 
@@ -290,6 +328,9 @@ export const skillGroups = [
       'Redux Toolkit',
       'Zustand',
       'Framer Motion',
+      'PWA',
+      'TipTap Editor',
+      'Adobe Animate',
     ],
   },
   {
@@ -303,7 +344,14 @@ export const skillGroups = [
       'Rollup',
       'Storybook',
       'CI/CD',
+      'GitHub Actions',
+      'Monorepos',
+      'Agile/Scrum',
+      'Jira',
+      'API7 Gateway',
+      'SEO',
       'Git',
+      'Web Performance Optimization',
     ],
   },
   {
@@ -319,6 +367,15 @@ export const skillGroups = [
       'Firebase',
       'JWT',
       'Prisma',
+      'Supabase',
+      'Upstash',
+      'Neon',
+      'Cloudinary',
+      'Vercel',
+      'Stripe',
+      'Paystack',
+      'NextAuth.js',
+      'Email.js',
     ],
   },
   {
@@ -331,6 +388,14 @@ export const skillGroups = [
       'IAM',
       'Session Management',
       'Protected Routes',
+      'Keycloak',
+      'CIBA',
+      'Custom Authenticator SPI',
+      'MFA',
+      'Role-Based Access Control',
+      'Rate Limiting',
+      'HMAC Webhook Validation',
+      'Content Sanitization',
     ],
   },
   {
@@ -342,6 +407,9 @@ export const skillGroups = [
       'React Testing Library',
       'ESLint',
       'Husky',
+      'Vitest',
+      'Playwright',
+      'Test Automation',
     ],
   },
   {
@@ -353,6 +421,7 @@ export const skillGroups = [
       'Multi-Agent Systems',
       'AI-Driven Test Automation',
       'Workflow Automation',
+      'Google Gemini API',
     ],
   },
   {
@@ -466,18 +535,23 @@ export const writingData = [
   {
     id: 'mfe-ebook-1',
     type: 'ebook',
+    series: 'Micro Frontends',
     title: 'Micro Frontends with Webpack 5 Module Federation — Book 1',
     description:
       'From Zero to Your First Production MFE. Covers Module Federation fundamentals, shell architecture, shared dependency strategy, and production deployment — from real enterprise implementation at scale.',
     status: 'Done',
     tags: ['MFE', 'Webpack 5', 'Module Federation', 'React', 'Enterprise'],
     salesLinks: [
-      { platform: 'Selar', url: import.meta.env.VITE_MFE_BOOK1_SELAR_URL || '#' },
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_MFE_BOOK1_SELAR_URL || '#',
+      },
     ],
   },
   {
     id: 'mfe-ebook-2',
     type: 'ebook',
+    series: 'Micro Frontends',
     title: 'Micro Frontends with Webpack 5 Module Federation — Book 2',
     description:
       'Advanced patterns: dynamic remotes, cross-framework federation (React + Angular), auth propagation across MFE boundaries, and scaling to 10+ remotes.',
@@ -487,61 +561,105 @@ export const writingData = [
   {
     id: 'augmented-developer',
     type: 'ebook',
+    series: 'AI',
     title: 'The Augmented Developer — Real Lessons from Coding in the AI Era',
     description:
       'A short, practical guide for developers navigating AI. Covers how LLMs work, the mindset shift, AI-assisted coding best practices, where to draw the human-AI line, and staying relevant — from real experience building production software with AI tools.',
     status: 'Done',
-    tags: ['AI', 'Developer Productivity', 'LLMs', 'Prompt Engineering', 'Career Growth'],
+    tags: [
+      'AI',
+      'Developer Productivity',
+      'LLMs',
+      'Prompt Engineering',
+      'Career Growth',
+    ],
     salesLinks: [
-      { platform: 'Selar', url: import.meta.env.VITE_AUGMENTED_DEV_SELAR_URL || '#' },
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_AUGMENTED_DEV_SELAR_URL || '#',
+      },
     ],
   },
   {
     id: 'jsms-ebook-1',
     type: 'ebook',
+    series: 'JavaScript',
     title: 'The Event Loop, Made Simple — Book 1',
     description:
       'How Asynchronous JavaScript Really Works. Covers the call stack, the task queue, the microtask queue, and the event loop itself — the exact model behind why promises run before timers and why setTimeout(fn, 0) never means "now".',
     status: 'Done',
-    tags: ['JavaScript', 'Event Loop', 'Async JavaScript', 'Promises', 'Web Development'],
+    tags: [
+      'JavaScript',
+      'Event Loop',
+      'Async JavaScript',
+      'Promises',
+      'Web Development',
+    ],
     salesLinks: [
-      { platform: 'Selar', url: import.meta.env.VITE_JSMS_BOOK1_SELAR_URL || '#' },
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_JSMS_BOOK1_SELAR_URL || '#',
+      },
     ],
   },
   {
     id: 'jsms-ebook-2',
     type: 'ebook',
+    series: 'JavaScript',
     title: 'Value and Reference, Made Simple — Book 2',
     description:
       'How JavaScript Really Holds Your Data. Covers primitives versus objects, copying versus aliasing, const and mutation, and why a value passed into a function does not always behave the way you expect.',
     status: 'Done',
-    tags: ['JavaScript', 'Value vs Reference', 'Objects', 'Memory', 'Web Development'],
+    tags: [
+      'JavaScript',
+      'Value vs Reference',
+      'Objects',
+      'Memory',
+      'Web Development',
+    ],
     salesLinks: [
-      { platform: 'Selar', url: import.meta.env.VITE_JSMS_BOOK2_SELAR_URL || '#' },
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_JSMS_BOOK2_SELAR_URL || '#',
+      },
     ],
   },
   {
     id: 'jsms-ebook-3',
     type: 'ebook',
+    series: 'JavaScript',
     title: 'Closures, Scope, and this, Made Simple — Book 3',
     description:
       'Why a Function Still Remembers. Covers scope and the scope chain, var versus let and const, what a closure really is, and why this keeps changing on you until arrow functions quietly fix it.',
     status: 'Done',
-    tags: ['JavaScript', 'Closures', 'Scope', 'this Keyword', 'Web Development'],
+    tags: [
+      'JavaScript',
+      'Closures',
+      'Scope',
+      'this Keyword',
+      'Web Development',
+    ],
     salesLinks: [
-      { platform: 'Selar', url: import.meta.env.VITE_JSMS_BOOK3_SELAR_URL || '#' },
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_JSMS_BOOK3_SELAR_URL || '#',
+      },
     ],
   },
   {
     id: 'jsms-ebook-4',
     type: 'ebook',
+    series: 'JavaScript',
     title: 'Objects and the Prototype Chain, Made Simple — Book 4',
     description:
       'Where an Object Turns When It Does Not Know the Answer. Covers the prototype chain, Object.create, constructor functions, and what a class really compiles down to underneath its syntax.',
     status: 'Done',
     tags: ['JavaScript', 'Prototypes', 'OOP', 'Classes', 'Web Development'],
     salesLinks: [
-      { platform: 'Selar', url: import.meta.env.VITE_JSMS_BOOK4_SELAR_URL || '#' },
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_JSMS_BOOK4_SELAR_URL || '#',
+      },
     ],
   },
   {
@@ -688,16 +806,23 @@ new ModuleFederationPlugin({
         'Everything I learned building production MFE systems — written as a two-book series for engineers who want the real patterns, not the happy path.',
       tags: ['Book 1: Available now', 'Book 2: Coming soon'],
       salesLinks: [
-        { platform: 'Selar', url: import.meta.env.VITE_MFE_BOOK1_SELAR_URL || '#' },
+        {
+          platform: 'Selar',
+          url: import.meta.env.VITE_MFE_BOOK1_SELAR_URL || '#',
+        },
       ],
     },
     {
-      heading: 'The Augmented Developer — Real Lessons from Coding in the AI Era',
+      heading:
+        'The Augmented Developer — Real Lessons from Coding in the AI Era',
       description:
         'Everything I learned navigating AI as a working developer — written as a short, honest guide for engineers who want the practical truth, not the hype.',
       tags: ['Free for everyone', 'Available now'],
       salesLinks: [
-        { platform: 'Selar', url: import.meta.env.VITE_AUGMENTED_DEV_SELAR_URL || '#' },
+        {
+          platform: 'Selar',
+          url: import.meta.env.VITE_AUGMENTED_DEV_SELAR_URL || '#',
+        },
       ],
     },
   ],

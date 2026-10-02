@@ -10,6 +10,7 @@ import ChatWidget from './components/ChatWidget/ChatWidget'
 const Layout = lazy(() => import('./components/Layout'))
 const Home = lazy(() => import('./components/Home/home'))
 const CaseStudyPage = lazy(() => import('./components/casestudy/CaseStudyPage'))
+const EbooksPage = lazy(() => import('./components/writing/EbooksPage'))
 const NotFound = lazy(() => import('./components/NotFound/NotFound'))
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
             <Route index element={<Home />} />
           </Route>
           <Route path="/case-study/:id" element={<CaseStudyPage />} />
+          <Route path="/ebooks" element={<EbooksPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
