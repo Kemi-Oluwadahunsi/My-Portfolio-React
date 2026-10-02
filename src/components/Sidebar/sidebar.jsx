@@ -89,8 +89,7 @@ const Sidebar = () => {
             <motion.div
               key={item.to}
               variants={itemVariants}
-              whileHover={{ scale: 1.2, x: 5 }}
-              whileTap={{ scale: 0.9 }}
+                whileTap={{ scale: 0.9 }}
             >
               <ScrollLink
                 exact="true"
@@ -111,7 +110,6 @@ const Sidebar = () => {
 
           <motion.div
             variants={itemVariants}
-            whileHover={{ scale: 1.2, x: 5 }}
             whileTap={{ scale: 0.9 }}
           >
             <NavLink
