@@ -90,7 +90,7 @@ const Architecture = () => {
           </pre>
         </motion.div>
 
-        {/* Ebook CTAs */}
+        {/* Ebook CTAs
         {architectureData.ebookCta.map((ebook, index) => (
           <motion.div
             key={index}
@@ -125,7 +125,7 @@ const Architecture = () => {
               ))}
             </div>
           </motion.div>
-        ))}
+        ))} */}
       </div>
     </div>
   )

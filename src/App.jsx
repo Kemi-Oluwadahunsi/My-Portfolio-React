@@ -4,6 +4,7 @@ import './App.scss'
 import SEO from './components/SEO/SEO'
 import LoadingSkeleton from './components/UI/LoadingSkeleton/LoadingSkeleton'
 import ScrollProgress from './components/UI/ScrollProgress/ScrollProgress'
+import ChatWidget from './components/ChatWidget/ChatWidget'
 
 // Lazy load components for code splitting
 const Layout = lazy(() => import('./components/Layout'))
@@ -34,6 +35,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
+      <ChatWidget />
     </>
   )
 }

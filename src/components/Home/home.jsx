@@ -10,6 +10,7 @@ import ParticleBackground from '../UI/ParticleBackground/ParticleBackground'
 import FloatingElements from '../UI/FloatingElements/FloatingElements'
 import AnimatedCounter from '../UI/AnimatedCounter/AnimatedCounter'
 import MagneticButton from '../UI/MagneticButton/MagneticButton'
+import WelcomeModal from '../WelcomeModal/WelcomeModal'
 import { socialLinks } from '../../constants/portfolioData'
 
 const roles = [
@@ -105,6 +106,7 @@ const Home = () => {
     >
       <ParticleBackground density={30} speed={0.5} />
       <FloatingElements />
+      <WelcomeModal />
       
       <div className="text-zone">
         {/* <motion.div

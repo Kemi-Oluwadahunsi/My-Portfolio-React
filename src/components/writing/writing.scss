@@ -108,14 +108,14 @@
     color: var(--color-textMuted, #6b8fa3);
   }
 
-  h3 {
+  .ebook-title {
     font-size: 1.15rem;
     color: var(--color-textPrimary, #ffffff);
     font-weight: 700;
     margin: 0;
     line-height: 1.35;
 
-    @include mobile { font-size: 1.05rem; }
+    @include mobile { font-size: 0.8rem; }
   }
 
   p {
