@@ -155,14 +155,16 @@ export const portfolioItems = [
   {
     id: 11,
     title: 'Kemory',
-    img: '/images/kemory-ink.webp',
+    img: '/images/case-studies/kemory/kemory-hero.webp',
     description:
-      'Full-stack blogging platform where writers publish articles, engage through comments and likes, and build an audience. Features a rich text editor, email verification with account locking, password reset, user profiles, and a dashboard with analytics.',
+      'Full-stack Medium/Notion/Substack-tier publishing platform with a Notion-style block editor, a runnable null-origin code sandbox, server-side autosave, scheduled publishing, revision history, threaded comments, follows and notifications, crawler-aware SEO, a writer analytics dashboard, and a role-gated admin panel with moderation plus a support ticket inbox backed by a guided in-app chatbot.',
     stacks: [
       'React',
       'TypeScript',
       'Tailwind CSS',
       'Redux Toolkit',
+      'TanStack Query',
+      'TipTap',
       'Framer Motion',
       'Node.js',
       'Express',
@@ -171,9 +173,10 @@ export const portfolioItems = [
       'Cloudinary',
     ],
     live: 'https://kemory.ink',
-    gitHub: 'https://github.com/Kemi-Oluwadahunsi/Kemory',
-    category: 'fullstack',
-    hasCaseStudy: false,
+    gitHub: 'https://github.com/Kemi-Oluwadahunsi/kemory-client',
+    category: 'full-stack',
+    hasCaseStudy: true,
+    caseStudyId: 'kemory',
   },
   {
     id: 12,
@@ -427,7 +430,7 @@ export const socialLinks = {
   github: import.meta.env.VITE_GITHUB_URL || '#',
   whatsapp: import.meta.env.VITE_WHATSAPP_LINK || '#',
   resume:
-    'https://drive.google.com/file/d/1tJgWBOmxZ1hlfbFtRdryVnHNSfKuqahr/view?usp=sharing',
+    'https://drive.google.com/file/d/1x6Kyp2tTblYB1oo3lFowbdgkmKCQtpo5/view?usp=sharing',
 }
 
 export const contactInfo = {
@@ -491,6 +494,54 @@ export const writingData = [
     tags: ['AI', 'Developer Productivity', 'LLMs', 'Prompt Engineering', 'Career Growth'],
     salesLinks: [
       { platform: 'Selar', url: import.meta.env.VITE_AUGMENTED_DEV_SELAR_URL || '#' },
+    ],
+  },
+  {
+    id: 'jsms-ebook-1',
+    type: 'ebook',
+    title: 'The Event Loop, Made Simple — Book 1',
+    description:
+      'How Asynchronous JavaScript Really Works. Covers the call stack, the task queue, the microtask queue, and the event loop itself — the exact model behind why promises run before timers and why setTimeout(fn, 0) never means "now".',
+    status: 'Done',
+    tags: ['JavaScript', 'Event Loop', 'Async JavaScript', 'Promises', 'Web Development'],
+    salesLinks: [
+      { platform: 'Selar', url: import.meta.env.VITE_JSMS_BOOK1_SELAR_URL || '#' },
+    ],
+  },
+  {
+    id: 'jsms-ebook-2',
+    type: 'ebook',
+    title: 'Value and Reference, Made Simple — Book 2',
+    description:
+      'How JavaScript Really Holds Your Data. Covers primitives versus objects, copying versus aliasing, const and mutation, and why a value passed into a function does not always behave the way you expect.',
+    status: 'Done',
+    tags: ['JavaScript', 'Value vs Reference', 'Objects', 'Memory', 'Web Development'],
+    salesLinks: [
+      { platform: 'Selar', url: import.meta.env.VITE_JSMS_BOOK2_SELAR_URL || '#' },
+    ],
+  },
+  {
+    id: 'jsms-ebook-3',
+    type: 'ebook',
+    title: 'Closures, Scope, and this, Made Simple — Book 3',
+    description:
+      'Why a Function Still Remembers. Covers scope and the scope chain, var versus let and const, what a closure really is, and why this keeps changing on you until arrow functions quietly fix it.',
+    status: 'Done',
+    tags: ['JavaScript', 'Closures', 'Scope', 'this Keyword', 'Web Development'],
+    salesLinks: [
+      { platform: 'Selar', url: import.meta.env.VITE_JSMS_BOOK3_SELAR_URL || '#' },
+    ],
+  },
+  {
+    id: 'jsms-ebook-4',
+    type: 'ebook',
+    title: 'Objects and the Prototype Chain, Made Simple — Book 4',
+    description:
+      'Where an Object Turns When It Does Not Know the Answer. Covers the prototype chain, Object.create, constructor functions, and what a class really compiles down to underneath its syntax.',
+    status: 'Done',
+    tags: ['JavaScript', 'Prototypes', 'OOP', 'Classes', 'Web Development'],
+    salesLinks: [
+      { platform: 'Selar', url: import.meta.env.VITE_JSMS_BOOK4_SELAR_URL || '#' },
     ],
   },
   {

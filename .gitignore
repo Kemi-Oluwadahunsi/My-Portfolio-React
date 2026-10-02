@@ -37,5 +37,8 @@ dist
 # Testing
 coverage
 
+# Generated chatbot knowledge (npm run chatbot:knowledge)
+chatbot-knowledge
+
 # Husky
 .husky/_/

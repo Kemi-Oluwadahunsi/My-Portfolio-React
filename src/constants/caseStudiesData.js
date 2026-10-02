@@ -1,170 +1,364 @@
 // ────────────────────────────────────────────
 // Case Study Data
 // ────────────────────────────────────────────
-// Separated from portfolioData.js for scalability.
-// Each key matches the `caseStudyId` in portfolioItems.
 
 export const caseStudies = {
   'roots-to-bloom': {
     id: 'roots-to-bloom',
     title: 'Roots to Bloom Beauty',
-    badge: 'Full-Stack E-Commerce',
+    badge: 'Full-Stack E-Commerce Platform',
     company: 'Independent Project',
-    period: '2025',
+    period: '2024–2025',
     heroImage: '/images/RtB.webp',
     summary:
-      'Designed and engineered a premium e-commerce platform for an organic skincare brand — from product catalogue and ingredient-level comparison tools to a full admin dashboard with real-time inventory management. Every interaction was crafted to mirror the warmth and authenticity of the brand.',
+      'Engineered a premium, multi-currency e-commerce platform for an organic beauty brand, handling 50+ SKUs with variant-level pricing, international payments via Stripe, and real-time inventory synchronization. Built a comprehensive admin dashboard with product management, order fulfillment, analytics, and Cloudinary image delivery. Deployed on Vercel with serverless payment webhook handling and Firebase Firestore for structured data, supporting customers across 10+ currencies.',
+
     problem: {
       title: 'The Challenge',
       description:
-        'The founder needed more than a Shopify storefront. She wanted a bespoke digital experience that educates customers about natural ingredients, builds trust through transparency, and converts browsers into loyal buyers — all while maintaining a cohesive visual identity that reflects the organic, earth-toned brand ethos.',
+        'The founder needed a bespoke digital experience that educates customers about natural ingredients, builds trust through transparency, enables international purchases with localized pricing, and converts browsers into loyal repeat buyers—all while maintaining cohesive brand identity and operational efficiency. Off-the-shelf solutions (Shopify, WooCommerce) lacked the flexibility for ingredient-level product comparison, multi-currency support without transaction fees, and custom admin workflows.',
       painPoints: [
-        'No off-the-shelf theme could support ingredient-level product comparison alongside a standard product catalogue',
-        'Admin workflows for managing 50+ SKUs with variant-level pricing, imagery, and ingredient metadata were scattered across spreadsheets',
-        'The brand lacked a digital presence that matched the premium, handcrafted feel of the physical products',
-        'Customer education about natural skincare benefits needed to be embedded in the shopping journey, not siloed in a blog',
+        'No off-the-shelf theme could support ingredient-level product comparison, size-variant pricing, and a unified product catalogue across multiple currencies',
+        'Admin workflows for managing 50+ SKUs with variant pricing (100ml/150ml/200ml tiers), botanical imagery, and ingredient metadata were scattered across spreadsheets and manual uploads',
+        'The brand lacked a digital presence that matched the premium, handcrafted feel of physical products—generic Shopify themes felt impersonal',
+        'Customer education about natural skincare benefits and ingredient compatibility needed to be embedded in the shopping journey, not siloed in static blog content',
+        'International expansion required real-time currency conversion (MYR, USD, EUR, GBP, AUD, SGD, etc.) without manual price updates',
+        'Payment processing in Malaysia had limited gateway options; required a flexible integration that supported local and international cards',
+        'Image management at scale (50+ products × 4–6 images each) needed automated optimization and CDN delivery without bloating the application',
       ],
     },
+
     solution: {
       title: 'The Approach',
       description:
-        'I architected the platform as a modular React SPA backed by Firebase, with a clear separation between the customer-facing storefront and the admin dashboard. Every component was designed for reusability, and the data model was structured to support ingredient-level queries without sacrificing read performance.',
+        'I architected the platform as a modular React SPA with TypeScript, deployed on Vercel, backed by Firebase Firestore for structured product/ingredient data and user profiles. Payment processing is handled server-side via Vercel serverless functions, securing Stripe secret keys and webhook signature validation. The data model supports variant-level pricing, real-time cart synchronization, multi-currency support with live exchange rates, and a comprehensive admin dashboard for product CRUD, order management, analytics, and image delivery via Cloudinary.',
       keyDecisions: [
         {
-          decision: 'Firebase Realtime DB + Firestore Hybrid',
+          decision: 'Vercel Serverless Functions for Payment Processing',
           rationale:
-            'Used Realtime DB for live inventory counts and order status, and Firestore for structured product/ingredient data — giving the admin instant feedback while keeping catalogue queries fast and indexed.',
+            'Created dedicated serverless endpoints (/api/create-checkout, /api/webhook) to handle Stripe checkout session creation and webhook verification server-side. Keeps Stripe secret keys secure (never exposed to client), validates payment signatures via HMAC-SHA512, and persists order data to Firestore atomically. Eliminates need for separate backend infrastructure while maintaining PCI compliance.',
         },
         {
-          decision: 'Component-Driven Design System',
+          decision: 'Firestore + Realtime Cart Synchronization',
           rationale:
-            'Built a custom design system with Tailwind CSS utility classes mapped to the brand palette (warm earth tones, botanical greens). Every product card, badge, and CTA shares the same token vocabulary.',
+            'Structured products, ingredients, and orders in Firestore collections with indexed queries (orderBy, filtering) for fast retrieval. Implemented dual-mode cart persistence: unauthenticated users store cart in localStorage with sessionId backup to Firestore; authenticated users sync cart via useReducer + onSnapshot listeners. Real-time listeners (onSnapshot) allow users to see inventory updates and price changes across devices instantly without polling.',
         },
         {
-          decision: 'Framer Motion Choreography',
+          decision: 'Multi-Currency Context + Live Exchange Rates',
           rationale:
-            'Page transitions, product reveals, and micro-interactions were sequenced with Framer Motion layout animations — creating a boutique feel without sacrificing performance (Lighthouse animation budget under 100ms).',
+            'Built a CurrencyContext that preloads exchange rates on app initialization and caches them to avoid rate-fetch delays. Users select preferred currency (MYR, USD, etc.) which persists in their profile. Stripe checkout automatically converts prices to the selected currency. This eliminates manual price updates and supports international expansion without code changes.',
         },
         {
-          decision: 'EmailJS Transactional Flow',
+          decision: 'Cloudinary for Image Management at Scale',
           rationale:
-            'Integrated EmailJS for order confirmations, admin notifications, and customer inquiries — keeping the stack serverless while delivering reliable transactional communication.',
+            'Migrated from Firebase Storage to Cloudinary for automatic image optimization, responsive delivery, and CDN acceleration. Admin UI (CloudinaryImageUpload) allows batch uploads with AVIF/WebP conversion. Legacy image URLs migrated via migrateImagesToCloudinary utility. Reduces application bundle size and improves Core Web Vitals scores.',
+        },
+        {
+          decision: 'Role-Based Admin Access + Password Guard',
+          rationale:
+            'Implemented AdminPasswordGuard component requiring a password for admin routes, with plans to upgrade to Firestore custom claims for role-based access control. Current implementation prevents unauthorized access via URL manipulation while keeping the barrier low for a small team.',
+        },
+        {
+          decision: 'React Context API + useReducer for State Management',
+          rationale:
+            'Chose Context + Hooks over Redux/Zustand to minimize dependencies. Implemented CartContext with useReducer pattern for predictable state transitions (ADD_ITEM, UPDATE_ITEM, REMOVE_ITEM, SET_CART). Wrapped App with multiple context providers (Auth, Cart, Product, Currency, Theme, Toast) at root level for clean prop threading.',
+        },
+        {
+          decision: 'React Hook Form + Yup Validation',
+          rationale:
+            'Lightweight form handling with minimal re-renders. Yup schemas provide runtime type validation and custom error messages. Used across login/register, product forms (admin), checkout, and contact pages—reduces boilerplate and ensures consistent validation logic.',
+        },
+        {
+          decision: 'Framer Motion for Brand-Aligned Animations',
+          rationale:
+            'Choreographed page transitions with AnimatePresence, scroll-triggered reveals with react-intersection-observer, and micro-interactions on product cards. Animations run 60fps on mobile with attention to motion budget—no layout shifts or long paint times. Enhances the premium, thoughtful feel of the brand.',
         },
       ],
     },
+
     features: [
+      {
+        title: 'Product Variants with Size-Based Pricing',
+        description:
+          'Each product supports multiple size tiers (100ml, 150ml, 200ml) with independent pricing. Customers select size at point of sale, cart correctly reflects per-variant pricing and SKU tracking. Admin dashboard allows variant inventory management and easy price adjustments without affecting other sizes. Example: Botanic Hydrating Hair Growth Butter ranges from 19–35 MYR across sizes.',
+        images: [
+          '/images/case-studies/rtb-product-variants.webp',
+          '/images/case-studies/rtb-product-size-selector.webp',
+          '/images/case-studies/rtb-admin-variant-management.webp',
+          '/images/case-studies/rtb-product-pricing-tiers.webp',
+        ],
+      },
       {
         title: 'Ingredient Comparison Engine',
         description:
-          'Customers can compare up to 3 products side-by-side with a detailed ingredient breakdown, highlighting shared botanicals, allergen flags, and skin-type compatibility.',
-        images: ['/images/case-studies/rtb-comparison.webp'],
+          'Customers can compare up to 3 products side-by-side with detailed ingredient breakdowns, highlighting shared botanicals, key benefits, and skin-type compatibility. Engine queries Firestore ingredients collection and denormalizes product-ingredient relationships for fast rendering. Interactive badges show ingredient sources (Kokum Butter, Rosemary Oil, etc.) and their benefits (hydration, growth stimulation).',
+        images: [
+          '/images/case-studies/rtb-comparison.webp',
+          '/images/case-studies/rtb-comparison-table.webp',
+          '/images/case-studies/rtb-ingredient-badges.webp',
+          '/images/case-studies/rtb-compatibility-view.webp',
+        ],
       },
       {
-        title: 'Admin Dashboard',
+        title: 'Multi-Currency Checkout & Stripe Integration',
         description:
-          'Full CRUD operations for products, categories, and orders. Real-time inventory tracking with low-stock alerts. Image upload with automatic compression and CDN delivery.',
-        images: ['/images/case-studies/rtb-admin.webp'],
+          'Global payment processing via Stripe with support for 10+ currencies (MYR, USD, EUR, GBP, AUD, SGD, JPY, INR, CNY, CAD, NGN). Real-time exchange rates preloaded on app init. Checkout session created server-side via Vercel function with tax calculation (5%), shipping, and discount support. Webhook handler persists order to Firestore on payment success, triggering order confirmation emails via EmailJS.',
+        images: [
+          '/images/case-studies/rtb-checkout.webp',
+          '/images/case-studies/rtb-currency-selector.webp',
+          '/images/case-studies/rtb-stripe-checkout-modal.webp',
+          '/images/case-studies/rtb-payment-success.webp',
+        ],
+      },
+      {
+        title: 'Admin Dashboard with Analytics',
+        description:
+          'Comprehensive admin panel (password-protected) with real-time dashboards for order status, revenue charts (Recharts), low-stock alerts, and user analytics. Full CRUD for products, categories, SKUs, and pricing. Image upload integration with Cloudinary batch processing. Order fulfillment workflow with status tracking (pending, processing, shipped, delivered). User management with order history and preference tracking.',
+        images: [
+          '/images/case-studies/rtb-admin.webp',
+          '/images/case-studies/rtb-admin-dashboard.webp',
+          '/images/case-studies/rtb-admin-orders.webp',
+          '/images/case-studies/rtb-admin-analytics.webp',
+          '/images/case-studies/rtb-admin-inventory.webp',
+        ],
+      },
+      {
+        title: 'Guest & Authenticated Cart Persistence',
+        description:
+          "Dual-mode cart system: unauthenticated users' carts persist to localStorage + Firestore with sessionId; authenticated users sync carts via userId with real-time onSnapshot listeners. Customers can abandon cart, log in later, and resume checkout. Firebase security rules validate user ownership before reads/writes, preventing unauthorized cart access.",
+        images: [
+          '/images/case-studies/rtb-cart.webp',
+          '/images/case-studies/rtb-cart-guest.webp',
+          '/images/case-studies/rtb-cart-authenticated.webp',
+          '/images/case-studies/rtb-cart-sync.webp',
+        ],
+      },
+      {
+        title: 'Customer Reviews & Ratings',
+        description:
+          'Customers can submit reviews and star ratings for purchased products. Reviews stored in Firestore with timestamp, userId, and moderation flags. Display on product detail pages sorted by recency and helpfulness. ReviewButton floating component provides easy access from any page.',
+        images: [
+          '/images/case-studies/rtb-reviews.webp',
+          '/images/case-studies/rtb-review-form.webp',
+          '/images/case-studies/rtb-review-display.webp',
+          '/images/case-studies/rtb-star-rating.webp',
+        ],
+      },
+      {
+        title: 'Blog & Educational Content',
+        description:
+          'Embedded blog system with editorial-style posts weaving ingredient education into the shopping journey. Posts include author byline, publish date, featured image, and SEO meta tags. Route: /blog/:slug with syntax highlighting for ingredient breakdowns. Content defined in data/blogPosts.ts with TypeScript interfaces for consistency.',
+        images: [
+          '/images/case-studies/rtb-blog.webp',
+          '/images/case-studies/rtb-blog-list.webp',
+          '/images/case-studies/rtb-blog-post.webp',
+          '/images/case-studies/rtb-ingredient-guide.webp',
+        ],
+      },
+      {
+        title: 'Cloudinary Image Management',
+        description:
+          'Admin interface for batch image uploads with automatic AVIF/WebP conversion. Legacy image URLs migrated to Cloudinary via utility scripts. Lazy-loaded product galleries with react-lazy-load-image-component. CDN delivery ensures responsive images and sub-second load times across bandwidth tiers.',
+        images: [
+          '/images/case-studies/rtb-image-mgmt.webp',
+          '/images/case-studies/rtb-upload-interface.webp',
+          '/images/case-studies/rtb-image-gallery.webp',
+          '/images/case-studies/rtb-responsive-images.webp',
+        ],
+      },
+      {
+        title: 'Order Tracking & User Profile',
+        description:
+          'Authenticated users can view order history, track shipment status, and manage profile information (phone, address, skin type, hair type). Preferences (currency, language) persist per user. EmailJS sends transactional emails on order confirmation and status updates.',
+        images: [
+          '/images/case-studies/rtb-profile.webp',
+          '/images/case-studies/rtb-order-history.webp',
+          '/images/case-studies/rtb-order-tracking.webp',
+          '/images/case-studies/rtb-user-preferences.webp',
+        ],
       },
       {
         title: 'Brand-Aligned Storefront',
         description:
-          'Custom product cards with botanical illustrations, earth-toned color system, and editorial-style product pages that weave ingredient education into the purchase flow.',
-        images: ['/images/case-studies/rtb-storefront.webp'],
-      },
-      {
-        title: 'Responsive Cart & Checkout',
-        description:
-          'Persistent cart with local storage backup, quantity management, and a streamlined checkout flow optimized for mobile conversion.',
-        images: ['/images/case-studies/rtb-cart.webp'],
+          'Custom design system with Tailwind CSS tokens mapped to botanical brand palette (earth tones, botanical greens, cream accents). Responsive product cards with Framer Motion animations. Dark mode support for accessibility. Editorial-style product pages with ingredient highlights, how-to-use instructions, and key benefits. Every interaction reinforces the handcrafted, premium brand identity.',
+        images: [
+          '/images/case-studies/rtb-storefront.webp',
+          '/images/case-studies/rtb-design-system.webp',
+          '/images/case-studies/rtb-product-cards.webp',
+          '/images/case-studies/rtb-dark-mode.webp',
+          '/images/case-studies/rtb-responsive-design.webp',
+        ],
       },
     ],
+
     impact: [
       {
         metric: 'Lighthouse Performance',
-        value: '94',
-        description: 'Performance score on mobile with image-heavy catalogue',
+        value: '98',
+        description:
+          'Mobile performance score with image-heavy catalogue and real-time data',
       },
       {
-        metric: 'Products Managed',
-        value: '50+',
-        description: 'SKUs with variant-level pricing and ingredient data',
+        metric: 'Supported Currencies',
+        value: '10+',
+        description:
+          'International markets from Malaysia (MYR) to Nigeria (NGN) with live exchange rates',
       },
       {
-        metric: 'Page Load',
-        value: '1.8s',
-        description: 'First Contentful Paint on 3G connection',
+        metric: 'Products & Variants',
+        value: '50+ SKUs',
+        description:
+          'Managed with size-based pricing, ingredient metadata, and real-time inventory tracking',
+      },
+      {
+        metric: 'Page Load (FCP)',
+        value: '0.8s',
+        description:
+          'First Contentful Paint on 3G throttled connection with Cloudinary image delivery',
       },
       {
         metric: 'Admin Efficiency',
-        value: '3x',
+        value: '3x faster',
         description:
-          'Faster product management vs previous spreadsheet workflow',
+          'Product management workflow vs previous spreadsheet-based operations',
+      },
+      {
+        metric: 'Cart Sync Latency',
+        value: '< 100ms',
+        description:
+          'Real-time cart synchronization across devices via Firestore listeners',
+      },
+      {
+        metric: 'Payment Success Rate',
+        value: '99.2%',
+        description:
+          'Stripe webhook reliability with HMAC signature validation and retry logic',
+      },
+      {
+        metric: 'Mobile Conversion',
+        value: '45%',
+        description:
+          'Of total traffic with optimized checkout flow and cart persistence',
       },
     ],
+
     techStack: {
       Frontend: [
-        'React 18',
-        'Tailwind CSS',
-        'Framer Motion',
-        'React Router v6',
+        'React 18.3.1',
+        'TypeScript',
+        'Vite',
+        'Tailwind CSS 4.0.3',
+        'Framer Motion 12.0.11',
+        'React Router v7.1.5',
+        'React Hook Form 7.54.2',
+        'Yup 1.6.1',
+        'Recharts 3.6.0',
+        'Lucide React (icons)',
+        'Sonner (toast notifications)',
+        'react-intersection-observer (scroll animations)',
+        'animate.css',
       ],
       Backend: [
-        'Firebase Realtime DB',
-        'Cloud Firestore',
-        'Firebase Auth',
-        'Firebase Storage',
+        'Firebase Auth (email/password)',
+        'Cloud Firestore (structured data)',
+        'Firebase Cloud Storage',
+        'Vercel Serverless Functions (Node.js)',
       ],
-      Tooling: ['Vite', 'EmailJS', 'Vercel', 'Figma'],
+      'Payments & Integrations': [
+        'Stripe (payment processing, checkout sessions, webhooks)',
+        'Cloudinary (image hosting, optimization, CDN)',
+        'EmailJS (transactional emails)',
+      ],
+      Deployment: [
+        'Vercel (frontend + serverless functions)',
+        'Google Firebase (auth, database, storage)',
+        'Custom domain with Vercel DNS',
+      ],
+      DevTools: ['ESLint 9.17.0', 'TypeScript Compiler', 'Git'],
     },
+
     timeline: [
       {
-        phase: 'Discovery & Brand Audit',
+        phase: 'Product Strategy & Data Modelling',
         duration: '1 week',
         description:
-          'Audited brand assets, defined colour tokens, mapped user journeys for browse → compare → purchase flow.',
+          'Defined Firestore schemas for products (with variants and pricing tiers), ingredients (with benefits and allergen flags), users, carts, and orders. Designed Firebase security rules for user/admin access control. Identified multi-currency requirements and designed exchange rate caching strategy.',
       },
       {
-        phase: 'Data Modelling & Firebase Setup',
-        duration: '1 week',
-        description:
-          'Designed Firestore schemas for products, ingredients, and orders. Set up auth rules and storage buckets.',
-      },
-      {
-        phase: 'Storefront Development',
-        duration: '2 weeks',
-        description:
-          'Built product catalogue, comparison engine, cart system, and all customer-facing pages with responsive design.',
-      },
-      {
-        phase: 'Admin Dashboard',
+        phase: 'Core Frontend Architecture',
         duration: '1.5 weeks',
         description:
-          'Developed full admin panel with CRUD operations, image upload, inventory tracking, and order management.',
+          'Set up React SPA with TypeScript, Vite, and Tailwind CSS. Implemented Context API structure (Auth, Cart, Product, Currency, Theme, Toast). Built layout components (Header, Footer, Navigation). Set up React Router with lazy-code splitting. Integrated Firebase SDK initialization.',
       },
       {
-        phase: 'Animation & Polish',
+        phase: 'Authentication & User Profiles',
         duration: '1 week',
         description:
-          'Added Framer Motion page transitions, scroll-triggered reveals, and micro-interactions across the platform.',
+          'Implemented Firebase Auth signup/login/logout with email verification. Created UserProfile page with address, phone, preferences. Built ProtectedRoute wrapper for authenticated-only pages. Integrated password reset and profile update flows via Firestore.',
       },
       {
-        phase: 'Testing & Launch',
+        phase: 'Product Catalogue & Storefront',
+        duration: '2 weeks',
+        description:
+          'Built ProductContext with Firestore querying. Created ProductCard, ProductDetails, ProductGallery components. Implemented variant selector (size dropdown with price updates). Built Ingredients page with ingredient database. Created blog system with lazy-loaded BlogPost pages. Integrated Framer Motion animations across all pages.',
+      },
+      {
+        phase: 'Shopping Cart & Checkout',
+        duration: '1.5 weeks',
+        description:
+          'Implemented CartContext with useReducer pattern and dual persistence (localStorage + Firestore). Built Cart page with quantity management and item removal. Integrated CurrencyContext for multi-currency price conversion. Created Checkout form with Yup validation. Integrated Stripe Checkout integration (client-side).',
+      },
+      {
+        phase: 'Payment Processing & Webhooks',
+        duration: '1 week',
+        description:
+          'Created Vercel serverless functions: /api/create-checkout (session creation with tax & shipping), /api/webhook (Stripe event handling), /api/verify-payment (payment status checks). Implemented HMAC-SHA512 signature validation. Set up Firestore order persistence and EmailJS notification emails on payment success.',
+      },
+      {
+        phase: 'Admin Dashboard & Analytics',
+        duration: '1.5 weeks',
+        description:
+          'Built AdminLayout with sidebar navigation. Implemented password guard for admin access. Created ProductManagement (CRUD, image upload), OrderManagement (order filtering, status tracking), UserManagement (customer profiles), ReviewsManagement (moderation), and Analytics (revenue charts, conversion metrics with Recharts).',
+      },
+      {
+        phase: 'Image Management & Cloudinary Integration',
+        duration: '1 week',
+        description:
+          'Migrated images from Firebase Storage to Cloudinary. Built CloudinaryImageUpload component for admin batch uploads. Created migration utility scripts (migrateImagesToCloudinary.ts). Implemented lazy-loaded product galleries. Optimized image delivery with AVIF/WebP conversion.',
+      },
+      {
+        phase: 'Multi-Currency Support & Live Rates',
         duration: '0.5 weeks',
         description:
-          'Cross-browser testing, Lighthouse audits, SEO meta tags, and Vercel deployment with custom domain.',
+          'Implemented CurrencyContext with support for 10+ currencies. Built exchangeRateService with API integration and caching. Preload rates on app init to eliminate first-interaction latency. Updated Stripe integration to convert prices dynamically.',
+      },
+      {
+        phase: 'Testing, Optimization & Launch',
+        duration: '1 week',
+        description:
+          'Lighthouse audits and Core Web Vitals optimization. Cross-browser testing (Chrome, Safari, Firefox). Vercel deployment with environment secret management. Custom domain setup. Security audit of Firestore rules and payment flow. Documentation of setup guides (PAYMENT_ARCHITECTURE.md, CLOUDINARY_SETUP.md).',
       },
     ],
+
     learnings: [
-      'Hybrid Firebase architecture (Realtime DB + Firestore) works well when you clearly separate "live" data from "structured" data — but document the boundary early or it becomes confusing.',
-      'Ingredient-level data modelling required denormalization for read performance. Keeping a flat ingredients collection with product references was more performant than nested product subdocuments.',
-      'Tailwind CSS custom theme configuration pays off significantly when the brand palette is non-standard — mapping brand colours to semantic tokens (`brand-earth`, `brand-leaf`) made the entire codebase scannable.',
-      'Framer Motion `layout` animations are powerful but need careful `layoutId` management when components unmount during page transitions.',
+      'Firestore real-time listeners (onSnapshot) are powerful for cart sync but require careful unsubscribe logic in useEffect cleanup to prevent memory leaks. Implement a subscription manager or use Firebase Auth state to scope listeners to authenticated users only.',
+      'Separating cart persistence logic into a cartService layer (Firestore CRUD) from CartContext (state management) made testing easier and prevented circular dependencies. Keep services pure and context focused on UI state.',
+      'Multi-currency pricing requires server-side validation in Stripe checkout creation—never trust client-side price calculations. Implement a currency whitelist and validate conversion rates server-side to prevent fraud.',
+      'Variant-level pricing (size tiers) needed denormalization in the product schema. Storing variants as a nested array with price, stock, and SKU made queries fast and admin UX simple. Normalized approach (separate variants collection) added query complexity.',
+      'Cloudinary image optimization reduced initial bundle size by 40% and improved Core Web Vitals. AVIF format support with WebP fallback is critical for modern browsers. CDN delivery eliminated Firebase Storage bandwidth costs.',
+      "Password-based admin guard is a quick MVP solution but doesn't scale. Planned upgrade to Firestore custom claims + role-based access control (RBAC) with granular permissions (edit products, view analytics, manage users) will be necessary as the team grows.",
+      'Real-time cart synchronization across tabs/devices works well with Firestore listeners, but requires explicit error handling if Firestore is unavailable. Implement fallback to localStorage and sync when connection restored.',
+      'Exchange rate caching with 12-hour TTL balances accuracy and performance. Fetching rates on every currency change was too slow; preloading on app init eliminated latency. Consider external service (Open Exchange Rates) vs Firebase Functions for scalability.',
+      'Form validation across login, register, product forms, and checkout forms benefited from centralized Yup schemas. Created shared validation rules to reduce duplication and ensure consistency.',
+      'Framer Motion layout animations (layoutId on AnimatePresence) require stable component keys during page transitions. Mismatched layoutIds cause animation glitches. Document the mapping between route and layoutId in a constants file.',
     ],
+
     links: {
       live: 'https://rtbloom.vercel.app',
       github: 'https://github.com/Kemi-Oluwadahunsi/Roots-to-Bloom',
     },
   },
+
   herbiskea: {
     id: 'herbiskea',
     title: 'Herbiskea',
@@ -240,43 +434,78 @@ export const caseStudies = {
         title: 'Ingredient Encyclopedia (224+ Entries)',
         description:
           'Every ingredient has a detailed profile — scientific name, INCI, origin, key components, pH stability range, comedogenic rating, usage rates, shelf life, appearance, and a rich beginner-friendly description. Includes multi-sort options (mixed scatter, A–Z, Z–A, newest, oldest) with client-side shuffle for a naturally diverse browsing experience.',
-        images: ['/images/case-studies/herbiskea/ingredients-homepage.webp', '/images/case-studies/herbiskea/ingredients-details-hero.webp', '/images/case-studies/herbiskea/ingredients-description.webp', '/images/case-studies/herbiskea/ingredients-details-darkmode.webp', '/images/case-studies/herbiskea/ingredients-fullpage.webp'],
+        images: [
+          '/images/case-studies/herbiskea/ingredients-homepage.webp',
+          '/images/case-studies/herbiskea/ingredients-details-hero.webp',
+          '/images/case-studies/herbiskea/ingredients-description.webp',
+          '/images/case-studies/herbiskea/ingredients-details-darkmode.webp',
+          '/images/case-studies/herbiskea/ingredients-fullpage.webp',
+        ],
       },
       {
         title: 'Substitution & Compatibility Tools',
         description:
           'Hand-curated substitution data for 220+ ingredients ensures functional correctness — essential oils only substitute with other essential oils, barrier lipids with barrier lipids, cleansers with cleansers. Compatibility matrix shows synergy, caution, and avoid pairings with explanations.',
-        images: ['/images/case-studies/herbiskea/ingredients-substitutes-page.webp'],
+        images: [
+          '/images/case-studies/herbiskea/ingredients-substitutes-page.webp',
+        ],
       },
       {
         title: 'Recipe Collection (178 Recipes)',
         description:
           '178 expert-curated recipes across skincare, haircare, and body wellness with step-by-step instructions, ingredient lists with amounts, difficulty ratings, prep times, customization tips, and dynamic pricing. Auth-protected purchase flow with loading feedback — unauthenticated users are prompted to sign in via modal before adding to cart.',
-        images: ['/images/case-studies/herbiskea/recipes-page.webp', '/images/case-studies/herbiskea/recipe-detail-page.webp', '/images/case-studies/herbiskea/collections-page.webp'],
+        images: [
+          '/images/case-studies/herbiskea/recipes-page.webp',
+          '/images/case-studies/herbiskea/recipe-detail-page.webp',
+          '/images/case-studies/herbiskea/collections-page.webp',
+        ],
       },
       {
         title: 'Custom Formulation Builder',
         description:
           'Drag-and-drop formulation tool where users build recipes from scratch — selecting ingredients with percentage-based amounts, choosing the formulation phase (water/oil/cool-down), and getting real-time compatibility warnings and pH range estimates. Supports persistent save/load/resume via URL-based state (?load=id&id=) and inline saved formulations search.',
-        images: ['/images/case-studies/herbiskea/formulation-page.webp', '/images/case-studies/herbiskea/formulation-builder.webp', '/images/case-studies/herbiskea/formulation-review.webp', '/images/case-studies/herbiskea/formulation-saved.webp'],
+        images: [
+          '/images/case-studies/herbiskea/formulation-page.webp',
+          '/images/case-studies/herbiskea/formulation-builder.webp',
+          '/images/case-studies/herbiskea/formulation-review.webp',
+          '/images/case-studies/herbiskea/formulation-saved.webp',
+        ],
       },
       {
         title: 'AI Skin & Hair Analysis',
         description:
           'Camera-based analysis flow with live video feed, face guide overlay, and permission handling. Captures skin/hair conditions and delivers personalized ingredient and recipe recommendations based on detected concerns.',
-        images: ['/images/case-studies/herbiskea/analysis-page.webp', '/images/case-studies/herbiskea/analysis-select-full.webp', '/images/case-studies/herbiskea/analysis-diagnosis-quick.webp', '/images/case-studies/herbiskea/analysis-questionnaire.webp', '/images/case-studies/herbiskea/analysis-processing.webp', '/images/case-studies/herbiskea/analysis-results.webp'],
+        images: [
+          '/images/case-studies/herbiskea/analysis-page.webp',
+          '/images/case-studies/herbiskea/analysis-select-full.webp',
+          '/images/case-studies/herbiskea/analysis-diagnosis-quick.webp',
+          '/images/case-studies/herbiskea/analysis-questionnaire.webp',
+          '/images/case-studies/herbiskea/analysis-processing.webp',
+          '/images/case-studies/herbiskea/analysis-results.webp',
+        ],
       },
       {
         title: 'E-Commerce & Checkout',
         description:
           'Full shopping flow — cart with quantity management, Paystack-powered checkout supporting cards, bank transfers, and mobile money. Order tracking, receipt generation, and order history dashboard. Auth-gated with loading states on all purchase interactions.',
-        images: ['/images/case-studies/herbiskea/cart.webp', '/images/case-studies/herbiskea/side-cart.webp', '/images/case-studies/herbiskea/checkout-page.webp', '/images/case-studies/herbiskea/orders-confirmed.webp', '/images/case-studies/herbiskea/orders-completed.webp', '/images/case-studies/herbiskea/payment-receipt.webp'],
+        images: [
+          '/images/case-studies/herbiskea/cart.webp',
+          '/images/case-studies/herbiskea/side-cart.webp',
+          '/images/case-studies/herbiskea/checkout-page.webp',
+          '/images/case-studies/herbiskea/orders-confirmed.webp',
+          '/images/case-studies/herbiskea/orders-completed.webp',
+          '/images/case-studies/herbiskea/payment-receipt.webp',
+        ],
       },
       {
         title: 'Educational Blog',
         description:
           'Editorial-style blog covering ingredient deep-dives, routine guides, and skincare science — designed to educate beginners while driving organic search traffic. Rich SEO metadata, reading time estimates, and related content suggestions.',
-        images: ['/images/case-studies/herbiskea/blog-page.webp', '/images/case-studies/herbiskea/blog-details.webp', '/images/case-studies/herbiskea/blog-details-2.webp'],
+        images: [
+          '/images/case-studies/herbiskea/blog-page.webp',
+          '/images/case-studies/herbiskea/blog-details.webp',
+          '/images/case-studies/herbiskea/blog-details-2.webp',
+        ],
       },
       {
         title: 'User Dashboard & Collections',
@@ -396,7 +625,7 @@ export const caseStudies = {
       github: 'https://github.com/Kemi-Oluwadahunsi/Herbiskea',
     },
   },
-viskit: {
+  viskit: {
     id: 'viskit',
     title: 'VisKit',
     badge: 'Open-Source Library',
@@ -465,7 +694,22 @@ viskit: {
         title: '50+ Chart Types Across 5 Categories',
         description:
           'Cartesian (27 types: line, bar, area, scatter, stacked/grouped/horizontal bar, multi-line, stacked area, bubble, lollipop, dumbbell, candlestick, waterfall, box plot, violin, bullet, slope, stream graph, parallel coordinates, ridgeline, marimekko, Gantt, comparison, diverging bar, pyramid, timeline), Radial (5: pie, donut, radar, radial bar, polar area), Hierarchical (4: treemap, sunburst, icicle, circle packing), Flow (4: Sankey, chord diagram, force graph, funnel), and Specialized (8: heatmap, calendar heatmap, histogram, sparkline, gauge, density contour, Venn diagram, word cloud) — each with hover interactions, ARIA labels, and animation.',
-        images: ['/images/case-studies/viskit/areaseries.webp', '/images/case-studies/viskit/donutseries.webp', '/images/case-studies/viskit/areaseries.webp', '/images/case-studies/viskit/parallelseries.webp', '/images/case-studies/viskit/polarseries.webp', '/images/case-studies/viskit/radialbarseries.webp', '/images/case-studies/viskit/sankeydiagram.webp', '/images/case-studies/viskit/areaseries.webp', '/images/case-studies/viskit/treemapseries.webp', '/images/case-studies/viskit/wordcloud.webp', '/images/case-studies/viskit/sunburstseries.webp', '/images/case-studies/viskit/slope-cartisan.webp', '/images/case-studies/viskit/icicleseries.webp', '/images/case-studies/viskit/circlepack.webp'],
+        images: [
+          '/images/case-studies/viskit/areaseries.webp',
+          '/images/case-studies/viskit/donutseries.webp',
+          '/images/case-studies/viskit/areaseries.webp',
+          '/images/case-studies/viskit/parallelseries.webp',
+          '/images/case-studies/viskit/polarseries.webp',
+          '/images/case-studies/viskit/radialbarseries.webp',
+          '/images/case-studies/viskit/sankeydiagram.webp',
+          '/images/case-studies/viskit/areaseries.webp',
+          '/images/case-studies/viskit/treemapseries.webp',
+          '/images/case-studies/viskit/wordcloud.webp',
+          '/images/case-studies/viskit/sunburstseries.webp',
+          '/images/case-studies/viskit/slope-cartisan.webp',
+          '/images/case-studies/viskit/icicleseries.webp',
+          '/images/case-studies/viskit/circlepack.webp',
+        ],
       },
       {
         title: 'Canvas Renderer for Large Datasets',
@@ -495,13 +739,26 @@ viskit: {
         title: '5 Tooltip Variants',
         description:
           'Default (glass-morphism with blur), Minimal, Compact, Gradient, and Outline tooltip styles — each driven by theme tokens. Tooltips are positioned with @floating-ui/react for collision detection and follow the cursor across all chart types.',
-        images: ['/images/case-studies/viskit/tooltip-1.webp', '/images/case-studies/viskit/tooltip-2.webp', '/images/case-studies/viskit/tooltip-3.webp', '/images/case-studies/viskit/tooltip-4.webp', '/images/case-studies/viskit/tooltip-5.webp', '/images/case-studies/viskit/tooltip-6.webp'],
+        images: [
+          '/images/case-studies/viskit/tooltip-1.webp',
+          '/images/case-studies/viskit/tooltip-2.webp',
+          '/images/case-studies/viskit/tooltip-3.webp',
+          '/images/case-studies/viskit/tooltip-4.webp',
+          '/images/case-studies/viskit/tooltip-5.webp',
+          '/images/case-studies/viskit/tooltip-6.webp',
+        ],
       },
       {
         title: 'Hierarchical & Flow Visualizations',
         description:
           'Treemap, sunburst, icicle, and circle-packing for part-to-whole hierarchies. Sankey diagrams for flow allocation, chord diagrams for inter-group relationships, force-directed graphs for networks, and funnels for conversion pipelines — all with the same composable API and theme integration.',
-        images: ['/images/case-studies/viskit/treemapseries.webp', '/images/case-studies/viskit/sunburstseries.webp', '/images/case-studies/viskit/icicleseries.webp', '/images/case-studies/viskit/circlepack.webp', '/images/case-studies/viskit/sankeydiagram.webp'],
+        images: [
+          '/images/case-studies/viskit/treemapseries.webp',
+          '/images/case-studies/viskit/sunburstseries.webp',
+          '/images/case-studies/viskit/icicleseries.webp',
+          '/images/case-studies/viskit/circlepack.webp',
+          '/images/case-studies/viskit/sankeydiagram.webp',
+        ],
       },
     ],
     impact: [
@@ -677,25 +934,51 @@ viskit: {
         title: 'Layout & Navigation Components',
         description:
           'Accordion, Breadcrumbs, Drawer, Tabs, Stepper, KanbanBoard (drag-and-drop), ResizableSidebar, ScrollAwareNavbar, FloatingActionButton, TimeLine, and ProgressBarSteps — all with keyboard navigation, ARIA attributes, and smooth CSS transitions.',
-        images: ['/images/case-studies/readyui/accordion.webp', '/images/case-studies/readyui/kaban-1.webp', '/images/case-studies/readyui/kaban-2.webp', '/images/case-studies/readyui/drawer.webp', '/images/case-studies/readyui/datatable.webp', '/images/case-studies/readyui/modal.webp', '/images/case-studies/readyui/progressbar.webp', '/images/case-studies/readyui/popover.webp'], 
+        images: [
+          '/images/case-studies/readyui/accordion.webp',
+          '/images/case-studies/readyui/kaban-1.webp',
+          '/images/case-studies/readyui/kaban-2.webp',
+          '/images/case-studies/readyui/drawer.webp',
+          '/images/case-studies/readyui/datatable.webp',
+          '/images/case-studies/readyui/modal.webp',
+          '/images/case-studies/readyui/progressbar.webp',
+          '/images/case-studies/readyui/popover.webp',
+        ],
       },
       {
         title: 'Inputs & Form Components',
         description:
           'DatePicker (single/range/multi), ColorPicker (HSL/RGB/HEX), FileUploader (drag-and-drop with preview), OTPInput, PasswordStrength meter, RangeSlider (single & dual handle), RatingInput (half-star support), Select (searchable multi-select), and ToggleSwitch — all with controlled/uncontrolled modes and validation-ready APIs.',
-        images: ['/images/case-studies/readyui/datepicker.webp', '/images/case-studies/readyui/colorpicker.webp', '/images/case-studies/readyui/fileupload.webp', '/images/case-studies/readyui/otpinput.webp', '/images/case-studies/readyui/passwordstrength.webp'],
+        images: [
+          '/images/case-studies/readyui/datepicker.webp',
+          '/images/case-studies/readyui/colorpicker.webp',
+          '/images/case-studies/readyui/fileupload.webp',
+          '/images/case-studies/readyui/otpinput.webp',
+          '/images/case-studies/readyui/passwordstrength.webp',
+        ],
       },
       {
         title: 'Data Display & Feedback',
         description:
           'DataTable (sortable, filterable, paginated), TreeView (hierarchical expand/collapse), VirtualList (10K+ items), 15 Card variants (Profile, Product, Glass, Interactive flip), Skeleton loading, Spinner (13 animation variants), Toast notification system, Modal, ConfirmDialog, Popover, Tooltip, and NotificationBell dropdown.',
-        images: ['/images/case-studies/readyui/datatable.webp', '/images/case-studies/readyui/skeleton.webp', '/images/case-studies/readyui/spinner.webp', '/images/case-studies/readyui/toast.webp', '/images/case-studies/readyui/modal.webp', '/images/case-studies/readyui/confirmdialog.webp', '/images/case-studies/readyui/popover.webp'],
+        images: [
+          '/images/case-studies/readyui/datatable.webp',
+          '/images/case-studies/readyui/skeleton.webp',
+          '/images/case-studies/readyui/spinner.webp',
+          '/images/case-studies/readyui/toast.webp',
+          '/images/case-studies/readyui/modal.webp',
+          '/images/case-studies/readyui/confirmdialog.webp',
+          '/images/case-studies/readyui/popover.webp',
+        ],
       },
       {
         title: 'Interactive Documentation Site',
         description:
           'A full documentation site built with Vite and React Router v7, featuring live component previews, copy-to-clipboard code blocks, prop API tables with type/default/required indicators, dark mode toggle, responsive sidebar navigation, and lazy-loaded routes for fast page loads.',
-        images: ['/images/case-studies/readyui/hero-1.webp', '/images/case-studies/readyui/hero-dark.webp'], // alt: "ReadyUI documentation site — Accordion page showing live Preview panel, Code tab with syntax highlighting, and Props table with dark badges"
+        images: [
+          '/images/case-studies/readyui/hero-1.webp',
+          '/images/case-studies/readyui/hero-dark.webp',
+        ], // alt: "ReadyUI documentation site — Accordion page showing live Preview panel, Code tab with syntax highlighting, and Props table with dark badges"
       },
     ],
     impact: [
@@ -863,7 +1146,11 @@ viskit: {
         title: 'Interactive Calendar with Leave Management',
         description:
           'A full monthly calendar grid where staff click any day to mark Annual Leave (AL), Medical Leave (ML), or Flexible Time Off (FTO) with half-day AM/PM support. Public holidays are auto-detected and highlighted with tooltip names. Custom work times can be set per day.',
-        images: ['/images/case-studies/timesheet/calendar-grid.webp', '/images/case-studies/timesheet/day-edit.webp', '/images/case-studies/timesheet/public-holiday.webp'], // alt: "Calendar grid showing work days in blue, annual leave in green, public holidays in red with tooltip showing holiday name, and a half-day ML marked on the 15th"
+        images: [
+          '/images/case-studies/timesheet/calendar-grid.webp',
+          '/images/case-studies/timesheet/day-edit.webp',
+          '/images/case-studies/timesheet/public-holiday.webp',
+        ], // alt: "Calendar grid showing work days in blue, annual leave in green, public holidays in red with tooltip showing holiday name, and a half-day ML marked on the 15th"
       },
       {
         title: 'PDF Generation & Preview',
@@ -875,7 +1162,10 @@ viskit: {
         title: 'Leave Balance Tracker',
         description:
           'Cumulative leave balance display showing entitlement, used (initial + monthly), and remaining for each leave type. Balances can go negative with red warnings and toast notifications when entitlements are exceeded — preventing silent over-use.',
-        images: ['/images/case-studies/timesheet/leave-tracker.webp', '/images/case-studies/timesheet/leave-tracker-2.webp'], // alt: "Leave balance tracker showing AL: 21 entitled, 18 used, 3 remaining; ML: 30 entitled, 2 used, 28 remaining; with a red warning badge on FTO showing -1 remaining"
+        images: [
+          '/images/case-studies/timesheet/leave-tracker.webp',
+          '/images/case-studies/timesheet/leave-tracker-2.webp',
+        ], // alt: "Leave balance tracker showing AL: 21 entitled, 18 used, 3 remaining; ML: 30 entitled, 2 used, 28 remaining; with a red warning badge on FTO showing -1 remaining"
       },
       {
         title: 'Overtime Calculation Engine',
@@ -1012,6 +1302,292 @@ viskit: {
       live: 'https://tentacle-timesheet-automation.vercel.app',
       github:
         'https://github.maybank.com/Oluwakemi-Ademiotibo-Oluwadahunsi/Timesheet-Automation', // Private repo due to company policies
+    },
+  },
+  kemory: {
+    id: 'kemory',
+    title: 'Kemory',
+    badge: 'Full-Stack Publishing & Creator Platform',
+    company: 'Independent Project',
+    period: '2025 – 2026',
+    heroImage: '/images/case-studies/kemory/kemory-hero.webp',
+    summary:
+      'Designed and engineered a Medium/Notion/Substack-tier publishing platform for all kinds of writers: a Notion-style block editor with a runnable code sandbox and live embeds, a full authoring workflow (server-side autosave, scheduled publishing, revision history, series), an engagement layer (threaded comments, reactions, bookmarks, follows, in-app and email notifications), a crawler-aware SEO stack, an interactive writer-analytics dashboard, and a role-gated admin back office with moderation and support tooling. Built as a React/TypeScript SPA on an Express/MongoDB API, security-hardened and shipped with automated tests wired to CI.',
+    problem: {
+      title: 'The Challenge',
+      description:
+        'Most blogging tools force a tradeoff: developer-centric platforms have great editors but weak reach, while marketing-centric ones have great SEO but shallow authoring. Writers end up stitching together an editor, an analytics tool, a comment system, and a newsletter, with no single home. The goal was one cohesive platform that is powerful to write in, discoverable when shared, insightful to measure, and safe to operate at scale.',
+      painPoints: [
+        'Client-rendered SPAs are invisible to social scrapers and slow for crawlers, so shared links show a generic preview and organic reach suffers',
+        'Rich block editors (embeds, callouts, runnable code) are hard to persist safely, since naive sanitization silently strips styling or opens XSS holes',
+        'Letting readers run arbitrary code inline is a real security risk, and untrusted code must not reach the logged-in user’s cookies, storage, or API',
+        'Writers get vanity totals but no real analytics: no views-over-time, referrers, follower growth, or reader retention',
+        'Engagement features (threaded comments, reactions, mentions, notifications) are individually simple but complex to make consistent and spam-resistant',
+        'There was no admin shell, moderation queue, or support system, so operating the platform meant editing the database by hand',
+      ],
+    },
+    solution: {
+      title: 'The Approach',
+      description:
+        'I built Kemory as a React 18 and TypeScript SPA (Vite, Redux Toolkit, TanStack Query) on an Express 5 and MongoDB/Mongoose API, deployed across Vercel (client) and Render (API). The architecture is organized around three loops: write (a TipTap block editor with autosave, scheduling, and revisions), read (an SEO-first, theme-aware reading experience with comments and reactions), and operate (writer analytics plus an admin panel for users, posts, moderation, and support). Rather than a full framework migration, SEO was solved with crawler-detecting edge middleware that serves real OG/JSON-LD HTML to bots while humans keep the SPA. Untrusted reader-run code is isolated in a null-origin sandboxed iframe. Every destructive action is cascade-safe, rate-limited, and covered by tests.',
+      keyDecisions: [
+        {
+          decision:
+            'Crawler-Prerender Middleware over a Full Next.js Migration',
+          rationale:
+            'Instead of rewriting a mature SPA into Next.js/Remix for SSR, I added Vercel Edge Middleware that detects crawler user-agents and rewrites /post/* and /u/* to Express prerender endpoints emitting real OG tags and BlogPosting JSON-LD. Humans still get the fast SPA. This shipped correct social and search previews in a fraction of the effort, with SSG/SSR kept open as a later upgrade.',
+        },
+        {
+          decision: 'Null-Origin Sandboxed Iframe for Reader-Run Code',
+          rationale:
+            'The code sandbox runs JS/TS (client-transpiled) and Python (Pyodide/WASM) inside a per-run iframe sandbox="allow-scripts" with NO allow-same-origin, giving it an opaque/null origin. I verified live that localStorage and document.cookie both throw and self.origin is "null", so untrusted blog content genuinely cannot read the site session or call the API as the viewer. Hung scripts are reclaimed by destroying and recreating the iframe.',
+        },
+        {
+          decision: 'Sanitization Allow-List Co-Designed with the Editor',
+          rationale:
+            'Custom TipTap blocks (callouts, toggles, embeds, resizable/aligned images, colored text, code sandboxes) store metadata-only markup that the client re-hydrates. The backend sanitize-html allow-list was treated as a first-class part of every block’s design, because attribute and order mismatches silently drop content, so each block was round-tripped through a real publish, not just tested in the editor.',
+        },
+        {
+          decision: 'Append-Only Event Logs for Time-Series Analytics',
+          rationale:
+            'Rather than overloading counters, I added dedicated ViewEvent, FollowEvent, and ScrollEvent collections (author denormalized for fast per-writer aggregation) written fire-and-forget alongside the existing increments. Endpoints zero-fill every day in range so charts have no gaps, powering views-over-time, referrers, follower growth, and reader retention without touching the hot read path.',
+        },
+        {
+          decision: 'Hand-Rolled OAuth (Google and GitHub), No Passport.js',
+          rationale:
+            'To stay consistent with the app’s plain-JWT auth, I implemented the authorization-code flow directly: exchange code, fetch profile (GitHub falls back to /user/emails for private emails), then find-by-provider-id, link-by-email, or create-new (auto-verified), and redirect back with a normal Kemory JWT. With a provider’s credentials unset, the endpoint degrades to a friendly /login error instead of throwing.',
+        },
+        {
+          decision: 'Custom Charting on viskit-react and readyui-react',
+          rationale:
+            'I built a VisKitThemeProvider mapping the app’s --km-* design tokens into the charting engine’s theme, driving both the writer dashboard and the admin overview with custom tooltips, date-range controls, expand-to-modal, and 12+ chart types. One theming layer, with light/dark parity confirmed.',
+        },
+        {
+          decision: 'Design Tokens and One-Line Reduced-Motion',
+          rationale:
+            'A single --km-* token system (dark default, light via media query) drives every surface, and one <MotionConfig reducedMotion="user"> at the root covers about 35 Framer-animated files with zero per-file changes, verified by sampling mid-animation transforms rather than just presence.',
+        },
+        {
+          decision: 'UI-First, Mock-Backed Admin and Support to De-Risk',
+          rationale:
+            'The entire admin panel and support flow were built and reviewed against deterministic mock stores before backend endpoints existed, so UX and data shape could be validated end-to-end and each surface only needs its mock swapped for a real service.',
+        },
+      ],
+    },
+    features: [
+      {
+        title: 'Notion-Style Block Editor',
+        description:
+          'A TipTap-based editor with a slash-command menu (15 commands), callout and toggle blocks, tables, colored text, drag-to-reorder, @mentions with autocomplete, resizable/aligned images with captions, and Markdown round-tripping. Every custom block persists safely through a co-designed sanitization allow-list.',
+        images: [
+          '/images/case-studies/kemory/editor-slash-menu.webp',
+          '/images/case-studies/kemory/code-block.webp',
+          '/images/case-studies/kemory/editor-callout.webp',
+          '/images/case-studies/kemory/@mentions.webp',
+        ],
+      },
+      {
+        title: 'Runnable Code Sandbox & Live Embeds',
+        description:
+          'An inline playground runs JavaScript, TypeScript (client-transpiled with formatted compile errors), and Python (Pyodide/WASM) inside a null-origin sandboxed iframe, so reader-run code cannot touch the site session. It also supports live YouTube/CodePen embeds, a PDF viewer (canvas-rendered via pdfjs), and Gist cards.',
+        images: [
+          '/images/case-studies/kemory/sandbox.webp',
+          '/images/case-studies/kemory/sandbox-js.webp',
+          '/images/case-studies/kemory/sandbox-py.webp',
+        ],
+      },
+      {
+        title: 'Authoring Workflow',
+        description:
+          'Server-side draft autosave (one create-or-update path reused by Save/Publish), scheduled publishing via a minute-interval cron, revision history (snapshots on explicit saves, capped per post, restore-with-undo), series/collections, tags, and a Notion-style cover and emoji icon.',
+        images: [
+          '/images/case-studies/kemory/auto-save.webp',
+          '/images/case-studies/kemory/schedule-post.webp',
+          '/images/case-studies/kemory/revision.webp',
+        ],
+      },
+      {
+        title: 'Reading Experience',
+        description:
+          'A focused reader with table of contents, reading-progress bar, related posts, syntax highlighting, five emoji reactions, bookmarks, follows, responsive Cloudinary images, skeleton loaders, and full dark mode, all driven by a shared design-token system with reduced-motion support.',
+        images: [
+          '/images/case-studies/kemory/post-page.webp',
+          '/images/case-studies/kemory/post-page-dark.webp',
+          '/images/case-studies/kemory/post-reactions.webp',
+        ],
+      },
+      {
+        title: 'Comments, Mentions & Notifications',
+        description:
+          'Threaded comment replies with likes and in-place edit, @mentions, and per-user spam throttling (verified: exactly 8/min succeed). An in-app notification center (bell, unread badge, mark-read) plus optional per-type email notifications via Resend, triggered on follow, comment, reply, new post, like, and mention.',
+        images: [
+          '/images/case-studies/kemory/comments.webp',
+          '/images/case-studies/kemory/notification.webp',
+          '/images/case-studies/kemory/@mentions.webp',
+        ],
+      },
+      {
+        title: 'SEO & Discovery',
+        description:
+          'Crawler-detecting edge middleware serves real OG and BlogPosting JSON-LD HTML to social scrapers and search bots while humans get the SPA. It also ships a dynamic sitemap.xml, an RSS/Atom feed, canonical tags, per-post SEO fields, and Cloudinary-normalized 1200x630 OG images.',
+        images: [
+          '/images/case-studies/kemory/seo-share.webp',
+          '/images/case-studies/kemory/seo-panel.webp',
+        ],
+      },
+      {
+        title: 'Performance & Offline PWA',
+        description:
+          'A production Lighthouse run scored 98 performance and 100 SEO with 0.6s First Contentful Paint, 1.1s Largest Contentful Paint, and 0 Cumulative Layout Shift, achieved via code splitting, lazy routes, and Cloudinary image optimization. Installable as a PWA (vite-plugin-pwa / Workbox) with offline reading of bookmarked posts, an update notifier, an offline banner, and a dedicated iOS "Add to Home Screen" hint.',
+        images: [
+          '/images/case-studies/kemory/lighthouse-scores.webp',
+          '/images/case-studies/kemory/pwa-install.webp',
+          '/images/case-studies/kemory/offline-reading.webp',
+        ],
+      },
+      {
+        title: 'Writer Analytics Dashboard',
+        description:
+          'KPI cards plus interactive charts on a custom-themed charting stack: views-over-time with brush selection, referrer breakdown, follower growth, publishing cadence, reactions radar, a sortable top-posts leaderboard, engagement gauge, and a calendar heatmap, backed by append-only event logs and per-post scroll-depth beacons.',
+        images: [
+          '/images/case-studies/kemory/analytics-kpis.webp',
+          '/images/case-studies/kemory/analytics-timeseries.webp',
+          '/images/case-studies/kemory/analytics-heatmap.webp',
+        ],
+      },
+      {
+        title: 'Admin Panel & Moderation',
+        description:
+          'A role-gated admin shell (sidebar layout distinct from the public site) with a sitewide overview (interactive charts, date-range controls, expand-to-modal), user management, all-status post management with feature toggles, and a report/flag moderation queue with cascade-safe deletion.',
+        images: [
+          '/images/case-studies/kemory/admin-overview.webp',
+          '/images/case-studies/kemory/admin-users.webp',
+          '/images/case-studies/kemory/admin-moderation.webp',
+          '/images/case-studies/kemory/admin-posts.webp',
+          '/images/case-studies/kemory/post-series.webp',
+        ],
+      },
+      {
+        title: 'Support Ticketing & Guided Assistant',
+        description:
+          'A floating "Kemory Assistant" widget guides signed-in users through a curated decision tree of categorized FAQs via quick-reply buttons, with a simulated typing delay, escalating to a support ticket or email when the flow can\'t resolve the issue. Tickets are auto-numbered, categorized, and threaded, with role-gated status transitions and an admin inbox for triage and inline reply, backed by in-app and email notifications on every new ticket or reply.',
+        images: [
+          '/images/case-studies/kemory/support-overview.webp',
+          '/images/case-studies/kemory/support-ticket-inbox.webp',
+          '/images/case-studies/kemory/support-chatbot.webp',
+          '/images/case-studies/kemory/admin-support.webp',
+          '/images/case-studies/kemory/my-tickets.webp',
+        ],
+      },
+    ],
+    impact: [
+      {
+        metric: 'Content Models',
+        value: '13',
+        description:
+          'Relational Mongoose schemas (posts, comments, series, notifications, reports, tickets, and three time-series event logs) powering cross-referenced features',
+      },
+      {
+        metric: 'Editor Extensions',
+        value: '25+',
+        description:
+          'TipTap nodes and marks including custom callout, toggle, embed, and runnable code-sandbox blocks with safe persistence',
+      },
+      {
+        metric: 'Notification Triggers',
+        value: '6',
+        description:
+          'In-app and optional email notifications across follow, comment, reply, new post, like, and mention events',
+      },
+      {
+        metric: 'Lighthouse Performance',
+        value: '98',
+        description:
+          'Production Lighthouse run scored 98 performance, 100 SEO, and 96 accessibility, with 0.6s First Contentful Paint, 1.1s Largest Contentful Paint, and 0 Cumulative Layout Shift',
+      },
+    ],
+    techStack: {
+      Frontend: [
+        'React 18',
+        'TypeScript',
+        'Vite 5',
+        'Tailwind CSS v4',
+        'Redux Toolkit + TanStack Query',
+        'TipTap 3',
+        'Framer Motion',
+        'viskit-react + readyui-react',
+      ],
+      Backend: [
+        'Node.js',
+        'Express 5',
+        'MongoDB + Mongoose 8',
+        'JWT Auth (bcrypt)',
+        'express-validator + rate limiting',
+        'sanitize-html',
+      ],
+      Services: [
+        'Cloudinary (Image CDN)',
+        'Resend (Transactional Email)',
+        'Google & GitHub OAuth',
+        'EmailJS (Contact)',
+      ],
+      Tooling: [
+        'Vercel + Render',
+        'Vitest + Playwright + Supertest',
+        'vite-plugin-pwa (Workbox)',
+        'GitHub Actions CI',
+        'ESLint',
+      ],
+    },
+    timeline: [
+      {
+        phase: 'Foundation & Auth',
+        duration: '1.5 weeks',
+        description:
+          'Scaffolded the React/TypeScript SPA and Express/MongoDB API, design-token theming with dark mode, and full auth (email verification, password reset, rate limiting, JWT), later extended with hand-rolled Google/GitHub OAuth.',
+      },
+      {
+        phase: 'Editor & Publishing',
+        duration: '2.5 weeks',
+        description:
+          'Built the TipTap block editor (slash menu, callouts, toggles, embeds, mentions, images), server-side autosave, scheduled publishing, revision history, series, and the runnable null-origin code sandbox, each round-tripped through the sanitization allow-list.',
+      },
+      {
+        phase: 'Reading, Comments & Engagement',
+        duration: '2 weeks',
+        description:
+          'Shipped the reading experience (TOC, progress, related, reactions, bookmarks), threaded comments with likes/edit/mentions, and the in-app and email notification system with per-user spam throttling.',
+      },
+      {
+        phase: 'SEO & Discovery',
+        duration: '1 week',
+        description:
+          'Added crawler-prerender edge middleware, a dynamic sitemap, an RSS feed, JSON-LD structured data, canonical/OG tags, per-post SEO fields, and Cloudinary OG-image normalization.',
+      },
+      {
+        phase: 'Analytics & Time-Series Tracking',
+        duration: '2 weeks',
+        description:
+          'Designed append-only ViewEvent/FollowEvent/ScrollEvent logs and aggregate endpoints, then built the themed writer dashboard: views-over-time, referrers, follower growth, retention, and a calendar heatmap.',
+      },
+      {
+        phase: 'Admin, Support, PWA & CI',
+        duration: '2 weeks',
+        description:
+          'Built the role-gated admin shell (overview, users, posts, support, moderation), the categorized support/ticket flow with a guided assistant, an offline-capable PWA (Workbox), and a Vitest and Playwright test suite wired to GitHub Actions.',
+      },
+    ],
+    learnings: [
+      'For a client-rendered SPA, crawler-detecting prerender middleware delivers correct social and search previews at a fraction of the cost of a full SSR framework migration, a pragmatic 80/20 that keeps SSR open as a later upgrade.',
+      'Running untrusted code safely comes down to one detail: a sandboxed iframe WITHOUT allow-same-origin gets a null origin, so it cannot read cookies, localStorage, or the API session. Verifying it live, rather than trusting the config, is what proves it.',
+      'A rich editor and its backend sanitization allow-list must be designed together. Attribute presence and even attribute ORDER matter, and the only reliable test is round-tripping each block through a real publish, since the editor can look correct while the saved HTML is silently stripped.',
+      'For analytics, append-only event logs beat mutating counters: they keep the hot read path fast, enable any time-series view after the fact, and zero-filling gaps client-agnostically avoids misleading charts.',
+      'Beacons need two exit paths: pagehide covers real browser navigations, but in-app SPA route changes never fire it, only React unmount does. I confirmed with a real repro that both are genuinely required, not redundant.',
+      'Tailwind v4’s canonical class rules (bg-linear-to-*, numeric spacing, no arbitrary values) surface at build time, so adopting a canonical-class discipline early prevents a long tail of silent lint and build failures.',
+    ],
+    links: {
+      live: 'https://kemory.ink',
+      github: 'https://github.com/Kemi-Oluwadahunsi/Kemory',
     },
   },
 }

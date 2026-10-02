@@ -119,7 +119,7 @@ const Sidebar = () => {
               activeclassname="active"
               className="resume-link"
               target="_blank"
-              to="https://drive.google.com/file/d/1tJgWBOmxZ1hlfbFtRdryVnHNSfKuqahr/view?usp=sharing"
+              to="https://drive.google.com/file/d/1x6Kyp2tTblYB1oo3lFowbdgkmKCQtpo5/view?usp=sharing"
               aria-label="Resume"
             >
               <FontAwesomeIcon icon={faBook} color="#bddffa" />

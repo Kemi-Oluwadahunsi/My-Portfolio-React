@@ -32,7 +32,7 @@ const WritingCard = ({ item }) => {
         </span>
       </div>
 
-      <h3>{item.title}</h3>
+      <h3 className='ebook-title'>{item.title}</h3>
       <p>{item.description}</p>
 
       {item.type === 'carousel-series' && item.totalDays && (
