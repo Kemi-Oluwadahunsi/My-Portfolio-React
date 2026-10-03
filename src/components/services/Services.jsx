@@ -55,8 +55,8 @@ const Services = () => {
         transition={{ duration: 0.8 }}
       >
         <p>
-          Four years shipping enterprise-grade systems{' '}
-          <span>across frontend, IAM & full-stack</span>
+          Four years building for enterprises and businesses{' '}
+          <span>across frontend, full-stack & security</span>
         </p>
       </motion.div>
 
@@ -68,7 +68,7 @@ const Services = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <h1>
-            <b>Crafting</b> Solutions
+            <b>What I Can</b> Build
           </h1>
         </motion.div>
 
@@ -79,7 +79,7 @@ const Services = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <h1>
-            <b>That</b> Scale.
+            For <b>You.</b>
           </h1>
         </motion.div>
       </div>
@@ -148,6 +148,20 @@ const Services = () => {
             </GlowCard>
           </motion.div>
         ))}
+      </motion.div>
+
+      <motion.div
+        className="services-cta"
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+      >
+        <button
+          type="button"
+          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+        >
+          Discuss a project →
+        </button>
       </motion.div>
     </div>
   )

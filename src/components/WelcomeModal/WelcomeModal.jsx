@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 // import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight, Download, X } from 'lucide-react'
+import { SPLASH_DONE_EVENT } from '../Splash/Splash'
 import { lockScroll } from '../../hooks/lockScroll'
 import { socialLinks } from '../../constants/portfolioData'
 import './welcomeModal.scss'
@@ -190,11 +191,23 @@ const WelcomeModal = () => {
     // Skip deep links, repeat visits in the same session, and crawlers.
     if (window.location.hash || sessionStorage.getItem(STORAGE_KEY) || BOT_PATTERN.test(navigator.userAgent)) return
 
-    const timer = window.setTimeout(() => {
-      sessionStorage.setItem(STORAGE_KEY, '1')
-      setOpen(true)
-    }, SHOW_DELAY_MS)
-    return () => window.clearTimeout(timer)
+    let timer
+    const schedule = () => {
+      timer = window.setTimeout(() => {
+        sessionStorage.setItem(STORAGE_KEY, '1')
+        setOpen(true)
+      }, SHOW_DELAY_MS)
+    }
+
+    // Wait for the intro splash screen to finish before counting down.
+    const splashActive = document.documentElement.dataset.splash === 'active'
+    if (splashActive) window.addEventListener(SPLASH_DONE_EVENT, schedule, { once: true })
+    else schedule()
+
+    return () => {
+      window.removeEventListener(SPLASH_DONE_EVENT, schedule)
+      window.clearTimeout(timer)
+    }
   }, [])
 
   return createPortal(<AnimatePresence>{open && <WelcomeDialog onClose={close} />}</AnimatePresence>, document.body)

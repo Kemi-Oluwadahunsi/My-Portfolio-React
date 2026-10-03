@@ -440,55 +440,66 @@ export const skillGroups = [
 export const services = [
   {
     id: 1,
-    title: 'Micro Frontend Architecture',
+    title: 'Websites & Web Apps for Businesses',
     description:
-      'Design and implement production MFE systems using Webpack 5 Module Federation across multiple teams and deployment boundaries. Shell app design, shared dependency strategy, and runtime federation.',
-    tags: [
-      'Webpack 5',
-      'Module Federation',
-      'Shell Apps',
-      'Runtime Federation',
-    ],
+      'Fast, responsive websites, online stores and dashboards for small and growing businesses. I handle design, build and launch, with payments and contact forms included. 20+ delivered, with 95% client satisfaction.',
+    tags: ['Responsive Design', 'E-commerce', 'Stripe', 'Paystack'],
   },
   {
     id: 2,
-    title: 'Enterprise Frontend Engineering',
+    title: 'Full-Stack Product Development',
     description:
-      'Production React + TypeScript systems built for scale, maintainability, and team ownership. API standardization with TSOA, performance-first delivery, and code-splitting strategies.',
-    tags: ['React', 'TypeScript', 'Next.js', 'Performance'],
+      'Got an idea or MVP? I build it end to end: the interface, the API, the database and the deployment. Kemory and Herbiskea were built this way, as a single full-stack developer.',
+    tags: ['React', 'Next.js', 'Node.js', 'MongoDB', 'PostgreSQL'],
   },
   {
     id: 3,
-    title: 'Full-Stack Development',
+    title: 'Micro Frontend Architecture',
     description:
-      'End-to-end capability with Node.js, Express.js, TSOA API frameworks, and database integration across MongoDB, PostgreSQL, Redis, and Firebase.',
-    tags: ['Node.js', 'Express.js', 'TSOA', 'REST APIs'],
+      'I split large front ends into independent apps using Webpack 5 Module Federation, so teams can build and release on their own. It cut deployment dependencies by 30% on a platform serving 1M+ users.',
+    tags: ['Webpack 5', 'Module Federation', 'Shell Apps'],
   },
   {
     id: 4,
-    title: 'Security & IAM Engineering',
+    title: 'Enterprise Frontend Engineering',
     description:
-      'Enterprise identity and access management: LDAP directory integration, OIDC protocol via PingID, dual-flow authentication, JWT, and protected route architecture at scale.',
-    tags: ['LDAP', 'OIDC', 'PingID', 'JWT', 'IAM'],
+      'Production React and TypeScript applications designed to stay maintainable as teams grow. That means clean structure, shared standards, typed APIs with TSOA, and performance built in from the start.',
+    tags: ['React', 'TypeScript', 'Next.js', 'TSOA'],
   },
   {
     id: 5,
-    title: 'Technical Writing & Education',
+    title: 'Security & IAM Engineering',
     description:
-      'Deep-dive content for engineering audiences. Authoring a two-book series on Micro Frontends with Webpack 5. LinkedIn and X content creator with a focus on making hard concepts simple.',
-    tags: [
-      'Ebook Authoring',
-      'Technical Writing',
-      'LinkedIn',
-      'Developer Education',
-    ],
+      'Secure sign-in for large organisations: LDAP and OIDC single sign-on through PingID, plus multi-factor approval flows built on Keycloak and CIBA. Access control that protects users without getting in their way.',
+    tags: ['LDAP', 'OIDC', 'Keycloak', 'MFA'],
   },
   {
     id: 6,
-    title: 'AI & Automation Integration',
+    title: 'AI & Test Automation',
     description:
-      'Workflow automation and AI tooling integration within enterprise engineering pipelines. Multi-agent system architecture with Claude API, MCP routing, and semantic search.',
-    tags: ['Claude API', 'MCP', 'Automation', 'RAG'],
+      'AI agents and workflows that take over repetitive work. One reads Jira tickets and user stories, writes and runs the tests, then posts reports with screenshots back to the tickets, cutting manual QA effort.',
+    tags: ['OpenAI API', 'MCP', 'Automation', 'Test Automation'],
+  },
+  {
+    id: 7,
+    title: 'Performance, SEO & PWA',
+    description:
+      'Pages that load in under 2 seconds and score 90+ on Lighthouse, using code splitting, lazy loading and image optimisation. I also add SEO structure and offline PWA support so visitors and search engines find you.',
+    tags: ['Lighthouse', 'SEO', 'PWA', 'Code Splitting'],
+  },
+  {
+    id: 8,
+    title: 'Open-Source Libraries',
+    description:
+      'I design, document and publish reusable libraries. VisKit offers 50+ accessible chart types, and readyui-react has 50+ UI components, both on npm with Storybook or docs sites to try them live.',
+    tags: ['React', 'TypeScript', 'Storybook', 'npm'],
+  },
+  {
+    id: 9,
+    title: 'Technical Writing & Education',
+    description:
+      'I write ebooks and teaching content that make hard engineering topics easy to follow, with clear diagrams and real examples. Topics range from JavaScript fundamentals to micro frontends and AI-assisted coding.',
+    tags: ['Ebooks', 'Technical Writing', 'LinkedIn', 'Developer Education'],
   },
 ]
 
@@ -726,6 +737,8 @@ export const openSourceData = {
         npm: 'https://www.npmjs.com/package/readyui-react',
         storybook:
           'https://kemi-oluwadahunsi.github.io/ReadyToUse-React-Components/',
+        documentation:
+          'https://readyui-docs.vercel.com',
       },
       tags: ['React', 'TypeScript', 'Component Library', 'Storybook', 'npm'],
       status: 'active',
@@ -741,6 +754,8 @@ export const openSourceData = {
         npm: 'https://www.npmjs.com/package/viskit',
         storybook:
           'https://kemi-oluwadahunsi.github.io/Viskit-Charting-Library/',
+          documentation:
+          '#',
       },
       tags: ['React', 'TypeScript', 'Charting Library', 'Storybook', 'npm'],
       status: 'active',

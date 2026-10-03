@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { MessageCircle, Send, X } from 'lucide-react'
+import { MessageCircle, Send, Trash2, X } from 'lucide-react'
 import './chatWidget.scss'
 
 const SUGGESTIONS = [
@@ -10,35 +11,118 @@ const SUGGESTIONS = [
   'How can I contact Kemi?',
 ]
 
+const STORAGE_KEY = 'kemi-chat-history'
+const CHAT_TTL_MS = 2 * 24 * 60 * 60 * 1000 // chats expire two days after the last message
+const MAX_STORED_MESSAGES = 40
+
+// Reads the saved conversation, dropping it if it is expired, corrupt or unreadable.
+const loadHistory = () => {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY))
+    if (!saved || !Array.isArray(saved.messages) || Date.now() - saved.updatedAt > CHAT_TTL_MS) {
+      localStorage.removeItem(STORAGE_KEY)
+      return []
+    }
+    return saved.messages.filter(
+      (m) => (m?.role === 'user' || m?.role === 'assistant') && typeof m.content === 'string' && m.content,
+    )
+  } catch {
+    return []
+  }
+}
+
+const saveHistory = (messages) => {
+  try {
+    if (!messages.length) return localStorage.removeItem(STORAGE_KEY)
+    const stored = messages.filter((m) => m.content).slice(-MAX_STORED_MESSAGES)
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ updatedAt: Date.now(), messages: stored }))
+  } catch {
+    /* storage full or blocked: the chat still works, it just won't persist */
+  }
+}
+
+const SITE_HOSTS = new Set(['kemi-oluwadahunsi.vercel.app'])
+
+// Answered locally (instantly, no model call) when someone asks to be taken to a section.
+const NAV_VERB = /\b(take|bring|scroll|go|jump|navigate|show|open|send|lead|head|move)\b|\bsee\b.*\bsection\b/i
+const NAV_TARGETS = [
+  { id: 'experience', label: 'Experience', words: /experien|work history|career|timeline/ },
+  { id: 'portfolioSection', label: 'Work', words: /port+f|projec|work section|\bwork\b/ },
+  { id: 'services', label: 'Expertise', words: /servic|expert|offer/ },
+  { id: 'architecture', label: 'Architecture', words: /archit/ },
+  { id: 'skills', label: 'Skills', words: /skill|tech stack|\bstack\b/ },
+  { id: 'writing', label: 'Writing', words: /writ|ebook|book|teach|article/ },
+  { id: 'opensource', label: 'Open Source', words: /open.?source|\boss\b|librar/ },
+  { id: 'testimonials', label: 'Testimonials', words: /testimon|review|recommend/ },
+  { id: 'contact', label: 'Contact', words: /contact|hire|reach|message|get in touch/ },
+  { id: 'main-content', label: 'Home', words: /\bhome\b|\btop\b|beginning|start of/ },
+]
+
+const findNavTarget = (text) => {
+  if (!NAV_VERB.test(text)) return null
+  return NAV_TARGETS.find((t) => t.words.test(text.toLowerCase())) || null
+}
+
 const GREETING = "Hi, I'm Kemi's portfolio assistant. Ask me about her work, projects, skills or writing."
 const FALLBACK_ERROR = "Sorry, I couldn't reach the assistant. Please try again, or use the contact form."
-const URL_PATTERN = /(https?:\/\/[^\s]+)/g
+// Matches [label](url) first, then bare URLs.
+const LINK_PATTERN = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)|(https?:\/\/[^\s]+)/g
 
-// Turn bare URLs in a plain-text answer into links; keep trailing punctuation outside.
-const Linkified = ({ text }) =>
-  text.split(URL_PATTERN).map((part, i) => {
-    if (i % 2 === 0) return part
-    const url = part.replace(/[.,;:!?)]+$/, '')
-    return (
-      <span key={i}>
-        <a href={url} target="_blank" rel="noopener noreferrer">
-          {url}
-        </a>
-        {part.slice(url.length)}
-      </span>
+const toInternal = (href) => {
+  try {
+    const url = new URL(href)
+    const sameSite = url.host === window.location.host || SITE_HOSTS.has(url.host)
+    return sameSite ? { path: url.pathname, search: url.search, hash: url.hash } : null
+  } catch {
+    return null
+  }
+}
+
+// Turns links in a plain-text answer into anchors; trailing punctuation stays outside the link.
+// Links to this site are handled in-app so they scroll or route without a page reload.
+const Linkified = ({ text, onInternal }) => {
+  const nodes = []
+  let last = 0
+  for (const match of text.matchAll(LINK_PATTERN)) {
+    const [full, label, mdUrl, bareUrl] = match
+    if (match.index > last) nodes.push(text.slice(last, match.index))
+    const raw = mdUrl || bareUrl
+    const url = mdUrl ? raw : raw.replace(/[.,;:!?)]+$/, '')
+    const internal = toInternal(url)
+    const handleClick = (e) => {
+      if (!internal || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return
+      e.preventDefault()
+      onInternal(internal)
+    }
+    nodes.push(
+      <a
+        key={match.index}
+        href={url}
+        onClick={handleClick}
+        {...(internal ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+      >
+        {label || url}
+      </a>,
     )
-  })
+    last = match.index + (mdUrl ? full.length : url.length)
+  }
+  if (last < text.length) nodes.push(text.slice(last))
+  return nodes
+}
 
 export default function ChatWidget() {
   const reduced = useReducedMotion()
+  const navigate = useNavigate()
+  const location = useLocation()
   const [open, setOpen] = useState(false)
-  const [messages, setMessages] = useState([])
+  const [messages, setMessages] = useState(loadHistory)
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const launcherRef = useRef(null)
   const inputRef = useRef(null)
   const logRef = useRef(null)
   const abortRef = useRef(null)
+  const unsavedRef = useRef(false)
 
   useEffect(() => {
     if (open) inputRef.current?.focus()
@@ -50,6 +134,14 @@ export default function ChatWidget() {
   }, [messages, open])
 
   useEffect(() => () => abortRef.current?.abort(), [])
+
+  // Save once an answer has finished streaming (not on every chunk), and only after a real
+  // exchange, so merely opening the page doesn't extend the two-day expiry.
+  useEffect(() => {
+    if (loading || !unsavedRef.current) return
+    unsavedRef.current = false
+    saveHistory(messages)
+  }, [messages, loading])
 
   const close = useCallback(() => {
     setOpen(false)
@@ -63,19 +155,56 @@ export default function ChatWidget() {
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [open, close])
 
+  const clearChat = () => {
+    abortRef.current?.abort()
+    unsavedRef.current = false
+    setLoading(false)
+    setMessages([])
+    saveHistory([])
+    inputRef.current?.focus()
+  }
+
+  const goInternal = useCallback(
+    ({ path, search, hash }) => {
+      // Phones: the panel covers the page, so step aside to reveal the section.
+      if (window.innerWidth <= 768) setOpen(false)
+
+      const id = hash.replace('#', '')
+      const onHome = location.pathname === '/' && path === '/'
+      const target = id && onHome ? document.getElementById(id) : null
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        window.history.replaceState(null, '', `/${hash}`)
+      } else {
+        navigate({ pathname: path, search, hash })
+      }
+    },
+    [location.pathname, navigate],
+  )
+
   const send = async (raw) => {
     const content = raw.trim()
     if (!content || loading) return
 
     const history = [...messages, { role: 'user', content }]
-    setMessages([...history, { role: 'assistant', content: '' }])
+    unsavedRef.current = true
     setInput('')
+
+    const target = findNavTarget(content)
+    if (target) {
+      setMessages([...history, { role: 'assistant', content: `Taking you to the ${target.label} section.` }])
+      goInternal({ path: '/', search: '', hash: `#${target.id}` })
+      return
+    }
+
+    setMessages([...history, { role: 'assistant', content: '' }])
     setLoading(true)
 
     const controller = new AbortController()
     abortRef.current = controller
 
     const setAnswer = (text) =>
+      !controller.signal.aborted &&
       setMessages((prev) => [...prev.slice(0, -1), { role: 'assistant', content: text }])
 
     try {
@@ -134,11 +263,18 @@ export default function ChatWidget() {
             <header className="chat-header">
               <div>
                 <strong>Ask about Kemi</strong>
-                <span>AI assistant · answers from her portfolio</span>
+                <span>Welcome to Kemi&apos;s Corner</span>
               </div>
-              <button type="button" className="chat-icon-btn" onClick={close} aria-label="Close chat">
-                <X size={18} />
-              </button>
+              <div className="chat-header-actions">
+                {messages.length > 0 && (
+                  <button type="button" className="chat-clear" onClick={clearChat}>
+                    <Trash2 size={14} aria-hidden="true" /> Clear chat
+                  </button>
+                )}
+                <button type="button" className="chat-icon-btn" onClick={close} aria-label="Close chat">
+                  <X size={18} />
+                </button>
+              </div>
             </header>
 
             <div className="chat-log" ref={logRef} role="log" aria-live="polite">
@@ -152,7 +288,7 @@ export default function ChatWidget() {
                       <i />
                     </span>
                   ) : (
-                    <Linkified text={m.content} />
+                    <Linkified text={m.content} onInternal={goInternal} />
                   )}
                 </p>
               ))}

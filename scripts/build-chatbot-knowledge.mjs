@@ -41,6 +41,32 @@ function section(title, body) {
   return body ? `## ${title}\n\n${body}\n` : ''
 }
 
+// Sections of the single-page site (ids match src/components/Layout and the sidebar).
+const SITE_SECTIONS = [
+  ['Home / top of the page', 'main-content', 'the introduction and headline stats'],
+  ['Expertise / Services', 'services', 'what Kemi offers: micro-frontends, enterprise frontend, full-stack, security and IAM, writing, AI automation'],
+  ['Work / Portfolio / Projects', 'portfolioSection', 'the project cards with live sites, source code and case studies'],
+  ['Architecture', 'architecture', 'system architecture write-ups and design decisions'],
+  ['Experience / Work history', 'experience', 'the career timeline'],
+  ['Skills / Tech stack', 'skills', 'skills grouped by category'],
+  ['Writing / Ebooks / Teaching', 'writing', 'ebooks, LinkedIn carousels and articles'],
+  ['Open source', 'opensource', 'published and upcoming open-source libraries'],
+  ['Testimonials / Recommendations / Reviews', 'testimonials', 'what colleagues say about Kemi'],
+  ['Contact', 'contact', 'the contact form for hiring, freelance projects and questions'],
+]
+
+function buildSiteMap() {
+  const sections = SITE_SECTIONS.map(
+    ([name, id, about]) => `- ${name}: ${SITE_URL}/#${id} (${about})`,
+  ).join('\n')
+  return [
+    'The portfolio is a single scrolling page. These links jump straight to a section:',
+    sections,
+    `- All ebooks, with filters and details: ${SITE_URL}/ebooks`,
+    `- Case studies open on their own pages, e.g. ${SITE_URL}/case-study/<id> (links are listed under each project).`,
+  ].join('\n')
+}
+
 function buildProfile(data) {
   const { portfolioItems, workExperience, skillGroups, services, socialLinks, contactInfo, testimonials, writingData, blogLink, openSourceData } = data
 
@@ -94,6 +120,7 @@ function buildProfile(data) {
   return [
     `# ${OWNER} — Portfolio Knowledge Base`,
     `This document describes ${OWNER}, a Software Engineer, and is the source of truth for the portfolio assistant at ${SITE_URL}.`,
+    section('Website sections and navigation', buildSiteMap()),
     section('Contact and links', contactLines),
     section('Work experience', experience),
     section('Skills', skills),
@@ -114,15 +141,18 @@ function buildCaseStudy(cs) {
   ].join('\n\n')
 }
 
-const SYSTEM_PROMPT = `You are the portfolio assistant for ${OWNER}, a Software Engineer. You answer visitors' questions about ${OWNER}'s experience, skills, projects, case studies, services, open-source work, and writing.
+const SYSTEM_PROMPT = `You are the portfolio assistant for ${OWNER}, a Software Engineer. You help visitors (recruiters, clients and developers) learn about ${OWNER}'s experience, skills, projects, case studies, services, open-source work and writing.
 
-Rules:
-- Answer ONLY with information found in the provided knowledge base. Do not use outside knowledge.
-- Never invent or estimate projects, employers, dates, metrics, skills, pricing, rates, availability, location details, or contact details.
-- If the knowledge base does not contain the answer, reply exactly: "I don't have that information. Please use the contact form at ${SITE_URL}/#contact to ask ${OWNER.split(' ')[0]} directly."
+How to answer:
+- Base every answer on the knowledge base below. You may reason from it: when a visitor asks "can she do X?", look through her skills, services, projects and experience, and answer yes when they support it, naming the specific skills, services or projects that back it up (for example, HTML5, CSS3, React and Next.js are listed skills, and Full-Stack Development is a service, so building a website is within scope).
+- If only part of the request is covered, say what is covered and what is not, instead of refusing.
+- Never invent or estimate employers, dates, metrics, projects, skills, prices, rates, availability, timelines or contact details that are not in the knowledge base.
+- Navigation: if a visitor asks to be taken somewhere, to scroll, to see or open a section, or says things like "take me there", reply with one short sentence and the matching link from "Website sections and navigation" (or the project link you just discussed). Match loosely and forgive typos, so "porttfolio sction" means the Work / Portfolio section.
+- Pricing, rates, availability, timelines and project-specific commitments are agreed case by case: say so and point to the contact form at ${SITE_URL}/#contact.
+- Only if the knowledge base has nothing relevant at all, reply: "I don't have that information. Please use the contact form at ${SITE_URL}/#contact to ask ${OWNER.split(' ')[0]} directly."
 - Politely decline requests unrelated to ${OWNER}'s portfolio (general coding help, other people, current events) and redirect to what you can answer.
-- Refer to ${OWNER.split(' ')[0]} in the third person. Keep answers concise (under 120 words) and professional.
-- When relevant, include the matching live site, source code, or case study link from the knowledge base.
+- Refer to ${OWNER.split(' ')[0]} in the third person. Be concise (under 120 words), warm and professional.
+- When relevant, include the matching live site, source code or case study link, written as a plain URL.
 `
 
 const server = await createServer({

@@ -5,6 +5,7 @@ import SEO from './components/SEO/SEO'
 import LoadingSkeleton from './components/UI/LoadingSkeleton/LoadingSkeleton'
 import ScrollProgress from './components/UI/ScrollProgress/ScrollProgress'
 import ChatWidget from './components/ChatWidget/ChatWidget'
+import Splash from './components/Splash/Splash'
 
 // Lazy load components for code splitting
 const Layout = lazy(() => import('./components/Layout'))
@@ -16,6 +17,7 @@ const NotFound = lazy(() => import('./components/NotFound/NotFound'))
 function App() {
   return (
     <>
+      <Splash />
       <SEO />
       <ScrollProgress />
       <Suspense fallback={
@@ -25,7 +27,7 @@ function App() {
           alignItems: 'center', 
           justifyContent: 'center' 
         }}>
-          <LoadingSkeleton width="200px" height="200px" borderRadius="50%" />
+          <LoadingSkeleton width="320px" height="170px" />
         </div>
       }>
         <Routes>

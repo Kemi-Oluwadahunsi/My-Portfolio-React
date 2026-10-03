@@ -172,7 +172,7 @@
   .listContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
+    gap: 1.25rem;
     max-width: 1400px;
     margin: 0 auto;
     padding: 2rem;
@@ -181,7 +181,7 @@
 
     @include tablet {
       grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
+      gap: 1.25rem;
       padding: 1.5rem;
     }
 
@@ -205,23 +205,33 @@
       }
     }
 
-    @media screen and (min-width: 769px) and (max-width: 1170px) {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+    // iPad-sized screens: two columns (three squeeze the cards and overflow).
+    @media screen and (min-width: 481px) and (max-width: 1100px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    @media screen and (min-width: 1101px) and (max-width: 1250px) {
+      gap: 1rem;
       padding: 1rem;
     }
 
     .service-card-wrapper {
       perspective: 1000px;
-      
+      display: flex;
+
       .service-glow-wrapper {
         width: 100%;
-        height: 100%;
+        height: auto;
       }
     }
 
       .service-box {
-        height: 20rem;
+        // Grows with its text; the grid row keeps neighbouring cards the same height.
+        height: auto;
+        flex: 1;
+        min-height: 13rem;
         display: flex;
         // border: 1px solid #bce0fb;
         flex-direction: column;
@@ -232,8 +242,8 @@
         transition: all 0.3s ease;
 
         @include tablet {
-          width: 20rem;
-          height: 18rem;
+          width: 100%;
+          height: auto;
         }
 
         @include mobile {
@@ -417,5 +427,27 @@
         margin-top: 0.75rem;
       }
     }
+  }
+}
+
+.services-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+
+  button {
+    padding: 0.8rem 1.8rem;
+    font: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-bgPrimary, #061829);
+    background: var(--color-primary, #bce0fb);
+    border: 0;
+    border-radius: 999px;
+    box-shadow: 0 8px 28px rgba(9, 90, 155, 0.4);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+
+    &:hover { background: #fff; transform: translateY(-2px); }
   }
 }
