@@ -13,6 +13,26 @@ const SUGGESTIONS = [
 
 const SITE_HOSTS = new Set(['kemi-oluwadahunsi.vercel.app'])
 
+// Answered locally (instantly, no model call) when someone asks to be taken to a section.
+const NAV_VERB = /\b(take|bring|scroll|go|jump|navigate|show|open|send|lead|head|move)\b|\bsee\b.*\bsection\b/i
+const NAV_TARGETS = [
+  { id: 'experience', label: 'Experience', words: /experien|work history|career|timeline/ },
+  { id: 'portfolioSection', label: 'Work', words: /port+f|projec|work section|\bwork\b/ },
+  { id: 'services', label: 'Expertise', words: /servic|expert|offer/ },
+  { id: 'architecture', label: 'Architecture', words: /archit/ },
+  { id: 'skills', label: 'Skills', words: /skill|tech stack|\bstack\b/ },
+  { id: 'writing', label: 'Writing', words: /writ|ebook|book|teach|article/ },
+  { id: 'opensource', label: 'Open Source', words: /open.?source|\boss\b|librar/ },
+  { id: 'testimonials', label: 'Testimonials', words: /testimon|review|recommend/ },
+  { id: 'contact', label: 'Contact', words: /contact|hire|reach|message|get in touch/ },
+  { id: 'main-content', label: 'Home', words: /\bhome\b|\btop\b|beginning|start of/ },
+]
+
+const findNavTarget = (text) => {
+  if (!NAV_VERB.test(text)) return null
+  return NAV_TARGETS.find((t) => t.words.test(text.toLowerCase())) || null
+}
+
 const GREETING = "Hi, I'm Kemi's portfolio assistant. Ask me about her work, projects, skills or writing."
 const FALLBACK_ERROR = "Sorry, I couldn't reach the assistant. Please try again, or use the contact form."
 // Matches [label](url) first, then bare URLs.
@@ -119,8 +139,16 @@ export default function ChatWidget() {
     if (!content || loading) return
 
     const history = [...messages, { role: 'user', content }]
-    setMessages([...history, { role: 'assistant', content: '' }])
     setInput('')
+
+    const target = findNavTarget(content)
+    if (target) {
+      setMessages([...history, { role: 'assistant', content: `Taking you to the ${target.label} section.` }])
+      goInternal({ path: '/', search: '', hash: `#${target.id}` })
+      return
+    }
+
+    setMessages([...history, { role: 'assistant', content: '' }])
     setLoading(true)
 
     const controller = new AbortController()
@@ -185,7 +213,7 @@ export default function ChatWidget() {
             <header className="chat-header">
               <div>
                 <strong>Ask about Kemi</strong>
-                <span>AI assistant · answers from her portfolio</span>
+                <span>Welcome to Kemi&apos;s Corner</span>
               </div>
               <button type="button" className="chat-icon-btn" onClick={close} aria-label="Close chat">
                 <X size={18} />

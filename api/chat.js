@@ -28,8 +28,11 @@ const rateLimited = (ip) => {
   return recent.length > RATE_LIMIT.max
 }
 
+// Cached in production; reloaded per request locally so rebuilt knowledge is picked up without a restart.
+const CACHE_KNOWLEDGE = Boolean(process.env.VERCEL)
 let knowledgePromise
 const loadKnowledge = () => {
+  if (!CACHE_KNOWLEDGE) knowledgePromise = undefined
   knowledgePromise ??= (async () => {
     const dir = path.join(process.cwd(), 'chatbot-knowledge')
     const files = (await readdir(dir)).filter((f) => f !== 'system-prompt.txt').sort()
