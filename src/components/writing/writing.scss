@@ -18,7 +18,7 @@
   h1 {
     font-size: 3.5rem;
     text-align: center;
-    color: var(--color-textPrimary, #ffffff);
+    color: var(--color-primary, #bce0fb);
     margin-bottom: 0.5rem;
     text-shadow: 0 0 20px rgba(188, 224, 251, 0.3);
 
@@ -105,7 +105,7 @@
 
   .ebook-title {
     font-size: 1.15rem;
-    color: var(--color-textPrimary, #ffffff);
+    color: var(--color-primary, #bce0fb);
     font-weight: 700;
     margin: 0;
     line-height: 1.35;
@@ -421,6 +421,7 @@
     font-size: 0.9rem;
     font-weight: 600;
     line-height: 1.3;
+    color: var(--color-primary, #bce0fb);
     min-height: 2.6em; // always reserve two lines so every card lines up
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -476,7 +477,7 @@
     padding-right: 2.5rem;
     font-size: 1.2rem;
     line-height: 1.3;
-    color: var(--color-textPrimary, #fff);
+    color: var(--color-primary, #bce0fb);
   }
 
   p {
