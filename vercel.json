@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
+  "buildCommand": "npm run chatbot:knowledge && npm run build",
   "outputDirectory": "dist",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/:path*",
+      "source": "/((?!api/).*)",
       "destination": "/index.html"
     }
   ],
@@ -44,5 +44,11 @@
     }
   ],
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "functions": {
+    "api/chat.js": {
+      "includeFiles": "chatbot-knowledge/**",
+      "maxDuration": 30
+    }
+  }
 }
