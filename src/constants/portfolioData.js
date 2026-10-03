@@ -737,6 +737,8 @@ export const openSourceData = {
         npm: 'https://www.npmjs.com/package/readyui-react',
         storybook:
           'https://kemi-oluwadahunsi.github.io/ReadyToUse-React-Components/',
+        documentation:
+          'https://readyui-docs.vercel.com',
       },
       tags: ['React', 'TypeScript', 'Component Library', 'Storybook', 'npm'],
       status: 'active',
@@ -752,6 +754,8 @@ export const openSourceData = {
         npm: 'https://www.npmjs.com/package/viskit',
         storybook:
           'https://kemi-oluwadahunsi.github.io/Viskit-Charting-Library/',
+          documentation:
+          '#',
       },
       tags: ['React', 'TypeScript', 'Charting Library', 'Storybook', 'npm'],
       status: 'active',

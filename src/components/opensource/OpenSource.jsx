@@ -82,6 +82,9 @@ const OpenSource = () => {
                 <a href={project.links.storybook} target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon icon={faBook} /> Storybook
                 </a>
+                <a href={project.links.documentation} target="_blank" rel="noopener noreferrer">
+                  <FontAwesomeIcon icon={faBook} /> Documentation
+                </a>
               </div>
             </motion.div>
           ))}
