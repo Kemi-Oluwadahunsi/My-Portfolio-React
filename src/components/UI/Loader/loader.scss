@@ -1,0 +1,153 @@
+$cyan: #38d4ff;
+$green: #6ee755;
+$mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', ui-monospace, Menlo, monospace;
+
+.loader-box {
+  width: 100%;
+  height: 100%;
+  // Flex (not grid) so the drawing's 100% height resolves against this box and scales to fit it,
+  // instead of growing to its natural size and spilling out.
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  container-type: inline-size;
+}
+
+.loader-box > svg {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: visible;
+}
+
+// ─── Signature stroke ───
+.sig-ghost path {
+  fill: none;
+  stroke: rgba(188, 224, 251, 0.1);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sig-ink {
+  filter: drop-shadow(0 0 5px rgba(56, 212, 255, 0.65));
+
+  path {
+    fill: none;
+    stroke: url(#sigGradient);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+  }
+}
+
+.sig-pen {
+  fill: #fff;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px $cyan) drop-shadow(0 0 12px $green);
+}
+
+.sig-name {
+  font-family: $mono;
+  font-size: 11px;
+  letter-spacing: 0.42em;
+  fill: #3fabf1;
+  opacity: 0;
+}
+
+// ─── Layer stack ───
+.slab {
+  opacity: 0;
+  transform-box: fill-box;
+  animation: slabDrop 4.4s cubic-bezier(0.3, 0.8, 0.3, 1) infinite both;
+
+  text {
+    font-family: $mono;
+    font-size: 7px;
+    letter-spacing: 0.1em;
+    fill: #7f9db3;
+  }
+
+  line {
+    stroke: rgba(188, 224, 251, 0.2);
+    stroke-width: 0.8;
+    stroke-dasharray: 2 2;
+  }
+}
+
+@keyframes slabDrop {
+  0% { opacity: 0; transform: translateY(-80px); }
+  18% { opacity: 1; transform: translateY(5px); }
+  24% { transform: translateY(-2px); }
+  30%, 78% { opacity: 1; transform: translateY(0); }
+  92%, 100% { opacity: 0; transform: translateY(-34px); }
+}
+
+// ─── Build log ───
+// The site sets font-family on every element (`* { ... }`), so the font has to be applied to the
+// children directly; inheriting it from the container is overridden.
+.log-loader,
+.log-loader * {
+  font-family: $mono;
+}
+
+.log-loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.45em;
+  width: 100%;
+  padding: 0 6%;
+  font-family: $mono;
+  font-size: clamp(0.62rem, 4.2cqw, 0.9rem);
+  color: #e6f1fb;
+}
+
+.log-line {
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+
+  &.on { opacity: 1; transform: none; }
+  .p { color: #9b8cff; }
+  .ok { color: $green; }
+  .go { color: $cyan; }
+  .dim { color: #7f9db3; }
+  b { font-weight: 500; }
+}
+
+.caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.12em;
+  background: #bce0fb;
+  animation: caretBlink 1s steps(2) infinite;
+}
+
+@keyframes caretBlink {
+  50% { opacity: 0; }
+}
+
+.log-bar {
+  height: 4px;
+  margin-top: 0.7em;
+  overflow: hidden;
+  border-radius: 4px;
+  background: rgba(188, 224, 251, 0.12);
+
+  i {
+    display: block;
+    height: 100%;
+    transform-origin: left;
+    transition: transform 0.7s cubic-bezier(0.4, 0.1, 0.3, 1);
+    background: linear-gradient(90deg, $cyan, $green);
+    box-shadow: 0 0 10px $cyan;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slab { animation: none; opacity: 1; }
+  .caret { animation: none; }
+}

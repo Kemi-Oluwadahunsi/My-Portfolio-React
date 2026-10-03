@@ -1,0 +1,19 @@
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 10100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, #0a2440 0%, #040e1a 70%);
+}
+
+// The loader sizes itself from its width, so it can never grow taller than its box and overlap anything.
+.splash-graph {
+  width: min(400px, 78vw);
+  aspect-ratio: 370 / 250; // matches the drawings' viewBox
+
+  &.buildLog {
+    aspect-ratio: 16 / 10;
+  }
+}
