@@ -80,7 +80,7 @@ const Layout = () => {
 
         <GlowDivider />
 
-        <section className="servicesSection snap-section" id="services" aria-label="Areas of Expertise">
+        <section className="servicesSection snap-section" id="services" aria-label="What I Can Build for You">
           <ScrollReveal direction="up">
             <Suspense fallback={<SectionFallback />}>
               <Services />
