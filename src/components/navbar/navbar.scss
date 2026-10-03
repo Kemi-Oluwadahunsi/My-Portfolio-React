@@ -104,7 +104,10 @@
       right: 0;
       left: 30%;
       width: 70vw;
+      // 100vh is taller than the visible area on phones (browser toolbars), which
+      // pushed the social icons off-screen; dvh tracks what is actually visible.
       height: 100vh;
+      height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -212,6 +215,7 @@
         display: flex;
         width: 100%;
         padding: 0.75rem 1.5rem;
+        padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
         flex-shrink: 0;
         border-top: 1px solid rgba(188, 224, 251, 0.1);
 
