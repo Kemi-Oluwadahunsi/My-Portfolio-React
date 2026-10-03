@@ -1,12 +1,37 @@
-import { defineConfig } from 'vite'
+import process from 'node:process'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import { VitePWA } from 'vite-plugin-pwa'
 import { visualizer } from 'rollup-plugin-visualizer'
+
+// Serves /api/chat from the Vite dev server so the chatbot works locally.
+const devApi = () => ({
+  name: 'dev-api',
+  apply: 'serve',
+  config(_, { mode }) {
+    for (const [key, value] of Object.entries(loadEnv(mode, process.cwd(), ''))) {
+      if (key.startsWith('OPENAI_')) process.env[key] ??= value
+    }
+  },
+  configureServer(server) {
+    server.middlewares.use('/api/chat', async (req, res) => {
+      try {
+        const { default: handler } = await server.ssrLoadModule('/api/chat.js')
+        await handler(req, res)
+      } catch (err) {
+        server.config.logger.error(String(err))
+        if (!res.headersSent) res.statusCode = 500
+        res.end()
+      }
+    })
+  },
+})
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    devApi(),
     VitePWA({
       registerType: 'prompt',
       includeAssets: ['favicon.png', 'robots.txt', 'sitemap.xml', 'images/*.webp'],

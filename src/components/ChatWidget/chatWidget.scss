@@ -1,0 +1,199 @@
+@import '../../App.scss';
+
+.chat-launcher {
+  position: fixed;
+  right: 2rem;
+  bottom: 6rem;
+  z-index: 10020;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 3rem;
+  padding: 0 1.1rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-bgPrimary, #061829);
+  background: var(--color-primary, #bce0fb);
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 8px 28px rgba(9, 90, 155, 0.45);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+
+  &:hover { background: #fff; transform: translateY(-2px); }
+
+  @include mobile { right: 1rem; bottom: 4.5rem; height: 2.75rem; }
+}
+
+.chat-panel {
+  position: fixed;
+  right: 2rem;
+  bottom: 9.5rem;
+  z-index: 10020;
+  display: flex;
+  flex-direction: column;
+  width: min(380px, calc(100vw - 2rem));
+  height: min(560px, calc(100dvh - 11rem));
+  overflow: hidden;
+  border-radius: 1.1rem;
+  background: linear-gradient(160deg, rgba(10, 31, 51, 0.98), rgba(6, 24, 41, 0.98));
+  border: 1px solid rgba(188, 224, 251, 0.25);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+
+  @include mobile {
+    right: 0.5rem;
+    left: 0.5rem;
+    bottom: 8rem;
+    width: auto;
+    height: min(520px, calc(100dvh - 9rem));
+  }
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(188, 224, 251, 0.12);
+
+  strong { display: block; font-size: 0.95rem; color: var(--color-textPrimary, #fff); }
+  span { font-size: 0.72rem; color: var(--color-textMuted, #6b8fa3); }
+}
+
+.chat-icon-btn {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--color-primary, #bce0fb);
+  background: rgba(188, 224, 251, 0.06);
+  border: 1px solid rgba(188, 224, 251, 0.2);
+  border-radius: 50%;
+  box-shadow: none;
+  cursor: pointer;
+
+  &:hover { background: rgba(188, 224, 251, 0.16); }
+}
+
+.chat-log {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.chat-msg {
+  max-width: 88%;
+  margin: 0;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  border-radius: 1rem;
+
+  a { color: var(--color-primary, #bce0fb); text-decoration: underline; text-underline-offset: 3px; }
+
+  &.assistant {
+    align-self: flex-start;
+    color: var(--color-textPrimary, #fff);
+    background: rgba(188, 224, 251, 0.08);
+    border-bottom-left-radius: 0.3rem;
+  }
+
+  &.user {
+    align-self: flex-end;
+    color: var(--color-bgPrimary, #061829);
+    background: var(--color-primary, #bce0fb);
+    border-bottom-right-radius: 0.3rem;
+  }
+}
+
+.chat-typing {
+  display: inline-flex;
+  gap: 0.3rem;
+  padding: 0.2rem 0;
+
+  i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-textTertiary, #8bc5f0);
+    animation: chatBounce 1s infinite ease-in-out;
+
+    &:nth-child(2) { animation-delay: 0.15s; }
+    &:nth-child(3) { animation-delay: 0.3s; }
+  }
+}
+
+@keyframes chatBounce {
+  0%, 80%, 100% { opacity: 0.35; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(-3px); }
+}
+
+.chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.25rem;
+
+  button {
+    padding: 0.4rem 0.8rem;
+    font: inherit;
+    font-size: 0.8rem;
+    text-align: left;
+    color: var(--color-primary, #bce0fb);
+    background: rgba(188, 224, 251, 0.06);
+    border: 1px solid rgba(188, 224, 251, 0.3);
+    border-radius: 999px;
+    box-shadow: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover { background: rgba(188, 224, 251, 0.16); }
+  }
+}
+
+.chat-form {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-top: 1px solid rgba(188, 224, 251, 0.12);
+
+  input {
+    flex: 1;
+    min-width: 0;
+    height: 2.5rem;
+    padding: 0 0.9rem;
+    font: inherit;
+    font-size: 16px; // stops iOS zooming into the field
+    color: var(--color-textPrimary, #fff);
+    background: rgba(188, 224, 251, 0.06);
+    border: 1px solid rgba(188, 224, 251, 0.2);
+    border-radius: 999px;
+    outline: none;
+
+    &:focus { border-color: var(--color-primary, #bce0fb); }
+    &::placeholder { color: var(--color-textMuted, #6b8fa3); }
+  }
+}
+
+.chat-send {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-bgPrimary, #061829);
+  background: var(--color-primary, #bce0fb);
+  border: 0;
+  border-radius: 50%;
+  box-shadow: none;
+  cursor: pointer;
+
+  &:disabled { opacity: 0.4; cursor: not-allowed; }
+}
