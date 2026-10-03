@@ -10,6 +10,8 @@
 
   .nav-bar {
     height: 100%;
+    display: flex;
+    flex-direction: column;
 
     .logo {
       display: block;
@@ -38,11 +40,17 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      // Fills the space between the logo and the social icons (instead of floating over
+      // both), centres its icons there, and scrolls if a very short screen can't fit them all.
+      flex: 1 1 auto;
+      min-height: 0;
+      justify-content: center;
+      overflow-y: auto;
+      scrollbar-width: none;
       width: 100%;
       gap: 0.15rem;
+
+      &::-webkit-scrollbar { display: none; }
 
       // Every item spans the full sidebar width and centres its icon in an
       // identical fixed-size box, so icons of different widths line up.
@@ -212,8 +220,9 @@
     }
 
     ul {
-      position: absolute;
-      bottom: 0.5px;
+      position: static;
+      flex-shrink: 0;
+      padding-bottom: 0.25rem;
       width: 100%;
       height: fit-content;
       display: block;
@@ -244,4 +253,14 @@
     display: none;
     height: auto;
   }
+}
+
+// Short desktop/tablet-landscape windows: tighten the nav, then drop the social row if still too tight.
+@media (min-width: 901px) and (max-height: 700px) {
+  .general-sidebar .nav-bar nav a { height: 1.8em; }
+  .general-sidebar .nav-bar .logo img { width: 4rem; }
+}
+
+@media (min-width: 901px) and (max-height: 560px) {
+  .general-sidebar .nav-bar ul { display: none; }
 }

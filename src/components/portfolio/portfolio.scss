@@ -7,12 +7,6 @@
   max-width: 1200px;
   margin: 0 auto;
 
-  // The fixed 5rem sidebar overlays the page from 901px up, so keep the
-  // centred content clear of it instead of letting it slide underneath.
-  @media screen and (min-width: 901px) {
-    max-width: min(1200px, calc(100vw - 10rem));
-  }
-
   @include tablet {
     padding: 3rem 1rem;
   }

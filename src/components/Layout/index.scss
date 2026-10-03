@@ -46,6 +46,15 @@
     scroll-snap-align: start;
 }
 
+// The fixed 5rem sidebar overlays the page from 901px up. On screens up to ~1500px the
+// centred section content is wide enough to run underneath it, so every section below the
+// hero reserves the sidebar's width. (The hero positions itself with its own margin.)
+@media (min-width: 901px) and (max-width: 1500px) {
+    .scroll-container > .snap-section:not(#main-content) {
+        padding-left: 5rem;
+    }
+}
+
 .page {
     width: 100%;
     height: 100%;
