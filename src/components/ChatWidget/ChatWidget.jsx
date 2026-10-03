@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { MessageCircle, Send, X } from 'lucide-react'
 import './chatWidget.scss'
@@ -10,27 +11,59 @@ const SUGGESTIONS = [
   'How can I contact Kemi?',
 ]
 
+const SITE_HOSTS = new Set(['kemi-oluwadahunsi.vercel.app'])
+
 const GREETING = "Hi, I'm Kemi's portfolio assistant. Ask me about her work, projects, skills or writing."
 const FALLBACK_ERROR = "Sorry, I couldn't reach the assistant. Please try again, or use the contact form."
-const URL_PATTERN = /(https?:\/\/[^\s]+)/g
+// Matches [label](url) first, then bare URLs.
+const LINK_PATTERN = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)|(https?:\/\/[^\s]+)/g
 
-// Turn bare URLs in a plain-text answer into links; keep trailing punctuation outside.
-const Linkified = ({ text }) =>
-  text.split(URL_PATTERN).map((part, i) => {
-    if (i % 2 === 0) return part
-    const url = part.replace(/[.,;:!?)]+$/, '')
-    return (
-      <span key={i}>
-        <a href={url} target="_blank" rel="noopener noreferrer">
-          {url}
-        </a>
-        {part.slice(url.length)}
-      </span>
+const toInternal = (href) => {
+  try {
+    const url = new URL(href)
+    const sameSite = url.host === window.location.host || SITE_HOSTS.has(url.host)
+    return sameSite ? { path: url.pathname, search: url.search, hash: url.hash } : null
+  } catch {
+    return null
+  }
+}
+
+// Turns links in a plain-text answer into anchors; trailing punctuation stays outside the link.
+// Links to this site are handled in-app so they scroll or route without a page reload.
+const Linkified = ({ text, onInternal }) => {
+  const nodes = []
+  let last = 0
+  for (const match of text.matchAll(LINK_PATTERN)) {
+    const [full, label, mdUrl, bareUrl] = match
+    if (match.index > last) nodes.push(text.slice(last, match.index))
+    const raw = mdUrl || bareUrl
+    const url = mdUrl ? raw : raw.replace(/[.,;:!?)]+$/, '')
+    const internal = toInternal(url)
+    const handleClick = (e) => {
+      if (!internal || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return
+      e.preventDefault()
+      onInternal(internal)
+    }
+    nodes.push(
+      <a
+        key={match.index}
+        href={url}
+        onClick={handleClick}
+        {...(internal ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+      >
+        {label || url}
+      </a>,
     )
-  })
+    last = match.index + (mdUrl ? full.length : url.length)
+  }
+  if (last < text.length) nodes.push(text.slice(last))
+  return nodes
+}
 
 export default function ChatWidget() {
   const reduced = useReducedMotion()
+  const navigate = useNavigate()
+  const location = useLocation()
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
@@ -62,6 +95,24 @@ export default function ChatWidget() {
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [open, close])
+
+  const goInternal = useCallback(
+    ({ path, search, hash }) => {
+      // Phones: the panel covers the page, so step aside to reveal the section.
+      if (window.innerWidth <= 768) setOpen(false)
+
+      const id = hash.replace('#', '')
+      const onHome = location.pathname === '/' && path === '/'
+      const target = id && onHome ? document.getElementById(id) : null
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        window.history.replaceState(null, '', `/${hash}`)
+      } else {
+        navigate({ pathname: path, search, hash })
+      }
+    },
+    [location.pathname, navigate],
+  )
 
   const send = async (raw) => {
     const content = raw.trim()
@@ -152,7 +203,7 @@ export default function ChatWidget() {
                       <i />
                     </span>
                   ) : (
-                    <Linkified text={m.content} />
+                    <Linkified text={m.content} onInternal={goInternal} />
                   )}
                 </p>
               ))}
