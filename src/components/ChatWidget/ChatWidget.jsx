@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { MessageCircle, Send, X } from 'lucide-react'
+import { MessageCircle, Send, Trash2, X } from 'lucide-react'
 import './chatWidget.scss'
 
 const SUGGESTIONS = [
@@ -10,6 +10,36 @@ const SUGGESTIONS = [
   'What services does Kemi offer?',
   'How can I contact Kemi?',
 ]
+
+const STORAGE_KEY = 'kemi-chat-history'
+const CHAT_TTL_MS = 2 * 24 * 60 * 60 * 1000 // chats expire two days after the last message
+const MAX_STORED_MESSAGES = 40
+
+// Reads the saved conversation, dropping it if it is expired, corrupt or unreadable.
+const loadHistory = () => {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY))
+    if (!saved || !Array.isArray(saved.messages) || Date.now() - saved.updatedAt > CHAT_TTL_MS) {
+      localStorage.removeItem(STORAGE_KEY)
+      return []
+    }
+    return saved.messages.filter(
+      (m) => (m?.role === 'user' || m?.role === 'assistant') && typeof m.content === 'string' && m.content,
+    )
+  } catch {
+    return []
+  }
+}
+
+const saveHistory = (messages) => {
+  try {
+    if (!messages.length) return localStorage.removeItem(STORAGE_KEY)
+    const stored = messages.filter((m) => m.content).slice(-MAX_STORED_MESSAGES)
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ updatedAt: Date.now(), messages: stored }))
+  } catch {
+    /* storage full or blocked: the chat still works, it just won't persist */
+  }
+}
 
 const SITE_HOSTS = new Set(['kemi-oluwadahunsi.vercel.app'])
 
@@ -85,13 +115,14 @@ export default function ChatWidget() {
   const navigate = useNavigate()
   const location = useLocation()
   const [open, setOpen] = useState(false)
-  const [messages, setMessages] = useState([])
+  const [messages, setMessages] = useState(loadHistory)
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const launcherRef = useRef(null)
   const inputRef = useRef(null)
   const logRef = useRef(null)
   const abortRef = useRef(null)
+  const unsavedRef = useRef(false)
 
   useEffect(() => {
     if (open) inputRef.current?.focus()
@@ -104,6 +135,14 @@ export default function ChatWidget() {
 
   useEffect(() => () => abortRef.current?.abort(), [])
 
+  // Save once an answer has finished streaming (not on every chunk), and only after a real
+  // exchange, so merely opening the page doesn't extend the two-day expiry.
+  useEffect(() => {
+    if (loading || !unsavedRef.current) return
+    unsavedRef.current = false
+    saveHistory(messages)
+  }, [messages, loading])
+
   const close = useCallback(() => {
     setOpen(false)
     launcherRef.current?.focus()
@@ -115,6 +154,15 @@ export default function ChatWidget() {
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [open, close])
+
+  const clearChat = () => {
+    abortRef.current?.abort()
+    unsavedRef.current = false
+    setLoading(false)
+    setMessages([])
+    saveHistory([])
+    inputRef.current?.focus()
+  }
 
   const goInternal = useCallback(
     ({ path, search, hash }) => {
@@ -139,6 +187,7 @@ export default function ChatWidget() {
     if (!content || loading) return
 
     const history = [...messages, { role: 'user', content }]
+    unsavedRef.current = true
     setInput('')
 
     const target = findNavTarget(content)
@@ -155,6 +204,7 @@ export default function ChatWidget() {
     abortRef.current = controller
 
     const setAnswer = (text) =>
+      !controller.signal.aborted &&
       setMessages((prev) => [...prev.slice(0, -1), { role: 'assistant', content: text }])
 
     try {
@@ -215,9 +265,16 @@ export default function ChatWidget() {
                 <strong>Ask about Kemi</strong>
                 <span>Welcome to Kemi&apos;s Corner</span>
               </div>
-              <button type="button" className="chat-icon-btn" onClick={close} aria-label="Close chat">
-                <X size={18} />
-              </button>
+              <div className="chat-header-actions">
+                {messages.length > 0 && (
+                  <button type="button" className="chat-clear" onClick={clearChat}>
+                    <Trash2 size={14} aria-hidden="true" /> Clear chat
+                  </button>
+                )}
+                <button type="button" className="chat-icon-btn" onClick={close} aria-label="Close chat">
+                  <X size={18} />
+                </button>
+              </div>
             </header>
 
             <div className="chat-log" ref={logRef} role="log" aria-live="polite">
