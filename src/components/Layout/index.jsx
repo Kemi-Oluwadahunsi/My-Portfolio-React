@@ -1,5 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { scroller } from 'react-scroll'
+import { useTrackActiveSection } from '../../hooks/useActiveSection'
 import Sidebar from '../Sidebar/sidebar'
 import './index.scss'
 import Cursor from '../cursor/Cursor'
@@ -28,6 +30,9 @@ const SectionFallback = ({ height = '600px' }) => (
 
 const Layout = () => {
   const location = useLocation()
+  const navigate = useNavigate()
+
+  useTrackActiveSection()
 
   useEffect(() => {
     if (!location.hash) return
@@ -37,7 +42,11 @@ const Layout = () => {
       const target = document.getElementById(targetId)
       if (!target) return false
 
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      // Same scroller the nav links use, so the nav's active item follows exactly as it does on a click.
+      scroller.scrollTo(targetId, { containerId: 'scroll-container', smooth: true, duration: 700, offset: -100 })
+      // The hash has done its job. Leaving it in the address bar made a later refresh jump back to
+      // this section, while the nav links never updated it, so drop it (replace, no history entry).
+      navigate({ pathname: location.pathname, search: location.search, hash: '' }, { replace: true })
       return true
     }
 
@@ -54,7 +63,7 @@ const Layout = () => {
     }, 120)
 
     return () => window.clearInterval(interval)
-  }, [location.hash])
+  }, [location.hash, location.pathname, location.search, navigate])
 
   return (
     <div className="main-layout">

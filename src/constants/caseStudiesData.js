@@ -82,10 +82,9 @@ export const caseStudies = {
         description:
           'Each product supports multiple size tiers (100ml, 150ml, 200ml) with independent pricing. Customers select size at point of sale, cart correctly reflects per-variant pricing and SKU tracking. Admin dashboard allows variant inventory management and easy price adjustments without affecting other sizes. Example: Botanic Hydrating Hair Growth Butter ranges from 19–35 MYR across sizes.',
         images: [
-          '/images/case-studies/rtb-product-variants.webp',
-          '/images/case-studies/rtb-product-size-selector.webp',
-          '/images/case-studies/rtb-admin-variant-management.webp',
-          '/images/case-studies/rtb-product-pricing-tiers.webp',
+          '/images/case-studies/rtbloom/rtb-product-variants.webp',
+          '/images/case-studies/rtbloom/rtb-admin-variant-management.webp',
+          '/images/case-studies/rtbloom/rtb-product-pricing-tiers.webp',
         ],
       },
       {
@@ -93,10 +92,8 @@ export const caseStudies = {
         description:
           'Customers can compare up to 3 products side-by-side with detailed ingredient breakdowns, highlighting shared botanicals, key benefits, and skin-type compatibility. Engine queries Firestore ingredients collection and denormalizes product-ingredient relationships for fast rendering. Interactive badges show ingredient sources (Kokum Butter, Rosemary Oil, etc.) and their benefits (hydration, growth stimulation).',
         images: [
-          '/images/case-studies/rtb-comparison.webp',
-          '/images/case-studies/rtb-comparison-table.webp',
-          '/images/case-studies/rtb-ingredient-badges.webp',
-          '/images/case-studies/rtb-compatibility-view.webp',
+          '/images/case-studies/rtbloom/rtb-comparison.webp',
+          '/images/case-studies/rtbloom/rtb-comparison-table.webp',
         ],
       },
       {
@@ -104,10 +101,11 @@ export const caseStudies = {
         description:
           'Global payment processing via Stripe with support for 10+ currencies (MYR, USD, EUR, GBP, AUD, SGD, JPY, INR, CNY, CAD, NGN). Real-time exchange rates preloaded on app init. Checkout session created server-side via Vercel function with tax calculation (5%), shipping, and discount support. Webhook handler persists order to Firestore on payment success, triggering order confirmation emails via EmailJS.',
         images: [
-          '/images/case-studies/rtb-checkout.webp',
-          '/images/case-studies/rtb-currency-selector.webp',
-          '/images/case-studies/rtb-stripe-checkout-modal.webp',
-          '/images/case-studies/rtb-payment-success.webp',
+          '/images/case-studies/rtbloom/rtb-checkout.webp',
+          '/images/case-studies/rtbloom/rtb-cart-half.webp',
+          '/images/case-studies/rtbloom/rtb-cart-full.webp',
+          '/images/case-studies/rtbloom/rtb-currency-selector.webp',
+          '/images/case-studies/rtbloom/rtb-payment-success.webp',
         ],
       },
       {
@@ -115,11 +113,10 @@ export const caseStudies = {
         description:
           'Comprehensive admin panel (password-protected) with real-time dashboards for order status, revenue charts (Recharts), low-stock alerts, and user analytics. Full CRUD for products, categories, SKUs, and pricing. Image upload integration with Cloudinary batch processing. Order fulfillment workflow with status tracking (pending, processing, shipped, delivered). User management with order history and preference tracking.',
         images: [
-          '/images/case-studies/rtb-admin.webp',
-          '/images/case-studies/rtb-admin-dashboard.webp',
-          '/images/case-studies/rtb-admin-orders.webp',
-          '/images/case-studies/rtb-admin-analytics.webp',
-          '/images/case-studies/rtb-admin-inventory.webp',
+          '/images/case-studies/rtbloom/rtb-admin.webp',
+          '/images/case-studies/rtbloom/rtb-admin-orders.webp',
+          '/images/case-studies/rtbloom/rtb-admin-analytics.webp',
+          '/images/case-studies/rtbloom/rtb-admin-inventory.webp',
         ],
       },
       {
@@ -127,10 +124,8 @@ export const caseStudies = {
         description:
           "Dual-mode cart system: unauthenticated users' carts persist to localStorage + Firestore with sessionId; authenticated users sync carts via userId with real-time onSnapshot listeners. Customers can abandon cart, log in later, and resume checkout. Firebase security rules validate user ownership before reads/writes, preventing unauthorized cart access.",
         images: [
-          '/images/case-studies/rtb-cart.webp',
-          '/images/case-studies/rtb-cart-guest.webp',
-          '/images/case-studies/rtb-cart-authenticated.webp',
-          '/images/case-studies/rtb-cart-sync.webp',
+          '/images/case-studies/rtbloom/rtb-cart-half.webp',
+          '/images/case-studies/rtbloom/rtb-cart-full.webp',
         ],
       },
       {
@@ -138,10 +133,10 @@ export const caseStudies = {
         description:
           'Customers can submit reviews and star ratings for purchased products. Reviews stored in Firestore with timestamp, userId, and moderation flags. Display on product detail pages sorted by recency and helpfulness. ReviewButton floating component provides easy access from any page.',
         images: [
-          '/images/case-studies/rtb-reviews.webp',
-          '/images/case-studies/rtb-review-form.webp',
-          '/images/case-studies/rtb-review-display.webp',
-          '/images/case-studies/rtb-star-rating.webp',
+          '/images/case-studies/rtbloom/rtb-reviews.webp',
+          '/images/case-studies/rtbloom/rtb-review-form.webp',
+          '/images/case-studies/rtbloom/rtb-review-display.webp',
+          '/images/case-studies/rtbloom/rtb-star-rating.webp',
         ],
       },
       {
@@ -149,21 +144,10 @@ export const caseStudies = {
         description:
           'Embedded blog system with editorial-style posts weaving ingredient education into the shopping journey. Posts include author byline, publish date, featured image, and SEO meta tags. Route: /blog/:slug with syntax highlighting for ingredient breakdowns. Content defined in data/blogPosts.ts with TypeScript interfaces for consistency.',
         images: [
-          '/images/case-studies/rtb-blog.webp',
-          '/images/case-studies/rtb-blog-list.webp',
-          '/images/case-studies/rtb-blog-post.webp',
-          '/images/case-studies/rtb-ingredient-guide.webp',
-        ],
-      },
-      {
-        title: 'Cloudinary Image Management',
-        description:
-          'Admin interface for batch image uploads with automatic AVIF/WebP conversion. Legacy image URLs migrated to Cloudinary via utility scripts. Lazy-loaded product galleries with react-lazy-load-image-component. CDN delivery ensures responsive images and sub-second load times across bandwidth tiers.',
-        images: [
-          '/images/case-studies/rtb-image-mgmt.webp',
-          '/images/case-studies/rtb-upload-interface.webp',
-          '/images/case-studies/rtb-image-gallery.webp',
-          '/images/case-studies/rtb-responsive-images.webp',
+          '/images/case-studies/rtbloom/rtb-blog.webp',
+          '/images/case-studies/rtbloom/rtb-blog-list.webp',
+          '/images/case-studies/rtbloom/rtb-blog-post.webp',
+          '/images/case-studies/rtbloom/rtb-ingredient-guide.webp',
         ],
       },
       {
@@ -171,22 +155,9 @@ export const caseStudies = {
         description:
           'Authenticated users can view order history, track shipment status, and manage profile information (phone, address, skin type, hair type). Preferences (currency, language) persist per user. EmailJS sends transactional emails on order confirmation and status updates.',
         images: [
-          '/images/case-studies/rtb-profile.webp',
-          '/images/case-studies/rtb-order-history.webp',
-          '/images/case-studies/rtb-order-tracking.webp',
-          '/images/case-studies/rtb-user-preferences.webp',
-        ],
-      },
-      {
-        title: 'Brand-Aligned Storefront',
-        description:
-          'Custom design system with Tailwind CSS tokens mapped to botanical brand palette (earth tones, botanical greens, cream accents). Responsive product cards with Framer Motion animations. Dark mode support for accessibility. Editorial-style product pages with ingredient highlights, how-to-use instructions, and key benefits. Every interaction reinforces the handcrafted, premium brand identity.',
-        images: [
-          '/images/case-studies/rtb-storefront.webp',
-          '/images/case-studies/rtb-design-system.webp',
-          '/images/case-studies/rtb-product-cards.webp',
-          '/images/case-studies/rtb-dark-mode.webp',
-          '/images/case-studies/rtb-responsive-design.webp',
+          '/images/case-studies/rtbloom/rtb-profile.webp',
+          '/images/case-studies/rtbloom/rtb-order-history.webp',
+          '/images/case-studies/rtbloom/rtb-user-preferences.webp',
         ],
       },
     ],

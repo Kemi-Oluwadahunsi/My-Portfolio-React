@@ -2,6 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll'
 import { motion } from 'framer-motion'
 import './sidebar.scss';
+import { useActiveSection } from '../../hooks/useActiveSection'
 import Logo from '/images/logo.webp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -41,6 +42,7 @@ const sidebarSocialLinks = [
 ]
 
 const Sidebar = () => {
+  const activeSection = useActiveSection()
   const containerVariants = {
     hidden: { opacity: 0, x: -50 },
     visible: {
@@ -93,9 +95,7 @@ const Sidebar = () => {
             >
               <ScrollLink
                 exact="true"
-                activeClass="active"
-                spy={true}
-                className={item.className}
+                className={`${item.className} ${activeSection === item.to ? 'active' : ''}`}
                 to={item.to}
                 smooth={true}
                 duration={1000}

@@ -174,7 +174,6 @@ export default function ChatWidget() {
       const target = id && onHome ? document.getElementById(id) : null
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        window.history.replaceState(null, '', `/${hash}`)
       } else {
         navigate({ pathname: path, search, hash })
       }
