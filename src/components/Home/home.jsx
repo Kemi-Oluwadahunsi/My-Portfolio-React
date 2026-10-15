@@ -98,7 +98,7 @@ const Home = () => {
 
   return (
     <motion.div
-      className="container home-page"
+      className="hero-container home-page"
       ref={ref}
       variants={containerVariants}
       initial="hidden"

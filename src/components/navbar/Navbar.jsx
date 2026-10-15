@@ -17,9 +17,11 @@ import {
 import { Link } from 'react-router-dom'
 import { Link as ScrollLink } from 'react-scroll'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useActiveSection } from '../../hooks/useActiveSection'
 
 
 const Navbar = () => {
+  const activeSection = useActiveSection()
   const [showMobileContent, setShowMobileContent] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -165,9 +167,7 @@ const Navbar = () => {
                       transition={{ delay: index * 0.1 }}
                     >
                       <ScrollLink
-                        className="navLinks"
-                        activeClass="active"
-                        spy={true}
+                        className={`navLinks ${activeSection === item.to ? 'active' : ''}`}
                         to={item.to}
                         smooth={true}
                         duration={1000}
