@@ -788,7 +788,12 @@ export const writingData = [
     description:
       'Why networks fail and how systems survive it. A plain-language start to distributed systems, taught through a growing food app and a hands-on Node.js lab in every chapter.',
     status: 'Done',
-    tags: ['Distributed Systems', 'Networking', 'Fault Tolerance', 'Web Development'],
+    tags: [
+      'Distributed Systems',
+      'Networking',
+      'Fault Tolerance',
+      'Web Development',
+    ],
     salesLinks: [
       {
         platform: 'Selar',
@@ -804,7 +809,16 @@ export const writingData = [
     description:
       'How busy systems answer millions of requests without breaking. Learn where caches and load balancers help, where they hurt, and how to see it for yourself in code.',
     status: 'Done',
-    tags: ['Distributed Systems', 'Caching', 'CDN', 'Load Balancing', 'Redis', 'High Traffic', 'Scaling Applications', 'Web Development'],
+    tags: [
+      'Distributed Systems',
+      'Caching',
+      'CDN',
+      'Load Balancing',
+      'Redis',
+      'High Traffic',
+      'Scaling Applications',
+      'Web Development',
+    ],
     salesLinks: [
       {
         platform: 'Selar',
@@ -820,7 +834,16 @@ export const writingData = [
     description:
       'How growing systems store, copy, and split their data without losing it. Replication lag and sharding trade-offs, made visible with runnable labs.',
     status: 'Done',
-    tags: ['Distributed Systems', 'Databases', 'Replication', 'Sharding', 'Partitioning', 'SQL & NoSQL', 'Database Scaling', 'Web Development'],
+    tags: [
+      'Distributed Systems',
+      'Databases',
+      'Replication',
+      'Sharding',
+      'Partitioning',
+      'SQL & NoSQL',
+      'Database Scaling',
+      'Web Development',
+    ],
     salesLinks: [
       {
         platform: 'Selar',
@@ -836,7 +859,16 @@ export const writingData = [
     description:
       'How separate machines settle on one truth when clocks and networks cannot be trusted. Consistency models, quorums, and leaders in plain words.',
     status: 'Done',
-    tags: ['Distributed Systems', 'Consistency Models', 'Consensus', 'Raft', 'Paxos', 'CAP Theorem', 'Quorums', 'Web Development'],
+    tags: [
+      'Distributed Systems',
+      'Consistency Models',
+      'Consensus',
+      'Raft',
+      'Paxos',
+      'CAP Theorem',
+      'Quorums',
+      'Web Development',
+    ],
     salesLinks: [
       {
         platform: 'Selar',
@@ -848,15 +880,144 @@ export const writingData = [
     id: 'dsys-ebook-5',
     type: 'ebook',
     series: 'Distributed Systems',
-    title: 'Messaging and Events: Letting Services Talk Without Waiting — Book 5',
+    title:
+      'Messaging and Events: Letting Services Talk Without Waiting — Book 5',
     description:
       'Queues, topics, and event streams that absorb bursts and keep services loosely coupled. Includes handling messages that arrive twice or not at all.',
     status: 'Done',
-    tags: ['Distributed Systems', 'Idempotency', 'Event-Driven Architecture', 'MessageQueues', 'Async Messaging', 'Event Streaming', 'Web Development'],
+    tags: [
+      'Distributed Systems',
+      'Idempotency',
+      'Event-Driven Architecture',
+      'MessageQueues',
+      'Async Messaging',
+      'Event Streaming',
+      'Web Development',
+    ],
     salesLinks: [
       {
         platform: 'Selar',
         url: import.meta.env.VITE_DSYS_BOOK5_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
+    id: 'dsys-ebook-6',
+    type: 'ebook',
+    series: 'Distributed Systems',
+    title: 'Microservices: Many Small Services That Work as One — Book 6',
+    description:
+      'How services find each other, call each other, and stay correct when a call fails halfway. An honest look at both sides of splitting a system.',
+    status: 'Done',
+    tags: [
+      'Distributed Systems',
+      'Microservices',
+      'Service Discovery',
+      'API Gateway',
+      'Distributed Transactions',
+      'Saga Pattern',
+      'Web Development',
+    ],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_DSYS_BOOK6_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
+    id: 'dsys-ebook-7',
+    type: 'ebook',
+    series: 'Distributed Systems',
+    title: 'Reliability: Designing for the Day Things Fail — Book 7',
+    description:
+      'Timeouts, retries, breakers, bulkheads, and fallbacks that keep a system serving when parts of it break. Labs where you break things on purpose.',
+    status: 'Done',
+    tags: [
+      'Distributed Systems',
+      'Reliability Engineering',
+      'Authentication',
+      'Authorization',
+      'OAuth 2.0',
+      'Mutual TLS',
+      'Web Development',
+    ],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_DSYS_BOOK7_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
+    id: 'dsys-ebook-8',
+    type: 'ebook',
+    series: 'Distributed Systems',
+    title: 'Observability: Seeing Inside a System — Book 8',
+    description:
+      'How logs, metrics, and traces show what a system is doing and why it is slow. Debug with evidence instead of guesses.',
+    status: 'Done',
+    tags: [
+      'Distributed Systems',
+      'Observability',
+      'Logging',
+      'Distributed Tracing',
+      'OpenTelemetry',
+      'Monitoring and Alerting',
+      'Web Development',
+    ],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_DSYS_BOOK8_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
+    id: 'dsys-ebook-9',
+    type: 'ebook',
+    series: 'Distributed Systems',
+    title: 'Security in Distributed Systems — Book 9',
+    description:
+      'How a system proves who is calling, protects what it stores, and limits the damage of a breach. Tokens, authorization, OAuth, secrets, and encryption, in the right order.',
+    status: 'Done',
+    tags: [
+      'Application Security',
+      'Authentication',
+      'Authorization',
+      'OAuth 2.0',
+      'Mutual TLS',
+      'Secrets Management',
+      'Web Development',
+    ],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_DSYS_BOOK9_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
+    id: 'dsys-ebook-10',
+    type: 'ebook',
+    series: 'Distributed Systems',
+    title: 'The System Design Playbook — Book 10',
+    description:
+      'A seven-step method for designing a whole system from a blank page and explaining every choice. Practiced on two full designs, with a 45-minute plan for interviews and a review checklist for work.',
+    status: 'Done',
+    tags: [
+      'System Design',
+      'Capacity Estimation',
+      'Trade-offs',
+      'Software Architecture',
+      'Interview Preparation',
+      'Secrets Management',
+      'Web Development',
+    ],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_DSYS_BOOK10_SELAR_URL || '#',
       },
     ],
   },
