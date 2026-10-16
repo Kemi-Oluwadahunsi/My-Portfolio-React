@@ -674,6 +674,193 @@ export const writingData = [
     ],
   },
   {
+    id: 'jsms-ebook-5',
+    type: 'ebook',
+    series: 'JavaScript',
+    title: 'Equality, Coercion, and Truthiness, Made Simple — Book 5',
+    description:
+      'A clear, step by step explanation of how JavaScript decides whether two values are the same, why some comparisons return surprising results, and how to write checks you can trust.',
+    status: 'Done',
+    tags: [
+      'JavaScript',
+      'Equality',
+      'Coercion',
+      'Truthiness',
+      'Web Development',
+    ],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_JSMS_BOOK5_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
+    id: 'jsms-ebook-6',
+    type: 'ebook',
+    series: 'JavaScript',
+    title: 'Loops, Iterators, and Generators, Made Simple — Book 6',
+    description:
+      'A complete guide to every loop in JavaScript, followed by a clear look at the protocol behind for...of and the generator functions built on top of it.',
+    status: 'Done',
+    tags: ['JavaScript', 'Loops', 'Iterators', 'Generators', 'Web Development'],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_JSMS_BOOK6_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
+    id: 'jsms-ebook-7',
+    type: 'ebook',
+    series: 'JavaScript',
+    title: 'Array and Object Transformation Methods, Made Simple — Book 7',
+    description:
+      'A practical explanation of map, filter, reduce, and the methods that change your data, with the same thinking carried over to plain objects.',
+    status: 'Done',
+    tags: ['JavaScript', 'Array Methods', 'Object Methods', 'Web Development'],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_JSMS_BOOK7_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
+    id: 'jsms-ebook-8',
+    type: 'ebook',
+    series: 'JavaScript',
+    title: 'How JavaScript Handles Memory, Made Simple — Book 8',
+    description:
+      'A friendly explanation of where JavaScript keeps your data, how the garbage collector decides what to free, and why memory leaks happen.',
+    status: 'Done',
+    tags: [
+      'JavaScript',
+      'Memory Management',
+      'Garbage Collection',
+      'Web Development',
+    ],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_JSMS_BOOK8_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
+    id: 'jsms-ebook-9',
+    type: 'ebook',
+    series: 'JavaScript',
+    title: 'How Modules Actually Work, Made Simple — Book 9',
+    description:
+      'A clear explanation of what an import really is, how files share values, and what the engine does before any of your code runs.',
+    status: 'Done',
+    tags: ['JavaScript', 'Modules', 'Imports', 'Web Development'],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_JSMS_BOOK9_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
+    id: 'jsms-ebook-10',
+    type: 'ebook',
+    series: 'JavaScript',
+    title: 'Error Handling in JavaScript, Made Simple — Book 10',
+    description:
+      'A thorough explanation of how errors travel through JavaScript, why a catch block sometimes stays silent, and where in your code errors should be handled.',
+    status: 'Done',
+    tags: ['JavaScript', 'Error Handling', 'Exceptions', 'Web Development'],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_JSMS_BOOK10_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
+    id: 'dsys-ebook-1',
+    type: 'ebook',
+    series: 'Distributed Systems',
+    title: 'The Basic of Distributed Systems — Book 1',
+    description:
+      'Why networks fail and how systems survive it. A plain-language start to distributed systems, taught through a growing food app and a hands-on Node.js lab in every chapter.',
+    status: 'Done',
+    tags: ['Distributed Systems', 'Networking', 'Fault Tolerance', 'Web Development'],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_DSYS_BOOK1_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
+    id: 'dsys-ebook-2',
+    type: 'ebook',
+    series: 'Distributed Systems',
+    title: 'Scaling Reads: Caching, CDNs, and Load Balancing — Book 2',
+    description:
+      'How busy systems answer millions of requests without breaking. Learn where caches and load balancers help, where they hurt, and how to see it for yourself in code.',
+    status: 'Done',
+    tags: ['Distributed Systems', 'Caching', 'CDN', 'Load Balancing', 'Redis', 'High Traffic', 'Scaling Applications', 'Web Development'],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_DSYS_BOOK2_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
+    id: 'dsys-ebook-3',
+    type: 'ebook',
+    series: 'Distributed Systems',
+    title: 'Data at Scale: Databases, Replication, and Sharding — Book 3',
+    description:
+      'How growing systems store, copy, and split their data without losing it. Replication lag and sharding trade-offs, made visible with runnable labs.',
+    status: 'Done',
+    tags: ['Distributed Systems', 'Databases', 'Replication', 'Sharding', 'Partitioning', 'SQL & NoSQL', 'Database Scaling', 'Web Development'],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_DSYS_BOOK3_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
+    id: 'dsys-ebook-4',
+    type: 'ebook',
+    series: 'Distributed Systems',
+    title: 'Consistency and Consensus: Getting Machines to Agree — Book 4',
+    description:
+      'How separate machines settle on one truth when clocks and networks cannot be trusted. Consistency models, quorums, and leaders in plain words.',
+    status: 'Done',
+    tags: ['Distributed Systems', 'Consistency Models', 'Consensus', 'Raft', 'Paxos', 'CAP Theorem', 'Quorums', 'Web Development'],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_DSYS_BOOK4_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
+    id: 'dsys-ebook-5',
+    type: 'ebook',
+    series: 'Distributed Systems',
+    title: 'Messaging and Events: Letting Services Talk Without Waiting — Book 5',
+    description:
+      'Queues, topics, and event streams that absorb bursts and keep services loosely coupled. Includes handling messages that arrive twice or not at all.',
+    status: 'Done',
+    tags: ['Distributed Systems', 'Idempotency', 'Event-Driven Architecture', 'MessageQueues', 'Async Messaging', 'Event Streaming', 'Web Development'],
+    salesLinks: [
+      {
+        platform: 'Selar',
+        url: import.meta.env.VITE_DSYS_BOOK5_SELAR_URL || '#',
+      },
+    ],
+  },
+  {
     id: '30-days-react',
     type: 'carousel-series',
     title: '30 Days of React',
@@ -737,8 +924,7 @@ export const openSourceData = {
         npm: 'https://www.npmjs.com/package/readyui-react',
         storybook:
           'https://kemi-oluwadahunsi.github.io/ReadyToUse-React-Components/',
-        documentation:
-          'https://readyui-docs.vercel.com',
+        documentation: 'https://readyui-docs.vercel.com',
       },
       tags: ['React', 'TypeScript', 'Component Library', 'Storybook', 'npm'],
       status: 'active',
@@ -754,8 +940,7 @@ export const openSourceData = {
         npm: 'https://www.npmjs.com/package/viskit',
         storybook:
           'https://kemi-oluwadahunsi.github.io/Viskit-Charting-Library/',
-          documentation:
-          '#',
+        documentation: '#',
       },
       tags: ['React', 'TypeScript', 'Charting Library', 'Storybook', 'npm'],
       status: 'active',
