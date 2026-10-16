@@ -10,10 +10,16 @@
   justify-content: center;
   padding: 6rem 2rem 4rem;
   position: relative;
-  margin-left: 5rem;
+  // Up to 1500px the section wrapper (Layout) already reserves the sidebar's width as padding, so
+  // an extra left margin here pushed the content out of its box. Beyond that, reserve it here.
+  margin-left: 0;
+
+  @media screen and (min-width: 1501px) {
+    width: calc(100% - 5rem);
+    margin-left: 5rem;
+  }
 
   @media screen and (min-width: 769px) and (max-width: 1170px) {
-    margin-left: 4rem;
     padding: 5rem 2rem 3rem;
   }
 
@@ -124,6 +130,27 @@
   @media screen and (min-width: 769px) and (max-width: 1170px) {
     max-width: 850px;
     gap: 3rem;
+  }
+
+  // Narrow desktop and landscape tablets: keep two columns, but give each card less padding and
+  // the columns less space between them so the form isn't squeezed.
+  @media screen and (min-width: 901px) and (max-width: 1100px) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 1.5rem;
+    max-width: 100%;
+
+    .contact__info-card,
+    .contact__form {
+      padding: 1.5rem;
+    }
+
+    .contact__info-card {
+      gap: 1.1rem;
+    }
+
+    .info-item__text {
+      overflow-wrap: anywhere;
+    }
   }
 
   @include tablet {
