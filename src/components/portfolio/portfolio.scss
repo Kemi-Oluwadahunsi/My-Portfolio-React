@@ -86,7 +86,11 @@
     display: flex;
     flex-direction: column;
 
-    &.featured {
+    // The first card is always full width. A last card left alone in its row (even position, since
+    // the featured card takes position 1) also goes full width, and stops doing so as soon as a new
+    // project pairs it up again.
+    &.featured,
+    &:last-child:nth-child(even) {
       grid-column: 1 / -1;
 
       .wrapper {

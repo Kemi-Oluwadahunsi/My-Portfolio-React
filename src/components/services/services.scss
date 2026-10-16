@@ -191,6 +191,12 @@
       padding: 0.5rem;
     }
 
+    // Every card gets the height of the tallest one, across all rows (not just within its own row).
+    @media screen and (min-width: 481px) {
+      grid-auto-rows: 1fr;
+      align-items: stretch;
+    }
+
     &.accordion-mode {
       gap: 0.5rem;
 
@@ -223,7 +229,7 @@
 
       .service-glow-wrapper {
         width: 100%;
-        height: auto;
+        height: 100%;
       }
     }
 
