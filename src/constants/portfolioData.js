@@ -1084,7 +1084,7 @@ export const openSourceData = {
         npm: 'https://www.npmjs.com/package/readyui-react',
         storybook:
           'https://kemi-oluwadahunsi.github.io/ReadyToUse-React-Components/',
-        documentation: 'https://readyui-docs.vercel.com',
+        documentation: 'https://readyui-react.vercel.app/',
       },
       tags: ['React', 'TypeScript', 'Component Library', 'Storybook', 'npm'],
       status: 'active',
