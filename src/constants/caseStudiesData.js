@@ -853,7 +853,7 @@ export const caseStudies = {
     badge: 'Open-Source Component Library',
     company: 'Independent Project',
     period: '2026',
-    heroImage: '/images/readyui/hero.webp', // alt: "ReadyUI React documentation site hero — component grid overview with dark mode toggle and sidebar navigation"
+    heroImage: '/images/case-studies/readyui/hero-1.webp', // alt: "ReadyUI React documentation site hero — component grid overview with dark mode toggle and sidebar navigation"
     summary:
       'Designed, engineered, and published a production-grade React UI component library with 50+ fully configurable components, a pre-built CSS bundle for zero-config adoption, and a comprehensive interactive documentation site — all open-sourced on npm as `readyui-react`.',
     problem: {
