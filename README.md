@@ -88,6 +88,22 @@ The project uses a comprehensive design system with:
 - Spacing system
 - Component variants
 
+### Cursor templates
+
+The floating **Cursor** button collapses to an icon when idle and expands on hover
+or keyboard focus (staying expanded while its options are open).
+It opens five live styles: **Halo**, **Precision**,
+**Orbit**, **Spotlight**, and **Code Brackets**. Select a style to preview it across
+the portfolio, including case studies. The selection is saved in this browser;
+**Use native cursor** restores the system pointer.
+
+Custom cursors are available only with a fine, hover-capable pointer and no
+reduced-motion preference. Text fields, editable content, and disabled controls
+retain their native cursors. Press **Escape** or click outside to close the
+switcher. Template definitions and visuals live in
+[`Cursor.jsx`](src/components/cursor/Cursor.jsx) and
+[`cursor.scss`](src/components/cursor/cursor.scss).
+
 ## 🔧 Configuration
 
 - **Vite**: `vite.config.js` - Build configuration

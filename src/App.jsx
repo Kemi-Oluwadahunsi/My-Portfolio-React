@@ -6,6 +6,7 @@ import LoadingSkeleton from './components/UI/LoadingSkeleton/LoadingSkeleton'
 import ScrollProgress from './components/UI/ScrollProgress/ScrollProgress'
 import ChatWidget from './components/ChatWidget/ChatWidget'
 import Splash from './components/Splash/Splash'
+import Cursor from './components/cursor/Cursor'
 
 // Lazy load components for code splitting
 const Layout = lazy(() => import('./components/Layout'))
@@ -19,6 +20,7 @@ function App() {
     <>
       <Splash />
       <SEO />
+      <Cursor />
       <ScrollProgress />
       <Suspense fallback={
         <div style={{ 
