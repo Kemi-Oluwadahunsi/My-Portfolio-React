@@ -4,7 +4,6 @@ import { scroller } from 'react-scroll'
 import { useTrackActiveSection } from '../../hooks/useActiveSection'
 import Sidebar from '../Sidebar/sidebar'
 import './index.scss'
-import Cursor from '../cursor/Cursor'
 import Navbar from '../navbar/Navbar'
 import ScrollArrow from '../backarrow/ScrollArrow'
 import LoadingSkeleton from '../UI/LoadingSkeleton/LoadingSkeleton'
@@ -68,7 +67,6 @@ const Layout = () => {
   return (
     <div className="main-layout">
       <ParticleBackground density={25} speed={0.4} />
-      <Cursor />
       <ScrollArrow />
       <Navbar />
       <Sidebar />
