@@ -388,6 +388,7 @@
   }
 
   select {
+    appearance: none;
     cursor: pointer;
     padding-top: 1.75rem;
     padding-right: 2.5rem;
@@ -396,6 +397,14 @@
       background: var(--color-surface);
       color: var(--color-text);
     }
+  }
+
+  .field-select-arrow {
+    position: absolute;
+    top: 1.75rem;
+    right: 1rem;
+    color: var(--color-text-muted);
+    pointer-events: none;
   }
 
   textarea {
@@ -412,14 +421,18 @@
   input:not(:placeholder-shown) + label,
   textarea:focus + label,
   textarea:not(:placeholder-shown) + label,
-  select:focus + label,
-  &.has-value select + label {
+  select + label {
     top: 0.35rem;
     font-size: 0.65rem;
     color: var(--color-accent-text);
     letter-spacing: 0.5px;
     text-transform: uppercase;
     font-weight: 600;
+  }
+
+  @media (forced-colors: active) {
+    select { appearance: auto; }
+    .field-select-arrow { display: none; }
   }
 
   // Error state
