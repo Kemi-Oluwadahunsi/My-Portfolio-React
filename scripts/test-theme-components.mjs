@@ -4,6 +4,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { test } from 'node:test'
 import { fileURLToPath } from 'node:url'
+import { runInNewContext } from 'node:vm'
 import { compile } from 'sass'
 import { logoPalettes } from '../src/constants/logoPalettes.js'
 
@@ -98,6 +99,27 @@ test('Burgundy inverse band preserves shared content and keeps decorative cuts n
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/)
   assert.match(read('src/components/Home/home.jsx'), /whileHover=\{atmospheric \? \{ scale: 1\.05 \} : undefined\}/)
   assert.match(read('src/components/services/Services.jsx'), /variants=\{atmospheric \? cardVariants :/)
+})
+
+test('service animation variants explicitly reset rotation and scale when appearance changes', () => {
+  const source = read('src/components/services/Services.jsx')
+  const atmosphericSource = source.match(/const cardVariants = (\{[\s\S]*?\n\})/)[1]
+  const restrainedSource = source.match(/variants=\{atmospheric \? cardVariants : (\{[\s\S]*?\n\s*\})\}/)[1]
+  const atmospheric = runInNewContext(`(${atmosphericSource})`)
+  assert.equal(atmospheric.hidden.rotateX, -90)
+  for (const reducedMotion of [false, true]) {
+    const restrained = runInNewContext(`(${restrainedSource})`, { reducedMotion })
+    for (const state of ['hidden', 'visible']) {
+      assert.equal(restrained[state].rotateX, 0)
+      assert.equal(restrained[state].scale, 1)
+    }
+    assert.equal(restrained.visible.y, 0)
+    assert.equal(restrained.visible.opacity, 1)
+    assert.equal(restrained.visible.transition.duration, reducedMotion ? 0 : 0.25)
+  }
+  assert.equal(atmospheric.visible.rotateX, 0)
+  assert.equal(atmospheric.visible.scale, 1)
+  assert.match(source, /: \{ y: -2, scale: 1 \}\) : undefined\}/)
 })
 
 test('hero can grow for enlarged text, wrap names by word and keep button labels bounded', () => {

@@ -8,11 +8,12 @@ import { useEffect, useRef, useState } from 'react'
 import useAtmosphere from '../../hooks/useAtmosphere'
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 100, rotateX: -90 },
+  hidden: { opacity: 0, y: 100, rotateX: -90, scale: 1 },
   visible: {
     opacity: 1,
     y: 0,
     rotateX: 0,
+    scale: 1,
     transition: { duration: 0.8, ease: [0.215, 0.61, 0.355, 1] },
   },
 }
@@ -98,15 +99,17 @@ const Services = () => {
             key={service.id}
             className={`service-card-wrapper ${isMobile && expandedCard === service.id ? 'expanded' : ''}`}
             variants={atmospheric ? cardVariants : {
-              hidden: { opacity: 0, y: reducedMotion ? 0 : 12 },
+              hidden: { opacity: 0, y: reducedMotion ? 0 : 12, rotateX: 0, scale: 1 },
               visible: {
                 opacity: 1,
                 y: 0,
+                rotateX: 0,
+                scale: 1,
                 transition: { duration: reducedMotion ? 0 : 0.25 },
               },
             }}
             style={{ transformStyle: 'preserve-3d' }}
-            whileHover={!isMobile && !reducedMotion ? (atmospheric ? { y: -15, scale: 1.03 } : { y: -2 }) : {}}
+            whileHover={!isMobile && !reducedMotion ? (atmospheric ? { y: -15, scale: 1.03 } : { y: -2, scale: 1 }) : undefined}
             transition={atmospheric ? { type: 'spring', stiffness: 300, damping: 20 } : { duration: 0.15 }}
             onClick={() => toggleCard(service.id)}
           >

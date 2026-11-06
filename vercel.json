@@ -5,12 +5,12 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "vite",
-  "rewrites": [
-    {
-      "source": "/((?!api/).*)",
-      "destination": "/index.html"
-    }
-  ],
+    "rewrites": [
+      {
+        "source": "/((?!api/).*)",
+        "destination": "/index.html"
+      }
+    ],
   "headers": [
     {
       "source": "/:path*",
