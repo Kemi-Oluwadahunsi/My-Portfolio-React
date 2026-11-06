@@ -63,7 +63,7 @@ const findNavTarget = (text) => {
   return NAV_TARGETS.find((t) => t.words.test(text.toLowerCase())) || null
 }
 
-const GREETING = "Hi, I'm Kemi's portfolio assistant. Ask me about her work, projects, skills or writing."
+const GREETING = "Curious about Kemi? I can help you explore what she builds, expertise and publications, or find out how to collaborate."
 const FALLBACK_ERROR = "Sorry, I couldn't reach the assistant. Please try again, or use the contact form."
 // Matches [label](url) first, then bare URLs.
 const LINK_PATTERN = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)|(https?:\/\/[^\s]+)/g

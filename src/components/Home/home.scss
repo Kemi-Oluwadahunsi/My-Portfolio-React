@@ -143,8 +143,17 @@
     max-width: 1em;
     object-fit: contain;
     vertical-align: -0.08em;
-    animation: rotateIn 1s linear both;
-    animation-delay: 1.4s;
+    animation: rotateIn 2s ease-in-out both;
+    animation-delay: 0.1s;
+
+    :root[data-splash='active'] & {
+      animation-play-state: paused;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 1;
+    }
 
     @include tablet {
       width: 3rem;

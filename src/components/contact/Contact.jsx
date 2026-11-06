@@ -315,7 +315,7 @@ const Contact = () => {
             </div>
 
             {/* Subject */}
-            <div className={`form-field ${formData.subject ? 'has-value' : ''} ${fieldErrors.subject ? 'has-error' : ''}`}>
+            <div className={`form-field form-field--select ${formData.subject ? 'has-value' : ''} ${fieldErrors.subject ? 'has-error' : ''}`}>
               <select
                 name="subject"
                 id="contact-subject"
@@ -334,6 +334,9 @@ const Contact = () => {
                 ))}
               </select>
               <label htmlFor="contact-subject">Subject</label>
+              <svg className="field-select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="m4 6 4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
               {fieldErrors.subject && (
                 <span className="field-error" role="alert">{fieldErrors.subject}</span>
               )}

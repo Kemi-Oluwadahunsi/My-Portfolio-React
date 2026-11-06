@@ -173,7 +173,7 @@ listeners. Other 3D/floating effects remain restricted to Deep Current dark.
 Cursor designs use the current local
 foreground, including inverse bands; their existing native/input fallbacks remain.
 
-Verification includes 36 automated theme/component checks, lint and a production
+Verification includes 38 automated theme/component checks, lint and a production
 build, plus browser checks of ten appearances, route/overlay text, dialog keyboard
 behavior, responsive hero bounds, cursor choices and effect eligibility.
 Opaque-text scans are regression checks, not a claim of full WCAG certification.
@@ -196,11 +196,16 @@ live browser metadata/favicons follow the selected appearance. Remote font
 families require an initial online visit; offline first visits use font fallbacks.
 The app's Framer Motion policy follows the device preference, and section
 reveals react to live reduced-motion changes without translated hidden content.
+The hero K rotation waits until the splash finishes, then runs for 2.4 seconds;
+reduced-motion users see the static letter immediately.
 The services project CTA retains its on-primary label with primary hover/pressed
 fills, and the experience resume link uses a strong boundary in both modes.
 Service-card reveal variants explicitly reset rotation and scale when leaving
 Deep Current dark, including live reduced-motion changes, so an interrupted
 3D reveal cannot leave cards edge-on in another appearance.
+The contact Subject label stays floated above its placeholder/selection. Its
+decorative dropdown arrow is inset from the edge; forced-colors mode restores
+the native select arrow.
 The KM signature loader shares the logo palette's K color, three-stop M gradient,
 pen and name colors. Gradients have unique IDs so simultaneous loaders cannot share the wrong
 palette context; a faint theme-colored guide sits behind the trace.
