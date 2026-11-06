@@ -168,6 +168,10 @@ const WelcomeDialog = ({ onClose }) => {
               ))}
             </motion.ul>
 
+            <motion.p className="welcome-time" variants={item}>
+              You can also try different themes using <strong>“View themes”</strong> at the bottom left.
+            </motion.p>
+
             <motion.div className="welcome-footer" variants={item}>
               <a href={socialLinks.resume} target="_blank" rel="noreferrer">
                 <Download size={16} aria-hidden="true" /> Download resume

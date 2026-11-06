@@ -18,6 +18,17 @@ function files(directory) {
 }
 const componentFiles = files(join(root, 'src/components'))
 
+test('hero K rotation waits for the splash and remains visible without motion', () => {
+  const css = compile(join(root, 'src/components/Home/home.scss'), { silenceDeprecations: ['import'] }).css
+  assert.match(css, /\.home-page \.k-letter \{[^}]*animation: rotateIn 2\.0s ease-in-out both;[^}]*animation-delay: 0\.1s;/)
+  assert.match(css, /:root\[data-splash=active\] \.home-page \.k-letter \{[^}]*animation-play-state: paused;/)
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\) \{\s*\.home-page \.k-letter \{[^}]*animation: none;[^}]*opacity: 1;/)
+  const splash = read('src/components/Splash/Splash.jsx')
+  assert.match(splash, /dataset\.splash = 'active'/)
+  assert.match(splash, /delete document\.documentElement\.dataset\.splash/)
+  assert.match(splash, /onExitComplete=\{finish\}/)
+})
+
 test('subject select keeps its label floated and its decorative arrow inset without blocking input', () => {
   const source = read('src/components/contact/Contact.jsx')
   assert.match(source, /<label htmlFor="contact-subject">Subject<\/label>\s*<svg className="field-select-arrow"[^>]*aria-hidden="true"/)

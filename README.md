@@ -173,7 +173,7 @@ listeners. Other 3D/floating effects remain restricted to Deep Current dark.
 Cursor designs use the current local
 foreground, including inverse bands; their existing native/input fallbacks remain.
 
-Verification includes 37 automated theme/component checks, lint and a production
+Verification includes 38 automated theme/component checks, lint and a production
 build, plus browser checks of ten appearances, route/overlay text, dialog keyboard
 behavior, responsive hero bounds, cursor choices and effect eligibility.
 Opaque-text scans are regression checks, not a claim of full WCAG certification.
@@ -196,6 +196,8 @@ live browser metadata/favicons follow the selected appearance. Remote font
 families require an initial online visit; offline first visits use font fallbacks.
 The app's Framer Motion policy follows the device preference, and section
 reveals react to live reduced-motion changes without translated hidden content.
+The hero K rotation waits until the splash finishes, then runs for 2.4 seconds;
+reduced-motion users see the static letter immediately.
 The services project CTA retains its on-primary label with primary hover/pressed
 fills, and the experience resume link uses a strong boundary in both modes.
 Service-card reveal variants explicitly reset rotation and scale when leaving
