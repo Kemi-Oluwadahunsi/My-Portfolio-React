@@ -5,7 +5,7 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  background: var(--color-bgPrimary, #061829);
+  background: var(--color-bg);
   padding: 2rem;
 }
 
@@ -25,7 +25,7 @@
     &--1 {
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(188, 224, 251, 0.12), transparent 70%);
+      background: radial-gradient(circle, color-mix(in srgb, var(--color-link) 12%, transparent), transparent 70%);
       top: -10%;
       right: -5%;
       animation: nf-float 18s ease-in-out infinite;
@@ -34,7 +34,7 @@
     &--2 {
       width: 400px;
       height: 400px;
-      background: radial-gradient(circle, rgba(100, 180, 255, 0.08), transparent 70%);
+      background: radial-gradient(circle, color-mix(in srgb, var(--color-link) 8%, transparent), transparent 70%);
       bottom: -15%;
       left: -10%;
       animation: nf-float 22s ease-in-out infinite reverse;
@@ -43,7 +43,7 @@
     &--3 {
       width: 300px;
       height: 300px;
-      background: radial-gradient(circle, rgba(188, 224, 251, 0.06), transparent 70%);
+      background: radial-gradient(circle, color-mix(in srgb, var(--color-link) 6%, transparent), transparent 70%);
       top: 40%;
       left: 50%;
       transform: translateX(-50%);
@@ -62,9 +62,8 @@
 .nf-grid {
   position: fixed;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(188, 224, 251, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(188, 224, 251, 0.03) 1px, transparent 1px);
+  background-image: linear-gradient(color-mix(in srgb, var(--color-link) 3%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-link) 3%, transparent) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
   z-index: 0;
@@ -89,15 +88,12 @@
 .nf-404 {
   font-size: clamp(6rem, 20vw, 12rem);
   font-weight: 900;
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  color: transparent;
-  background: linear-gradient(135deg, rgba(188, 224, 251, 0.9), rgba(100, 180, 255, 0.6));
-  -webkit-background-clip: text;
-  background-clip: text;
+  font-family: var(--font-mono);
+  color: var(--color-link);
   letter-spacing: -0.02em;
   line-height: 1;
   position: relative;
-  text-shadow: 0 0 80px rgba(188, 224, 251, 0.15);
+  text-shadow: none;
 
   &::before,
   &::after {
@@ -107,10 +103,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(188, 224, 251, 0.9), rgba(100, 180, 255, 0.6));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--color-link);
   }
 
   &::before {
@@ -143,20 +136,20 @@
 // ─── Icon ───
 .nf-icon {
   font-size: 2rem;
-  color: rgba(188, 224, 251, 0.4);
+  color: var(--color-text-muted);
 }
 
 // ─── Title & Description ───
 .nf-title {
   font-size: clamp(1.5rem, 4vw, 2.2rem);
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--color-text);
   margin: 0;
 }
 
 .nf-desc {
   font-size: 1.05rem;
-  color: rgba(188, 224, 251, 0.6);
+  color: var(--color-text-muted);
   max-width: 400px;
   line-height: 1.6;
   margin: 0;
@@ -174,22 +167,22 @@
   align-items: center;
   gap: 0.6rem;
   padding: 0.85rem 1.8rem;
-  border-radius: 10px;
+  border-radius: var(--radius-control);
   font-size: 0.95rem;
   font-weight: 500;
   text-decoration: none;
   transition: all 0.3s ease;
 
   &--primary {
-    background: rgba(188, 224, 251, 0.1);
-    border: 1.5px solid rgba(188, 224, 251, 0.25);
-    color: var(--color-primary, #bce0fb);
+    background: var(--color-surface-sunken);
+    border: 1.5px solid var(--color-border);
+    color: var(--color-link);
 
     &:hover {
-      background: rgba(188, 224, 251, 0.18);
-      border-color: rgba(188, 224, 251, 0.5);
+      background: var(--color-surface-sunken);
+      border-color: var(--color-border);
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(188, 224, 251, 0.1);
+      box-shadow: var(--shadow-hover);
     }
   }
 }

@@ -59,7 +59,7 @@ const ScrollArrow = () => {
             animate={{ y: [0, -5, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           >
-            <FontAwesomeIcon icon={faArrowCircleUp} color="white" />
+            <FontAwesomeIcon icon={faArrowCircleUp} />
           </motion.div>
         </motion.div>
       )}

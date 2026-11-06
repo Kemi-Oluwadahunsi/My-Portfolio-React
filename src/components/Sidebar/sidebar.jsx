@@ -3,7 +3,7 @@ import { Link as ScrollLink } from 'react-scroll'
 import { motion } from 'framer-motion'
 import './sidebar.scss';
 import { useActiveSection } from '../../hooks/useActiveSection'
-import Logo from '/images/logo.webp'
+import useTheme from '../../hooks/useTheme'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBook,
@@ -42,6 +42,8 @@ const sidebarSocialLinks = [
 ]
 
 const Sidebar = () => {
+  const { theme, resolvedMode } = useTheme()
+  const logo = `/images/logo-${theme}-${resolvedMode}.svg`
   const activeSection = useActiveSection()
   const containerVariants = {
     hidden: { opacity: 0, x: -50 },
@@ -81,7 +83,7 @@ const Sidebar = () => {
           whileTap={{ scale: 0.95 }}
         >
           <Link className="logo" to="/" aria-label="Home">
-            <img src={Logo} alt="Kemi-Oluwadahunsi Logo" />
+            <img src={logo} alt="Kemi-Oluwadahunsi Logo" />
             <h3 className="sub-logo">KeMi</h3>
           </Link>
         </motion.div>
@@ -103,7 +105,7 @@ const Sidebar = () => {
                 offset={-100}
                 aria-label={item.label}
               >
-                <FontAwesomeIcon icon={item.icon} color="#bddffa" />
+                <FontAwesomeIcon icon={item.icon} />
               </ScrollLink>
             </motion.div>
           ))}
@@ -120,7 +122,7 @@ const Sidebar = () => {
               to="https://drive.google.com/file/d/1x6Kyp2tTblYB1oo3lFowbdgkmKCQtpo5/view?usp=sharing"
               aria-label="Resume"
             >
-              <FontAwesomeIcon icon={faBook} color="#bddffa" />
+              <FontAwesomeIcon icon={faBook} />
             </NavLink>
           </motion.div>
         </nav>
@@ -141,7 +143,7 @@ const Sidebar = () => {
                 href={social.href}
                 aria-label={social.label}
               >
-                <FontAwesomeIcon icon={social.icon} color="#bddffa" />
+                <FontAwesomeIcon icon={social.icon} />
               </a>
             </motion.li>
           ))}

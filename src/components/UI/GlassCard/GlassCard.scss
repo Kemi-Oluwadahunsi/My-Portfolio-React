@@ -1,16 +1,17 @@
-@import '../../../App.scss';
+@import '../../../styles/mixins';
 
 .glass-card {
-  background: var(--color-glassBg, rgba(11, 24, 41, 0.7));
+  background: var(--color-surface);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--color-glassBorder, rgba(188, 224, 251, 0.2));
-  border-radius: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
   padding: 2rem;
   transition: all 0.3s ease;
-  
+
   &:hover {
-    border-color: var(--color-primary, #bce0fb);
-    background: var(--color-glassBg, rgba(11, 24, 41, 0.85));
+    border-color: var(--color-border-strong);
+    background: var(--color-surface-raised);
+    box-shadow: var(--shadow-hover);
   }
 }

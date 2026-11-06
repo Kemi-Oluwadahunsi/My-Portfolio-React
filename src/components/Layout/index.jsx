@@ -9,6 +9,7 @@ import ScrollArrow from '../backarrow/ScrollArrow'
 import LoadingSkeleton from '../UI/LoadingSkeleton/LoadingSkeleton'
 import ParticleBackground from '../UI/ParticleBackground/ParticleBackground'
 import ScrollReveal from '../UI/ScrollReveal/ScrollReveal'
+import useTheme from '../../hooks/useTheme'
 
 // Lazy load heavy components with actual code splitting
 const Services = lazy(() => import('../services/Services'))
@@ -28,6 +29,7 @@ const SectionFallback = ({ height = '600px' }) => (
 )
 
 const Layout = () => {
+  const { theme } = useTheme()
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -127,7 +129,7 @@ const Layout = () => {
 
         <GlowDivider />
 
-        <section className="skillsSection snap-section" id="skills" aria-label="Stack & Tooling">
+        <section className={`skillsSection snap-section${theme === 'burgundy-cream' ? ' theme-inverse' : ''}`} id="skills" aria-label="Stack & Tooling">
           <ScrollReveal direction="up">
             <Suspense fallback={<SectionFallback />}>
               <Skills />

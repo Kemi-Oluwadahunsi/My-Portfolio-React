@@ -1,4 +1,4 @@
-@import '../../App.scss';
+@import '../../styles/mixins';
 
 .experience {
   width: 100%;
@@ -28,12 +28,12 @@
     bottom: 0;
     background: radial-gradient(
         circle at 80% 20%,
-        rgba(188, 224, 251, 0.1) 0%,
+        color-mix(in srgb, var(--color-link) 10%, transparent) 0%,
         transparent 50%
       ),
       radial-gradient(
         circle at 20% 80%,
-        rgba(9, 90, 155, 0.08) 0%,
+        color-mix(in srgb, var(--color-link) 8%, transparent) 0%,
         transparent 50%
       );
     pointer-events: none;
@@ -53,9 +53,9 @@
     h1 {
       font-size: 3.5rem;
       text-align: center;
-      color: var(--color-primary, #bce0fb);
+      color: var(--color-link);
       margin-bottom: 0.5rem;
-      text-shadow: 0 0 20px rgba(188, 224, 251, 0.3);
+      text-shadow: none;
 
       @include tablet {
         font-size: 2.5rem;
@@ -69,7 +69,7 @@
     .section-subtitle {
       text-align: center;
       font-size: 1.15rem;
-      color: var(--color-textSecondary, #8bc5f0);
+      color: var(--color-text);
       margin-bottom: 3rem;
       font-style: italic;
 
@@ -99,8 +99,8 @@
   background: linear-gradient(
     180deg,
     transparent,
-    rgba(188, 224, 251, 0.35) 10%,
-    rgba(188, 224, 251, 0.35) 90%,
+    color-mix(in srgb, var(--color-link) 35%, transparent) 10%,
+    color-mix(in srgb, var(--color-link) 35%, transparent) 90%,
     transparent
   );
   transform: translateX(-50%);
@@ -207,28 +207,28 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: var(--color-primaryDark, #8bc5f0);
-  border: 3px solid var(--color-bgPrimary, #061829);
-  box-shadow: 0 0 10px rgba(188, 224, 251, 0.4);
+  background: var(--color-link);
+  border: 3px solid var(--color-bg);
+  box-shadow: var(--shadow-hover);
 
   &.current {
-    background: #22c55e;
-    box-shadow: 0 0 12px rgba(34, 197, 94, 0.5);
+    background: var(--color-success);
+    box-shadow: var(--shadow-hover);
     animation: dotPulse 2s ease-in-out infinite;
   }
 }
 
 @keyframes dotPulse {
-  0%, 100% { box-shadow: 0 0 8px rgba(34, 197, 94, 0.4); }
-  50% { box-shadow: 0 0 18px rgba(34, 197, 94, 0.7); }
+  0%, 100% { box-shadow: var(--shadow-hover); }
+  50% { box-shadow: var(--shadow-hover); }
 }
 
 /* ───── Timeline Card ───── */
 .timeline-card {
-  background: rgba(11, 24, 41, 0.85);
+  background: var(--color-surface);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(188, 224, 251, 0.12);
-  border-radius: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
   padding: 1.75rem 1.75rem 2.5rem;
   cursor: pointer;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -236,9 +236,9 @@
 
   &:hover,
   &:focus-visible {
-    border-color: rgba(188, 224, 251, 0.3);
-    box-shadow: 0 8px 30px rgba(188, 224, 251, 0.08);
-    outline: none;
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-hover);
+    outline: revert;
   }
 
   @include mobile {
@@ -266,9 +266,9 @@
   gap: 0.35rem;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #22c55e;
-  background: rgba(34, 197, 94, 0.12);
-  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: var(--color-success);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
   border-radius: 999px;
   padding: 0.2rem 0.65rem;
   letter-spacing: 0.04em;
@@ -279,21 +279,21 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #22c55e;
+    background: var(--color-success);
     animation: dotPulse 2s ease-in-out infinite;
   }
 }
 
 .date-range {
   font-size: 0.85rem;
-  color: var(--color-textSecondary, #8bc5f0);
-  font-family: 'SF Mono', 'Fira Code', monospace;
+  color: var(--color-text);
+  font-family: var(--font-mono);
 }
 
 .card-title {
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--color-primary, #bce0fb);
+  color: var(--color-link);
   margin: 0 0 0.25rem;
   line-height: 1.3;
 
@@ -304,7 +304,7 @@
 
 .card-company {
   font-size: 1rem;
-  color: var(--color-textPrimary, #ffffff);
+  color: var(--color-text);
   margin: 0 0 0.15rem;
   font-weight: 500;
 
@@ -315,7 +315,7 @@
 
 .card-location {
   font-size: 0.85rem;
-  color: var(--color-textMuted, #6b8fa3);
+  color: var(--color-text-muted);
   margin: 0;
 }
 
@@ -337,7 +337,7 @@
     margin-bottom: 0.6rem;
     font-size: 0.88rem;
     line-height: 1.6;
-    color: var(--color-textSecondary, #bce0fb);
+    color: var(--color-text);
     text-align: left;
 
     &::before {
@@ -345,7 +345,7 @@
       position: absolute;
       left: 0;
       top: 0;
-      color: var(--color-primaryDark, #8bc5f0);
+      color: var(--color-link);
       font-weight: bold;
     }
 
@@ -365,10 +365,10 @@
   font-size: 0.72rem;
   padding: 0.2rem 0.55rem;
   border-radius: 999px;
-  background: rgba(188, 224, 251, 0.08);
-  border: 1px solid rgba(188, 224, 251, 0.15);
-  color: var(--color-textSecondary, #8bc5f0);
-  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-family: var(--font-mono);
   white-space: nowrap;
 }
 
@@ -377,7 +377,7 @@
   margin-top: 1rem;
   padding-bottom: 0.25rem;
   font-size: 0.78rem;
-  color: var(--color-textMuted, #6b8fa3);
+  color: var(--color-text-muted);
   font-style: italic;
   text-align: left;
 }
@@ -388,9 +388,9 @@
   margin-top: 2.5rem;
   padding: 0.85rem 2rem;
   border-radius: 999px;
-  background: rgba(188, 224, 251, 0.08);
-  border: 1px solid rgba(188, 224, 251, 0.2);
-  color: var(--color-primary, #bce0fb);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-link);
   font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
@@ -398,9 +398,9 @@
   transition: all 0.3s ease;
 
   &:hover {
-    background: rgba(188, 224, 251, 0.15);
-    border-color: rgba(188, 224, 251, 0.4);
-    box-shadow: 0 4px 20px rgba(188, 224, 251, 0.15);
+    background: var(--color-surface-sunken);
+    border-color: var(--color-border-strong);
+    box-shadow: var(--shadow-hover);
   }
 
   @include mobile {

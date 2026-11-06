@@ -29,8 +29,8 @@ const Parallax = ({ type }) => {
             ref={ref}
             style={{
                 background: type === "services"
-                    ? "linear-gradient(180deg, var(--color-bgPrimary, #061829), var(--color-accent, #095a9b))"
-                    : "linear-gradient(180deg, var(--color-bgPrimary, #061829), var(--color-accentSecondary, #505064))"
+                    ? "var(--color-bg)"
+                    : "var(--color-bg-alt)"
             }}
         >
             <Suspense fallback={null}>

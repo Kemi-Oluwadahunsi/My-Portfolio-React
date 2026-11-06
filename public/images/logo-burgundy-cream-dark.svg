@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1514 1039" role="img" aria-labelledby="logo-title logo-description">
+  <title id="logo-title">KM monogram</title>
+  <desc id="logo-description">Interwoven serif K and M with sweeping flourishes, on a transparent background.</desc>
+  <defs>
+    <linearGradient id="m-gradient" gradientUnits="userSpaceOnUse" x1="330" y1="66" x2="1446" y2="973">
+      <stop offset="0" stop-color="#efb39c"/>
+      <stop offset="0.55" stop-color="#af8550"/>
+      <stop offset="1" stop-color="#f4d791"/>
+    </linearGradient>
+  </defs>
+  <path id="letter-m" fill="url(#m-gradient)" d="
+    M 330 66
+    C 395 28 536 72 601 178
+    C 671 294 755 498 843 694
+    L 1096 139
+    L 1104 139
+    C 1132 294 1160 479 1194 649
+    C 1223 795 1267 903 1351 946
+    C 1381 963 1419 974 1444 967
+    C 1449 965 1451 970 1446 973
+    C 1391 998 1300 978 1245 933
+    C 1175 876 1141 781 1122 675
+    L 1060 295
+    C 996 435 911 638 841 831
+    L 832 830
+    L 590 299
+    L 550 728
+    C 543 779 553 798 601 803
+    L 601 812
+    L 410 812
+    L 410 803
+    C 458 800 479 779 486 727
+    L 556 239
+    C 520 132 417 55 334 71
+    C 329 73 325 70 330 66
+    Z"/>
+  <g id="letter-k" fill="#e58c9b">
+    <path d="
+      M 70 229
+      H 270
+      V 237
+      C 223 237 200 258 200 290
+      V 767
+      C 200 801 225 823 271 822
+      V 831
+      H 70
+      V 822
+      C 115 823 138 801 138 767
+      V 290
+      C 138 257 114 237 70 237
+      Z"/>
+    <path d="
+      M 387 229
+      H 573
+      V 237
+      C 524 238 501 249 474 281
+      L 289 508
+      C 370 602 458 705 554 806
+      C 653 910 750 991 851 967
+      C 856 965 858 970 853 973
+      C 751 1029 623 950 518 853
+      C 405 747 302 628 225 533
+      L 409 297
+      C 443 256 425 238 387 237
+      Z"/>
+  </g>
+</svg>

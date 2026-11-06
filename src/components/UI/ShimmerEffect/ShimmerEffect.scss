@@ -1,4 +1,4 @@
-@import '../../../App.scss';
+@import '../../../styles/mixins';
 
 .shimmer-container {
   position: relative;
@@ -13,7 +13,7 @@
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(188, 224, 251, 0.4),
+      color-mix(in srgb, var(--color-link) 40%, transparent),
       transparent
     );
     transform: skewX(-20deg);

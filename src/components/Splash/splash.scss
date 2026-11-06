@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(ellipse at center, #0a2440 0%, #040e1a 70%);
+  background: radial-gradient(ellipse at center, var(--color-surface) 0%, var(--color-surface) 70%);
 }
 
 // The loader sizes itself from its width, so it can never grow taller than its box and overlap anything.

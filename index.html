@@ -33,7 +33,7 @@
     <meta name="twitter:creator" content="@km_oluwadahunsi" />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link id="theme-favicon" rel="icon" type="image/svg+xml" sizes="any" href="/images/favicon-deep-current-dark.svg?v=2" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     
     <!-- Preconnect for Performance -->
@@ -41,18 +41,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
 
-    <!-- Monospace face for the build-log loader (system monospace is the fallback while it loads) -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
-    />
-    
-    <!-- Animate.css -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-    
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#061829" />
     <meta name="msapplication-TileColor" content="#061829" />
@@ -69,6 +57,12 @@
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://kemi-oluwadahunsi.vercel.app/" />
+    <script src="/theme-bootstrap.js"></script>
+    <!-- Resolve appearance before a slow external stylesheet can block the head. -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
   </head>
   <body>
     <div id="root"></div>

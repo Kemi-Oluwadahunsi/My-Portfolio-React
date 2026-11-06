@@ -5,7 +5,7 @@ import LayerStackLoader from './variants/LayerStackLoader'
 import './loader.scss'
 
 const LOADERS = {
-  signature: SignatureLoader, // KM monogram written in a gradient pen stroke
+  signature: SignatureLoader, // KM monogram written in a theme-colored gradient
   buildLog: BuildLogLoader, // terminal printing build steps with a progress bar
   layerStack: LayerStackLoader, // isometric data / api / auth / ui slabs stacking up
 

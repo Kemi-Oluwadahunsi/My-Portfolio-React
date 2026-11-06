@@ -1,4 +1,4 @@
-@import '../../App.scss';
+@import '../../styles/mixins';
 
 .chat-launcher {
   position: fixed;
@@ -13,15 +13,17 @@
   font: inherit;
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--color-bgPrimary, #061829);
-  background: var(--color-primary, #bce0fb);
-  border: 0;
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  border-color: var(--color-primary-border);
+  border: 1px solid var(--color-primary-border);
   border-radius: 999px;
-  box-shadow: 0 8px 28px rgba(9, 90, 155, 0.45);
+  box-shadow: var(--shadow-hover);
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease;
 
-  &:hover { background: #fff; transform: translateY(-2px); }
+  &:hover { background: var(--color-primary-hover); transform: translateY(-2px); }
+  &:active { background: var(--color-primary-active); }
 
   @include mobile { right: 1rem; bottom: 4.5rem; height: 2.75rem; }
 }
@@ -36,10 +38,10 @@
   width: min(380px, calc(100vw - 2rem));
   height: min(560px, calc(100dvh - 11rem));
   overflow: hidden;
-  border-radius: 1.1rem;
-  background: linear-gradient(160deg, rgba(10, 31, 51, 0.98), rgba(6, 24, 41, 0.98));
-  border: 1px solid rgba(188, 224, 251, 0.25);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-hover);
 
   @include mobile {
     right: 0.5rem;
@@ -56,10 +58,10 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 0.85rem 1rem;
-  border-bottom: 1px solid rgba(188, 224, 251, 0.12);
+  border-bottom: 1px solid var(--color-border);
 
-  strong { display: block; font-size: 0.95rem; color: var(--color-textPrimary, #fff); }
-  span { font-size: 0.72rem; color: var(--color-textMuted, #6b8fa3); }
+  strong { display: block; font-size: 0.95rem; color: var(--color-text); }
+  span { font-size: 0.72rem; color: var(--color-text-muted); }
 }
 
 .chat-header-actions {
@@ -77,18 +79,18 @@
   padding: 0 0.75rem;
   font: inherit;
   font-size: 0.75rem;
-  color: var(--color-textTertiary, #8bc5f0);
+  color: var(--color-text-muted);
   background: none;
-  border: 1px solid rgba(188, 224, 251, 0.2);
+  border: 1px solid var(--color-border);
   border-radius: 999px;
   box-shadow: none;
   cursor: pointer;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 
   &:hover {
-    color: #fff;
-    border-color: rgba(188, 224, 251, 0.5);
-    background: rgba(188, 224, 251, 0.08);
+    color: var(--color-text);
+    border-color: var(--color-border);
+    background: var(--color-surface-sunken);
   }
 }
 
@@ -97,14 +99,14 @@
   place-items: center;
   width: 2rem;
   height: 2rem;
-  color: var(--color-primary, #bce0fb);
-  background: rgba(188, 224, 251, 0.06);
-  border: 1px solid rgba(188, 224, 251, 0.2);
+  color: var(--color-link);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
   border-radius: 50%;
   box-shadow: none;
   cursor: pointer;
 
-  &:hover { background: rgba(188, 224, 251, 0.16); }
+  &:hover { background: var(--color-surface-sunken); }
 }
 
 .chat-log {
@@ -124,22 +126,24 @@
   line-height: 1.5;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-  border-radius: 1rem;
+  border-radius: var(--radius-card);
 
-  a { color: var(--color-primary, #bce0fb); text-decoration: underline; text-underline-offset: 3px; }
+  a { color: var(--color-link); text-decoration: underline; text-underline-offset: 3px; }
 
   &.assistant {
     align-self: flex-start;
-    color: var(--color-textPrimary, #fff);
-    background: rgba(188, 224, 251, 0.08);
+    color: var(--color-text);
+    background: var(--color-surface-sunken);
     border-bottom-left-radius: 0.3rem;
   }
 
   &.user {
     align-self: flex-end;
-    color: var(--color-bgPrimary, #061829);
-    background: var(--color-primary, #bce0fb);
+    color: var(--color-on-primary);
+    background: var(--color-primary);
+    border-color: var(--color-primary-border);
     border-bottom-right-radius: 0.3rem;
+    a { color: inherit; }
   }
 }
 
@@ -152,7 +156,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--color-textTertiary, #8bc5f0);
+    background: var(--color-text-muted);
     animation: chatBounce 1s infinite ease-in-out;
 
     &:nth-child(2) { animation-delay: 0.15s; }
@@ -176,15 +180,15 @@
     font: inherit;
     font-size: 0.8rem;
     text-align: left;
-    color: var(--color-primary, #bce0fb);
-    background: rgba(188, 224, 251, 0.06);
-    border: 1px solid rgba(188, 224, 251, 0.3);
+    color: var(--color-link);
+    background: var(--color-surface-sunken);
+    border: 1px solid var(--color-border-strong);
     border-radius: 999px;
     box-shadow: none;
     cursor: pointer;
     transition: background 0.2s ease;
 
-    &:hover { background: rgba(188, 224, 251, 0.16); }
+    &:hover { background: var(--color-surface-sunken); }
   }
 }
 
@@ -192,7 +196,7 @@
   display: flex;
   gap: 0.5rem;
   padding: 0.75rem;
-  border-top: 1px solid rgba(188, 224, 251, 0.12);
+  border-top: 1px solid var(--color-border);
 
   input {
     flex: 1;
@@ -201,14 +205,12 @@
     padding: 0 0.9rem;
     font: inherit;
     font-size: 16px; // stops iOS zooming into the field
-    color: var(--color-textPrimary, #fff);
-    background: rgba(188, 224, 251, 0.06);
-    border: 1px solid rgba(188, 224, 251, 0.2);
+    color: var(--color-text);
+    background: var(--color-surface-sunken);
+    border: 1px solid var(--color-border-strong);
     border-radius: 999px;
-    outline: none;
-
-    &:focus { border-color: var(--color-primary, #bce0fb); }
-    &::placeholder { color: var(--color-textMuted, #6b8fa3); }
+    &:focus { border-color: var(--color-focus); }
+    &::placeholder { color: var(--color-text-muted); }
   }
 }
 
@@ -218,12 +220,15 @@
   flex: none;
   width: 2.5rem;
   height: 2.5rem;
-  color: var(--color-bgPrimary, #061829);
-  background: var(--color-primary, #bce0fb);
-  border: 0;
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  border-color: var(--color-primary-border);
+  border: 1px solid var(--color-primary-border);
   border-radius: 50%;
   box-shadow: none;
   cursor: pointer;
 
-  &:disabled { opacity: 0.4; cursor: not-allowed; }
+  &:hover:not(:disabled) { background: var(--color-primary-hover); }
+  &:active:not(:disabled) { background: var(--color-primary-active); }
+  &:disabled { cursor: not-allowed; }
 }

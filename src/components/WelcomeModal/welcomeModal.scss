@@ -1,4 +1,4 @@
-@import '../../App.scss';
+@import '../../styles/mixins';
 
 .welcome-backdrop {
   position: fixed;
@@ -7,19 +7,19 @@
   display: grid;
   place-items: center;
   padding: 1rem;
-  background: rgba(4, 14, 26, 0.72);
+  background: var(--overlay-scrim);
   backdrop-filter: blur(10px);
 }
 
 .welcome-card {
   position: relative;
   width: min(780px, 100%);
-  border-radius: 1.5rem;
+  border-radius: var(--radius-card);
   overflow: hidden;
   isolation: isolate;
-  background: linear-gradient(160deg, rgba(10, 31, 51, 0.97), rgba(6, 24, 41, 0.97));
-  border: 1px solid var(--color-glassBorder, rgba(188, 224, 251, 0.2));
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 60px rgba(9, 90, 155, 0.25);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-hover);
 
   // Drifting glow behind the content
   &::before {
@@ -28,9 +28,8 @@
     inset: -30%;
     z-index: -1;
     pointer-events: none;
-    background:
-      radial-gradient(circle at 20% 25%, rgba(9, 90, 155, 0.35), transparent 40%),
-      radial-gradient(circle at 80% 75%, rgba(188, 224, 251, 0.14), transparent 45%);
+    background: radial-gradient(circle at 20% 25%, color-mix(in srgb, var(--color-link) 35%, transparent), transparent 40%),
+      radial-gradient(circle at 80% 75%, color-mix(in srgb, var(--color-link) 14.000000000000002%, transparent), transparent 45%);
     animation: welcomeGlow 9s ease-in-out infinite alternate;
   }
 
@@ -42,7 +41,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--color-primary, #bce0fb), transparent);
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
     background-size: 200% 100%;
     animation: welcomeShimmer 3.5s linear infinite;
   }
@@ -68,14 +67,14 @@
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
-  border: 1px solid rgba(188, 224, 251, 0.2);
-  background: rgba(188, 224, 251, 0.06);
-  color: var(--color-primary, #bce0fb);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-sunken);
+  color: var(--color-link);
   cursor: pointer;
   transition: background var(--transition-fast), transform var(--transition-fast);
 
   &:hover {
-    background: rgba(188, 224, 251, 0.16);
+    background: var(--color-surface-sunken);
     transform: rotate(90deg);
   }
 }
@@ -97,9 +96,9 @@
   padding: 0.35rem 0.85rem;
   margin-bottom: 1.1rem;
   border-radius: 999px;
-  border: 1px solid rgba(74, 222, 128, 0.35);
-  background: rgba(74, 222, 128, 0.08);
-  color: #86efac;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-sunken);
+  color: var(--color-success);
   font-size: 0.8rem;
   letter-spacing: 0.3px;
 
@@ -107,23 +106,23 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #4ade80;
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+    background: var(--color-success);
+    box-shadow: var(--shadow-hover);
     animation: welcomePulse 1.8s infinite;
   }
 }
 
 @keyframes welcomePulse {
-  70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+  70% { box-shadow: var(--shadow-hover); }
+  100% { box-shadow: var(--shadow-hover); }
 }
 
 .welcome-greeting {
-  font-family: 'Coolvetica', 'DM Sans', sans-serif;
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(1.2rem, 4vw, 2rem);
   line-height: 1.15;
-  color: var(--color-primary, #bce0fb);
+  color: var(--color-link);
 
   span {
     display: inline-block;
@@ -133,7 +132,7 @@
 
 .welcome-intro {
   margin-top: 0.75rem;
-  color: var(--color-textPrimary, #fff);
+  color: var(--color-text);
   font-size: 1.05rem;
   line-height: 1.55;
   font-size: 0.8rem;
@@ -141,7 +140,7 @@
 
 .welcome-time {
   margin-top: 0.4rem;
-  color: var(--color-textMuted, #6b8fa3);
+  color: var(--color-text-muted);
   font-size: 0.8rem;
 }
 
@@ -151,7 +150,7 @@
   gap: 0.7rem;
   margin-top: 1.5rem;
   list-style: none;
-  color: var(--color-textTertiary, #8bc5f0);
+  color: var(--color-text-muted);
   font-size: 0.9rem;
 
   li > span:first-child {
@@ -166,21 +165,21 @@
     margin: 0;
     font: inherit;
     font-weight: 400;
-    color: var(--color-primary, #bce0fb);
+    color: var(--color-link);
     background: none;
     border: 0;
     border-radius: 0;
     box-shadow: none;
     text-decoration: underline;
-    text-decoration-color: rgba(188, 224, 251, 0.4);
+    text-decoration-color: var(--color-text-muted);
     text-underline-offset: 4px;
     cursor: pointer;
     transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
 
     &:hover {
-      color: #fff;
+      color: var(--color-text);
       background: none;
-      text-decoration-color: #fff;
+      text-decoration-color: var(--color-text);
     }
   }
 }
@@ -192,7 +191,7 @@
   gap: 1rem;
   margin-top: 1.75rem;
   padding-top: 1.1rem;
-  border-top: 1px solid rgba(188, 224, 251, 0.12);
+  border-top: 1px solid var(--color-border);
 
   a,
   button {
@@ -205,23 +204,23 @@
   }
 
   a {
-    color: var(--color-primary, #bce0fb);
+    color: var(--color-link);
     font-weight: 600;
 
     &:hover {
-      color: #fff;
+      color: var(--color-text);
     }
   }
 
   button {
     padding: 0.4rem 0.9rem;
-    color: var(--color-textMuted, #6b8fa3);
+    color: var(--color-text-muted);
     border-radius: 999px;
-    border: 1px solid rgba(188, 224, 251, 0.15);
+    border: 1px solid var(--color-border);
     background: transparent;
 
     &:hover {
-      color: #fff;
+      color: var(--color-text);
     }
   }
 }

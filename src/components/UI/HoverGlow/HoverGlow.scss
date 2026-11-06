@@ -1,9 +1,9 @@
-@import '../../../App.scss';
+@import '../../../styles/mixins';
 
 .hover-glow {
   position: relative;
   overflow: hidden;
-  border-radius: 1rem;
+  border-radius: var(--radius-card);
 
   .glow-spot {
     position: absolute;
@@ -23,7 +23,7 @@
   &.glow-primary .glow-spot {
     background: radial-gradient(
       circle,
-      var(--color-primary, #bce0fb) 0%,
+      var(--color-primary) 0%,
       transparent 70%
     );
     filter: blur(40px);
@@ -32,7 +32,7 @@
   &.glow-accent .glow-spot {
     background: radial-gradient(
       circle,
-      var(--color-accent, #095a9b) 0%,
+      var(--color-accent) 0%,
       transparent 70%
     );
     filter: blur(40px);

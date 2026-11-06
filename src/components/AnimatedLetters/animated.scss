@@ -1,4 +1,4 @@
-@import "../../App.scss";
+@import "../../styles/mixins";
 
 .text-animate {
     display: inline-block;
@@ -23,7 +23,7 @@
 
     &:hover{
         animation: rubberband 1s;
-        color: #0c4e80;
+        color: var(--color-link);
     }
 }
 

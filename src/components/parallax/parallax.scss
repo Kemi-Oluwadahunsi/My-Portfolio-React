@@ -1,4 +1,4 @@
-@import "../../App.scss";
+@import "../../styles/mixins";
 
 .parallax{
     height: 100vh;
@@ -10,7 +10,7 @@
     justify-content: center;
     overflow: hidden;
     z-index: 0;
-   
+
     @include tablet {
         height: 90vh;
         margin-left: 0;
@@ -30,18 +30,11 @@
     .parallax-title {
         font-size: clamp(3rem, 12vw, 8rem);
         font-weight: 700;
-        color: var(--color-textPrimary, #ffffff);
-        text-shadow: 
-            0 0 20px rgba(188, 224, 251, 0.5),
-            0 0 40px rgba(188, 224, 251, 0.3),
-            0 0 60px rgba(188, 224, 251, 0.2);
+        color: var(--color-text);
+        text-shadow: none;
         z-index: 10;
         position: relative;
         text-align: center;
-        background: linear-gradient(135deg, #ffffff, #bce0fb);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
         letter-spacing: 0.05em;
     }
 
