@@ -1,4 +1,4 @@
-@import '../../../App.scss';
+@import '../../../styles/mixins';
 
 .scroll-progress {
   position: fixed;
@@ -6,8 +6,9 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--color-primary, #bce0fb);
+  background: var(--color-link);
+  border-color: var(--color-primary-border);
   transform-origin: 0%;
   z-index: 9999;
-  box-shadow: 0 0 10px rgba(188, 224, 251, 0.5);
+  box-shadow: var(--shadow-hover);
 }

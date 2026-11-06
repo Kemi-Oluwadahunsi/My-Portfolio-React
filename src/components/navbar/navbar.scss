@@ -1,7 +1,7 @@
-@import '../../App.scss';
+@import '../../styles/mixins';
 
 .small-screens {
-  background-color: #10416a;
+  background-color: var(--color-surface);
   position: fixed;
   top: 0;
   left: 0;
@@ -46,10 +46,10 @@
         }
 
         h3 {
-          color: #3fabf1;
+          color: var(--color-link);
           font-size: 0.6rem;
           margin-top: 0.1rem;
-          font-family: sans-serif;
+          font-family: var(--font-body);
           letter-spacing: 0.7px;
           animation: fadeIn 1s 1.8s backwards;
         }
@@ -59,7 +59,8 @@
         width: 3rem;
         height: 3rem;
         border-radius: 50%;
-        background-color: #3fabf1;
+        background-color: var(--color-primary);
+        border: 1px solid var(--color-primary-border);
         padding: 1rem;
         display: flex;
         align-items: center;
@@ -75,8 +76,8 @@
         }
 
         button {
-          background-color: #3fabf1;
-          color: #0c0c1d;
+          background-color: var(--color-primary);
+          color: var(--color-on-primary);
           border: none;
           cursor: pointer;
           pointer-events: auto;
@@ -98,7 +99,7 @@
     }
 
     .bg {
-      background-color: #10416a;
+      background-color: var(--color-surface);
       position: fixed;
       top: 0;
       right: 0;
@@ -116,7 +117,7 @@
       z-index: 9998;
       border-bottom-left-radius: 10px;
       pointer-events: auto;
-      box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
+      box-shadow: var(--shadow-hover);
 
       @include mobile {
         left: 20%;
@@ -147,11 +148,11 @@
           display: block;
           font-size: 1rem;
           font-weight: 500;
-          color: #bce0fb;
+          color: var(--color-link);
           text-decoration: none;
           padding: 0.6rem 1.5rem;
           transition: all 0.3s ease;
-          border-bottom: 1px solid rgba(188, 224, 251, 0.1);
+          border-bottom: 1px solid var(--color-border);
           cursor: pointer;
 
           @include mobile {
@@ -160,13 +161,13 @@
           }
 
           &:hover {
-            background-color: rgba(188, 224, 251, 0.1);
-            color: #3fabf1;
+            background-color: var(--color-surface-sunken);
+            color: var(--color-link);
           }
 
           &.active {
-            color: #3fabf1;
-            background-color: rgba(63, 171, 241, 0.12);
+            color: var(--color-link);
+            background-color: var(--color-surface-sunken);
             position: relative;
 
             &::before {
@@ -176,25 +177,24 @@
               top: 15%;
               height: 70%;
               width: 3px;
-              background: #3fabf1;
+              background: var(--color-link);
               border-radius: 0 2px 2px 0;
-              box-shadow: 0 0 8px rgba(63, 171, 241, 0.5);
+              box-shadow: var(--shadow-hover);
             }
           }
         }
 
         .resume.navLinks {
           display: inline-block;
-          border: 1px solid #3fabf1;
-          background-color: #bce0fb;
-          color: #0c0c1d !important;
+          border: 1px solid var(--color-primary-border);
+          background-color: var(--color-primary);
+          color: var(--color-on-primary) !important;
           padding: 0.5rem 1.25rem;
-          border-radius: 8px;
+          border-radius: var(--radius-control);
           margin-top: 0.5rem;
           font-weight: 600;
           text-decoration: none;
           transition: all 0.3s ease;
-          border-bottom: none;
           width: auto;
 
           @include mobile {
@@ -203,10 +203,14 @@
           }
 
           &:hover {
-            background-color: #3fabf1;
-            color: #0c0c1d !important;
+            background-color: var(--color-primary-hover);
+            color: var(--color-on-primary) !important;
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(63, 171, 241, 0.4);
+            box-shadow: var(--shadow-hover);
+          }
+
+          &:active {
+            background-color: var(--color-primary-active);
           }
         }
       }
@@ -217,7 +221,7 @@
         padding: 0.75rem 1.5rem;
         padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
         flex-shrink: 0;
-        border-top: 1px solid rgba(188, 224, 251, 0.1);
+        border-top: 1px solid var(--color-border);
 
         ul {
           display: flex;
@@ -237,7 +241,7 @@
             align-items: center;
             justify-content: center;
             list-style: none;
-            
+
             a {
               display: flex;
               align-items: center;
@@ -245,7 +249,9 @@
               width: 36px;
               height: 36px;
               border-radius: 50%;
-              background-color: #bce0fb;
+              background-color: var(--color-primary);
+              color: var(--color-on-primary);
+              border: 1px solid var(--color-primary-border);
               transition: all 0.3s ease;
 
               @include mobile {
@@ -262,9 +268,9 @@
               }
 
               &:hover {
-                background-color: #3fabf1;
+                background-color: var(--color-primary);
                 transform: translateY(-3px);
-                box-shadow: 0 4px 15px rgba(63, 171, 241, 0.4);
+                box-shadow: var(--shadow-hover);
               }
             }
           }

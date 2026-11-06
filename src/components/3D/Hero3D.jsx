@@ -3,8 +3,9 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars, MeshDistortMaterial } from '@react-three/drei'
 import { motion } from 'framer-motion'
 import './Hero3D.scss'
+import useAtmosphere from '../../hooks/useAtmosphere'
 
-function AnimatedSphere() {
+function AnimatedSphere({ color }) {
   const meshRef = useRef()
 
   useFrame((state) => {
@@ -20,7 +21,7 @@ function AnimatedSphere() {
       {/* eslint-disable-next-line react/no-unknown-property */}
       <icosahedronGeometry args={[1, 1]} />
       <MeshDistortMaterial
-        color="#bce0fb"
+        color={color}
         attach="material"
         distort={0.3}
         speed={2}
@@ -32,6 +33,8 @@ function AnimatedSphere() {
 }
 
 const Hero3D = () => {
+  const { enabled, color } = useAtmosphere()
+  if (!enabled) return null
   return (
     <motion.div
       className="hero-3d"
@@ -45,7 +48,7 @@ const Hero3D = () => {
           <ambientLight intensity={0.5} />
           {/* eslint-disable-next-line react/no-unknown-property */}
           <pointLight position={[10, 10, 10]} />
-          <AnimatedSphere />
+          <AnimatedSphere color={color} />
           <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
           <Stars radius={300} depth={50} count={5000} factor={4} />
         </Suspense>

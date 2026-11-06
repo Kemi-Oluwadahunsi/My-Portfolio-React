@@ -1,4 +1,4 @@
-@import '../../../App.scss';
+@import '../../../styles/mixins';
 
 .blur-on-scroll {
   transition: filter 0.3s ease, opacity 0.3s ease;

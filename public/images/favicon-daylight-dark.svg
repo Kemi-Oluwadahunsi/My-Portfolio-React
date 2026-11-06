@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <title>Closing code tag</title>
+  <defs>
+    <linearGradient id="slash-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#bdcfb2"/>
+      <stop offset="0.55" stop-color="#7e9a7a"/>
+      <stop offset="1" stop-color="#c8d9c3"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19 18 5 32 19 46M45 18 59 32 45 46" stroke="#ebb194"/>
+    <path d="M39 10 25 54" stroke="url(#slash-gradient)"/>
+  </g>
+</svg>

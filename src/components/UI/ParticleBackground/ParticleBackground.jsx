@@ -1,14 +1,20 @@
 import { useEffect, useRef } from 'react'
 import './ParticleBackground.scss'
+import useAtmosphere from '../../../hooks/useAtmosphere'
 
 const ParticleBackground = ({ density = 50, speed = 1 }) => {
   const canvasRef = useRef(null)
+  const { backgroundEnabled: enabled, color } = useAtmosphere()
 
   useEffect(() => {
     const canvas = canvasRef.current
-    if (!canvas) return
+    if (!enabled || !canvas) return
 
     const ctx = canvas.getContext('2d')
+    if (!ctx) {
+      console.warn('Particle background unavailable: no 2D canvas context.')
+      return
+    }
     let animationFrameId
     const particles = []
 
@@ -43,8 +49,10 @@ const ParticleBackground = ({ density = 50, speed = 1 }) => {
       draw() {
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(188, 224, 251, ${this.opacity})`
+        ctx.fillStyle = color
+        ctx.globalAlpha = this.opacity
         ctx.fill()
+        ctx.globalAlpha = 1
       }
     }
 
@@ -65,11 +73,13 @@ const ParticleBackground = ({ density = 50, speed = 1 }) => {
 
           if (distance < 120) {
             ctx.beginPath()
-            ctx.strokeStyle = `rgba(188, 224, 251, ${0.2 * (1 - distance / 120)})`
+            ctx.strokeStyle = color
+            ctx.globalAlpha = 0.2 * (1 - distance / 120)
             ctx.lineWidth = 0.5
             ctx.moveTo(particles[i].x, particles[i].y)
             ctx.lineTo(particles[j].x, particles[j].y)
             ctx.stroke()
+            ctx.globalAlpha = 1
           }
         }
       }
@@ -89,9 +99,9 @@ const ParticleBackground = ({ density = 50, speed = 1 }) => {
       window.removeEventListener('resize', resizeCanvas)
       cancelAnimationFrame(animationFrameId)
     }
-  }, [density, speed])
+  }, [density, speed, enabled, color])
 
-  return <canvas ref={canvasRef} className="particle-background" />
+  return enabled ? <canvas ref={canvasRef} className="particle-background" aria-hidden="true" /> : null
 }
 
 export default ParticleBackground

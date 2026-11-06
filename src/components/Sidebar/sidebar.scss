@@ -1,8 +1,8 @@
-@import '../../App.scss';
+@import '../../styles/mixins';
 
 .general-sidebar {
   height: 100dvh;
-  background: #10416a;
+  background: var(--color-surface);
   width: 5rem;
   position: fixed;
   top: 0;
@@ -25,11 +25,11 @@
       }
 
       h3 {
-        color: #3fabf1;
+        color: var(--color-link);
         text-align: center;
         font-size: 0.8rem;
         margin-top: 0.1rem;
-        font-family: sans-serif;
+        font-family: var(--font-body);
         letter-spacing: 0.7px;
         animation: fadeIn 1s 1.8s backwards;
       }
@@ -60,7 +60,7 @@
 
       a {
         font-size: 1.1rem;
-        color: #0c0c1d;
+        color: var(--color-link);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -82,7 +82,7 @@
         }
 
         &:hover {
-          color: #bce0fb;
+          color: var(--color-link);
 
           svg {
             opacity: 0;
@@ -111,7 +111,7 @@
           pointer-events: none;
           opacity: 0;
           transition: all 0.3s ease-out;
-          color: #bce0fb;
+          color: var(--color-link);
           text-transform: uppercase;
 
           @media (min-width: 1200px) {
@@ -192,9 +192,9 @@
 
       a.active {
         svg {
-          color: #bce0fb;
+          color: var(--color-link);
           transform: scale(1.25);
-          filter: drop-shadow(0 0 6px rgba(188, 224, 251, 0.6));
+          filter: drop-shadow(0 0 6px var(--color-surface-sunken));
         }
 
         &::before {
@@ -206,9 +206,10 @@
           transform: translateY(-50%);
           width: 3px;
           height: 1.2rem;
-          background: #bce0fb;
+          background: var(--color-primary);
+          border-color: var(--color-primary-border);
           border-radius: 0 2px 2px 0;
-          box-shadow: 0 0 8px rgba(188, 224, 251, 0.5);
+          box-shadow: var(--shadow-hover);
           transition: opacity 0.3s ease-out;
         }
 
@@ -229,6 +230,7 @@
       list-style: none;
       text-align: center;
       margin: 0;
+      color: var(--color-link);
 
       li {
         a {
@@ -238,7 +240,7 @@
           height: fit-content;
 
           &:hover svg {
-            color: #57adf3;
+            color: var(--color-link);
           }
         }
       }

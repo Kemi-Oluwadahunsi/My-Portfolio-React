@@ -1,7 +1,7 @@
 
 import './navbar.scss'
-import { useEffect, useState } from 'react'
-import Logo from "/images/logo.webp"
+import { useEffect, useRef, useState } from 'react'
+import useTheme from '../../hooks/useTheme'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBars,
@@ -21,9 +21,13 @@ import { useActiveSection } from '../../hooks/useActiveSection'
 
 
 const Navbar = () => {
+  const { theme, resolvedMode } = useTheme()
+  const logo = `/images/logo-${theme}-${resolvedMode}.svg`
   const activeSection = useActiveSection()
   const [showMobileContent, setShowMobileContent] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const menuRef = useRef(null)
+  const toggleRef = useRef(null)
 
 
   const toggleMobileContent = () => {
@@ -33,6 +37,21 @@ const Navbar = () => {
   const closeMobileContent = () => {
     setShowMobileContent(false)
   }
+
+  useEffect(() => {
+    if (!showMobileContent) return
+    const menu = menuRef.current
+    const toggle = toggleRef.current
+    menu?.querySelector('a[href]')?.focus({ preventScroll: true })
+    const escape = (event) => {
+      if (event.key === 'Escape') setShowMobileContent(false)
+    }
+    document.addEventListener('keydown', escape)
+    return () => {
+      document.removeEventListener('keydown', escape)
+      if (menu?.contains(document.activeElement)) toggle?.focus({ preventScroll: true })
+    }
+  }, [showMobileContent])
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -79,7 +98,6 @@ const Navbar = () => {
           initial={{ backdropFilter: 'blur(0px)' }}
           animate={{ 
             backdropFilter: scrolled ? 'blur(20px)' : 'blur(0px)',
-            backgroundColor: scrolled ? 'rgba(6, 24, 41, 0.8)' : 'transparent'
           }}
           transition={{ duration: 0.3 }}
         >
@@ -89,11 +107,12 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <img src={Logo} alt="Kemi-Oluwadahunsi Logo" />
+              <img src={logo} alt="Kemi-Oluwadahunsi Logo" />
               <h3>KeMi</h3>
             </motion.div>
             <motion.div className="toggleButton">
               <motion.button 
+                ref={toggleRef}
                 onClick={toggleMobileContent}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -132,9 +151,9 @@ const Navbar = () => {
             {showMobileContent && (
               <motion.div
                 className="bg visible"
+                ref={menuRef}
                 id="mobile-navigation"
                 role="dialog"
-                aria-modal="true"
                 aria-label="Mobile navigation menu"
                 initial={{ opacity: 0, x: '100%' }}
                 animate={{ opacity: 1, x: 0 }}
@@ -143,7 +162,6 @@ const Navbar = () => {
               >
                 <motion.ul 
                   className="navigationItems"
-                  role="menubar"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
@@ -167,6 +185,7 @@ const Navbar = () => {
                       transition={{ delay: index * 0.1 }}
                     >
                       <ScrollLink
+                        href={`#${item.to}`}
                         className={`navLinks ${activeSection === item.to ? 'active' : ''}`}
                         to={item.to}
                         smooth={true}
@@ -225,7 +244,7 @@ const Navbar = () => {
                           href={social.href}
                           aria-label={social.label}
                         >
-                          <FontAwesomeIcon icon={social.icon} color="#0c0c1d" />
+                          <FontAwesomeIcon icon={social.icon} />
                         </a>
                       </motion.li>
                     ))}

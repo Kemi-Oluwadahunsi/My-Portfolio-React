@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react'
+import { MotionConfig } from 'framer-motion'
 import { Routes, Route } from 'react-router-dom'
 import './App.scss'
 import SEO from './components/SEO/SEO'
@@ -17,7 +18,7 @@ const NotFound = lazy(() => import('./components/NotFound/NotFound'))
 
 function App() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <Splash />
       <SEO />
       <Cursor />
@@ -42,7 +43,7 @@ function App() {
         </Routes>
       </Suspense>
       <ChatWidget />
-    </>
+    </MotionConfig>
   )
 }
 

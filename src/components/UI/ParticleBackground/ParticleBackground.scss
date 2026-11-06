@@ -1,4 +1,4 @@
-@import '../../../App.scss';
+@import '../../../styles/mixins';
 
 .particle-background {
   position: fixed;
@@ -9,4 +9,8 @@
   z-index: 0;
   pointer-events: none;
   opacity: 0.3;
+}
+
+:root[data-mode='light'] .particle-background {
+  opacity: 0.55;
 }

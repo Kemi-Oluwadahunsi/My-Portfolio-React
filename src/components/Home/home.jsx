@@ -1,17 +1,25 @@
 import './home.scss'
-import Kemi from '/images/creative-Kemi.webp'
 import AnimatedLetters from '../AnimatedLetters/animated'
 import '../AnimatedLetters/animated.scss'
 import { Link as ScrollLink } from 'react-scroll'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import GradientText from '../UI/GradientText/GradientText'
-import ParticleBackground from '../UI/ParticleBackground/ParticleBackground'
 import FloatingElements from '../UI/FloatingElements/FloatingElements'
 import AnimatedCounter from '../UI/AnimatedCounter/AnimatedCounter'
 import MagneticButton from '../UI/MagneticButton/MagneticButton'
 import WelcomeModal from '../WelcomeModal/WelcomeModal'
 import { socialLinks } from '../../constants/portfolioData'
+import useTheme from '../../hooks/useTheme'
+import useAtmosphere from '../../hooks/useAtmosphere'
+
+const letterAssets = {
+  'deep-current': '/images/deepcurrent-K.webp',
+  porcelain: '/images/porcelain-K.webp',
+  daylight: '/images/daylight-K.png',
+  'burgundy-cream': '/images/burgundy-K.webp',
+  botanical: '/images/botanical-K.webp',
+}
 
 const roles = [
   'Micro Frontend Architect',
@@ -28,6 +36,8 @@ const stats = [
 ]
 
 const Home = () => {
+  const { theme } = useTheme()
+  const { enabled: atmospheric, reducedMotion } = useAtmosphere()
   const letterClass = 'text-animate'
   const { ref } = useInView({
     threshold: 0.1,
@@ -104,8 +114,7 @@ const Home = () => {
       initial="hidden"
       animate="visible"
     >
-      <ParticleBackground density={30} speed={0.5} />
-      <FloatingElements />
+      {atmospheric && <FloatingElements />}
       <WelcomeModal />
       
       <div className="text-zone">
@@ -121,21 +130,34 @@ const Home = () => {
           <span className={letterClass}>H</span>
           <span className={`${letterClass} _12`}>i,</span>
           <br />
-          <span className={`${letterClass} _13`}>I</span>
-          <span className={`${letterClass} _14`}>&apos;m</span>
-          <motion.img
-            src={Kemi}
-            alt="Kemi - Creative introduction letter K"
-            className="k-letter"
-            whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-            transition={{ duration: 0.5 }}
-            loading="eager"
-          />
-          <AnimatedLetters
-            letterClass={letterClass}
-            strArray={nameArray}
-            idx={15}
-          />
+          <span className="name-line">
+            <span className="name-word">
+              <span className={`${letterClass} _13`}>I</span>
+              <span className={`${letterClass} _14`}>&apos;m</span>
+              <motion.img
+                src={letterAssets[theme]}
+                alt="Kemi - Creative introduction letter K"
+                className="k-letter"
+                width={1254}
+                height={1254}
+                whileHover={reducedMotion ? undefined : { rotate: [0, -10, 10, -10, 0] }}
+                transition={{ duration: 0.5 }}
+                loading="eager"
+              />
+              <AnimatedLetters
+                letterClass={letterClass}
+                strArray={nameArray.slice(0, 3)}
+                idx={15}
+              />
+            </span>{' '}
+            <span className="name-word">
+              <AnimatedLetters
+                letterClass={letterClass}
+                strArray={nameArray.slice(4)}
+                idx={19}
+              />
+            </span>
+          </span>
           <br />
           <AnimatedLetters
             letterClass={letterClass}
@@ -192,9 +214,9 @@ const Home = () => {
         variants={itemVariants}
         initial="hidden"
         animate="visible"
-        whileHover={{ scale: 1.05 }}
+        whileHover={atmospheric ? { scale: 1.05 } : undefined}
       >
-        <div className="rotating-blob" />
+        <div className="rotating-blob" aria-hidden="true" />
         <img
           className="my-image"
           src="/my-image-2-new.webp"

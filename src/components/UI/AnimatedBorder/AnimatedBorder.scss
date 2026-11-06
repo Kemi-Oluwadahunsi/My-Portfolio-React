@@ -1,9 +1,9 @@
-@import '../../../App.scss';
+@import '../../../styles/mixins';
 
 .animated-border {
   position: relative;
   padding: 2px;
-  border-radius: 1rem;
+  border-radius: var(--radius-card);
   overflow: hidden;
 
   .border-top,
@@ -22,7 +22,7 @@
     background: linear-gradient(
       90deg,
       transparent,
-      var(--color-primary, #bce0fb),
+      var(--color-primary),
       transparent
     );
   }
@@ -35,7 +35,7 @@
     background: linear-gradient(
       180deg,
       transparent,
-      var(--color-primary, #bce0fb),
+      var(--color-primary),
       transparent
     );
   }
@@ -48,7 +48,7 @@
     background: linear-gradient(
       90deg,
       transparent,
-      var(--color-primary, #bce0fb),
+      var(--color-primary),
       transparent
     );
   }
@@ -61,7 +61,7 @@
     background: linear-gradient(
       180deg,
       transparent,
-      var(--color-primary, #bce0fb),
+      var(--color-primary),
       transparent
     );
   }
@@ -69,7 +69,7 @@
   .border-content {
     position: relative;
     z-index: 1;
-    background: var(--color-bgPrimary, #061829);
+    background: var(--color-bg);
     border-radius: calc(1rem - 2px);
   }
 
@@ -81,7 +81,7 @@
       background: linear-gradient(
         90deg,
         transparent,
-        var(--color-accent, #095a9b),
+        var(--color-accent),
         transparent
       );
     }

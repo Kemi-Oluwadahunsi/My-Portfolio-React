@@ -1,9 +1,9 @@
-@import '../../../App.scss';
+@import '../../../styles/mixins';
 
 .interactive-border {
   position: relative;
   padding: 2px;
-  border-radius: 1rem;
+  border-radius: var(--radius-card);
   background: transparent;
   overflow: hidden;
 
@@ -15,10 +15,10 @@
     height: 200%;
     background: conic-gradient(
       from 0deg,
-      var(--color-primary, #bce0fb),
-      var(--color-accent, #095a9b),
-      var(--color-primaryDark, #8bc5f0),
-      var(--color-primary, #bce0fb)
+      var(--color-primary),
+      var(--color-accent),
+      var(--color-primary-hover),
+      var(--color-primary)
     );
     z-index: 0;
   }
@@ -26,7 +26,7 @@
   .border-content {
     position: relative;
     z-index: 1;
-    background: var(--color-bgPrimary, #061829);
+    background: var(--color-bg);
     border-radius: calc(1rem - 2px);
     padding: 1.5rem;
   }

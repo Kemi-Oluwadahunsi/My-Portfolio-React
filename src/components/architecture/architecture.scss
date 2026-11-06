@@ -1,4 +1,4 @@
-@import '../../App.scss';
+@import '../../styles/mixins';
 
 .architecture {
   width: 100%;
@@ -26,9 +26,9 @@
   h1 {
     font-size: 3.5rem;
     text-align: center;
-    color: var(--color-primary, #bce0fb);
+    color: var(--color-link);
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 20px rgba(188, 224, 251, 0.3);
+    text-shadow: none;
 
     @include tablet { font-size: 2.5rem; }
     @include mobile { font-size: 2rem; }
@@ -37,7 +37,7 @@
   .section-subtitle {
     text-align: center;
     font-size: 1.05rem;
-    color: var(--color-textSecondary, #8bc5f0);
+    color: var(--color-text);
     margin-bottom: 3rem;
     max-width: 700px;
     line-height: 1.6;
@@ -52,9 +52,9 @@
 /* ───── MFE Diagram ───── */
 .mfe-diagram {
   width: 100%;
-  background: rgba(11, 24, 41, 0.7);
-  border: 1px solid rgba(188, 224, 251, 0.12);
-  border-radius: 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
   padding: 2rem;
   margin-bottom: 2rem;
 
@@ -65,11 +65,11 @@
 
 .diagram-label {
   font-size: 0.8rem;
-  color: var(--color-textMuted, #6b8fa3);
+  color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 1.5rem;
-  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-family: var(--font-mono);
 }
 
 .diagram-grid {
@@ -80,7 +80,7 @@
 }
 
 .diagram-arrow {
-  color: rgba(188, 224, 251, 0.3);
+  color: var(--color-text-muted);
   font-size: 1rem;
 }
 
@@ -95,33 +95,33 @@
   .node-label {
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--color-textPrimary, #ffffff);
+    color: var(--color-text);
   }
 
   .node-detail {
     font-size: 0.75rem;
-    color: var(--color-textMuted, #6b8fa3);
+    color: var(--color-text-muted);
   }
 
   &.shell {
-    background: rgba(59, 130, 246, 0.15);
-    border: 1px solid rgba(59, 130, 246, 0.3);
+    background: var(--color-surface-sunken);
+    border: 1px solid var(--color-border-strong);
     min-width: 220px;
   }
 
   &.idp {
-    background: rgba(234, 179, 8, 0.12);
-    border: 1px solid rgba(234, 179, 8, 0.3);
+    background: var(--color-surface-sunken);
+    border: 1px solid var(--color-border-strong);
     min-width: 280px;
 
     .node-label {
-      color: #fbbf24;
+      color: var(--color-warning);
     }
   }
 
   &.remote {
-    background: rgba(188, 224, 251, 0.06);
-    border: 1px solid rgba(188, 224, 251, 0.15);
+    background: var(--color-surface-sunken);
+    border: 1px solid var(--color-border-strong);
     flex: 1;
     min-width: 0;
     padding: 0.6rem 0.8rem;
@@ -155,12 +155,12 @@
   justify-content: center;
   margin-top: 0.5rem;
   padding-top: 0.75rem;
-  border-top: 1px dashed rgba(188, 224, 251, 0.1);
+  border-top: 1px dashed var(--color-border);
   width: 100%;
 
   .shared-label {
     font-size: 0.75rem;
-    color: var(--color-textMuted, #6b8fa3);
+    color: var(--color-text-muted);
     margin-right: 0.25rem;
   }
 
@@ -168,18 +168,18 @@
     font-size: 0.68rem;
     padding: 0.15rem 0.5rem;
     border-radius: 999px;
-    background: rgba(188, 224, 251, 0.08);
-    border: 1px solid rgba(188, 224, 251, 0.12);
-    color: var(--color-textSecondary, #8bc5f0);
-    font-family: 'SF Mono', 'Fira Code', monospace;
+    background: var(--color-surface-sunken);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-family: var(--font-mono);
   }
 }
 
 /* ───── Code Block ───── */
 .code-block {
   width: 100%;
-  background: rgba(11, 24, 41, 0.9);
-  border: 1px solid rgba(188, 224, 251, 0.12);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 0.75rem;
   overflow: hidden;
   margin-bottom: 2rem;
@@ -190,23 +190,23 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.65rem 1rem;
-  background: rgba(188, 224, 251, 0.05);
-  border-bottom: 1px solid rgba(188, 224, 251, 0.08);
+  background: var(--color-surface-sunken);
+  border-bottom: 1px solid var(--color-border);
 
   .dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    &.red { background: #ef4444; }
-    &.yellow { background: #eab308; }
-    &.green { background: #22c55e; }
+    &.red { background: var(--color-error); }
+    &.yellow { background: var(--color-warning); }
+    &.green { background: var(--color-success); }
   }
 
   .code-title {
     font-size: 0.78rem;
-    color: var(--color-textMuted, #6b8fa3);
+    color: var(--color-text-muted);
     margin-left: 0.5rem;
-    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-family: var(--font-mono);
   }
 }
 
@@ -221,10 +221,10 @@
   }
 
   code {
-    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-family: var(--font-mono);
     font-size: 0.82rem;
     line-height: 1.65;
-    color: var(--color-textSecondary, #bce0fb);
+    color: var(--color-text);
     white-space: pre;
     display: block;
 
@@ -239,9 +239,9 @@
 // .ebook-cta {
 //   width: 100%;
 //   margin-top: 1rem;
-//   background: rgba(11, 24, 41, 0.6);
-//   border: 1px solid rgba(188, 224, 251, 0.1);
-//   border-radius: 1rem;
+//   background: var(--color-surface);
+//   border: 1px solid var(--color-border);
+//   border-radius: var(--radius-card);
 //   padding: 2rem;
 //   text-align: center;
 
@@ -252,7 +252,7 @@
 
 //   h3 {
 //     font-size: 1.3rem;
-//     color: var(--color-primary, #bce0fb);
+//     color: var(--color-link);
 //     margin-bottom: 0.5rem;
 
 //     @include mobile { font-size: 1.1rem; }
@@ -260,7 +260,7 @@
 
 //   p {
 //     font-size: 0.92rem;
-//     color: var(--color-textSecondary, #8bc5f0);
+//     color: var(--color-text);
 //     line-height: 1.6;
 //     margin-bottom: 1rem;
 //     max-width: 600px;
@@ -286,15 +286,15 @@
 //   font-weight: 600;
 
 //   &.amber {
-//     background: rgba(234, 179, 8, 0.15);
-//     border: 1px solid rgba(234, 179, 8, 0.3);
-//     color: #fbbf24;
+//     background: var(--color-surface-sunken);
+//     border: 1px solid var(--color-border);
+//     color: var(--color-warning);
 //   }
 
 //   &.blue {
-//     background: rgba(59, 130, 246, 0.12);
-//     border: 1px solid rgba(59, 130, 246, 0.3);
-//     color: #60a5fa;
+//     background: var(--color-surface-sunken);
+//     border: 1px solid var(--color-border);
+//     color: var(--color-info);
 //   }
 // }
 
@@ -302,17 +302,17 @@
 //   display: inline-block;
 //   font-size: 0.9rem;
 //   font-weight: 500;
-//   color: var(--color-primary, #bce0fb);
+//   color: var(--color-link);
 //   text-decoration: none;
 //   padding: 0.5rem 1.25rem;
-//   border: 1px solid rgba(188, 224, 251, 0.2);
-//   border-radius: 0.5rem;
+//   border: 1px solid var(--color-border);
+//   border-radius: var(--radius-control);
 //   transition: all 0.3s ease;
 //   cursor: pointer;
 
 //   &:hover {
-//     background: rgba(188, 224, 251, 0.1);
-//     border-color: rgba(188, 224, 251, 0.4);
+//     background: var(--color-surface-sunken);
+//     border-color: var(--color-border);
 //   }
 
 //   &.disabled {

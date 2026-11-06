@@ -1,84 +1,90 @@
-$primary-color: #bce0fb;
-
 @import "animate.css";
+@import "./styles/themes";
+@import "./styles/identities";
 
 @font-face {
   font-family: 'Helvetica Neue';
-  src: url('./assets//fonts/helvetica-neu.ttf') format('ttf');
+  src: url('./assets/fonts/helvetica-neu.ttf') format('opentype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'La Belle Aurore';
-  src: url('./assets//fonts/LaBelleAurore.woff2') format('woff2');
+  src: url('./assets/fonts/LaBelleAurore.woff2') format('woff2');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Coolvetica';
-  src: url('./assets//fonts/CoolveticaRg-Regular.woff2') format('woff2');
-}
-
-// CSS Custom Properties (CSS Variables) for Theme
-:root {
-  // Primary Colors
-  --color-primary: #bce0fb;
-  --color-primaryDark: #8bc5f0;
-  --color-primaryLight: #d4eafc;
-  
-  // Background Colors
-  --color-bgPrimary: #061829;
-  --color-bgSecondary: #0a1f33;
-  --color-bgTertiary: #0f2a3d;
-  
-  // Accent Colors
-  --color-accent: #095a9b;
-  --color-accentSecondary: #505064;
-  --color-accentTertiary: #0c4e80;
-  
-  // Text Colors
-  --color-textPrimary: #ffffff;
-  --color-textSecondary: #bce0fb;
-  --color-textTertiary: #8bc5f0;
-  --color-textMuted: #6b8fa3;
-  
-  // Glassmorphism
-  --color-glassBg: rgba(11, 24, 41, 0.7);
-  --color-glassBorder: rgba(188, 224, 251, 0.2);
-  
-  // Transitions
-  --transition-fast: 150ms ease-in-out;
-  --transition-normal: 300ms ease-in-out;
-  --transition-slow: 500ms ease-in-out;
-}
-
-
-input, textarea {
-  font-family: 'Helvetica Neue';
+  src: url('./assets/fonts/CoolveticaRg-Regular.woff2') format('woff2');
+  font-display: swap;
 }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "DM Sans", sans-serif;
+  font-family: inherit;
 }
 
 html {
+  font-family: var(--font-body);
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--color-bgPrimary, #061829);
-  color: var(--color-textPrimary, #ffffff);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   // max-width: 1600px;
   // margin: auto;
   transition: background-color var(--transition-normal, 300ms ease-in-out),
               color var(--transition-normal, 300ms ease-in-out);
 }
 
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-heading);
+}
+
+h3 {
+  font-family: var(--font-card-title);
+  font-weight: var(--weight-card-title);
+}
+
+code,
+pre,
+kbd {
+  font-family: var(--font-mono);
+}
+
 a {
   text-decoration: none;
   color: inherit;
+}
+
+:disabled,
+[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+
+.glow-effect,
+.glow-spot {
+  display: none;
+}
+
+:root:not([data-theme='deep-current'][data-mode='dark']) {
+  .cs-ambient-orb,
+  .nf-ambient-orb,
+  .floating-elements,
+  .services-background,
+  .services::before,
+  .contact::before,
+  .experience::before,
+  .welcome-card::before {
+    display: none;
+  }
 }
 
 // Smooth scroll behavior
@@ -90,27 +96,40 @@ a {
 
 // Focus styles for accessibility
 *:focus-visible {
-  outline: 2px solid var(--color-primary, #bce0fb);
+  outline: 2px solid var(--color-focus);
   outline-offset: 2px;
 }
 
-@mixin mobile {
-  @media (max-width: 480px) {
-     @content;
-  }
+::selection {
+  background: var(--color-selection-bg);
+  color: var(--color-selection-text);
 }
 
-
-@mixin tablet {
-   @media screen and (min-width:481px) and (max-width: 900px) {
-    @content;
-  }
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
 }
 
-@mixin laptop {
-  @media (min-width: 769px) {
-    @content;
+.appearance-storage-status {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(32rem, calc(100vw - 2rem));
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-control);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  box-shadow: var(--shadow-overlay);
+  font: 0.875rem/1.5 var(--font-body);
+  z-index: 100001;
+}
 
+@media (forced-colors: active) {
+  *:focus-visible {
+    outline-color: Highlight !important;
   }
 }
 
@@ -125,4 +144,3 @@ a {
     scroll-behavior: auto !important;
   }
 }
-

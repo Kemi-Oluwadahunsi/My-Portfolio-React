@@ -1,4 +1,4 @@
-@import '../../App.scss';
+@import '../../styles/mixins';
 
 .writing {
   width: 100%;
@@ -18,9 +18,9 @@
   h1 {
     font-size: 3.5rem;
     text-align: center;
-    color: var(--color-primary, #bce0fb);
+    color: var(--color-link);
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 20px rgba(188, 224, 251, 0.3);
+    text-shadow: none;
 
     @include tablet { font-size: 2.5rem; }
     @include mobile { font-size: 2rem; }
@@ -29,7 +29,7 @@
   .section-subtitle {
     text-align: center;
     font-size: 1.05rem;
-    color: var(--color-textSecondary, #8bc5f0);
+    color: var(--color-text);
     margin-bottom: 3rem;
     line-height: 1.6;
 
@@ -46,11 +46,11 @@
 
   .group-title {
     font-size: 1.25rem;
-    color: var(--color-primary, #bce0fb);
+    color: var(--color-link);
     margin-bottom: 1rem;
     font-weight: 600;
     padding-left: 0.5rem;
-    border-left: 3px solid rgba(188, 224, 251, 0.3);
+    border-left: 3px solid var(--color-border);
 
     @include mobile { font-size: 1.1rem; }
   }
@@ -73,9 +73,9 @@
 
 /* ───── Writing Card ───── */
 .writing-card {
-  background: rgba(11, 24, 41, 0.75);
-  border: 1px solid rgba(188, 224, 251, 0.1);
-  border-radius: 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -83,8 +83,8 @@
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    border-color: rgba(188, 224, 251, 0.25);
-    box-shadow: 0 4px 20px rgba(188, 224, 251, 0.06);
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-hover);
   }
 
   @include mobile {
@@ -100,12 +100,12 @@
 
   .card-type {
     font-size: 0.72rem;
-    color: var(--color-textMuted, #6b8fa3);
+    color: var(--color-text-muted);
   }
 
   .ebook-title {
     font-size: 1.15rem;
-    color: var(--color-primary, #bce0fb);
+    color: var(--color-link);
     font-weight: 700;
     margin: 0;
     line-height: 1.35;
@@ -115,7 +115,7 @@
 
   p {
     font-size: 0.88rem;
-    color: var(--color-textSecondary, #8bc5f0);
+    color: var(--color-text);
     line-height: 1.55;
     margin: 0;
 
@@ -133,21 +133,21 @@
   letter-spacing: 0.04em;
 
   &.amber {
-    background: rgba(234, 179, 8, 0.15);
-    border: 1px solid rgba(234, 179, 8, 0.3);
-    color: #fbbf24;
+    background: var(--color-surface-sunken);
+    border: 1px solid var(--color-border);
+    color: var(--color-warning);
   }
 
   &.blue {
-    background: rgba(59, 130, 246, 0.12);
-    border: 1px solid rgba(59, 130, 246, 0.3);
-    color: #60a5fa;
+    background: var(--color-surface-sunken);
+    border: 1px solid var(--color-border);
+    color: var(--color-info);
   }
 
   &.green {
-    background: rgba(34, 197, 94, 0.12);
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    color: #22c55e;
+    background: var(--color-surface-sunken);
+    border: 1px solid var(--color-border);
+    color: var(--color-success);
   }
 }
 
@@ -161,23 +161,23 @@
     flex: 1;
     height: 6px;
     border-radius: 3px;
-    background: rgba(188, 224, 251, 0.1);
+    background: var(--color-surface-sunken);
     overflow: hidden;
 
     .day-fill {
       height: 100%;
       border-radius: 3px;
-      background: linear-gradient(90deg, #22c55e, #86efac);
+      background: linear-gradient(90deg, var(--color-success), var(--color-success));
       transition: width 0.5s ease;
     }
   }
 
   .day-text {
     font-size: 0.75rem;
-    color: #22c55e;
+    color: var(--color-success);
     font-weight: 600;
     white-space: nowrap;
-    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-family: var(--font-mono);
   }
 }
 
@@ -193,16 +193,16 @@
   font-size: 0.7rem;
   padding: 0.18rem 0.5rem;
   border-radius: 999px;
-  background: rgba(188, 224, 251, 0.08);
-  border: 1px solid rgba(188, 224, 251, 0.12);
-  color: var(--color-textSecondary, #8bc5f0);
-  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-family: var(--font-mono);
 }
 
 /* ───── Card Link ───── */
 .card-link {
   font-size: 0.85rem;
-  color: var(--color-primary, #bce0fb);
+  color: var(--color-link);
   text-decoration: none;
   font-weight: 500;
   margin-top: auto;
@@ -210,11 +210,11 @@
   transition: color 0.2s ease;
 
   &:hover {
-    color: #ffffff;
+    color: var(--color-text);
   }
 
   &.disabled {
-    opacity: 0.4;
+    opacity: 1;
     pointer-events: none;
     cursor: not-allowed;
   }
@@ -232,14 +232,14 @@
   .sales-btn {
     display: inline-block;
     padding: 0.4rem 1rem;
-    border: 1px solid rgba(188, 224, 251, 0.2);
-    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
     font-size: 0.8rem;
     transition: all 0.3s ease;
 
     &:hover {
-      background: rgba(188, 224, 251, 0.1);
-      border-color: rgba(188, 224, 251, 0.4);
+      background: var(--color-surface-sunken);
+      border-color: var(--color-border);
     }
   }
 }
@@ -247,7 +247,7 @@
 /* ───── Blog CTA card ───── */
 .blog-cta {
   border-style: dashed;
-  border-color: rgba(188, 224, 251, 0.15);
+  border-color: var(--color-border);
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -255,14 +255,14 @@
   .blog-link {
     display: inline-block;
     padding: 0.5rem 1.25rem;
-    border: 1px solid rgba(188, 224, 251, 0.2);
-    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
     margin-top: 0.5rem;
     transition: all 0.3s ease;
 
     &:hover {
-      background: rgba(188, 224, 251, 0.1);
-      border-color: rgba(188, 224, 251, 0.4);
+      background: var(--color-surface-sunken);
+      border-color: var(--color-border);
     }
   }
 }
@@ -288,9 +288,9 @@
   padding: 0.4rem 0.9rem;
   font: inherit;
   font-size: 0.82rem;
-  color: var(--color-textSecondary, #8bc5f0);
-  background: rgba(188, 224, 251, 0.05);
-  border: 1px solid rgba(188, 224, 251, 0.15);
+  color: var(--color-text);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
   border-radius: 999px;
   box-shadow: none;
   cursor: pointer;
@@ -298,17 +298,18 @@
 
   span {
     font-size: 0.72rem;
-    opacity: 0.7;
+    color: inherit;
   }
 
   &:hover {
-    border-color: rgba(188, 224, 251, 0.4);
+    border-color: var(--color-border);
   }
 
   &.active {
-    color: var(--color-bgPrimary, #061829);
-    background: var(--color-primary, #bce0fb);
-    border-color: var(--color-primary, #bce0fb);
+    color: var(--color-on-primary);
+    background: var(--color-primary);
+    border-color: var(--color-primary-border);
+    border-color: var(--color-primary-border);
   }
 }
 
@@ -316,8 +317,8 @@
   margin-bottom: 1rem;
 
   .writing-card {
-    border-color: rgba(188, 224, 251, 0.3);
-    box-shadow: 0 4px 24px rgba(9, 90, 155, 0.2);
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-hover);
   }
 }
 
@@ -333,13 +334,13 @@
 .ebook-row {
   display: flex;
   flex-direction: column;
-  background: rgba(11, 24, 41, 0.75);
-  border: 1px solid rgba(188, 224, 251, 0.1);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 0.9rem;
   transition: border-color 0.3s ease;
 
   &:hover {
-    border-color: rgba(188, 224, 251, 0.28);
+    border-color: var(--color-border);
   }
 }
 
@@ -369,13 +370,16 @@
   font-weight: 600;
   line-height: 1;
   text-decoration: none;
-  color: var(--color-bgPrimary, #061829);
-  background: var(--color-primary, #bce0fb);
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  border-color: var(--color-primary-border);
   border-radius: 999px;
   transition: background 0.2s ease, transform 0.2s ease;
 
-  &:hover { background: #fff; transform: translateY(-1px); }
-  &.disabled { opacity: 0.4; pointer-events: none; }
+  border: 1px solid var(--color-primary-border);
+  &:hover { background: var(--color-primary-hover); transform: translateY(-1px); }
+  &:active { background: var(--color-primary-active); }
+  &.disabled { pointer-events: none; }
 }
 
 .ebook-details-toggle {
@@ -388,7 +392,7 @@
   font: inherit;
   font-size: 0.75rem;
   line-height: 1;
-  color: var(--color-textTertiary, #8bc5f0);
+  color: var(--color-text-muted);
   background: none;
   border: 0;
   box-shadow: none;
@@ -396,7 +400,7 @@
   text-underline-offset: 4px;
   cursor: pointer;
 
-  &:hover { color: #fff; }
+  &:hover { color: var(--color-text); }
 }
 
 .ebook-row-icon {
@@ -406,8 +410,8 @@
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 0.6rem;
-  color: var(--color-primary, #bce0fb);
-  background: rgba(9, 90, 155, 0.35);
+  color: var(--color-link);
+  background: var(--color-surface-sunken);
 }
 
 .ebook-row-main {
@@ -421,7 +425,7 @@
     font-size: 0.9rem;
     font-weight: 600;
     line-height: 1.3;
-    color: var(--color-primary, #bce0fb);
+    color: var(--color-link);
     min-height: 2.6em; // always reserve two lines so every card lines up
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -441,7 +445,7 @@
 
 .ebook-row-series {
   font-size: 0.72rem;
-  color: var(--color-textMuted, #6b8fa3);
+  color: var(--color-text-muted);
 }
 
 /* ───── Ebook details popup ───── */
@@ -452,7 +456,7 @@
   display: grid;
   place-items: center;
   padding: 1rem;
-  background: rgba(4, 14, 26, 0.72);
+  background: var(--overlay-scrim);
   backdrop-filter: blur(8px);
 }
 
@@ -466,9 +470,9 @@
   overflow-y: auto;
   padding: 1.75rem;
   border-radius: 1.25rem;
-  background: linear-gradient(160deg, rgba(10, 31, 51, 0.98), rgba(6, 24, 41, 0.98));
-  border: 1px solid rgba(188, 224, 251, 0.25);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-hover);
 
   @include mobile { padding: 1.4rem 1.1rem; }
 
@@ -477,14 +481,14 @@
     padding-right: 2.5rem;
     font-size: 1.2rem;
     line-height: 1.3;
-    color: var(--color-primary, #bce0fb);
+    color: var(--color-link);
   }
 
   p {
     margin: 0;
     font-size: 0.92rem;
     line-height: 1.6;
-    color: var(--color-textSecondary, #8bc5f0);
+    color: var(--color-text);
   }
 }
 
@@ -504,15 +508,15 @@
   place-items: center;
   width: 2.25rem;
   height: 2.25rem;
-  color: var(--color-primary, #bce0fb);
-  background: rgba(188, 224, 251, 0.06);
-  border: 1px solid rgba(188, 224, 251, 0.2);
+  color: var(--color-link);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
   border-radius: 50%;
   box-shadow: none;
   cursor: pointer;
   transition: background 0.2s ease;
 
-  &:hover { background: rgba(188, 224, 251, 0.16); }
+  &:hover { background: var(--color-surface-sunken); }
 }
 
 .ebook-modal-actions {
@@ -529,23 +533,23 @@
   font: inherit;
   font-size: 0.88rem;
   font-weight: 600;
-  color: var(--color-primary, #bce0fb);
-  background: rgba(188, 224, 251, 0.06);
-  border: 1px solid rgba(188, 224, 251, 0.3);
+  color: var(--color-link);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
   border-radius: 999px;
   box-shadow: none;
   cursor: pointer;
   transition: background 0.2s ease;
 
-  &:hover { background: rgba(188, 224, 251, 0.14); }
+  &:hover { background: var(--color-surface-sunken); }
 }
 
 /* ───── Ebooks page ───── */
 .ebooks-page {
   min-height: 100vh;
   padding: 3rem 1.5rem 5rem;
-  background: var(--color-bgPrimary, #061829);
-  color: var(--color-textPrimary, #fff);
+  background: var(--color-bg);
+  color: var(--color-text);
 
   @include mobile { padding: 1.5rem 0.75rem 4rem; }
 
@@ -554,12 +558,12 @@
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
-    color: var(--color-textTertiary, #8bc5f0);
+    color: var(--color-text-muted);
     font-size: 0.85rem;
     text-decoration: none;
     transition: color 0.2s ease;
 
-    &:hover { color: var(--color-primary, #bce0fb); }
+    &:hover { color: var(--color-link); }
   }
 }
 

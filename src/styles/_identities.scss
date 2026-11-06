@@ -1,0 +1,149 @@
+// Palette identity is mode-independent; all colors resolve through paired tokens.
+:root[data-theme] {
+  --identity-page-bg: var(--color-bg);
+  .home-page h1 {
+    letter-spacing: var(--tracking-display);
+    line-height: 1.5;
+  }
+
+  .main-layout :is(.services, .portfolio, .architecture, .experience, .skills-section, .writing, .opensource, .testimonials) h1,
+  .contact .contact__title,
+  .ebooks-page h1,
+  .cs-section h2 {
+    font-family: var(--font-display);
+    font-size: var(--size-heading);
+    font-weight: var(--weight-heading);
+    line-height: var(--line-heading);
+    letter-spacing: var(--tracking-display);
+    overflow-wrap: anywhere;
+  }
+
+  .services .title h1 b { font-weight: inherit; }
+
+  .cs-title {
+    font-size: var(--size-display);
+    font-weight: var(--weight-display);
+    line-height: var(--line-display);
+    letter-spacing: var(--tracking-display);
+    overflow-wrap: anywhere;
+  }
+
+  :is(.serviceTitle, .timeline-card .card-title, .published-card h3, .pipeline-card h3,
+      .writing-card h3, .portfolio-item .text h2, .carousel-content h3, .feature-card h3) {
+    font-family: var(--font-card-title);
+    font-size: var(--size-card-title);
+    font-weight: var(--weight-card-title);
+    line-height: var(--line-card-title);
+    overflow-wrap: anywhere;
+  }
+
+  :is(.cs-hero-image, .portfolio .imageContain, .carousel-image, .feature-image) {
+    border-radius: var(--radius-media);
+  }
+
+  :is(.ebook-modal, .welcome-card) {
+    border-radius: var(--radius-card);
+  }
+
+  :is(.cs-badge, .group-label, .role-pills .pill) {
+    letter-spacing: var(--tracking-label);
+  }
+}
+
+:root:not([data-theme='deep-current']) {
+  .imageContainer .rotating-blob { --blob-secondary: var(--color-accent); }
+
+  .page > .tags,
+  .home-page h1::before,
+  .home-page h1::after {
+    display: none;
+  }
+
+  .imageContainer .my-image { filter: none; }
+
+  :is(.glass-card, .tilt-card, .availability-badge) {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .services .service-box::before,
+  .services .service-box::after,
+  .glow-effect,
+  .shimmer-container .shimmer {
+    display: none;
+  }
+
+  :is(.glow-card, .glass-card, .tilt-card, .portfolio .wrapper, .portfolio .imageContain, .magnetic-button) {
+    transform: none !important;
+    transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  :is(.glow-card, .tilt-card):hover { transform: translateY(-2px) !important; }
+
+  .services .service-glow-wrapper:hover,
+  :is(.glow-card, .tilt-card) :is(.glow-card, .tilt-card):hover {
+    transform: none !important;
+  }
+
+  .glow-divider::after {
+    background: var(--color-border);
+    box-shadow: none;
+  }
+}
+
+:root[data-theme='porcelain'] {
+  .glow-divider::after {
+    max-width: 720px;
+    border-left: 32px solid var(--color-accent);
+  }
+}
+
+:root[data-theme='daylight'] {
+  .glow-divider::after {
+    height: 1px;
+    background: color-mix(in srgb, var(--color-link) 30%, transparent);
+  }
+}
+
+:root[data-theme='burgundy-cream'] {
+  .glow-divider::after {
+    background: var(--color-accent);
+    max-width: 480px;
+  }
+
+  .skillsSection.theme-inverse {
+    position: relative;
+    padding-block: clamp(1rem, 3vw, 3rem);
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: clamp(1rem, 3vw, 3rem);
+      background: var(--identity-page-bg);
+      pointer-events: none;
+    }
+
+    &::before { top: -1px; clip-path: polygon(0 0, 100% 0, 0 100%); }
+    &::after { bottom: -1px; clip-path: polygon(100% 0, 100% 100%, 0 100%); }
+  }
+}
+
+:root[data-theme='botanical'] {
+  .glow-divider::after {
+    height: 8px;
+    max-width: 360px;
+    background: transparent;
+    border-top: 1px solid var(--color-accent);
+    border-radius: 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-theme='deep-current']) :is(.glow-card, .tilt-card):hover {
+    transform: none !important;
+  }
+}

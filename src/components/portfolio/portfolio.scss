@@ -1,4 +1,4 @@
-@import "../../App.scss";
+@import "../../styles/mixins";
 
 .portfolio {
   position: relative;
@@ -21,9 +21,9 @@
 
     h1 {
       font-size: clamp(2.5rem, 5vw, 3.5rem);
-      font-family: 'Coolvetica', sans-serif;
+      font-family: var(--font-display);
       font-weight: 400;
-      color: var(--color-primary, #bce0fb);
+      color: var(--color-link);
       text-shadow: none;
 
       @include tablet {
@@ -47,25 +47,25 @@
 
   .filter-tab {
     padding: 0.45rem 1.1rem;
-    border-radius: 6px;
+    border-radius: var(--radius-control);
     border: 1px solid transparent;
     background: transparent;
-    color: var(--color-textMuted, #6b8fa3);
+    color: var(--color-text-muted);
     font-size: 0.85rem;
     font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-body);
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
 
     &:hover {
-      color: var(--color-textSecondary, #bce0fb);
-      background: rgba(188, 224, 251, 0.04);
+      color: var(--color-text);
+      background: var(--color-surface-sunken);
     }
 
     &.active {
-      background: rgba(188, 224, 251, 0.08);
-      border-color: rgba(188, 224, 251, 0.12);
-      color: var(--color-primary, #bce0fb);
+      background: var(--color-surface-sunken);
+      border-color: var(--color-border);
+      color: var(--color-link);
     }
   }
 
@@ -137,7 +137,7 @@
     .wrapper {
       display: flex;
       flex-direction: column;
-      border-radius: 1rem;
+      border-radius: var(--radius-card);
       overflow: hidden;
       position: relative;
       transform-style: preserve-3d;
@@ -155,10 +155,10 @@
       letter-spacing: 0.05em;
       padding: 0.25rem 0.65rem;
       border-radius: 999px;
-      background: rgba(9, 90, 155, 0.7);
+      background: var(--color-surface-sunken);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(188, 224, 251, 0.2);
-      color: var(--color-primary, #bce0fb);
+      border: 1px solid var(--color-border);
+      color: var(--color-link);
     }
 
     .imageContain {
@@ -185,16 +185,16 @@
 
       h2 {
         font-size: 1.25rem;
-        color: var(--color-primary, #bce0fb);
+        color: var(--color-link);
         font-weight: 600;
-        font-family: 'DM Sans', sans-serif;
+        font-family: var(--font-body);
         margin: 0;
         line-height: 1.3;
       }
 
       p {
         font-size: 0.88rem;
-        color: var(--color-textSecondary, #bce0fb);
+        color: var(--color-text);
         line-height: 1.55;
         margin: 0;
         display: -webkit-box;
@@ -216,10 +216,10 @@
         font-size: 0.72rem;
         padding: 0.2rem 0.55rem;
         border-radius: 999px;
-        background: rgba(188, 224, 251, 0.08);
-        border: 1px solid rgba(188, 224, 251, 0.15);
-        color: var(--color-textSecondary, #8bc5f0);
-        font-family: 'SF Mono', 'Fira Code', monospace;
+        background: var(--color-surface-sunken);
+        border: 1px solid var(--color-border);
+        color: var(--color-text);
+        font-family: var(--font-mono);
         white-space: nowrap;
       }
 
@@ -238,18 +238,18 @@
           font-size: 0.82rem;
           font-weight: 500;
           padding: 0.5rem 0.9rem;
-          border-radius: 0.5rem;
-          background: rgba(188, 224, 251, 0.08);
-          border: 1px solid rgba(188, 224, 251, 0.2);
-          color: var(--color-primary, #bce0fb);
+          border-radius: var(--radius-control);
+          background: var(--color-surface-sunken);
+          border: 1px solid var(--color-border);
+          color: var(--color-link);
           text-decoration: none;
           cursor: pointer;
           transition: all 0.25s ease;
 
           &:hover {
-            background: rgba(188, 224, 251, 0.18);
-            border-color: rgba(188, 224, 251, 0.4);
-            box-shadow: 0 2px 10px rgba(188, 224, 251, 0.15);
+            background: var(--color-surface-sunken);
+            border-color: var(--color-border);
+            box-shadow: var(--shadow-hover);
           }
 
           span {
@@ -258,13 +258,13 @@
         }
 
         .case-study-link {
-          background: rgba(34, 197, 94, 0.1);
-          border-color: rgba(34, 197, 94, 0.3);
-          color: #86efac;
+          background: var(--color-surface-sunken);
+          border-color: var(--color-border);
+          color: var(--color-success);
 
           &:hover {
-            background: rgba(34, 197, 94, 0.2);
-            border-color: rgba(34, 197, 94, 0.5);
+            background: var(--color-surface-sunken);
+            border-color: var(--color-border);
           }
         }
       }
@@ -309,10 +309,10 @@
     }
 
     scroll-snap-align: center;
-    background: rgba(11, 24, 41, 0.85);
+    background: var(--color-surface);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(188, 224, 251, 0.15);
-    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -329,10 +329,10 @@
       letter-spacing: 0.05em;
       padding: 0.2rem 0.55rem;
       border-radius: 999px;
-      background: rgba(9, 90, 155, 0.7);
+      background: var(--color-surface-sunken);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(188, 224, 251, 0.2);
-      color: var(--color-primary, #bce0fb);
+      border: 1px solid var(--color-border);
+      color: var(--color-link);
     }
 
     .carousel-image {
@@ -361,7 +361,7 @@
       h3 {
         font-size: 1.2rem;
         font-weight: 600;
-        color: var(--color-primary, #bce0fb);
+        color: var(--color-link);
         margin-bottom: 0.4rem;
 
         @include mobile { font-size: 1.05rem; }
@@ -369,7 +369,7 @@
 
       p {
         font-size: 0.85rem;
-        color: var(--color-textSecondary, #bce0fb);
+        color: var(--color-text);
         line-height: 1.5;
         margin-bottom: 0.6rem;
         display: -webkit-box;
@@ -393,10 +393,10 @@
           font-size: 0.65rem;
           padding: 0.15rem 0.45rem;
           border-radius: 999px;
-          background: rgba(188, 224, 251, 0.08);
-          border: 1px solid rgba(188, 224, 251, 0.12);
-          color: var(--color-textSecondary, #8bc5f0);
-          font-family: 'SF Mono', 'Fira Code', monospace;
+          background: var(--color-surface-sunken);
+          border: 1px solid var(--color-border);
+          color: var(--color-text);
+          font-family: var(--font-mono);
         }
       }
 
@@ -414,16 +414,16 @@
           padding: 0.6rem;
           font-size: 0.78rem;
           font-weight: 500;
-          color: var(--color-primary, #bce0fb);
-          background: rgba(188, 224, 251, 0.08);
-          border: 1px solid rgba(188, 224, 251, 0.15);
-          border-radius: 0.5rem;
+          color: var(--color-link);
+          background: var(--color-surface-sunken);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-control);
           text-decoration: none;
           cursor: pointer;
           transition: background 0.2s ease;
 
           &:active {
-            background: rgba(188, 224, 251, 0.2);
+            background: var(--color-surface-sunken);
           }
         }
       }
@@ -441,7 +441,7 @@
       height: 8px;
       border-radius: 50%;
       border: none;
-      background: rgba(188, 224, 251, 0.3);
+      background: var(--color-surface-sunken);
       cursor: pointer;
       transition: all 0.3s ease;
       padding: 0;
@@ -449,7 +449,8 @@
       &.active {
         width: 24px;
         border-radius: 4px;
-        background: var(--color-primary, #bce0fb);
+        background: var(--color-primary);
+        border-color: var(--color-primary-border);
       }
     }
   }
@@ -457,7 +458,7 @@
   .swipe-hint {
     text-align: center;
     font-size: 0.72rem;
-    color: var(--color-textMuted, #6b8fa3);
-    opacity: 0.7;
+    color: var(--color-text-muted);
+    opacity: 1;
   }
 }

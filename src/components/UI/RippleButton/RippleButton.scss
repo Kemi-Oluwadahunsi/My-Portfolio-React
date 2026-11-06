@@ -1,13 +1,14 @@
-@import '../../../App.scss';
+@import '../../../styles/mixins';
 
 .ripple-button {
   position: relative;
   overflow: hidden;
-  border: none;
-  background: var(--color-primary, #bce0fb);
-  color: var(--color-bgPrimary, #061829);
+  border: 1px solid var(--color-primary-border);
+  background: var(--color-primary);
+  border-color: var(--color-primary-border);
+  color: var(--color-on-primary);
   padding: 0.75rem 2rem;
-  border-radius: 0.5rem;
+  border-radius: var(--radius-control);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -16,7 +17,7 @@
   .ripple {
     position: absolute;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.6);
+    background: transparent;
     transform: translate(-50%, -50%);
     pointer-events: none;
     width: 20px;
@@ -24,7 +25,11 @@
   }
 
   &:hover {
-    background: var(--color-primaryDark, #8bc5f0);
-    box-shadow: 0 4px 20px rgba(188, 224, 251, 0.4);
+    background: var(--color-primary-hover);
+    box-shadow: var(--shadow-hover);
+  }
+
+  &:active {
+    background: var(--color-primary-active);
   }
 }

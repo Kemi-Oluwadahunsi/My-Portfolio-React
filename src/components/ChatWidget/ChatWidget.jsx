@@ -129,6 +129,12 @@ export default function ChatWidget() {
   }, [open])
 
   useEffect(() => {
+    const hideForAppearance = () => setOpen(false)
+    window.addEventListener('appearance:open', hideForAppearance)
+    return () => window.removeEventListener('appearance:open', hideForAppearance)
+  }, [])
+
+  useEffect(() => {
     const log = logRef.current
     if (log) log.scrollTop = log.scrollHeight
   }, [messages, open])

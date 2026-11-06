@@ -1,4 +1,4 @@
-@import '../../App.scss';
+@import '../../styles/mixins';
 
 .testimonials {
   width: 100%;
@@ -18,9 +18,9 @@
   h1 {
     font-size: 3.5rem;
     text-align: center;
-    color: var(--color-primary, #bce0fb);
+    color: var(--color-link);
     margin-bottom: 2.5rem;
-    text-shadow: 0 0 20px rgba(188, 224, 251, 0.3);
+    text-shadow: none;
 
     @include tablet { font-size: 2.5rem; }
     @include mobile {
@@ -43,9 +43,9 @@
 
 /* ───── Card ───── */
 .testimonial-card {
-  background: rgba(11, 24, 41, 0.75);
-  border: 1px solid rgba(188, 224, 251, 0.1);
-  border-radius: 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
   padding: 2rem;
   position: relative;
   display: flex;
@@ -54,8 +54,8 @@
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    border-color: rgba(188, 224, 251, 0.25);
-    box-shadow: 0 6px 25px rgba(188, 224, 251, 0.06);
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-hover);
   }
 
   @include mobile {
@@ -71,7 +71,7 @@
   left: 1rem;
   font-size: 5rem;
   line-height: 1;
-  color: rgba(188, 224, 251, 0.07);
+  color: var(--color-text-muted);
   font-family: Georgia, serif;
   pointer-events: none;
   user-select: none;
@@ -86,7 +86,7 @@
 /* ───── Quote ───── */
 .testimonial-quote {
   font-size: 1rem;
-  color: var(--color-textSecondary, #bce0fb);
+  color: var(--color-text);
   line-height: 1.7;
   margin: 0;
   font-style: italic;
@@ -111,7 +111,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(188, 224, 251, 0.25), rgba(9, 90, 155, 0.35));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-link) 25%, transparent), color-mix(in srgb, var(--color-link) 35%, transparent));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,7 +120,7 @@
   span {
     font-size: 0.9rem;
     font-weight: 700;
-    color: var(--color-primary, #bce0fb);
+    color: var(--color-link);
     letter-spacing: 0.05em;
   }
 }
@@ -133,17 +133,17 @@
 
 .author-name {
   font-size: 0.92rem;
-  color: var(--color-primary, #bce0fb);
+  color: var(--color-link);
   font-weight: 600;
 }
 
 .author-role {
   font-size: 0.8rem;
-  color: var(--color-textSecondary, #8bc5f0);
+  color: var(--color-text);
 }
 
 .author-company {
   font-size: 0.75rem;
-  color: var(--color-textMuted, #6b8fa3);
-  font-family: 'SF Mono', 'Fira Code', monospace;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
 }

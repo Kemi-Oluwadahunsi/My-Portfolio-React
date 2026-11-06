@@ -5,6 +5,7 @@ import { services } from '../../constants/portfolioData'
 import GlassCard from '../UI/GlassCard/GlassCard'
 import GlowCard from '../UI/GlowCard/GlowCard'
 import { useEffect, useRef, useState } from 'react'
+import useAtmosphere from '../../hooks/useAtmosphere'
 
 const cardVariants = {
   hidden: { opacity: 0, y: 100, rotateX: -90 },
@@ -22,6 +23,7 @@ const listContainerVariants = {
 }
 
 const Services = () => {
+  const { enabled: atmospheric, reducedMotion } = useAtmosphere()
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
@@ -95,10 +97,17 @@ const Services = () => {
           <motion.div
             key={service.id}
             className={`service-card-wrapper ${isMobile && expandedCard === service.id ? 'expanded' : ''}`}
-            variants={cardVariants}
+            variants={atmospheric ? cardVariants : {
+              hidden: { opacity: 0, y: reducedMotion ? 0 : 12 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: reducedMotion ? 0 : 0.25 },
+              },
+            }}
             style={{ transformStyle: 'preserve-3d' }}
-            whileHover={!isMobile ? { y: -15, scale: 1.03 } : {}}
-            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            whileHover={!isMobile && !reducedMotion ? (atmospheric ? { y: -15, scale: 1.03 } : { y: -2 }) : {}}
+            transition={atmospheric ? { type: 'spring', stiffness: 300, damping: 20 } : { duration: 0.15 }}
             onClick={() => toggleCard(service.id)}
           >
             <GlowCard intensity="medium" className="service-glow-wrapper">

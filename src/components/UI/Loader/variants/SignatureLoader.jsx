@@ -1,4 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useId, useRef } from 'react'
+import useTheme from '../../../../hooks/useTheme'
+import { logoPalettes } from '../../../../constants/logoPalettes'
 
 // Strokes measured from the KM logo (same 341x234 space). `s`/`e` are when each stroke
 // starts and finishes writing, in seconds within the loop; `w` is the pen width.
@@ -23,6 +25,9 @@ const clamp01 = (n) => Math.min(1, Math.max(0, n))
 const ease = (n) => 0.5 - 0.5 * Math.cos(Math.PI * n)
 
 const SignatureLoader = () => {
+  const { theme, resolvedMode } = useTheme()
+  const colors = logoPalettes[theme][resolvedMode]
+  const gradientId = `signature-${useId().replace(/:/g, '')}`
   const inkRefs = useRef([])
   const groupRef = useRef(null)
   const penRef = useRef(null)
@@ -73,15 +78,14 @@ const SignatureLoader = () => {
   }, [])
 
   return (
-    <svg className="sig-loader" viewBox="-12 -6 370 250" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <svg className="sig-loader" style={{ color: colors.k }} viewBox="-12 -6 370 250" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
       <defs>
-        <linearGradient id="sigGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="340" y2="0">
-          <stop offset="0" stopColor="#38d4ff" />
-          <stop offset="0.5" stopColor="#6ee755" />
-          <stop offset="1" stopColor="#3fabf1" />
+        <linearGradient id={gradientId} gradientUnits="userSpaceOnUse" x1="72" y1="5" x2="341" y2="226">
+          <stop offset="0" stopColor={colors.m[0]} />
+          <stop offset="0.55" stopColor={colors.m[1]} />
+          <stop offset="1" stopColor={colors.m[2]} />
         </linearGradient>
       </defs>
-
       <g className="sig-ghost">
         {STROKES.map(({ d, w }) => (
           <path key={d} d={d} strokeWidth={w} />
@@ -96,10 +100,11 @@ const SignatureLoader = () => {
             d={d}
             pathLength="1"
             strokeWidth={w}
+            stroke={i < 5 ? colors.k : `url(#${gradientId})`}
             style={{ strokeDashoffset: 1 }}
           />
         ))}
-        <circle ref={penRef} className="sig-pen" r="6" cx="38" cy="48" />
+        <circle ref={penRef} className="sig-pen" style={{ fill: colors.m[0] }} r="6" cx="38" cy="48" />
       </g>
 
       <text ref={nameRef} className="sig-name" x="170" y="246" textAnchor="middle">
