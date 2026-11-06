@@ -1,11 +1,12 @@
 import './LoadingSkeleton.scss'
 import PropTypes from 'prop-types'
 import Loader from '../Loader/Loader'
+import { IN_APP_LOADER } from '../Loader/loaderConfig'
 
-// Placeholder used while lazy sections load; shows the active site loader at the requested size.
+// Route and lazy-section placeholder; independent of the opening splash.
 const LoadingSkeleton = ({ width = '100%', height = '1rem', className = '' }) => (
   <div className={`skeleton-container ${className}`} style={{ width, height }}>
-    <Loader />
+    <Loader variant={IN_APP_LOADER} />
   </div>
 )
 

@@ -1,4 +1,5 @@
 import { ACTIVE_LOADER } from './loaderConfig'
+import PropTypes from 'prop-types'
 import SignatureLoader from './variants/SignatureLoader'
 import BuildLogLoader from './variants/BuildLogLoader'
 import LayerStackLoader from './variants/LayerStackLoader'
@@ -14,13 +15,17 @@ const LOADERS = {
   // aurora: AuroraLoader, // flowing light ribbons with a 0-100% counter
 }
 
-const Loader = () => {
-  const Active = LOADERS[ACTIVE_LOADER] || SignatureLoader
+const Loader = ({ variant = ACTIVE_LOADER }) => {
+  const Active = LOADERS[variant]
   return (
     <div className="loader-box" role="status" aria-label="Loading">
       <Active />
     </div>
   )
+}
+
+Loader.propTypes = {
+  variant: PropTypes.oneOf(Object.keys(LOADERS)),
 }
 
 export default Loader

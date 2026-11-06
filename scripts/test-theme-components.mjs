@@ -17,6 +17,20 @@ function files(directory) {
 }
 const componentFiles = files(join(root, 'src/components'))
 
+test('route and section loading use a non-signature loader independently from the splash', async () => {
+  const { IN_APP_LOADER } = await import('../src/components/UI/Loader/loaderConfig.js')
+  assert.ok(['buildLog', 'layerStack'].includes(IN_APP_LOADER))
+  const placeholder = read('src/components/UI/LoadingSkeleton/LoadingSkeleton.jsx')
+  assert.match(placeholder, /<Loader variant=\{IN_APP_LOADER\} \/>/)
+  const loader = read('src/components/UI/Loader/Loader.jsx')
+  assert.match(loader, /variant = ACTIVE_LOADER/)
+  assert.match(loader, /const Active = LOADERS\[variant\]/)
+  assert.match(read('src/components/Splash/Splash.jsx'), /<Loader \/>/)
+  for (const file of ['src/App.jsx', 'src/components/Layout/index.jsx']) {
+    assert.match(read(file), /<LoadingSkeleton/)
+  }
+})
+
 test('release assets remain available offline with versioned favicons and local fonts', () => {
   const config = read('vite.config.js')
   const ignoredParameters = config.match(/ignoreURLParametersMatching:\s*\[([^\]]+)\]/)[1]
@@ -65,6 +79,12 @@ test('palette identities share mode-independent typography and use blobs instead
   assert.doesNotMatch(css, /^:root[^\n]*\) \.tags[ ,{]/m)
   assert.match(css, /\.services \.title h1 b \{[^}]*font-weight: inherit;/)
   assert.match(read('src/App.scss'), /@import ['"]\.\/styles\/identities['"]/)
+})
+
+test('Daylight dividers use a subtle continuous theme-colored line in both modes', () => {
+  const css = compile(join(root, 'src/styles/_identities.scss')).css
+  assert.match(css, /:root\[data-theme=daylight\] \.glow-divider::after \{[^}]*height: 1px;[^}]*background: color-mix\(in srgb, var\(--color-link\) 30%, transparent\);/)
+  assert.doesNotMatch(css, /transparent 18% 21%/)
 })
 
 test('Burgundy inverse band preserves shared content and keeps decorative cuts non-interactive', () => {

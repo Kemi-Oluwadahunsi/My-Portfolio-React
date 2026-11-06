@@ -95,7 +95,9 @@ implemented; standalone-browser, real-device and assistive-technology sign-off
 remain open in the release checklist.
 
 [`_identities.scss`](src/styles/_identities.scss) connects shared heading, card and
-media geometry tokens and palette-specific dividers. The portrait uses the same
+media geometry tokens and palette-specific dividers. Daylight uses a subtle,
+continuous 1px theme-colored line rather than a split accent/bar treatment.
+The portrait uses the same
 animated, blurred blob across all themes, not frames, grids, rings or arches.
 Deep Current retains its blue blob; the other palettes blend their readable
 brand color with their accent. Burgundy retains its inverse Skills band.
@@ -171,7 +173,7 @@ listeners. Other 3D/floating effects remain restricted to Deep Current dark.
 Cursor designs use the current local
 foreground, including inverse bands; their existing native/input fallbacks remain.
 
-Verification includes 33 automated theme/component checks, lint and a production
+Verification includes 35 automated theme/component checks, lint and a production
 build, plus browser checks of ten appearances, route/overlay text, dialog keyboard
 behavior, responsive hero bounds, cursor choices and effect eligibility.
 Opaque-text scans are regression checks, not a claim of full WCAG certification.
@@ -199,6 +201,10 @@ fills, and the experience resume link uses a strong boundary in both modes.
 The KM signature loader shares the logo palette's K color, three-stop M gradient,
 pen and name colors. Gradients have unique IDs so simultaneous loaders cannot share the wrong
 palette context; a faint theme-colored guide sits behind the trace.
+Route transitions and lazy-section placeholders use the existing Layer Stack
+loader, selected separately through `IN_APP_LOADER` in
+[`loaderConfig.js`](src/components/UI/Loader/loaderConfig.js). It can also use
+`buildLog`; changing the splash's `ACTIVE_LOADER` does not change in-app loading.
 
 ### Appearance selector
 

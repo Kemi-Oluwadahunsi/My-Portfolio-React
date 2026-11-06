@@ -100,8 +100,8 @@
 
 :root[data-theme='daylight'] {
   .glow-divider::after {
-    height: 3px;
-    background: linear-gradient(90deg, var(--color-link) 0 18%, transparent 18% 21%, var(--color-border) 21%);
+    height: 1px;
+    background: color-mix(in srgb, var(--color-link) 30%, transparent);
   }
 }
 
