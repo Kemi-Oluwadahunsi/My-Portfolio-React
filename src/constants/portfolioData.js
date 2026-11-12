@@ -1064,7 +1064,7 @@ export const writingData = [
 ]
 
 export const blogLink = {
-  url: 'https://kemory.vercel.app/u/kemory-writer',
+  url: 'https://kemory.ink/u/kemory-writer',
   title: 'Read My Blog',
   description:
     'I write about software development, frontend architecture, and engineering best practices.',
