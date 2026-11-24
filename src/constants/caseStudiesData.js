@@ -1561,4 +1561,243 @@ export const caseStudies = {
       github: 'https://github.com/Kemi-Oluwadahunsi/Kemory',
     },
   },
+  coram: {
+    id: 'coram',
+    title: 'Coram',
+    badge: 'Offline-First PWA & Android App',
+    company: 'Independent Project',
+    period: '2026',
+    heroImage: '/images/case-studies/coram/coram-hero.webp',
+    summary:
+      'Designed and built Coram ("Coram Deo", before the face of God), a personal Bible app for a daily walk with God rather than a content library: a 52-week reading plan organised around one attribute of God per week, a morning, midday and evening rhythm that opens at the right moment of the day, a reflection journal, a prayer list whose answers become Ebenezer stones, memory verses with SM-2 spaced repetition, and a Bible reader with highlights, notes, on-device search and read-aloud. It is offline-first (IndexedDB with a localStorage safety net), syncs across devices with optional end-to-end encryption, ships as an installable PWA, and has a Capacitor Android app adding a full-screen morning alarm, local reminders, background listening with lock-screen controls, and a home screen widget, distributed as a signed APK from the site.',
+    problem: {
+      title: 'The Challenge',
+      description:
+        'Most Bible apps are built around volume and streaks: more plans, more content, and a counter that resets the day you miss. What I wanted was a quiet tool for knowing God, walking with Him through the day, and remembering what He has done, one that never says "you are behind", keeps what I write private, works with no signal, and meets me at the right moment: morning, midday and evening.',
+      painPoints: [
+        'Streak counters and "behind" badges turn devotion into guilt; a missed day should simply mean "welcome back, here is your next reading"',
+        'The practice was scattered across a notebook, a phone alarm, a reminders app and a separate prayer list, with nothing connecting a reading to a prayer to an answered prayer',
+        'Journal entries and prayers are among the most private things a person writes, yet most apps store them readable on the server',
+        'Reading happens on commutes and in places without signal, so the Bible text, the journal and today\'s reading all had to work offline',
+        'Browser speech stops when the screen turns off, and iPhone Safari pauses it in the background, so "listen while you walk" did not work on the web',
+        'The web cannot ring a real alarm, show a home screen widget, or schedule reminders without a server',
+      ],
+    },
+    solution: {
+      title: 'The Approach',
+      description:
+        'Coram is a Next.js 16 (App Router) and React 19 app in TypeScript, styled with Tailwind CSS v4 and a token-based design system, on Neon Postgres with Drizzle ORM and Neon Auth, deployed on Vercel. Everything personal is local-first: journal answers, prayers, stones, highlights, verse notes and memory cards live in IndexedDB (Dexie) and sync with the account through a single push-and-pull endpoint. The Bible (BSB, WEB and KJV) is split into per-book files cached as you read or downloaded for offline use, and a Serwist service worker keeps the main screens, upcoming readings and visited pages available offline. The Android app is a Capacitor 8 shell around the live site, with Coram\'s own native plugins written in Java for the features the web cannot do. The core logic (scheduling, sync, encryption, spaced repetition, search, reminders) lives in pure TypeScript modules with no framework imports, so it is covered by a fast node:test suite.',
+      keyDecisions: [
+        {
+          decision: 'Local-First Data with a Cursor-Based Sync',
+          rationale:
+            'Every write lands in IndexedDB first, marked dirty, with soft deletes so removals sync too. One POST to /api/sync sends the dirty rows and receives everything changed since the device\'s cursor plus the server\'s copy of each sent row; the newest updatedAt wins. Answers to the same question or marks on the same verse made on two offline devices merge into the account\'s row by a unique key instead of duplicating. The server stamps synced_at on every write and each pull looks back a few seconds, so rows committed slightly out of order are never missed.',
+        },
+        {
+          decision: 'A localStorage Safety Net Under IndexedDB',
+          rationale:
+            'On an installed iPhone web app, IndexedDB lost answers and a prayer it had confirmed as saved, while localStorage on the same device kept everything. I diagnosed it by comparing what survived, then added a Dexie DBCore middleware that mirrors every committed write to localStorage and restores any missing or older rows when the database opens. It is invisible in normal use and turned a data-loss bug into a non-event.',
+        },
+        {
+          decision: 'Optional End-to-End Encryption with a Wrapped Data Key',
+          rationale:
+            'A random AES-256-GCM data key encrypts journal answers, prayers, stones and verse notes before they leave the device; only that key, wrapped with a key derived from the user\'s passphrase (PBKDF2-SHA-256, 600,000 rounds), is stored on the server. Each value is bound to its table, row and field as associated data, so it cannot be moved without failing to decrypt. Devices keep readable copies, so offline use and search still work, a passphrase change only rewraps the key, and the server refuses unencrypted private text while encryption is on.',
+        },
+        {
+          decision: 'A Hosted Capacitor Shell Instead of a Bundled Export',
+          rationale:
+            'Packing the pages into the APK would have meant reworking sign-in (tokens instead of cookies, CORS) and shipping a new APK or a live-update service for every change. Loading the live site inside the native shell kept sign-in, sync and encryption unchanged and makes every web deploy reach the app instantly; the service worker covers offline use after the first launch. Native work is reserved for what only native can do.',
+        },
+        {
+          decision: 'Custom Native Plugins Where the Web Stops',
+          rationale:
+            'The morning alarm uses AlarmManager.setAlarmClock with a full-screen intent, opening over the lock screen with a tone that starts soft and rises, then reads the verse aloud with Android text to speech. Listen runs as a foreground media service that queues the passage a verse at a time, with a MediaSession for lock-screen and notification controls, and reports progress back to the web player. The widget is an AppWidgetProvider the site refreshes through a small plugin.',
+        },
+        {
+          decision: 'Content in Markdown, Validated in Every Translation',
+          rationale:
+            'The 52-week plan, the breath prayers, midday prompts and the "I\'m facing…" situations are written in one Markdown document that a build script turns into JSON. A CI check resolves every reading, memory verse and situation passage in all three translations (over 1,400 checks), so a typo in a reference fails the build instead of showing an empty passage.',
+        },
+        {
+          decision: 'Grace-Based Product Rules, Enforced in Code',
+          rationale:
+            'The plan always shows the next reading, never "behind". Today reads the device clock and timezone on open and on return to the foreground, and opens on Morning, Midday or Evening (after midnight still counts as the evening before, so late reviews are dated correctly). Sunday reviews the week just read, not the next one. There is no streak anywhere; "Days with God" is a quiet calendar of dots.',
+        },
+        {
+          decision: 'Protect and Cache Without Ever Locking Anyone Out',
+          rationale:
+            'Every API route has a sliding-window rate limit on Upstash Redis (per user when signed in, per IP for sign-in and codes), returning 429 with Retry-After, but failing open if Redis is unreachable. Personal responses are private, no-store, and the service worker never caches account, auth or API traffic, so nothing private stays on a shared device; the versioned Bible files are cached for a year.',
+        },
+      ],
+    },
+    features: [
+      {
+        title: 'Today, at the Right Moment',
+        description:
+          'Today opens on Morning, Midday or Evening from the device clock and the user\'s own rhythm settings, with Sunday review on Sundays. Morning shows the week\'s attribute of God and today\'s reading; Midday a breath prayer, a line from the passage and an afternoon question; Evening three review questions. Light and dark themes follow the system or the user\'s choice.',
+        images: [
+          '/images/case-studies/coram/today.webp',
+          '/images/case-studies/coram/midday.webp',
+          '/images/case-studies/coram/today-dark.webp',
+        ],
+      },
+      {
+        title: 'Daily Reading and Reflection',
+        description:
+          'Each reading shows the passage in BSB, WEB or KJV with read-aloud, then six questions that save as you type: what it shows about God, what it reveals about man, what it means for today, how to apply it, a one-sentence prayer, and room for other comments or questions. Answers can be tagged with a part of life and sync to every device.',
+        images: ['/images/case-studies/coram/reading.webp', '/images/case-studies/coram/reflect.webp'],
+      },
+      {
+        title: 'Bible Reader, Verse Tools and Search',
+        description:
+          'Any book and chapter, offline once opened. Tap or long-press verses for a sheet with five highlight colours, save, notes, copy, share, a shareable verse image and "pray this". Marks belong to the verse, not the translation, and gather under Highlights and notes. Search runs on the device, book by book, with exact phrases and highlighted matches.',
+        images: [
+          '/images/case-studies/coram/verse-tools.webp',
+          '/images/case-studies/coram/highlights.webp',
+          '/images/case-studies/coram/search.webp',
+        ],
+      },
+      {
+        title: 'Journal and Life Areas',
+        description:
+          'Every morning, evening and Sunday answer, day by day, with a 30-day summary of the parts of life (work, family, money, health, emotions, relationships, calling) brought to God, and a gentle note about the ones not yet brought.',
+        images: ['/images/case-studies/coram/journal.webp'],
+      },
+      {
+        title: 'Prayers, Ebenezer Stones and Remembering',
+        description:
+          'Prayers are added, tagged and marked answered; an answer raises an Ebenezer stone (1 Samuel 7:12) linked to the week\'s attribute. Remember resurfaces "one year ago today" and an older stone each day, and a Year in review gathers every stone and answered prayer, month by month.',
+        images: [
+          '/images/case-studies/coram/prayers.webp',
+          '/images/case-studies/coram/remember.webp',
+          '/images/case-studies/coram/year.webp',
+        ],
+      },
+      {
+        title: 'Sunday Review and Memory Verses',
+        description:
+          'Sunday brings the memory verse to say aloud, the week\'s answers, evening reviews, answered prayers and stones, and "What did God do this week?" with a way to raise it as a stone. Memory practice moves from reading to first letters, hidden words and full recall, then schedules the next review with SM-2.',
+        images: ['/images/case-studies/coram/sunday.webp', '/images/case-studies/coram/memory.webp'],
+      },
+      {
+        title: '"I\'m Feeling… / I\'m Facing…"',
+        description:
+          'Ten situations (anxious, afraid, waiting, tempted, grieving, a decision, money, work, family, health), each with an attribute of God that speaks to it, its memory verse and breath prayer, seven passages to read slowly, the user\'s own stones from the same part of life, and "pray about this".',
+        images: ['/images/case-studies/coram/facing.webp'],
+      },
+      {
+        title: 'Android App: Alarm, Reminders, Listening and Widget',
+        description:
+          'A gentle morning alarm opens full screen with the week\'s attribute and memory verse and reads it aloud; reminders are scheduled on the phone itself, even offline; Listen keeps reading with the screen off, with lock-screen controls; and a home screen widget shows the week\'s attribute and memory verse in light and dark. Distributed as a signed APK with an in-app update notice and verified app links.',
+        images: [
+          '/images/case-studies/coram/android-alarm.webp',
+          '/images/case-studies/coram/android-widget.webp',
+          '/images/case-studies/coram/android-widget-dark.webp',
+          '/images/case-studies/coram/android-listen.webp',
+          '/images/case-studies/coram/android-reminder.webp',
+        ],
+      },
+      {
+        title: 'Offline-First, Synced and Private',
+        description:
+          'Installable on Android, iPhone and desktop, with the main screens and the next week of readings saved for offline use. Settings brings together the daily rhythm, web push reminders, optional end-to-end encryption with a journal passphrase, the offline Bible and the Android download.',
+        images: ['/images/case-studies/coram/settings.webp'],
+      },
+    ],
+    impact: [
+      {
+        metric: 'Automated Tests',
+        value: '247',
+        description:
+          'node:test suites over pure modules (sync, encryption, scheduling, SM-2, search, reminders, resurfacing), with sync also checked against the real database inside rolled-back transactions',
+      },
+      {
+        metric: 'Readings',
+        value: '260',
+        description:
+          'Five readings a week for 52 weeks, every passage verified to resolve in all three translations by a CI script of over 1,400 checks',
+      },
+      {
+        metric: 'Synced Data Types',
+        value: '6',
+        description:
+          'Journal, prayers, stones, highlights, verse notes and memory cards, local-first with conflict-safe sync; the four private ones can be end-to-end encrypted',
+      },
+      {
+        metric: 'Native Android Features',
+        value: '4',
+        description:
+          'Morning alarm, local reminders, background listening with media controls, and a home screen widget, each a Coram plugin written in Java',
+      },
+    ],
+    techStack: {
+      Frontend: [
+        'Next.js 16 (App Router)',
+        'React 19',
+        'TypeScript',
+        'Tailwind CSS v4',
+        'readyui-react',
+        'Serwist (service worker)',
+        'Dexie (IndexedDB)',
+      ],
+      'Backend & Data': [
+        'Neon Postgres',
+        'Drizzle ORM',
+        'Neon Auth (email code verification)',
+        'Web Crypto (AES-GCM, PBKDF2)',
+        'Web Push (VAPID)',
+      ],
+      'Android (Native)': [
+        'Capacitor 8',
+        'Java: AlarmManager, TextToSpeech, MediaSession, AppWidgetProvider',
+        'Local notifications',
+        'Android App Links',
+      ],
+      Services: [
+        'Vercel (hosting and cron)',
+        'Upstash QStash (reminder scheduler)',
+        'Upstash Redis (rate limiting)',
+        'Resend (email)',
+      ],
+      Tooling: ['node:test + fake-indexeddb', 'Puppeteer (browser and WebView checks)', 'Android emulator', 'ESLint'],
+    },
+    timeline: [
+      {
+        phase: 'Foundations',
+        duration: 'Phase 1',
+        description:
+          'Next.js app with design tokens and themes, Neon Postgres and Auth, the Bible import (BSB, WEB, KJV) and per-book offline files, the 52-week plan built from Markdown, and CI checks for every passage.',
+      },
+      {
+        phase: 'MVP: The Daily Walk',
+        duration: 'Phase 2',
+        description:
+          'Today at the right moment, readings with reflection, the reader with themes and read-aloud, the journal, prayers and Ebenezer stones, Days with God, rhythm settings and web push reminders, local-first storage with sync, and an installable, offline-first PWA.',
+      },
+      {
+        phase: 'Remember and Memorize',
+        duration: 'Phase 3',
+        description:
+          'Breath prayers and midday prompts, life areas, the Sunday review, resurfacing, "I\'m facing…", memory verses with SM-2, Bible search, year in review, end-to-end encryption, caching headers and rate limiting.',
+      },
+      {
+        phase: 'Android Native',
+        duration: 'Phase 4',
+        description:
+          'Capacitor shell, local reminders, the morning alarm, background listening with media controls, the home screen widget, icons, a signed release with an update notice, app links, and Android developer verification.',
+      },
+    ],
+    learnings: [
+      'On an iPhone home-screen web app, IndexedDB can lose rows it already reported as saved while localStorage survives. Comparing what survived pointed straight at the cause, and a write-through backup with restore-on-open made the problem disappear without changing any feature code.',
+      'React 19 rewrites an input\'s name attribute from props on every update, so a name set on a third-party component\'s input through the DOM is silently cleared on the first keystroke. A hidden input that React renders itself is the reliable fix.',
+      'A plugin\'s default can become a loop: asking Android for an exact alarm without permission opens a settings screen, and re-planning reminders on every resume reopened it each time. Requesting exact timing only once it is granted fixed it.',
+      'Web Crypto and crypto.randomUUID only exist in secure contexts. Pointing the Android emulator at http://10.0.2.2 broke the app in ways that looked like real bugs; adb reverse with http://localhost keeps a secure origin for local testing.',
+      'A service worker\'s default "cache what you visit" rule will happily store account and sign-in pages. Listing personal routes as network-only, and checking the caches after browsing, is the only way to be sure nothing private stays on a shared device.',
+      'Small, pure modules with no framework imports made the hard parts (sync conflicts, encryption, alarm scheduling across daylight saving, spaced repetition) fast to test exhaustively, and kept the UI free to change.',
+    ],
+    links: {
+      live: 'https://coram-deo.site',
+      github: 'https://github.com/Kemi-Oluwadahunsi/Coram-Deo',
+    },
+  },
 }
